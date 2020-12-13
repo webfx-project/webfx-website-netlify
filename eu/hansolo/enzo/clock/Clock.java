@@ -20,8 +20,8 @@ import eu.hansolo.enzo.clock.skin.ClockSkin;
 import javafx.beans.property.*;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
-import webfx.platform.client.services.uischeduler.UiScheduler;
-import webfx.platform.shared.services.scheduler.Scheduled;
+import dev.webfx.platform.client.services.uischeduler.UiScheduler;
+import dev.webfx.platform.shared.services.scheduler.Scheduled;
 
 import java.time.Duration;
 import java.time.LocalTime;

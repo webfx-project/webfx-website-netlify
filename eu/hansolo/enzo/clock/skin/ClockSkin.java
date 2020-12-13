@@ -45,8 +45,8 @@ import javafx.scene.shape.SVGPath;
 import javafx.scene.text.*;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import webfx.kit.util.properties.Properties;
-import webfx.kit.util.properties.Unregisterable;
+import dev.webfx.kit.util.properties.Properties;
+import dev.webfx.kit.util.properties.Unregisterable;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
