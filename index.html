@@ -11,22 +11,13 @@
 
 html, body {
     height: 100%;
-
 	margin: 0px;
 	padding: 0px;
 	font-family: Arial, Helvetica, sans-serif;
-}
-
-.heading {
-
     background: #0D1117;
-
-
-	height: 100%;
 }
 
-
-.heading center {
+center {
     margin: 0;
     position: absolute;
     top: 20%;
@@ -57,20 +48,29 @@ html, body {
 	font-weight: normal;
 }
 
-	</style>
+.github {
+    background: url(github.svg) no-repeat center center;
+    width: 100px;
+    height: 100px;
+}
+
+
+    </style>
 </head>
 
 <body>
 
-<div class="heading">
-    <center>
-            <h1><span class="title">WebFx</span>
-                <br/>
-                <span class="tagline">A JavaFx application transpiler</span></h1>
-            <br/><br/>
-            <i>Site under construction</i>
-    </center>
-</div>
+<center>
+    <h1><span class="title">WebFx</span>
+        <br/>
+        <span class="tagline">A JavaFx application transpiler</span></h1>
+    <br/><br/>
+    <a href="https://github.com/webfx-project/webfx">
+        <div class="github"></div>
+    </a>
+    <br/><br/>
+    <i>Site under construction</i>
+</center>
 
 </body>
 </html>
