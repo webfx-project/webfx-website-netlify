@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 400 200"
+   xml:space="preserve"
+   sodipodi:docname="WebFX.svg"
+   width="400"
+   height="200"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   inkscape:export-filename="/home/bruno/Desktop/WFX/WebFX.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"><metadata
+   id="metadata10"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
+   id="defs8"><linearGradient
+   inkscape:collect="always"
+   xlink:href="#LG6"
+   id="linearGradient23"
+   gradientUnits="userSpaceOnUse"
+   gradientTransform="matrix(2.6055218,0,0,1.8112734,1.520953e-8,24.966543)"
+   x1="76.760063"
+   y1="-1.5559531e-08"
+   x2="-1.0816466e-08"
+   y2="-1.5559531e-08"
+   spreadMethod="pad" /><linearGradient
+   inkscape:collect="always"
+   xlink:href="#LG6"
+   id="linearGradient25"
+   gradientUnits="userSpaceOnUse"
+   gradientTransform="matrix(0.71354839,0,0,0.49603545,-0.6078424,126.87323)"
+   x1="76.760063"
+   y1="-1.5559531e-08"
+   x2="-1.0816466e-08"
+   y2="-1.5559531e-08"
+   spreadMethod="pad" />
+     
+     </defs><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1600"
+   inkscape:window-height="836"
+   id="namedview6"
+   showgrid="false"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0"
+   inkscape:zoom="2"
+   inkscape:cx="-19.803862"
+   inkscape:cy="71.559322"
+   inkscape:window-x="0"
+   inkscape:window-y="27"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+	<defs
+   id="defs18">
+<linearGradient id="LG6" x1="1" y1="0" x2="0" y2="0" spreadMethod="pad" gradientUnits="objectBoundingBox"><stop offset="0%" stop-color="#ffe580"></stop><stop offset="20%" stop-color="#ff7571"></stop><stop offset="40%" stop-color="#ea5dad"></stop><stop offset="60.00000000000001%" stop-color="#c2a0fd"></stop><stop offset="80%" stop-color="#3bf0e4"></stop><stop offset="100%" stop-color="#b2f4b6"></stop></linearGradient>
+	</defs>
+	<text
+   id="text15"
+   dominant-baseline="baseline"
+   width="0"
+   y="100"
+   x="0"
+   stroke-alignment="center"
+   stroke-miterlimit="1"
+   style="font-style:normal;font-weight:700;font-size:120px;font-family:Arial;text-anchor:start;fill:url(#LG6);stroke:#ffffff;stroke-width:1.18986607;stroke-miterlimit:1">WebFX</text>
+
+
+</svg>

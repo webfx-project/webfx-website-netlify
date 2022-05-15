@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>WebFX</title>
+  
+  <subtitle>A JavaFX transpiler</subtitle>
+  <link href="https://blog.webfx.dev/atom.xml" rel="self"/>
+  
+  <link href="https://blog.webfx.dev/"/>
+  <updated>2022-05-15T00:42:01.980Z</updated>
+  <id>https://blog.webfx.dev/</id>
+  
+  <author>
+    <name>Bruno Salmon</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The WebFX website is live!</title>
+    <link href="https://blog.webfx.dev/2022/05/15/website-launch/"/>
+    <id>https://blog.webfx.dev/2022/05/15/website-launch/</id>
+    <published>2022-05-15T00:42:01.980Z</published>
+    <updated>2022-05-15T00:42:01.980Z</updated>
+    
+    <content type="html"><![CDATA[<p>We are very happy to announce that the WebFX <a href="https://webfx.dev/">website</a> is now live. The project has been paused for nearly a year due to some circumstances, but the good news is that the conditions have finally been gathered to resume it. So the WebFX project has restarted this year, and we managed to accomplish the next stage, publishing the website. </p><p>The website comes along with this blog and some <a href="https://docs.webfx.dev/">documentation</a>, including a guide to get you started, which is probably the thing you were awaiting the most, if you are following the project. It’s a bit succinct, but it should be enough to start.</p><p>The website itself can also be considered as an additional demo, because it’s actually a WebFX app. It presents the technology through a series of animated cards. If you are interested in the JavaFX code, you can check out the <a href="https://github.com/webfx-project/webfx-website">GitHub repository</a>.</p><p>The initial version had actually more cards, but some people found them a bit controversial, so I considered their feedback, and finally removed them. These cards are still online <a href="https://preview.webfx.dev/">here</a> however for the curious.</p><p>I hope you will find the website and its documentation useful, and you will enjoy your first experience with WebFX. The project is still in incubation phase, so I’m aware you will encounter some obstacles (GWT compilation errors in your code if you are not used to it, limited JavaFX coverage and bugs in WebFX, …), but I hope you will see there is a lot of potential here for us as Java developers. Thanks for your effort and patience.</p><p>And if you wish to keep updated, you can of course bookmark this blog, or subscribe to the <a href="atom.xml">feed</a>. We will try to publish regular posts for any progress made on the project. You can consult our roadmap in the <a href="https://github.com/webfx-project/webfx">README</a>. Thanks for your support!</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;We are very happy to announce that the WebFX &lt;a href=&quot;https://webfx.dev/&quot;&gt;website&lt;/a&gt; is now live. The project has been paused for nearly</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
