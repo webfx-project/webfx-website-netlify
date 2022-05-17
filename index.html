@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-05-15">
+<meta name="author" content="Last updated: 2022-05-17">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -436,12 +436,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-05-15</span><br>
+<span id="author" class="author">Last updated: 2022-05-17</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -450,10 +451,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_getting_started">Getting started</a>
 <ul class="sectlevel2">
 <li><a href="#_prerequisite">Prerequisite</a></li>
-<li><a href="#_installing_the_cli_tool">Installing the CLI tool</a></li>
-<li><a href="#_initializing_your_repository">Initializing your repository</a></li>
-<li><a href="#_creating_your_application_modules">Creating your application modules</a></li>
-<li><a href="#_updating_your_modules">Updating your modules</a></li>
+<li><a href="#_introducing_the_webfx_cli">Introducing the WebFX CLI</a></li>
+<li><a href="#_installing_the_webfx_cli">Installing the WebFX CLI</a></li>
+<li><a href="#_creating_your_first_webfx_app">Creating your first WebFX app</a></li>
 </ul>
 </li>
 <li><a href="#_pdf_version">PDF version</a></li>
@@ -472,41 +472,169 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_prerequisite">Prerequisite</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Java version 13 or above</p>
+</li>
+<li>
+<p>Maven</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_introducing_the_webfx_cli">Introducing the WebFX CLI</h3>
+<div class="paragraph">
+<p>The WebFX CLI is an essential tool to help you to build WebFX apps. It will create and maintain your modules and build files, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>pom.xml (Maven module files)</p>
+</li>
+<li>
+<p>module.gwt.xml (GWT module files)</p>
+</li>
+<li>
+<p>module-info.java (Java module files)</p>
+</li>
+<li>
+<p>and many other files (GWT super sources, GWT bundles, Gluon builds, GraalVM conf, &#8230;&#8203;)</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The WebFX CLI is required to build a WebFX application, but it is not required for its execution.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Your only inputs will be centralized in the WebFX module files (named webfx.xml), and the tool will automatically generate the rest of the build chain from these webfx.xml files, combined with an analysis of your source code. This includes all your dependencies. When a feature is platform-dependent (several implementations exist for different platforms), the tool will pick up the right modules in the final executable modules (the ones matching the platform targeted by the executable module).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installing_the_webfx_cli">Installing the WebFX CLI</h3>
+<div class="paragraph">
+<p>As we haven&#8217;t published any release at this stage yet, the way to install the WebFX CLI for now is to clone the <a href="https://github.com/webfx-project/webfx-cli">webfx-cli</a> repository, and build it with Maven.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We will distribute the WebFX CLI in a better way later, when we will publish the first official release.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_cloning_the_webfx_cli_repository">Cloning the webfx-cli repository</h4>
 <div class="literalblock">
 <div class="content">
-<pre>mvn -version</pre>
+<pre>$ git clone git@github.com:webfx-project/webfx-cli.git</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_building_webfx_cli_with_maven">Building webfx-cli with Maven</h4>
+<div class="literalblock">
+<div class="content">
+<pre>$ cd webfx-cli
+$ mvn package</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This generates an executable fat jar in the target folder that we can execute with java:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ java -jar target/webfx-cli-0.1.0-SNAPSHOT-fat.jar</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+As already mentioned, WebFX CLI requires java 13 or above.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_an_alias">Creating an alias</h4>
+<div class="paragraph">
+<p>To easily invoke the WebFX CLI from a terminal, we need to create a <em>webfx</em> alias to it. This is done with the following command (replace <code>absolute-path-to-target</code> with the actual path to the target folder on your machine):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ alias webfx="java -jar /absolute-path-to-target/webfx-cli-0.1.0-SNAPSHOT-fat.jar"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then you should be able to invoke the CLI tool from the terminal:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ webfx -version</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_updating_the_webfx_cli_to_the_latest_version">Updating the WebFX CLI to the latest version</h4>
+<div class="paragraph">
+<p>If later you want to update the WebFX CLI to the latest version, you just need to update your local repository and rebuild it with Maven. This is done through the following commands (from your webfx-cli local folder):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ git pull
+$ mvn package</pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_installing_the_cli_tool">Installing the CLI tool</h3>
+<h3 id="_creating_your_first_webfx_app">Creating your first WebFX app</h3>
+<div class="sect3">
+<h4 id="_creating_and_initializing_your_repository">Creating and initializing your repository</h4>
+<div class="paragraph">
+<p>Let&#8217;s create our first WebFX application. We need to create the repository folder and ask the WebFX CLI to initialize it, passing it the groupId, artifactId and version of our application.</p>
+</div>
 <div class="literalblock">
 <div class="content">
-<pre>webfx -version</pre>
+<pre>$ mkdir my-webfxapp
+$ cd my-webfxapp
+$ webfx init org.example my-webfxapp 1.0.0-SNAPSHOT</pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_initializing_your_repository">Initializing your repository</h3>
+<div class="sect3">
+<h4 id="_creating_your_application_modules">Creating your application modules</h4>
 <div class="literalblock">
 <div class="content">
-<pre>webfx init</pre>
+<pre>$ webfx create application -c org.example.mywebfxapp.MyWebFxApplication -w</pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_creating_your_application_modules">Creating your application modules</h3>
-<div class="literalblock">
-<div class="content">
-<pre>webfx create application</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_updating_your_modules">Updating your modules</h3>
+<div class="sect3">
+<h4 id="_updating_your_modules">Updating your modules</h4>
 <div class="literalblock">
 <div class="content">
 <pre>webfx update</pre>
+</div>
 </div>
 </div>
 </div>
@@ -525,7 +653,7 @@ of the documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-15 15:39:59 UTC
+Last updated 2022-05-17 20:23:13 UTC
 </div>
 </div>
 </body>
