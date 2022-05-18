@@ -697,13 +697,13 @@ We will distribute the WebFX CLI in a better way later, when we will publish the
 <div class="listingblock primary">
 <div class="title">HTTPS</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ git clone https://github.com/webfx-project/webfx-cli.git</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">git clone https://github.com/webfx-project/webfx-cli.git</code></pre>
 </div>
 </div>
 <div class="listingblock secondary">
 <div class="title">SSH</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ git clone git@github.com:webfx-project/webfx-cli.git</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">git clone git@github.com:webfx-project/webfx-cli.git</code></pre>
 </div>
 </div>
 </div>
@@ -714,8 +714,8 @@ We will distribute the WebFX CLI in a better way later, when we will publish the
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ cd webfx-cli
-$ mvn package</pre>
+<pre>cd webfx-cli
+mvn package</pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -735,7 +735,7 @@ As previously mentioned, WebFX CLI requires JDK 13 or above (you will get a buil
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ java -jar target/webfx-cli-0.1.0-SNAPSHOT-fat.jar --help</pre>
+<pre>java -jar target/webfx-cli-0.1.0-SNAPSHOT-fat.jar --help</pre>
 </div>
 </div>
 </div>
@@ -747,8 +747,9 @@ As previously mentioned, WebFX CLI requires JDK 13 or above (you will get a buil
 <div class="listingblock primary">
 <div class="title">Linux</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bashrc <i class="conum" data-value="1"></i><b>(1)</b>
-$ source ~/.bashrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bashrc <i class="conum" data-value="1"></i><b>(1)</b>
+
+source ~/.bashrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -766,8 +767,9 @@ $ source ~/.bashrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="listingblock secondary">
 <div class="title">macOS &gt;= Catalina</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.zshrc <i class="conum" data-value="1"></i><b>(1)</b>
-$ source ~/.zshrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.zshrc <i class="conum" data-value="1"></i><b>(1)</b>
+
+source ~/.zshrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -785,8 +787,9 @@ $ source ~/.zshrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="listingblock secondary">
 <div class="title">macOS &lt; Catalina</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
-$ source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
+
+source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -804,11 +807,13 @@ $ source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></
 <div class="listingblock secondary">
 <div class="title">Windows PowerShell</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ If (!(Test-Path $profile)) { New-Item -Path $profile -Force } <i class="conum" data-value="1"></i><b>(1)</b>
-$ "function webfx([String[]] [Parameter(ValueFromRemainingArguments)] `$params) { java -jar $((Get-Item .).fullName)\target\webfx-cli-0.1.0-SNAPSHOT-fat.jar `$params }" &gt;&gt; $profile <i class="conum" data-value="2"></i><b>(2)</b>
+<pre class="highlight"><code class="language-shell" data-lang="shell">If (!(Test-Path $profile)) { New-Item -Path $profile -Force } <i class="conum" data-value="1"></i><b>(1)</b>
 
-$ If (Get-ExecutionPolicy eq "Restricted") { Start-Process powershell -Verb runAs "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned" } <i class="conum" data-value="3"></i><b>(3)</b>
-$ . $profile <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+"function webfx([String[]] [Parameter(ValueFromRemainingArguments)] `$params) { java -jar $((Get-Item .).fullName)\target\webfx-cli-0.1.0-SNAPSHOT-fat.jar `$params }" &gt;&gt; $profile <i class="conum" data-value="2"></i><b>(2)</b>
+
+If (Get-ExecutionPolicy eq "Restricted") { Start-Process powershell -Verb runAs "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned" } <i class="conum" data-value="3"></i><b>(3)</b>
+
+. $profile <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -836,7 +841,7 @@ $ . $profile <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ webfx --help</pre>
+<pre>webfx --help</pre>
 </div>
 </div>
 </div>
@@ -847,8 +852,8 @@ $ . $profile <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ git pull
-$ mvn package</pre>
+<pre>git pull
+mvn package</pre>
 </div>
 </div>
 </div>
@@ -862,9 +867,9 @@ $ mvn package</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ mkdir mywebfxapp
-$ cd mywebfxapp
-$ webfx init org.example mywebfxapp 1.0.0-SNAPSHOT</pre>
+<pre>mkdir mywebfxapp
+cd mywebfxapp
+webfx init org.example mywebfxapp 1.0.0-SNAPSHOT</pre>
 </div>
 </div>
 </div>
@@ -872,7 +877,7 @@ $ webfx init org.example mywebfxapp 1.0.0-SNAPSHOT</pre>
 <h4 id="_creating_your_application_modules">Creating your application modules</h4>
 <div class="literalblock">
 <div class="content">
-<pre>$ webfx create application --class org.example.mywebfxapp.MyWebFxApplication --helloWorld</pre>
+<pre>webfx create application --class org.example.mywebfxapp.MyWebFxApplication --helloWorld</pre>
 </div>
 </div>
 </div>
@@ -900,7 +905,7 @@ of the documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-18 22:58:30 UTC
+Last updated 2022-05-18 23:30:03 UTC
 </div>
 </div>
 </body>
