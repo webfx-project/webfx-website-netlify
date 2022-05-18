@@ -621,13 +621,19 @@ window.onload = function() {
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_prerequisite">Prerequisite</h3>
+<div class="paragraph">
+<p>You will need the following software installed on your development machine:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Java version 13 or above</p>
+<p>JDK 13 or above</p>
 </li>
 <li>
 <p>Maven</p>
+</li>
+<li>
+<p>Git</p>
 </li>
 </ul>
 </div>
@@ -635,7 +641,7 @@ window.onload = function() {
 <div class="sect2">
 <h3 id="_introducing_the_webfx_cli">Introducing the WebFX CLI</h3>
 <div class="paragraph">
-<p>The WebFX CLI is an essential tool to help you to build WebFX apps. It will create and maintain your modules and build files, such as:</p>
+<p>The WebFX CLI is an essential tool to assist you developing WebFX apps. It will create and maintain your modules and build files, such as:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -660,13 +666,13 @@ window.onload = function() {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The WebFX CLI is required to build a WebFX application, but it is not required for its execution.
+The WebFX CLI is required only on your local development machine (not on your CI/CD pipeline). It is not required for the build (this is Maven job), or for the execution of WebFX apps (WebFX app testers don&#8217;t need it).
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Your only inputs will be centralized in the WebFX module files (named webfx.xml), and the tool will automatically generate the rest of the build chain from these webfx.xml files, combined with an analysis of your source code. This includes all your dependencies. When a feature is platform-dependent (several implementations exist for different platforms), the tool will pick up the right modules in the final executable modules (the ones matching the platform targeted by the executable module).</p>
+<p>Your only inputs will be centralized in the WebFX module files (named webfx.xml), and the tool will automatically generate the rest of the build chain from these webfx.xml files, combined with an analysis of your source code. This includes all your dependencies. The tool also takes over the aspects of cross-platform development: when a feature is platform-dependent (a different implementations exists for each platform), the tool will pick up the right modules in the final executable modules (the ones matching the platform targeted by the executable module).</p>
 </div>
 </div>
 <div class="sect2">
@@ -688,14 +694,24 @@ We will distribute the WebFX CLI in a better way later, when we will publish the
 </div>
 <div class="sect3">
 <h4 id="_cloning_the_webfx_cli_repository">Cloning the webfx-cli repository</h4>
-<div class="literalblock">
+<div class="listingblock primary">
+<div class="title">HTTPS</div>
 <div class="content">
-<pre>$ git clone git@github.com:webfx-project/webfx-cli.git</pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ git clone https://github.com/webfx-project/webfx-cli.git</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">SSH</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ git clone git@github.com:webfx-project/webfx-cli.git</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_building_webfx_cli_with_maven">Building webfx-cli with Maven</h4>
+<div class="paragraph">
+<p>This is achieved by running the Maven <em>package</em> goal under the webfx-cli directory:</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>$ cd webfx-cli
@@ -709,7 +725,7 @@ $ mvn package</pre>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-As already mentioned, WebFX CLI requires java 13 or above (you will get a compilation error if using a lower JDK version).
+As previously mentioned, WebFX CLI requires JDK 13 or above (you will get a build error with lower versions).
 </td>
 </tr>
 </table>
@@ -726,7 +742,7 @@ As already mentioned, WebFX CLI requires java 13 or above (you will get a compil
 <div class="sect3">
 <h4 id="_creating_a_permanent_alias">Creating a permanent alias</h4>
 <div class="paragraph">
-<p>To easily invoke the WebFX CLI from a terminal, we need to create a <em>webfx</em> alias to it. This is done with the following command:</p>
+<p>To easily invoke the WebFX CLI from a terminal, we need to create a permanent <em>webfx</em> alias to it. This is done with the following command (to run under webfx-cli directory):</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Linux</div>
@@ -752,7 +768,7 @@ $ source ~/.bash_profile</code></pre>
 <div class="listingblock secondary">
 <div class="title">Windows Powershell</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">$ alias webfx="java -jar /absolute-path-to-target/webfx-cli-0.1.0-SNAPSHOT-fat.jar"</code></pre>
+<pre class="highlight"><code class="language-shell" data-lang="shell">$ If (!(Test-Path $profile)) { New-Item -Path $profile -Force }; "function webfx([String[]] [Parameter(ValueFromRemainingArguments)] `$params) { java -jar $((Get-Item .).fullName)\target\webfx-cli-0.1.0-SNAPSHOT-fat.jar `$params }" &gt;&gt; $profile; If (Get-ExecutionPolicy eq "Restricted") { Start-Process powershell -Verb runAs "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned" }; . $profile</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -767,7 +783,7 @@ $ source ~/.bash_profile</code></pre>
 <div class="sect3">
 <h4 id="_updating_the_webfx_cli_to_the_latest_version">Updating the WebFX CLI to the latest version</h4>
 <div class="paragraph">
-<p>If later you want to update the WebFX CLI to the latest version, you just need to update your local repository and rebuild it with Maven. This is done through the following commands (from your webfx-cli local folder):</p>
+<p>If later you want to update the WebFX CLI to the latest SNAPSHOT version, you just need to update your local repository and rebuild it with Maven. This is done through the following commands (under your webfx-cli local folder):</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -786,9 +802,9 @@ $ mvn package</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ mkdir my-webfxapp
-$ cd my-webfxapp
-$ webfx init org.example my-webfxapp 1.0.0-SNAPSHOT</pre>
+<pre>$ mkdir mywebfxapp
+$ cd mywebfxapp
+$ webfx init org.example mywebfxapp 1.0.0-SNAPSHOT</pre>
 </div>
 </div>
 </div>
@@ -796,7 +812,7 @@ $ webfx init org.example my-webfxapp 1.0.0-SNAPSHOT</pre>
 <h4 id="_creating_your_application_modules">Creating your application modules</h4>
 <div class="literalblock">
 <div class="content">
-<pre>$ webfx create application -c org.example.mywebfxapp.MyWebFxApplication -w</pre>
+<pre>$ webfx create application --class org.example.mywebfxapp.MyWebFxApplication --helloWorld</pre>
 </div>
 </div>
 </div>
@@ -824,7 +840,7 @@ of the documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-18 11:50:35 UTC
+Last updated 2022-05-18 20:56:03 UTC
 </div>
 </div>
 </body>
