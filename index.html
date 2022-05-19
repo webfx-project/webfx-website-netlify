@@ -603,6 +603,7 @@ window.onload = function() {
 <li><a href="#_introducing_the_webfx_cli">Introducing the WebFX CLI</a></li>
 <li><a href="#_installing_the_webfx_cli">Installing the WebFX CLI</a></li>
 <li><a href="#_creating_your_first_webfx_app">Creating your first WebFX app</a></li>
+<li><a href="#_developing_in_your_ide">Developing in your IDE</a></li>
 </ul>
 </li>
 <li><a href="#_pdf_version">PDF version</a></li>
@@ -622,7 +623,7 @@ window.onload = function() {
 <div class="sect2">
 <h3 id="_prerequisite">Prerequisite</h3>
 <div class="paragraph">
-<p>To develop WebFX apps, you will need the following software installed on your development machine:</p>
+<p>To develop WebFX applications, you will need the following software installed on your development machine:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -635,13 +636,28 @@ window.onload = function() {
 <li>
 <p>Git</p>
 </li>
+<li>
+<p>Your preferred Java IDE</p>
+</li>
 </ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</code> directly from the terminal. The WebFX CLI will invoke <code>mvn</code> and <code>java</code> without specifying their full path.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_introducing_the_webfx_cli">Introducing the WebFX CLI</h3>
 <div class="paragraph">
-<p>The WebFX CLI is an essential tool to assist you developing WebFX apps. It will create and maintain your modules and build files, such as:</p>
+<p>The WebFX CLI is an essential tool to assist you developing WebFX applications. It will create and maintain your modules and build files, such as:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -666,7 +682,7 @@ window.onload = function() {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The WebFX CLI is required only on your local development machine (not on your CI/CD pipeline). And it is not required for the build, or the execution of WebFX apps.
+The WebFX CLI is required only on your local development machine (not on your CI/CD pipeline). It is not required for the build, or the execution of WebFX apps.
 </td>
 </tr>
 </table>
@@ -867,9 +883,9 @@ mvn package</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>mkdir mywebfxapp
-cd mywebfxapp
-webfx init org.example mywebfxapp 1.0.0-SNAPSHOT</pre>
+<pre>mkdir webfx-example
+cd webfx-example
+webfx init org.example webfx-example 1.0.0-SNAPSHOT</pre>
 </div>
 </div>
 </div>
@@ -877,12 +893,57 @@ webfx init org.example mywebfxapp 1.0.0-SNAPSHOT</pre>
 <h4 id="_creating_your_application_modules">Creating your application modules</h4>
 <div class="literalblock">
 <div class="content">
-<pre>webfx create application --class org.example.mywebfxapp.MyWebFxApplication --helloWorld</pre>
+<pre>webfx create application --class org.example.webfxexample.WebFxExampleApplication --helloWorld</pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_updating_your_modules">Updating your modules</h4>
+<h4 id="_building_your_application">Building your application</h4>
+<div class="literalblock">
+<div class="content">
+<pre>webfx build</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_your_application">Running your application</h4>
+<div class="paragraph">
+<p>You can run the OpenJFX version of your application with the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>webfx -m webfx-example-application-openjfx run</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can run the GWT version of your application with the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>webfx -m webfx-example-application-gwt run</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_developing_in_your_ide">Developing in your IDE</h3>
+<div class="paragraph">
+<p>We will give the instructions for IntelliJ IDEA, but you should be able to easily transpose them to other Java IDEs such as NetBeans or Eclipse.</p>
+</div>
+<div class="sect3">
+<h4 id="_opening_the_project">Opening the project</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_configuring_the_openjfx_application">Configuring the OpenJFX application</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_building_and_running_the_gwt_application">Building and running the GWT application</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_making_changes">Making changes</h4>
 <div class="literalblock">
 <div class="content">
 <pre>webfx update</pre>
@@ -905,7 +966,7 @@ of the documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-19 07:57:29 UTC
+Last updated 2022-05-19 11:31:12 UTC
 </div>
 </div>
 </body>
