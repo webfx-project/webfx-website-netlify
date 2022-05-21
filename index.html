@@ -623,7 +623,7 @@ window.onload = function() {
 <div class="sect2">
 <h3 id="_prerequisite">Prerequisite</h3>
 <div class="paragraph">
-<p>To develop WebFX applications, you will need the following software installed on your development machine:</p>
+<p>To develop WebFX applications, you will need the following software already installed on your development machine:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -657,7 +657,35 @@ Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</c
 <div class="sect2">
 <h3 id="_introducing_the_webfx_cli">Introducing the WebFX CLI</h3>
 <div class="paragraph">
-<p>The WebFX CLI is an essential tool to assist you developing WebFX applications. It will create and maintain your modules and build files, such as:</p>
+<p>The WebFX CLI is the Command Line Interface for WebFX. It&#8217;s an essential tool to assist you developing WebFX applications. It will create your application modules, and organize them as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<svg contentScriptType='application/ecmascript' contentStyleType='text/css' preserveAspectRatio='none' version='1.1' viewBox='0 0 299 131' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' zoomAndPan='magnify' width="299" height="131"><defs/><g><rect fill='#FFFFFF' height='97.8125' rx='5' ry='5' style='stroke:#FFFFFF;stroke-width:1.0;' width='275' x='8' y='18'/><text fill='#444444' font-family='sans-serif' font-size='18' lengthAdjust='spacing' textLength='166' x='38' y='41.708'>xxx-application (1)</text><text fill='#444444' font-family='sans-serif' font-size='18' lengthAdjust='spacing' textLength='222' x='38' y='62.6611'>xxx-application-gluon (2)</text><text fill='#444444' font-family='sans-serif' font-size='18' lengthAdjust='spacing' textLength='207' x='38' y='83.6143'>xxx-application-gwt (3)</text><text fill='#444444' font-family='sans-serif' font-size='18' lengthAdjust='spacing' textLength='239' x='38' y='104.5674'>xxx-application-openjfx (4)</text><rect fill='none' height='2' style='stroke:#444444;stroke-width:1.0;' width='2' x='29' y='34.4766'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='30' y1='35.4766' y2='35.4766'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='22' y1='25' y2='35.4766'/><rect fill='none' height='2' style='stroke:#444444;stroke-width:1.0;' width='2' x='29' y='55.4297'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='30' y1='56.4297' y2='56.4297'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='22' y1='35.4766' y2='56.4297'/><rect fill='none' height='2' style='stroke:#444444;stroke-width:1.0;' width='2' x='29' y='76.3828'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='30' y1='77.3828' y2='77.3828'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='22' y1='56.4297' y2='77.3828'/><rect fill='none' height='2' style='stroke:#444444;stroke-width:1.0;' width='2' x='29' y='97.3359'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='30' y1='98.3359' y2='98.3359'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='22' y1='77.3828' y2='98.3359'/></g></svg>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This module contains the JavaFX code of your application. It is not directly executable as it is not yet bound to a specific platform.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This module targets the mobile platforms. It will call the Gluon toolchain to produce the Android / iOS executables.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>This module targets the web platform. It will call GWT to produce the HTML and JS code.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This module targets the desktop platform. It will create an executable Java artifact with the OpenJFX runtime. You can also use this module to directly run and debug your application in your IDE.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can create several WebFX applications in the same repository (a front office and a back office for example). Of course, if your application code grows, you can split your code into additional modules. The WebFX CLI will help you to create and maintain all your modules. For each module, it will create and maintain your build files, such as (when applicable):</p>
 </div>
 <div class="ulist">
 <ul>
@@ -677,17 +705,116 @@ Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</c
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnIHN0YW5kYWxvbmU9J25vJz8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyBoZWlnaHQ9JzIwNnB0JyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSd4TWlkWU1pZCBtZWV0JyB2aWV3Qm94PScwLjAwIDAuMDAgODA1Ljc5IDIwNS43NCcgd2lkdGg9JzgwNnB0JyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluaycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz4KPGcgY2xhc3M9J2dyYXBoJyBpZD0nZ3JhcGgwJyB0cmFuc2Zvcm09J3NjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSg0IDIwMS43NCknPgo8dGl0bGU+ZzwvdGl0bGU+Cjxwb2x5Z29uIGZpbGw9J3doaXRlJyBwb2ludHM9Jy00LDQgLTQsLTIwMS43NCA4MDEuNzksLTIwMS43NCA4MDEuNzksNCAtNCw0JyBzdHJva2U9J3RyYW5zcGFyZW50Jy8+Cgo8ZyBjbGFzcz0nbm9kZScgaWQ9J25vZGUxJz4KPHRpdGxlPndlYmZ4LnhtbDwvdGl0bGU+CjxlbGxpcHNlIGN4PScyNTYuNycgY3k9Jy0xNzkuNzQnIGZpbGw9J25vbmUnIHJ4PSc1OC40OScgcnk9JzE4JyBzdHJva2U9J2JsYWNrJy8+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nMjU2LjcnIHk9Jy0xNzYuMDQnPndlYmZ4LnhtbDwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J25vZGUnIGlkPSdub2RlMic+Cjx0aXRsZT53ZWJmeCYjNDU7Y2xpPC90aXRsZT4KPGVsbGlwc2UgY3g9JzMzOC43JyBjeT0nLTEwNy43NCcgZmlsbD0nbm9uZScgcng9JzUxLjk5JyByeT0nMTgnIHN0cm9rZT0nYmxhY2snLz4KPHRleHQgZm9udC1mYW1pbHk9J1RpbWVzLHNlcmlmJyBmb250LXNpemU9JzE0LjAwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyB4PSczMzguNycgeT0nLTEwNC4wNCc+d2ViZngmIzQ1O2NsaTwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J2VkZ2UnIGlkPSdlZGdlMSc+Cjx0aXRsZT53ZWJmeC54bWwmIzQ1OyZndDt3ZWJmeCYjNDU7Y2xpPC90aXRsZT4KPHBhdGggZD0nTTI3NS43MSwtMTYyLjVDMjg2LjU1LC0xNTMuMjUgMzAwLjMxLC0xNDEuNTEgMzEyLjE5LC0xMzEuMzcnIGZpbGw9J25vbmUnIHN0cm9rZT0nYmxhY2snLz4KPHBvbHlnb24gZmlsbD0nYmxhY2snIHBvaW50cz0nMzE0LjczLC0xMzMuOCAzMjAuMDYsLTEyNC42NSAzMTAuMTgsLTEyOC40OCAzMTQuNzMsLTEzMy44JyBzdHJva2U9J2JsYWNrJy8+CjwvZz4KCjxnIGNsYXNzPSdub2RlJyBpZD0nbm9kZTQnPgo8dGl0bGU+cG9tLnhtbDwvdGl0bGU+CjxlbGxpcHNlIGN4PSc1MC43JyBjeT0nLTI2Ljg3JyBmaWxsPSdub25lJyByeD0nNTAuODknIHJ5PScxOCcgc3Ryb2tlPSdibGFjaycvPgo8dGV4dCBmb250LWZhbWlseT0nVGltZXMsc2VyaWYnIGZvbnQtc2l6ZT0nMTQuMDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIHg9JzUwLjcnIHk9Jy0yMy4xNyc+cG9tLnhtbDwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J2VkZ2UnIGlkPSdlZGdlMyc+Cjx0aXRsZT53ZWJmeCYjNDU7Y2xpJiM0NTsmZ3Q7cG9tLnhtbDwvdGl0bGU+CjxwYXRoIGQ9J00yOTMuNDgsLTk4LjcxQzI0NywtODkuODcgMTcyLjg1LC03NC4xOCAxMTAuNywtNTMuNzQgMTAzLjY2LC01MS40MyA5Ni4zMSwtNDguNjEgODkuMjYsLTQ1LjY5JyBmaWxsPSdub25lJyBzdHJva2U9J2JsYWNrJy8+Cjxwb2x5Z29uIGZpbGw9J2JsYWNrJyBwb2ludHM9JzkwLjQ2LC00Mi40IDc5Ljg5LC00MS43IDg3LjcyLC00OC44NCA5MC40NiwtNDIuNCcgc3Ryb2tlPSdibGFjaycvPgo8L2c+Cgo8ZyBjbGFzcz0nbm9kZScgaWQ9J25vZGU1Jz4KPHRpdGxlPm1vZHVsZSYjNDU7aW5mby5qYXZhPC90aXRsZT4KPGVsbGlwc2UgY3g9JzIwNi43JyBjeT0nLTI2Ljg3JyBmaWxsPSdub25lJyByeD0nODcuMTgnIHJ5PScxOCcgc3Ryb2tlPSdibGFjaycvPgo8dGV4dCBmb250LWZhbWlseT0nVGltZXMsc2VyaWYnIGZvbnQtc2l6ZT0nMTQuMDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIHg9JzIwNi43JyB5PSctMjMuMTcnPm1vZHVsZSYjNDU7aW5mby5qYXZhPC90ZXh0Pgo8L2c+Cgo8ZyBjbGFzcz0nZWRnZScgaWQ9J2VkZ2U0Jz4KPHRpdGxlPndlYmZ4JiM0NTtjbGkmIzQ1OyZndDttb2R1bGUmIzQ1O2luZm8uamF2YTwvdGl0bGU+CjxwYXRoIGQ9J00zMTMuODcsLTkxLjkxQzI5My42OSwtNzkuODUgMjY0Ljk3LC02Mi42OSAyNDIuMzQsLTQ5LjE3JyBmaWxsPSdub25lJyBzdHJva2U9J2JsYWNrJy8+Cjxwb2x5Z29uIGZpbGw9J2JsYWNrJyBwb2ludHM9JzI0NC4wNiwtNDYuMTIgMjMzLjY4LC00NCAyNDAuNDcsLTUyLjEzIDI0NC4wNiwtNDYuMTInIHN0cm9rZT0nYmxhY2snLz4KPC9nPgoKPGcgY2xhc3M9J25vZGUnIGlkPSdub2RlNic+Cjx0aXRsZT5HV1QgbW9kdWxlLmd3dC54bWwKc3VwZXIgc291cmNlcywgYnVuZGxlcywgZXRjLi4uPC90aXRsZT4KPGVsbGlwc2UgY3g9JzQ3MS43JyBjeT0nLTI2Ljg3JyBmaWxsPSdub25lJyByeD0nMTU5LjYxJyByeT0nMjYuNzQnIHN0cm9rZT0nYmxhY2snLz4KPHRleHQgZm9udC1mYW1pbHk9J1RpbWVzLHNlcmlmJyBmb250LXNpemU9JzE0LjAwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyB4PSc0NzEuNycgeT0nLTMwLjY3Jz5HV1QgbW9kdWxlLmd3dC54bWw8L3RleHQ+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nNDcxLjcnIHk9Jy0xNS42Nyc+c3VwZXIgc291cmNlcywgYnVuZGxlcywgZXRjLi4uPC90ZXh0Pgo8L2c+Cgo8ZyBjbGFzcz0nZWRnZScgaWQ9J2VkZ2U1Jz4KPHRpdGxlPndlYmZ4JiM0NTtjbGkmIzQ1OyZndDtHV1QgbW9kdWxlLmd3dC54bWwKc3VwZXIgc291cmNlcywgYnVuZGxlcywgZXRjLi4uPC90aXRsZT4KPHBhdGggZD0nTTM2My43MSwtOTEuOTFDMzc5Ljc2LC04Mi4zOSA0MDEuMTksLTY5LjY4IDQyMC43MiwtNTguMScgZmlsbD0nbm9uZScgc3Ryb2tlPSdibGFjaycvPgo8cG9seWdvbiBmaWxsPSdibGFjaycgcG9pbnRzPSc0MjIuNzEsLTYwLjk5IDQyOS41MywtNTIuODcgNDE5LjE0LC01NC45NiA0MjIuNzEsLTYwLjk5JyBzdHJva2U9J2JsYWNrJy8+CjwvZz4KCjxnIGNsYXNzPSdub2RlJyBpZD0nbm9kZTcnPgo8dGl0bGU+R3JhYWxWTSBjb25mPC90aXRsZT4KPGVsbGlwc2UgY3g9JzcyMy43JyBjeT0nLTI2Ljg3JyBmaWxsPSdub25lJyByeD0nNzQuMTknIHJ5PScxOCcgc3Ryb2tlPSdibGFjaycvPgo8dGV4dCBmb250LWZhbWlseT0nVGltZXMsc2VyaWYnIGZvbnQtc2l6ZT0nMTQuMDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIHg9JzcyMy43JyB5PSctMjMuMTcnPkdyYWFsVk0gY29uZjwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J2VkZ2UnIGlkPSdlZGdlNic+Cjx0aXRsZT53ZWJmeCYjNDU7Y2xpJiM0NTsmZ3Q7R3JhYWxWTSBjb25mPC90aXRsZT4KPHBhdGggZD0nTTM4Ni4xNiwtMTAwLjM0QzQ0NS45OCwtOTEuODMgNTUxLjcyLC03NS4zMiA2NDAuNywtNTMuNzQgNjUxLjAzLC01MS4yMyA2NjEuOTcsLTQ4LjE1IDY3Mi4zOSwtNDQuOTknIGZpbGw9J25vbmUnIHN0cm9rZT0nYmxhY2snLz4KPHBvbHlnb24gZmlsbD0nYmxhY2snIHBvaW50cz0nNjczLjY3LC00OC4yNSA2ODIuMTksLTQxLjk1IDY3MS42LC00MS41NyA2NzMuNjcsLTQ4LjI1JyBzdHJva2U9J2JsYWNrJy8+CjwvZz4KCjxnIGNsYXNzPSdub2RlJyBpZD0nbm9kZTMnPgo8dGl0bGU+WW91ciBKYXZhIHNvdXJjZTwvdGl0bGU+CjxlbGxpcHNlIGN4PSc0MjAuNycgY3k9Jy0xNzkuNzQnIGZpbGw9J25vbmUnIHJ4PSc4Ny45OScgcnk9JzE4JyBzdHJva2U9J2JsYWNrJy8+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nNDIwLjcnIHk9Jy0xNzYuMDQnPllvdXIgSmF2YSBzb3VyY2U8L3RleHQ+CjwvZz4KCjxnIGNsYXNzPSdlZGdlJyBpZD0nZWRnZTInPgo8dGl0bGU+WW91ciBKYXZhIHNvdXJjZSYjNDU7Jmd0O3dlYmZ4JiM0NTtjbGk8L3RpdGxlPgo8cGF0aCBkPSdNNDAxLjI2LC0xNjIuMTVDMzkwLjQ5LC0xNTIuOTUgMzc2Ljk0LC0xNDEuMzggMzY1LjIsLTEzMS4zNycgZmlsbD0nbm9uZScgc3Ryb2tlPSdibGFjaycvPgo8cG9seWdvbiBmaWxsPSdibGFjaycgcG9pbnRzPSczNjcuMywtMTI4LjU2IDM1Ny40MiwtMTI0LjczIDM2Mi43NiwtMTMzLjg4IDM2Ny4zLC0xMjguNTYnIHN0cm9rZT0nYmxhY2snLz4KPC9nPgo8L2c+Cjwvc3ZnPgo=" alt="webfx cli" width="1071" height="273">
+<svg preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 805.79 205.74' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' width="1071" height="273">
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 201.74)'>
+<title>%3</title>
+<polygon fill='white' points='-4,4 -4,-201.74 801.79,-201.74 801.79,4 -4,4' stroke='transparent'/>
+
+<g class='node' id='node1'>
+<title>webfx&#45;cli</title>
+<polygon fill='none' points='378.7,-125.74 298.7,-125.74 298.7,-89.74 378.7,-89.74 378.7,-125.74' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='338.7' y='-104.04'>webfx&#45;cli</text>
+</g>
+
+<g class='node' id='node4'>
+<title>pom.xml</title>
+<ellipse cx='50.7' cy='-26.87' fill='none' rx='50.89' ry='18' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='50.7' y='-23.17'>pom.xml</text>
+</g>
+
+<g class='edge' id='edge3'>
+<title>webfx&#45;cli&#45;&gt;pom.xml</title>
+<path d='M298.56,-99.66C252.55,-91.04 175.16,-74.94 110.7,-53.74 103.66,-51.43 96.31,-48.61 89.26,-45.69' fill='none' stroke='black'/>
+<polygon fill='black' points='90.46,-42.4 79.89,-41.7 87.72,-48.84 90.46,-42.4' stroke='black'/>
+</g>
+
+<g class='node' id='node5'>
+<title>module&#45;info.java</title>
+<ellipse cx='206.7' cy='-26.87' fill='none' rx='87.18' ry='18' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='206.7' y='-23.17'>module&#45;info.java</text>
+</g>
+
+<g class='edge' id='edge4'>
+<title>webfx&#45;cli&#45;&gt;module&#45;info.java</title>
+<path d='M310.05,-89.63C290.28,-77.81 263.84,-62.01 242.65,-49.35' fill='none' stroke='black'/>
+<polygon fill='black' points='244.31,-46.27 233.93,-44.14 240.72,-52.28 244.31,-46.27' stroke='black'/>
+</g>
+
+<g class='node' id='node6'>
+<title>GWT module.gwt.xml
+super sources, bundles, etc...</title>
+<ellipse cx='471.7' cy='-26.87' fill='none' rx='159.61' ry='26.74' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='471.7' y='-30.67'>GWT module.gwt.xml</text>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='471.7' y='-15.67'>super sources, bundles, etc...</text>
+</g>
+
+<g class='edge' id='edge5'>
+<title>webfx&#45;cli&#45;&gt;GWT module.gwt.xml
+super sources, bundles, etc...</title>
+<path d='M367.55,-89.63C383.11,-80.4 402.78,-68.74 420.81,-58.05' fill='none' stroke='black'/>
+<polygon fill='black' points='422.69,-61 429.51,-52.89 419.12,-54.98 422.69,-61' stroke='black'/>
+</g>
+
+<g class='node' id='node7'>
+<title>GraalVM conf</title>
+<ellipse cx='723.7' cy='-26.87' fill='none' rx='74.19' ry='18' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='723.7' y='-23.17'>GraalVM conf</text>
+</g>
+
+<g class='edge' id='edge6'>
+<title>webfx&#45;cli&#45;&gt;GraalVM conf</title>
+<path d='M379.09,-101.34C437.34,-93.16 548.1,-76.2 640.7,-53.74 651.03,-51.23 661.97,-48.15 672.39,-44.99' fill='none' stroke='black'/>
+<polygon fill='black' points='673.67,-48.25 682.19,-41.95 671.6,-41.57 673.67,-48.25' stroke='black'/>
+</g>
+
+<g class='node' id='node2'>
+<title>webfx.xml</title>
+<ellipse cx='237.7' cy='-179.74' fill='none' rx='58.49' ry='18' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='237.7' y='-176.04'>webfx.xml</text>
+</g>
+
+<g class='edge' id='edge1'>
+<title>webfx.xml&#45;&gt;webfx&#45;cli</title>
+<path d='M260.36,-163.03C273.68,-153.8 290.76,-141.96 305.57,-131.7' fill='none' stroke='black'/>
+<polygon fill='black' points='307.76,-134.44 313.98,-125.87 303.77,-128.69 307.76,-134.44' stroke='black'/>
+</g>
+
+<g class='node' id='node3'>
+<title>Your module source code</title>
+<ellipse cx='440.7' cy='-179.74' fill='none' rx='126.98' ry='18' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='440.7' y='-176.04'>Your module source code</text>
+</g>
+
+<g class='edge' id='edge2'>
+<title>Your module source code&#45;&gt;webfx&#45;cli</title>
+<path d='M416.26,-161.97C403.09,-152.93 386.62,-141.63 372.26,-131.78' fill='none' stroke='black'/>
+<polygon fill='black' points='373.86,-128.63 363.64,-125.86 369.9,-134.4 373.86,-128.63' stroke='black'/>
+</g>
+</g>
+</svg>
 </div>
 </div>
 <div class="paragraph">
-<p>Your only inputs will be centralized in the WebFX module files (named webfx.xml), and the tool will automatically generate the rest of the build chain from these webfx.xml files, combined with an analysis of your source code. This includes all your dependencies. The tool also takes over the aspects of cross-platform development: when a feature is platform-dependent (a different implementations exists for each platform), the tool will pick up the right modules in the final executable modules (the ones matching the platform targeted by the executable module).</p>
+<p>Your inputs will be centralized in the WebFX module files named webfx.xml, and the WebFX CLI will generate the rest of the build chain from these webfx.xml files. For example, a typical directive in webfx.xml will be:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;dependencies&gt;
+    &lt;used-by-source-modules/&gt;
+&lt;/dependencies&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This directive is asking the WebFX CLI to automatically generate the list of your dependencies from an analysis of your source code.</p>
+</div>
+<div class="paragraph">
+<p>The tool also takes over the aspects of cross-platform development: when a feature is platform-dependent (a different implementations exists for each platform), the tool will pick up the right modules in the final executable modules (the ones matching the platform targeted by the module).</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_installing_the_webfx_cli">Installing the WebFX CLI</h3>
 <div class="paragraph">
-<p>As we haven&#8217;t published any release at this stage yet, the way to install the WebFX CLI for now is to clone the <a href="https://github.com/webfx-project/webfx-cli">webfx-cli</a> repository, and build it with Maven.</p>
+<p>We haven&#8217;t published any release at this stage yet, so the way to install the WebFX CLI for now is to clone the <a href="https://github.com/webfx-project/webfx-cli">webfx-cli</a> repository, and build it with Maven.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -889,6 +1016,11 @@ webfx init org.example webfx-example 1.0.0-SNAPSHOT</pre>
 <pre>webfx create application --class org.example.webfxexample.WebFxExampleApplication --helloWorld</pre>
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<svg contentScriptType='application/ecmascript' contentStyleType='text/css' preserveAspectRatio='none' version='1.1' viewBox='0 0 373 131' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' zoomAndPan='magnify' width="373" height="131"><defs/><g><rect fill='#FFFFFF' height='97.8125' rx='5' ry='5' style='stroke:#FFFFFF;stroke-width:1.0;' width='349' x='8' y='18'/><text fill='#444444' font-family='sans-serif' font-size='18' lengthAdjust='spacing' textLength='240' x='38' y='41.708'>webfx-example-application</text><text fill='#444444' font-family='sans-serif' font-size='18' lengthAdjust='spacing' textLength='296' x='38' y='62.6611'>webfx-example-application-gluon</text><text fill='#444444' font-family='sans-serif' font-size='18' lengthAdjust='spacing' textLength='281' x='38' y='83.6143'>webfx-example-application-gwt</text><text fill='#444444' font-family='sans-serif' font-size='18' lengthAdjust='spacing' textLength='313' x='38' y='104.5674'>webfx-example-application-openjfx</text><rect fill='none' height='2' style='stroke:#444444;stroke-width:1.0;' width='2' x='29' y='34.4766'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='30' y1='35.4766' y2='35.4766'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='22' y1='25' y2='35.4766'/><rect fill='none' height='2' style='stroke:#444444;stroke-width:1.0;' width='2' x='29' y='55.4297'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='30' y1='56.4297' y2='56.4297'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='22' y1='35.4766' y2='56.4297'/><rect fill='none' height='2' style='stroke:#444444;stroke-width:1.0;' width='2' x='29' y='76.3828'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='30' y1='77.3828' y2='77.3828'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='22' y1='56.4297' y2='77.3828'/><rect fill='none' height='2' style='stroke:#444444;stroke-width:1.0;' width='2' x='29' y='97.3359'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='30' y1='98.3359' y2='98.3359'/><line style='stroke:#444444;stroke-width:1.0;' x1='22' x2='22' y1='77.3828' y2='98.3359'/></g></svg>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_building_your_application">Building your application</h4>
@@ -959,7 +1091,7 @@ of the documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-21 13:45:59 UTC
+Last updated 2022-05-21 16:29:01 UTC
 </div>
 </div>
 </body>
