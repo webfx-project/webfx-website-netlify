@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-05-19">
+<meta name="author" content="Last updated: 2022-05-21">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-05-19</span><br>
+<span id="author" class="author">Last updated: 2022-05-21</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -665,27 +665,29 @@ Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</c
 <p>pom.xml (Maven module files)</p>
 </li>
 <li>
-<p>module.gwt.xml (GWT module files)</p>
-</li>
-<li>
 <p>module-info.java (Java module files)</p>
 </li>
 <li>
-<p>and many other files (GWT super sources, GWT bundles, Gluon builds, GraalVM conf, &#8230;&#8203;)</p>
+<p>module.gwt.xml (GWT module files)</p>
+</li>
+<li>
+<p>and some other files required for a successful compilation</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The WebFX CLI is required only on your local development machine (not on your CI/CD pipeline). It is not required for the build, or the execution of WebFX apps.
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'dot' executable in PATH; add it to the PATH or specify its location using the 'graphvizdot' document attribute
+digraph g {
+    "webfx.xml" -&gt; "webfx-cli"
+    "Your Java source" -&gt; "webfx-cli"
+    "webfx-cli" -&gt; "pom.xml"
+    "webfx-cli" -&gt; "module-info.java"
+    "webfx-cli" -&gt; "GWT module.gwt.xml
+super sources, bundles, etc..."
+    "webfx-cli" -&gt; "GraalVM conf"
+}</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Your only inputs will be centralized in the WebFX module files (named webfx.xml), and the tool will automatically generate the rest of the build chain from these webfx.xml files, combined with an analysis of your source code. This includes all your dependencies. The tool also takes over the aspects of cross-platform development: when a feature is platform-dependent (a different implementations exists for each platform), the tool will pick up the right modules in the final executable modules (the ones matching the platform targeted by the executable module).</p>
@@ -966,7 +968,7 @@ of the documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-19 16:50:56 UTC
+Last updated 2022-05-21 13:19:37 UTC
 </div>
 </div>
 </body>
