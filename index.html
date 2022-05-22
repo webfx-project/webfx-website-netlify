@@ -738,7 +738,7 @@ window.onload = function() {
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</code> directly from the terminal. The WebFX CLI will invoke <code>mvn</code> and <code>java</code> without specifying their full path.
+Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</code> directly from the terminal. The WebFX CLI will invoke these commands without specifying their full path.
 </td>
 </tr>
 </table>
@@ -1058,13 +1058,15 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 <div class="sect3">
 <h4 id="_updating_the_webfx_cli_to_the_latest_version">Updating the WebFX CLI to the latest version</h4>
 <div class="paragraph">
-<p>If later you want to update the WebFX CLI to the latest SNAPSHOT version, you just need to update your local repository and rebuild it with Maven. This is done through the following commands (under your webfx-cli local folder):</p>
+<p>You can check for update at anytime by running:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>git pull
-mvn package</pre>
+<pre>webfx bump cli</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>If an update is available, it will download it and build it.</p>
 </div>
 </div>
 </div>
@@ -1165,7 +1167,7 @@ of the documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-22 12:37:38 UTC
+Last updated 2022-05-22 22:27:35 UTC
 </div>
 </div>
 </body>
