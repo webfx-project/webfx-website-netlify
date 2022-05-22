@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='149pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 858.46 148.74' width='858pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 144.74)'>
+<title>%3</title>
+<polygon fill='white' points='-4,4 -4,-144.74 854.46,-144.74 854.46,4 -4,4' stroke='transparent'/>
+
+<g class='node' id='node1'>
+<title>Your WebFX application</title>
+<ellipse cx='375.48' cy='-122.74' fill='none' rx='121.58' ry='18' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='375.48' y='-119.04'>Your WebFX application</text>
+</g>
+
+<g class='node' id='node2'>
+<title>Web\nAll major browsers</title>
+<ellipse cx='107.48' cy='-26.87' fill='none' rx='107.46' ry='26.74' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='107.48' y='-30.67'>Web</text>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='107.48' y='-15.67'>All major browsers</text>
+</g>
+
+<g class='edge' id='edge1'>
+<title>Your WebFX application&#45;&gt;Web\nAll major browsers</title>
+<path d='M330.32,-105.92C288.64,-91.33 226.1,-69.42 177.87,-52.53' fill='none' stroke='black'/>
+<polygon fill='black' points='179.02,-49.22 168.43,-49.22 176.71,-55.83 179.02,-49.22' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='203.25' y='-74.02'>WebFX</text>
+</g>
+
+<g class='node' id='node3'>
+<title>Desktop\nWindows, macOS &amp; Linux</title>
+<ellipse cx='375.48' cy='-26.87' fill='none' rx='142.67' ry='26.74' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='375.48' y='-30.67'>Desktop</text>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='375.48' y='-15.67'>Windows, macOS &amp; Linux</text>
+</g>
+
+<g class='edge' id='edge2'>
+<title>Your WebFX application&#45;&gt;Desktop\nWindows, macOS &amp; Linux</title>
+<path d='M375.48,-104.52C375.48,-93.22 375.48,-78.01 375.48,-64.12' fill='none' stroke='black'/>
+<polygon fill='black' points='378.98,-63.84 375.48,-53.84 371.98,-63.84 378.98,-63.84' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='378.77' y='-76.94'>JavaFX or Gluon</text>
+</g>
+
+<g class='node' id='node4'>
+<title>Mobiles &amp; embed\nAndroid, iOS &amp; Raspberry Pi</title>
+<ellipse cx='693.48' cy='-26.87' fill='none' rx='156.96' ry='26.74' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='693.48' y='-30.67'>Mobiles &amp; embed</text>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='693.48' y='-15.67'>Android, iOS &amp; Raspberry Pi</text>
+</g>
+
+<g class='edge' id='edge3'>
+<title>Your WebFX application&#45;&gt;Mobiles &amp; embed\nAndroid, iOS &amp; Raspberry Pi</title>
+<path d='M427.28,-106.45C475.94,-92.08 549.68,-70.32 607.22,-53.33' fill='none' stroke='black'/>
+<polygon fill='black' points='608.44,-56.62 617.04,-50.44 606.46,-49.91 608.44,-56.62' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='565.98' y='-75.54'>Gluon</text>
+</g>
+</g>
+</svg>
