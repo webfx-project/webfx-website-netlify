@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-05-23">
+<meta name="author" content="Last updated: 2022-05-24">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-05-23</span><br>
+<span id="author" class="author">Last updated: 2022-05-24</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -625,7 +625,7 @@ window.onload = function() {
 <div class="sect2">
 <h3 id="_what_is_webfx">What is WebFX?</h3>
 <div class="paragraph">
-<p>WebFX is a JavaFX application transpiler powered by <a href="https://www.gwtproject.org" target="_blank" rel="noopener">GWT</a>. It can transpile a JavaFX application into a self-contained JavaScript web app that requires no plugin or server to run.</p>
+<p>WebFX is a JavaFX application transpiler powered by <a href="https://www.gwtproject.org" target="_blank" rel="noopener">GWT</a>. It can transpile a JavaFX application into a traditional self-contained pure JavaScript web app (no plugin or server is required for its execution in the browser).</p>
 </div>
 </div>
 <div class="sect2">
@@ -655,13 +655,13 @@ window.onload = function() {
 </ul>
 </div>
 <div class="paragraph">
-<p>We will call a <em>WebFX application</em> any JavaFX application that meets these 2 requirements. A WebFX application can be transpiled to the web simply by running a GWT compilation of it together with the WebFX kit.</p>
+<p>A JavaFX application that meets these 2 requirements is called a <em>WebFX application</em>, and it can be transpiled to the web. WebFX achieves this simply by running a GWT compilation of it together with the WebFX kit.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_fast_development_cycles">Fast development cycles</h3>
 <div class="paragraph">
-<p>You don&#8217;t need to run a GWT compilation on each development cycle, you can simply develop, run, and debug your WebFX application like a standard JavaFX application with the OpenJFX runtime in your preferred Java IDE. Occasionally you can transpile it to test the web app.</p>
+<p>You don&#8217;t need to run a GWT compilation on each development cycle like you would do with a traditional GWT development. Instead, you mainly develop, run, and debug your WebFX application directly in your preferred Java IDE with the OpenJFX runtime (like a standard JavaFX development). You transpile it only from time to time to test the web app.</p>
 </div>
 </div>
 <div class="sect2">
@@ -672,7 +672,7 @@ window.onload = function() {
 </div>
 </div>
 <div class="paragraph">
-<p>WebFX allows you to do a full cross-platform development from a single source code base. In addition to the web platform, your WebFX application can indeed be compiled also for the desktop &amp; mobiles to the JavaFX &amp; Gluon toolchains.</p>
+<p>WebFX opens the door to a full cross-platform development from a single source code base. In addition to the web platform, your WebFX application can indeed also be compiled for the desktop &amp; mobiles thanks to the JavaFX &amp; Gluon toolchains.</p>
 </div>
 </div>
 </div>
@@ -708,7 +708,7 @@ window.onload = function() {
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</code> directly from the terminal. The WebFX CLI will invoke these commands without specifying their full path.
+Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are in the execution path of your terminal. The WebFX CLI will invoke these commands without specifying their full path.
 </td>
 </tr>
 </table>
@@ -717,7 +717,7 @@ Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</c
 <div class="sect2">
 <h3 id="_introducing_the_webfx_cli">Introducing the WebFX CLI</h3>
 <div class="paragraph">
-<p>The WebFX CLI is the Command Line Interface for WebFX. It&#8217;s an essential tool to assist you developing WebFX applications. It will create your application modules as follows:</p>
+<p>The WebFX CLI is a Command Line Interface for WebFX. It&#8217;s an essential tool that will assist you developing WebFX applications. It will create your application modules as follows:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -728,24 +728,24 @@ Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</c
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This module contains the JavaFX code of your application. It is not directly executable as it is not yet bound to a specific platform.</td>
+<td>This module contains the JavaFX code of your application. It is cross-platform (not yet bound to a specific platform) and therefore not executable.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This module targets the mobile platforms. It will call the Gluon toolchain to produce the Android / iOS executables.</td>
+<td>This module targets the native desktop &amp; mobile platforms. It binds your application with the OpenJFX runtime, and can call the Gluon toolchain to produce the Windows, macOS, Linux, Android &amp; iOS native executables (depending on your OS).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>This module targets the web platform. It will call GWT to produce the HTML and JS code.</td>
+<td>This module targets the web platform. It binds your application with the WebFX kit and can call GWT to produce the web app.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This module targets the desktop platform. It will create an executable Java artifact with the OpenJFX runtime. You can also use this module to directly run and debug your application in your IDE.</td>
+<td>This module targets the standard desktop platform. It binds your application with the OpenJFX runtime. It is directly executable in your IDE. It can also call the standard JavaFX toolchain to produce the desktop executables (Windows, macOS or Linux) with an embed JVM.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>You can create several WebFX applications in the same repository, such as a front office and a back office for example. Of course, if your application code grows, you can split your code into more modules. The WebFX CLI will help you to create and maintain all your modules. For each module, it will create and maintain your build files as follows (when applicable):</p>
+<p>You can create several WebFX applications in the same repository. If your application code grows, you can split your code into more modules. The WebFX CLI will help you to create and maintain all your modules. For each module, it will create and maintain your build files as follows (when applicable to the module):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -753,7 +753,7 @@ Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</c
 </div>
 </div>
 <div class="paragraph">
-<p>Your inputs will be centralized in the WebFX module files named webfx.xml, and the WebFX CLI will generate the rest of the build chain from these webfx.xml files. For example, a typical directive in webfx.xml will be:</p>
+<p>Your inputs will be centralized in the WebFX module files named webfx.xml (same location as pom.xml), and the WebFX CLI will generate the rest of the build chain from these webfx.xml files. For example, a typical directive in webfx.xml will be:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -763,16 +763,16 @@ Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</c
 </div>
 </div>
 <div class="paragraph">
-<p>This directive is asking the WebFX CLI to automatically generate the list of your dependencies from an analysis of your source code.</p>
+<p>This directive is asking the WebFX CLI to generate the list of your dependencies from an analysis of your source code. It will therefore automatically populate the dependencies in pom.xml.</p>
 </div>
 <div class="paragraph">
-<p>The WebFX CLI takes over the aspects of cross-platform development: when a feature is platform-dependent (a different implementations exists for each platform), the tool will pick up the right modules in the final executable modules (the ones matching the platform targeted by the module).</p>
+<p>In that process, the WebFX CLI takes over the aspects of cross-platform development: when a feature is platform-dependent (a different implementation exists for different platforms), the tool will pick up the right modules in the final executable modules (the ones matching the platform targeted by the module).</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_installing_the_webfx_cli">Installing the WebFX CLI</h3>
 <div class="paragraph">
-<p>We haven&#8217;t published any release at this stage yet, so the way to install the WebFX CLI for now is to clone the <a href="https://github.com/webfx-project/webfx-cli">webfx-cli</a> repository, and build it with Maven.</p>
+<p>Since we haven&#8217;t published any release at this stage yet, the way to install the WebFX CLI for now is to clone the <a href="https://github.com/webfx-project/webfx-cli">webfx-cli</a> repository, and build it with Maven.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -781,7 +781,7 @@ Be sure that you can invoke <code>java</code>, <code>mvn</code> and <code>git</c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-We will distribute the WebFX CLI in a better way later, when we will publish the first official release.
+We will distribute the WebFX CLI in a better way on the first official release.
 </td>
 </tr>
 </table>
@@ -819,7 +819,7 @@ mvn package</pre>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-As previously mentioned, WebFX CLI requires JDK 13 or above (you will get a build error with lower versions).
+As previously mentioned, WebFX CLI requires JDK 13 or above to successfully compile.
 </td>
 </tr>
 </table>
@@ -950,7 +950,7 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 </div>
 </div>
 <div class="paragraph">
-<p>If an update is available, it will download it and build it.</p>
+<p>If a new version is available, it will download it and build it.</p>
 </div>
 </div>
 </div>
@@ -1051,7 +1051,7 @@ of the documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-23 23:09:21 UTC
+Last updated 2022-05-24 22:05:09 UTC
 </div>
 </div>
 </body>
