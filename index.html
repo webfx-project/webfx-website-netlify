@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-05-25">
+<meta name="author" content="Last updated: 2022-05-26">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-05-25</span><br>
+<span id="author" class="author">Last updated: 2022-05-26</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -673,7 +673,7 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 <div class="sect2">
 <h3 id="_fast_development_cycles">Fast development cycles</h3>
 <div class="paragraph">
-<p>You don&#8217;t need to run a regular GWT compilations like you would do with a traditional GWT development. Instead, you mainly develop, run, and debug your WebFX application directly in your preferred Java IDE with the OpenJFX runtime (like a standard JavaFX development). You transpile it only from time to time to test the web app.</p>
+<p>You don&#8217;t need to run regular GWT compilations like you would do with a traditional GWT development. Instead, you mainly develop, run, and debug your WebFX application directly in your preferred Java IDE with the OpenJFX runtime (like a standard JavaFX development). You transpile it only from time to time to test the web app.</p>
 </div>
 </div>
 <div class="sect2">
@@ -778,7 +778,7 @@ Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are in the
 <p>This directive is asking the WebFX CLI to generate the list of your dependencies from an analysis of your source code, and automatically populate the dependencies in pom.xml.</p>
 </div>
 <div class="paragraph">
-<p>In that process, the WebFX CLI takes over the cross-platform aspects: when a feature is platform-dependent (a different implementation exists for different platforms), the tool will pick up the right modules for the executable modules (the ones matching the platform targeted by the executable module).</p>
+<p>In that process, the WebFX CLI takes over the cross-platform aspects: when a feature is platform-dependent (a different implementation exists for different platforms), the tool will pick up the right modules (the implementations matching the platform targeted by the executable modules).</p>
 </div>
 </div>
 <div class="sect2">
@@ -971,7 +971,7 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This is the only command so far that uses <code>git</code>, and it&#8217;s just a <code>git pull</code> of the webfx-cli repository. The tool will never call <code>git</code> on your own repositories.
+This is the only command that uses <code>git</code>, and it&#8217;s just a <code>git pull</code> of the webfx-cli repository. The tool will not call <code>git</code> on your own repositories.
 </td>
 </tr>
 </table>
@@ -991,6 +991,18 @@ This is the only command so far that uses <code>git</code>, and it&#8217;s just 
 cd webfx-example
 webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>webfx init org.example:1.0.0-SNAPSHOT</code> will also work as the tool takes the repository directory name as the artifactId if omitted in the command.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -1037,7 +1049,7 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 <div class="sect2">
 <h3 id="_developing_in_your_ide">Developing in your IDE</h3>
 <div class="paragraph">
-<p>We will give the instructions for IntelliJ IDEA, but you should be able to easily transpose them to other Java IDEs such as NetBeans or Eclipse.</p>
+<p>We will give the instructions for IntelliJ IDEA, but you should be able to easily transpose them to other Java IDEs.</p>
 </div>
 <div class="sect3">
 <h4 id="_opening_the_project">Opening the project</h4>
@@ -1045,7 +1057,9 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 </div>
 <div class="sect3">
 <h4 id="_configuring_the_openjfx_application">Configuring the OpenJFX application</h4>
-
+<div class="paragraph">
+<p>WebFX offers a cross-platform way to start applications (as the entry point differs with GWT). The main class of a WebFX application is always <code>dev.webfx.platform.shared.services.boot.ApplicationBooter</code> which will correctly bootstrap your application whatever the targeted platform. It will find your JavaFX application (which has been automatically declared as a Java service by the WebFX CLI). The only difference between WebFX applications will be the module to execute.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_building_and_running_the_gwt_application">Building and running the GWT application</h4>
@@ -1075,7 +1089,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-25 18:22:38 UTC
+Last updated 2022-05-26 11:57:33 UTC
 </div>
 </div>
 </body>
