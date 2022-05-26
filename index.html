@@ -672,8 +672,10 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 <div class="sect2">
 <h3 id="_benefits">Benefits</h3>
 <div class="sect3">
-<h4 id="_full_stack_java">Full-stack Java</h4>
-
+<h4 id="_java_full_stack">Java full-stack</h4>
+<div class="paragraph">
+<p>Modern web development now requires client-side technologies. WebFX should please Java developers who are looking for a Java full-stack solution. Writing your whole stack in Java is a big advantage. Not only you don&#8217;t need to master other complex ecosystems such as JavaScript or TypeScript, but you can also share your common code between your backend and frontends with the Java module system, a great advantage compared to heterogeneous developments. All your stack in your familiar Java environment. This is what WebFX offers you, with an already well-known and documented UI technology: JavaFX!</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_performance">Performance</h4>
@@ -1068,7 +1070,7 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 <div class="sect3">
 <h4 id="_configuring_the_openjfx_application">Configuring the OpenJFX application</h4>
 <div class="paragraph">
-<p>GWT has a different entry point than standard Java applications, but WebFX hides the hassle with a single cross-platform entry point. So the main class of a WebFX application will always be <code>dev.webfx.platform.shared.services.boot.ApplicationBooter</code> which will correctly bootstrap your application whatever the target platform. It will find your JavaFX application because it has been automatically declared as a Java service by the WebFX CLI.</p>
+<p>A few explanation before going further: GWT has a different entry point than standard Java applications, but WebFX hides the hassle with a single cross-platform entry point that will correctly bootstrap your application. So the main class of a WebFX application will always be <code>dev.webfx.platform.shared.services.boot.ApplicationBooter</code> whatever the platform. It will find your JavaFX application because it has been automatically declared as a Java service by the WebFX CLI.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1077,7 +1079,7 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-GWT normally doesn&#8217;t support the Java service API, but WebFX does, because the CLI emulates it by generating a GWT super source. You can rely on this feature to declare and implement your own services. Your services can even be platform-dependent, and you can write a specific implementation for each platform. This can be a UI API, with an OpenJFX implementation, and then a GWT implementation using the JS library you want for your web app.
+GWT normally doesn&#8217;t support the Java service API, but WebFX does, because the CLI emulates it by generating a GWT super source. You can rely on this feature to declare and implement your own services. Your services can even be platform-dependent, and you can write a specific implementation for each platform. This can be a UI API, with an OpenJFX implementation, and then a GWT implementation using an alternative JS library for your web app.
 </td>
 </tr>
 </table>
@@ -1111,7 +1113,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-26 15:37:19 UTC
+Last updated 2022-05-26 21:52:55 UTC
 </div>
 </div>
 </body>
