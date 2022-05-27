@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-05-26">
+<meta name="author" content="Last updated: 2022-05-27">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-05-26</span><br>
+<span id="author" class="author">Last updated: 2022-05-27</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -672,19 +672,82 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 <div class="sect2">
 <h3 id="_benefits">Benefits</h3>
 <div class="sect3">
-<h4 id="_java_full_stack">Java full-stack</h4>
-<div class="paragraph">
-<p>Modern web development now requires client-side technologies. WebFX should please Java developers who are looking for a Java full-stack solution. Writing your whole stack in Java is a big advantage. Not only you don&#8217;t need to master other complex ecosystems such as JavaScript or TypeScript, but you can also share your common code between your backend and frontends with the Java module system, a great advantage compared to heterogeneous developments. All your stack in your familiar Java environment, with an already well known and documented UI technology: JavaFX. You will feel at home with WebFX!</p>
-</div>
-</div>
-<div class="sect3">
 <h4 id="_performance">Performance</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_fast_development_cycles">Fast development cycles</h4>
 <div class="paragraph">
-<p>You don&#8217;t need to run regular GWT compilations like you would do with a traditional GWT development. Instead, you mainly develop, run, and debug your WebFX application directly in your preferred Java IDE with the OpenJFX runtime (like a standard JavaFX development). You transpile it only from time to time to test the web app.</p>
+<p>Despite the big size of OpenJFX, WebFX can produce lightweight web apps, as demonstrated by the demos and the website:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">WebFX application</th>
+<th class="tableblock halign-center valign-top">JS size *</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://colorfulcircles.webfx.dev" target="_blank" rel="noopener">Colorful circles demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">90.6 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://particles.webfx.dev" target="_blank" rel="noopener">Particles demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">90.3 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://tallycounter.webfx.dev" target="_blank" rel="noopener">Tally counter demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">101 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://moderngauge.webfx.dev" target="_blank" rel="noopener">Modern gauge demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">139 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://enzoclocks.webfx.dev" target="_blank" rel="noopener">Enzo clocks demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">253 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://fx2048.webfx.dev" target="_blank" rel="noopener">FX2048 demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">178 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://spacefx.webfx.dev" target="_blank" rel="noopener">SpaceFX demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">139 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://raytracer.webfx.dev" target="_blank" rel="noopener">Ray tracer demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">135 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mandelbrot.webfx.dev" target="_blank" rel="noopener">Mandelbrot demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">142 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://preview.webfx.dev" target="_blank" rel="noopener">Website</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">218 kB</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><span class="small">* compressed JS size transiting over the network, without eventual images or other resources</span></p>
+</div>
+<div class="paragraph">
+<p>Here are the 3 secrets of this magic:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The scene graph &#8594; DOM mapper is much thinner than the original OpenJFX lower layer</p>
+</li>
+<li>
+<p>GWT runs a dead code elimination, which removes the JavaFX classes you don&#8217;t use</p>
+</li>
+<li>
+<p>GWT produces an amazingly compaq and optimized JS code</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -695,7 +758,37 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 </div>
 </div>
 <div class="paragraph">
-<p>WebFX opens the door to a full cross-platform development from a single source code base. In addition to the web platform, your WebFX application can indeed also be compiled for the desktop &amp; mobiles thanks to the JavaFX &amp; Gluon toolchains.</p>
+<p>In addition to the web platform, WebFX will help you to compile your application for the desktop &amp; mobiles thanks to the JavaFX &amp; Gluon toolchains. You can do a full cross-platform development from a single source code base.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_java_full_stack">Java full-stack</h4>
+<div class="paragraph">
+<p>WebFX should please Java developers who are looking for a Java full-stack solution. Writing your whole stack in Java is a big advantage, keeping your development homogenous and simple, with all your code in your preferred Java IDE. Not only you don&#8217;t need to master other complex ecosystems such as JavaScript or TypeScript, but you can also share the common code between your backend and frontends with the Java module system, a great advantage compared to heterogeneous systems.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_low_learning_curve">Low learning curve</h4>
+<div class="paragraph">
+<p>WebFX is not yet another UI toolkit to learn, but nothing else than an already well known and well documented UI API: JavaFX. All the features you love like JavaFX bindings available for your web app. You will just feel at home with WebFX!</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_no_server">No server</h4>
+<div class="paragraph">
+<p>There are already great solutions to run Swing or JavaFX applications in the browser without plugins by actually running them on a server. And these solutions don&#8217;t have the limitations WebFX has on the API. However, a traditional self-contained web app packaging is a much more simple, scalable and reliable execution model. This is where WebFX has a role to play.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fast_development_cycles">Fast development cycles</h4>
+<div class="paragraph">
+<p>You don&#8217;t need to run regular GWT compilations like you would do with a traditional GWT development, because you can run and debug your WebFX application directly in your Java IDE with the OpenJFX runtime (like a standard JavaFX development). So you first develop your features in a traditional way, and only at the end of a development cycle, transpile your app to test the web version.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_free_and_open_source">Free and open source</h4>
+<div class="paragraph">
+<p>WebFX is an open source initiative under Apache 2.0 license.</p>
 </div>
 </div>
 </div>
@@ -1113,7 +1206,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-26 22:05:37 UTC
+Last updated 2022-05-27 17:37:44 UTC
 </div>
 </div>
 </body>
