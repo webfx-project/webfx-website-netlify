@@ -770,7 +770,7 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 <div class="sect3">
 <h4 id="_low_learning_curve">Low learning curve</h4>
 <div class="paragraph">
-<p>WebFX is not yet another UI toolkit to learn, but nothing else than an already well known and well documented UI API: JavaFX. All the features you love like JavaFX bindings available for your web app. You will just feel at home with WebFX!</p>
+<p>WebFX is not yet another UI toolkit to learn, but nothing else than an already well known and well documented API: JavaFX. All the features you love like JavaFX bindings available for your web app. You will just feel at home with WebFX!</p>
 </div>
 </div>
 <div class="sect3">
@@ -857,7 +857,7 @@ Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are in the
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This module targets the standard desktop platform. It binds your application with the OpenJFX runtime. It is directly executable in your IDE. It can also call the standard JavaFX toolchain to produce the desktop executables (Windows, macOS or Linux) with an embed JVM.</td>
+<td>This module targets the standard desktop platform. It binds your application with the OpenJFX runtime, and is directly executable in your IDE. It can also call the standard JavaFX toolchain to produce the desktop executables (Windows, macOS or Linux) with an embed JVM.</td>
 </tr>
 </table>
 </div>
@@ -883,7 +883,7 @@ Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are in the
 <p>This directive is asking the WebFX CLI to generate the list of your dependencies from an analysis of your source code, and automatically populate the dependencies in pom.xml.</p>
 </div>
 <div class="paragraph">
-<p>In that process, the WebFX CLI takes care of the cross-platform aspects: when a feature is platform-dependent (a different implementation exists for different platforms), the tool will pick up the right modules (those whose implementation matches the target platform). In particular, it will replace the OpenJFX modules with the WebFX kit ones when targeting the web.</p>
+<p>In that process, the WebFX CLI takes care of the cross-platform aspects: when a feature is platform-dependent (a different implementation exists for different platforms), the tool will pick up the right modules (those whose implementation matches the target platform). This is at this point for example that it will replace the OpenJFX modules with the WebFX kit ones when targeting the web.</p>
 </div>
 </div>
 <div class="sect2">
@@ -898,7 +898,7 @@ Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are in the
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-We will distribute the WebFX CLI in a better way with the first official release.
+We will distribute the WebFX CLI in a better way on the first official release.
 </td>
 </tr>
 </table>
@@ -953,7 +953,7 @@ As previously mentioned, WebFX CLI requires JDK 13 or above to successfully comp
 <div class="sect3">
 <h4 id="_creating_a_permanent_webfx_alias">Creating a permanent <em>webfx</em> alias</h4>
 <div class="paragraph">
-<p>To easily invoke the WebFX CLI from a terminal, we need to create a permanent <em>webfx</em> alias. This is done with the following command (to run under the webfx-cli directory):</p>
+<p>To easily invoke the WebFX CLI from a terminal, we need to create a permanent <em>webfx</em> alias. This is done with the following commands (to run under the webfx-cli directory):</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Linux</div>
@@ -1067,7 +1067,7 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 </div>
 </div>
 <div class="paragraph">
-<p>If a new version is available, it will download it and build it.</p>
+<p>If a new version is available, it will download it and build it for you.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1088,7 +1088,7 @@ This is the only command that uses <code>git</code>, and it&#8217;s just a <code
 <div class="sect3">
 <h4 id="_creating_and_initializing_your_repository">Creating and initializing your repository</h4>
 <div class="paragraph">
-<p>Let&#8217;s create our first WebFX application. We need to create the repository folder and ask the WebFX CLI to initialize it, passing it the groupId, artifactId and version of our application.</p>
+<p>Let&#8217;s create our first WebFX application. We need to create the repository directory and ask the WebFX CLI to initialize it, passing it the groupId, artifactId and version of our application.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1154,7 +1154,7 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 <div class="sect2">
 <h3 id="_developing_in_your_ide">Developing in your IDE</h3>
 <div class="paragraph">
-<p>We will give the instructions for IntelliJ IDEA, but you should be able to easily transpose them to other Java IDEs.</p>
+<p>We will give the instructions for IntelliJ IDEA, but you can easily transpose them to other Java IDEs.</p>
 </div>
 <div class="sect3">
 <h4 id="_opening_the_project">Opening the project</h4>
@@ -1172,7 +1172,7 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-GWT normally doesn&#8217;t support the Java service API, but WebFX does, because the CLI emulates it by generating a GWT super source. You can rely on this feature to declare and implement your own services. Your services can even be platform-dependent, and you can write a specific implementation for each platform. This can be a UI API, with an OpenJFX implementation, and then a GWT implementation using an alternative JS library for your web app.
+GWT normally doesn&#8217;t support the Java service API, but WebFX does, because the CLI emulates it by generating a GWT super source. You can rely on this feature to declare and implement your own services. Your services can even be platform-dependent, and you can write a specific implementation for each platform. This can be a cross-platform UI API, with an OpenJFX implementation, and then a GWT implementation using an alternative JS library for your web app.
 </td>
 </tr>
 </table>
@@ -1206,7 +1206,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-27 17:37:44 UTC
+Last updated 2022-05-27 21:11:20 UTC
 </div>
 </div>
 </body>
