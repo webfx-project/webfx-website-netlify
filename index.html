@@ -674,7 +674,7 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <div class="sect3">
 <h4 id="_no_server">No server</h4>
 <div class="paragraph">
-<p>There are already great solutions to run Swing or JavaFX applications in the browser without plugins by actually running them on a server. And these solutions don&#8217;t have the limitations WebFX has on the API. However, a traditional self-contained web app packaging is a much more simple, scalable and reliable execution model. This is precisely the reason why you would prefer WebFX.</p>
+<p>There are already great solutions to run Swing or JavaFX applications in the browser without plugins by actually running them on a server. And these solutions don&#8217;t have the limitations WebFX has on the API. However, a standard self-contained JS packaging is a much more simple, scalable and reliable execution model. This is precisely this benefit that can make the difference, and probably the main reason why you would prefer WebFX over other existing solutions.</p>
 </div>
 </div>
 <div class="sect3">
@@ -745,13 +745,13 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <div class="ulist">
 <ul>
 <li>
-<p>The scene graph &#8594; DOM mapper is much thinner than the original OpenJFX lower layer which has to reimplement many features a browser already has</p>
+<p>The scene graph &#8594; DOM mapper is much thinner than the original OpenJFX lower layer which has to reimplement many features a browser already has.</p>
 </li>
 <li>
-<p>GWT runs a dead code elimination, which removes the JavaFX classes you don&#8217;t use</p>
+<p>GWT runs a dead code elimination, which removes the JavaFX classes not used by the WebFX application.</p>
 </li>
 <li>
-<p>GWT produces an amazingly compaq and optimized JS code</p>
+<p>GWT produces an amazingly compaq and optimized JS code.</p>
 </li>
 </ul>
 </div>
@@ -773,19 +773,19 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <div class="sect3">
 <h4 id="_java_full_stack">Java full-stack</h4>
 <div class="paragraph">
-<p>WebFX should please Java developers who are looking for a Java full-stack solution. Writing your whole stack in Java is a big advantage, keeping your development homogenous and simple, in your preferred Java IDE. Not only you don&#8217;t need to master other complex ecosystems such as JavaScript or TypeScript, but you can also share the common code between your backend and frontends with the Java module system, a great advantage compared to heterogeneous systems.</p>
+<p>WebFX should please Java developers who are looking for a Java full-stack solution. Writing your whole stack in Java is a big advantage, keeping your environment simple and homogenous from your preferred Java IDE. Not only you don&#8217;t need to master other complex ecosystems such as JavaScript or TypeScript, but you can also share the common code between your backend and frontends with the Java module system, a great advantage compared to heterogeneous systems.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_low_learning_curve">Low learning curve</h4>
 <div class="paragraph">
-<p>WebFX is not yet another UI toolkit to learn, but nothing else than an already well known and well documented API: JavaFX. All the features you love like JavaFX bindings available for your web app. You will just feel at home with WebFX!</p>
+<p>WebFX is not yet another UI toolkit to learn, but nothing else than the already well known and documented JavaFX API. All the powerful features you love like JavaFX bindings available for your web app. You will just feel at home with WebFX!</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_fast_development_cycles">Fast development cycles</h4>
 <div class="paragraph">
-<p>You don&#8217;t need to run regular GWT compilations like you would do with a traditional GWT development, because you can run and debug your WebFX application directly in your Java IDE instead with the OpenJFX runtime (like a standard JavaFX development). You typically transpile your app only at the end of a development cycle, once you have finished developing a feature in this traditional manner, and want to check the web version.</p>
+<p>You don&#8217;t need to run regular GWT compilations like you would do with a traditional GWT development, because you can run and debug your WebFX application directly in your Java IDE first with the OpenJFX runtime. You typically transpile your app only at the end of a development cycle to check the web version, after you have finished developing a feature using the standard JavaFX development model.</p>
 </div>
 </div>
 <div class="sect3">
@@ -873,7 +873,7 @@ Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are in the
 </div>
 </div>
 <div class="paragraph">
-<p>Your inputs will be centralized in the WebFX module files named webfx.xml (same location as pom.xml), and the WebFX CLI will generate the rest of the build chain from these webfx.xml files. For example, a typical directive in webfx.xml will be:</p>
+<p>Your inputs will be centralized in the WebFX module files named webfx.xml (same location as pom.xml), and the WebFX CLI will generate the rest of the build chain from them. For example, a typical directive in webfx.xml will be:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -883,10 +883,10 @@ Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are in the
 </div>
 </div>
 <div class="paragraph">
-<p>This directive is asking the WebFX CLI to generate the list of your dependencies from an analysis of your source code, and automatically populate the dependencies in pom.xml.</p>
+<p>This directive is asking the WebFX CLI to identify the list of your dependencies from an analysis of your source code, and automatically populate the dependencies in pom.xml, module-info.java, module.gwt.xml, etc&#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>In that process, the WebFX CLI takes care of the cross-platform aspects: when a feature is platform-dependent (a different implementation exists for different platforms), the tool will pick up the right modules (those whose implementation matches the target platform). This is at this point for example that it will replace the OpenJFX modules with the WebFX kit ones when targeting the web.</p>
+<p>During that process, the WebFX CLI takes care of the cross-platform aspects: when a feature is platform-dependent (a different implementation exists for different platforms), it will pick up the right modules (those whose implementation matches the target platform). This is at this point for example that it will replace the OpenJFX modules with the WebFX kit ones when targeting the web.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1209,7 +1209,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-28 09:26:45 UTC
+Last updated 2022-05-28 13:38:35 UTC
 </div>
 </div>
 </body>
