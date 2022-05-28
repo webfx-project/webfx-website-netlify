@@ -1,88 +1,88 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='206pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 805.79 205.74' width='806pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
-<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 201.74)'>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='190pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 614.00 190.00' width='614pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 186)'>
 <title>%3</title>
-<polygon fill='white' points='-4,4 -4,-201.74 801.79,-201.74 801.79,4 -4,4' stroke='transparent'/>
+<polygon fill='white' points='-4,4 -4,-186 610,-186 610,4 -4,4' stroke='transparent'/>
 
 <g class='node' id='node1'>
 <title>webfx&#45;cli</title>
-<polygon fill='none' points='378.7,-125.74 298.7,-125.74 298.7,-89.74 378.7,-89.74 378.7,-125.74' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='338.7' y='-104.04'>webfx&#45;cli</text>
+<ellipse cx='262' cy='-92' fill='none' rx='51.99' ry='18' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='262' y='-88.3'>webfx&#45;cli</text>
 </g>
 
 <g class='node' id='node4'>
 <title>pom.xml</title>
-<ellipse cx='50.7' cy='-26.87' fill='none' rx='50.89' ry='18' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='50.7' y='-23.17'>pom.xml</text>
+<polygon fill='none' points='78,-37 0,-37 0,-1 78,-1 78,-37' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='39' y='-15.3'>pom.xml</text>
 </g>
 
 <g class='edge' id='edge3'>
 <title>webfx&#45;cli&#45;&gt;pom.xml</title>
-<path d='M298.56,-99.66C252.55,-91.04 175.16,-74.94 110.7,-53.74 103.66,-51.43 96.31,-48.61 89.26,-45.69' fill='none' stroke='black'/>
-<polygon fill='black' points='90.46,-42.4 79.89,-41.7 87.72,-48.84 90.46,-42.4' stroke='black'/>
+<path d='M222.85,-79.93C189.32,-70.27 139.56,-55.53 87.89,-38.21' fill='none' stroke='black'/>
+<polygon fill='black' points='88.81,-34.83 78.22,-34.94 86.57,-41.46 88.81,-34.83' stroke='black'/>
 </g>
 
 <g class='node' id='node5'>
 <title>module&#45;info.java</title>
-<ellipse cx='206.7' cy='-26.87' fill='none' rx='87.18' ry='18' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='206.7' y='-23.17'>module&#45;info.java</text>
+<polygon fill='none' points='230,-37 96,-37 96,-1 230,-1 230,-37' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='163' y='-15.3'>module&#45;info.java</text>
 </g>
 
 <g class='edge' id='edge4'>
 <title>webfx&#45;cli&#45;&gt;module&#45;info.java</title>
-<path d='M310.05,-89.63C290.28,-77.81 263.84,-62.01 242.65,-49.35' fill='none' stroke='black'/>
-<polygon fill='black' points='244.31,-46.27 233.93,-44.14 240.72,-52.28 244.31,-46.27' stroke='black'/>
+<path d='M240.52,-75.59C227.3,-66.12 210.11,-53.79 195.28,-43.15' fill='none' stroke='black'/>
+<polygon fill='black' points='197.03,-40.1 186.87,-37.12 192.95,-45.79 197.03,-40.1' stroke='black'/>
 </g>
 
 <g class='node' id='node6'>
 <title>GWT module.gwt.xml
 super sources, bundles, etc...</title>
-<ellipse cx='471.7' cy='-26.87' fill='none' rx='159.61' ry='26.74' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='471.7' y='-30.67'>GWT module.gwt.xml</text>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='471.7' y='-15.67'>super sources, bundles, etc...</text>
+<polygon fill='none' points='474,-38 248,-38 248,0 474,0 474,-38' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='361' y='-22.8'>GWT module.gwt.xml</text>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='361' y='-7.8'>super sources, bundles, etc...</text>
 </g>
 
 <g class='edge' id='edge5'>
 <title>webfx&#45;cli&#45;&gt;GWT module.gwt.xml
 super sources, bundles, etc...</title>
-<path d='M367.55,-89.63C383.11,-80.4 402.78,-68.74 420.81,-58.05' fill='none' stroke='black'/>
-<polygon fill='black' points='422.69,-61 429.51,-52.89 419.12,-54.98 422.69,-61' stroke='black'/>
+<path d='M283.48,-75.59C296.32,-66.39 312.9,-54.5 327.43,-44.07' fill='none' stroke='black'/>
+<polygon fill='black' points='329.62,-46.81 335.71,-38.14 325.54,-41.12 329.62,-46.81' stroke='black'/>
 </g>
 
 <g class='node' id='node7'>
 <title>GraalVM conf</title>
-<ellipse cx='723.7' cy='-26.87' fill='none' rx='74.19' ry='18' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='723.7' y='-23.17'>GraalVM conf</text>
+<polygon fill='none' points='606,-37 492,-37 492,-1 606,-1 606,-37' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='549' y='-15.3'>GraalVM conf</text>
 </g>
 
 <g class='edge' id='edge6'>
 <title>webfx&#45;cli&#45;&gt;GraalVM conf</title>
-<path d='M379.09,-101.34C437.34,-93.16 548.1,-76.2 640.7,-53.74 651.03,-51.23 661.97,-48.15 672.39,-44.99' fill='none' stroke='black'/>
-<polygon fill='black' points='673.67,-48.25 682.19,-41.95 671.6,-41.57 673.67,-48.25' stroke='black'/>
+<path d='M304.05,-81.32C346.5,-71.46 414.17,-55.5 481.81,-38.27' fill='none' stroke='black'/>
+<polygon fill='black' points='482.97,-41.59 491.79,-35.72 481.24,-34.8 482.97,-41.59' stroke='black'/>
 </g>
 
 <g class='node' id='node2'>
 <title>webfx.xml</title>
-<ellipse cx='237.7' cy='-179.74' fill='none' rx='58.49' ry='18' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='237.7' y='-176.04'>webfx.xml</text>
+<polygon fill='none' points='227,-182 137,-182 137,-146 227,-146 227,-182' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='182' y='-160.3'>webfx.xml</text>
 </g>
 
 <g class='edge' id='edge1'>
 <title>webfx.xml&#45;&gt;webfx&#45;cli</title>
-<path d='M260.36,-163.03C273.68,-153.8 290.76,-141.96 305.57,-131.7' fill='none' stroke='black'/>
-<polygon fill='black' points='307.76,-134.44 313.98,-125.87 303.77,-128.69 307.76,-134.44' stroke='black'/>
+<path d='M201.78,-145.7C212.13,-136.64 224.93,-125.44 236.06,-115.69' fill='none' stroke='black'/>
+<polygon fill='black' points='238.6,-118.13 243.82,-108.91 233.99,-112.86 238.6,-118.13' stroke='black'/>
 </g>
 
 <g class='node' id='node3'>
 <title>Your module source code</title>
-<ellipse cx='440.7' cy='-179.74' fill='none' rx='126.98' ry='18' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='440.7' y='-176.04'>Your module source code</text>
+<polygon fill='none' points='440.5,-182 245.5,-182 245.5,-146 440.5,-146 440.5,-182' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='343' y='-160.3'>Your module source code</text>
 </g>
 
 <g class='edge' id='edge2'>
 <title>Your module source code&#45;&gt;webfx&#45;cli</title>
-<path d='M416.26,-161.97C403.09,-152.93 386.62,-141.63 372.26,-131.78' fill='none' stroke='black'/>
-<polygon fill='black' points='373.86,-128.63 363.64,-125.86 369.9,-134.4 373.86,-128.63' stroke='black'/>
+<path d='M322.98,-145.7C312.5,-136.64 299.53,-125.44 288.26,-115.69' fill='none' stroke='black'/>
+<polygon fill='black' points='290.26,-112.8 280.41,-108.91 285.68,-118.09 290.26,-112.8' stroke='black'/>
 </g>
 </g>
 </svg>

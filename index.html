@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-05-27">
+<meta name="author" content="Last updated: 2022-05-28">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-05-27</span><br>
+<span id="author" class="author">Last updated: 2022-05-28</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -663,7 +663,7 @@ window.onload = function() {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note for the impatient: OpenJFX is a very rich and big library (about 10MB) compared to standard JS frameworks (typically 100KB). It will take time to complete its coverage (some parts may not be possible). Thanks for your understanding. But compared to some frameworks, you can already do a lot with the current coverage.
+Note for the impatient: OpenJFX is a huge library (about 10MB) compared to standard JS frameworks (typically 100KB). It will take time to complete its coverage (some parts may not be possible). Thanks for your understanding. But compared to some frameworks, you can already do a lot with the current coverage.
 </td>
 </tr>
 </table>
@@ -671,6 +671,12 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 </div>
 <div class="sect2">
 <h3 id="_benefits">Benefits</h3>
+<div class="sect3">
+<h4 id="_no_server">No server</h4>
+<div class="paragraph">
+<p>There are already great solutions to run Swing or JavaFX applications in the browser without plugins by actually running them on a server. And these solutions don&#8217;t have the limitations WebFX has on the API. However, a traditional self-contained web app packaging is a much more simple, scalable and reliable execution model. This is precisely the reason why you would prefer WebFX.</p>
+</div>
+</div>
 <div class="sect3">
 <h4 id="_performance">Performance</h4>
 <div class="paragraph">
@@ -734,12 +740,12 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 <p><span class="small">* compressed JS size transiting over the network, without eventual images or other resources</span></p>
 </div>
 <div class="paragraph">
-<p>Here are the 3 secrets of this magic:</p>
+<p>The secret? Here are the 3 main ingredients that make the magic:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The scene graph &#8594; DOM mapper is much thinner than the original OpenJFX lower layer</p>
+<p>The scene graph &#8594; DOM mapper is much thinner than the original OpenJFX lower layer which has to reimplement many features a browser already has</p>
 </li>
 <li>
 <p>GWT runs a dead code elimination, which removes the JavaFX classes you don&#8217;t use</p>
@@ -748,6 +754,9 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 <p>GWT produces an amazingly compaq and optimized JS code</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The later point also confers an excellent execution speed to your web app.</p>
 </div>
 </div>
 <div class="sect3">
@@ -764,7 +773,7 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 <div class="sect3">
 <h4 id="_java_full_stack">Java full-stack</h4>
 <div class="paragraph">
-<p>WebFX should please Java developers who are looking for a Java full-stack solution. Writing your whole stack in Java is a big advantage, keeping your development homogenous and simple, with all your code in your preferred Java IDE. Not only you don&#8217;t need to master other complex ecosystems such as JavaScript or TypeScript, but you can also share the common code between your backend and frontends with the Java module system, a great advantage compared to heterogeneous systems.</p>
+<p>WebFX should please Java developers who are looking for a Java full-stack solution. Writing your whole stack in Java is a big advantage, keeping your development homogenous and simple, in your preferred Java IDE. Not only you don&#8217;t need to master other complex ecosystems such as JavaScript or TypeScript, but you can also share the common code between your backend and frontends with the Java module system, a great advantage compared to heterogeneous systems.</p>
 </div>
 </div>
 <div class="sect3">
@@ -774,15 +783,9 @@ Note for the impatient: OpenJFX is a very rich and big library (about 10MB) comp
 </div>
 </div>
 <div class="sect3">
-<h4 id="_no_server">No server</h4>
-<div class="paragraph">
-<p>There are already great solutions to run Swing or JavaFX applications in the browser without plugins by actually running them on a server. And these solutions don&#8217;t have the limitations WebFX has on the API. However, a traditional self-contained web app packaging is a much more simple, scalable and reliable execution model. This is where WebFX has a role to play.</p>
-</div>
-</div>
-<div class="sect3">
 <h4 id="_fast_development_cycles">Fast development cycles</h4>
 <div class="paragraph">
-<p>You don&#8217;t need to run regular GWT compilations like you would do with a traditional GWT development, because you can run and debug your WebFX application directly in your Java IDE with the OpenJFX runtime (like a standard JavaFX development). So you first develop your features in a traditional way, and only at the end of a development cycle, transpile your app to test the web version.</p>
+<p>You don&#8217;t need to run regular GWT compilations like you would do with a traditional GWT development, because you can run and debug your WebFX application directly in your Java IDE instead with the OpenJFX runtime (like a standard JavaFX development). You typically transpile your app only at the end of a development cycle, once you have finished developing a feature in this traditional manner, and want to check the web version.</p>
 </div>
 </div>
 <div class="sect3">
@@ -864,9 +867,9 @@ Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are in the
 <div class="paragraph">
 <p>You can create several WebFX applications in the same repository. If your application code grows, you can split your code into more modules. The WebFX CLI will help you to create and maintain all your modules. For each module, it will create and maintain your build files as follows (when applicable to the module):</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
-<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnIHN0YW5kYWxvbmU9J25vJz8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyBoZWlnaHQ9JzIwNnB0JyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSd4TWlkWU1pZCBtZWV0JyB2aWV3Qm94PScwLjAwIDAuMDAgODA1Ljc5IDIwNS43NCcgd2lkdGg9JzgwNnB0JyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluaycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz4KPGcgY2xhc3M9J2dyYXBoJyBpZD0nZ3JhcGgwJyB0cmFuc2Zvcm09J3NjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSg0IDIwMS43NCknPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSd3aGl0ZScgcG9pbnRzPSctNCw0IC00LC0yMDEuNzQgODAxLjc5LC0yMDEuNzQgODAxLjc5LDQgLTQsNCcgc3Ryb2tlPSd0cmFuc3BhcmVudCcvPgoKPGcgY2xhc3M9J25vZGUnIGlkPSdub2RlMSc+Cjx0aXRsZT53ZWJmeCYjNDU7Y2xpPC90aXRsZT4KPHBvbHlnb24gZmlsbD0nbm9uZScgcG9pbnRzPSczNzguNywtMTI1Ljc0IDI5OC43LC0xMjUuNzQgMjk4LjcsLTg5Ljc0IDM3OC43LC04OS43NCAzNzguNywtMTI1Ljc0JyBzdHJva2U9J2JsYWNrJy8+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nMzM4LjcnIHk9Jy0xMDQuMDQnPndlYmZ4JiM0NTtjbGk8L3RleHQ+CjwvZz4KCjxnIGNsYXNzPSdub2RlJyBpZD0nbm9kZTQnPgo8dGl0bGU+cG9tLnhtbDwvdGl0bGU+CjxlbGxpcHNlIGN4PSc1MC43JyBjeT0nLTI2Ljg3JyBmaWxsPSdub25lJyByeD0nNTAuODknIHJ5PScxOCcgc3Ryb2tlPSdibGFjaycvPgo8dGV4dCBmb250LWZhbWlseT0nVGltZXMsc2VyaWYnIGZvbnQtc2l6ZT0nMTQuMDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIHg9JzUwLjcnIHk9Jy0yMy4xNyc+cG9tLnhtbDwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J2VkZ2UnIGlkPSdlZGdlMyc+Cjx0aXRsZT53ZWJmeCYjNDU7Y2xpJiM0NTsmZ3Q7cG9tLnhtbDwvdGl0bGU+CjxwYXRoIGQ9J00yOTguNTYsLTk5LjY2QzI1Mi41NSwtOTEuMDQgMTc1LjE2LC03NC45NCAxMTAuNywtNTMuNzQgMTAzLjY2LC01MS40MyA5Ni4zMSwtNDguNjEgODkuMjYsLTQ1LjY5JyBmaWxsPSdub25lJyBzdHJva2U9J2JsYWNrJy8+Cjxwb2x5Z29uIGZpbGw9J2JsYWNrJyBwb2ludHM9JzkwLjQ2LC00Mi40IDc5Ljg5LC00MS43IDg3LjcyLC00OC44NCA5MC40NiwtNDIuNCcgc3Ryb2tlPSdibGFjaycvPgo8L2c+Cgo8ZyBjbGFzcz0nbm9kZScgaWQ9J25vZGU1Jz4KPHRpdGxlPm1vZHVsZSYjNDU7aW5mby5qYXZhPC90aXRsZT4KPGVsbGlwc2UgY3g9JzIwNi43JyBjeT0nLTI2Ljg3JyBmaWxsPSdub25lJyByeD0nODcuMTgnIHJ5PScxOCcgc3Ryb2tlPSdibGFjaycvPgo8dGV4dCBmb250LWZhbWlseT0nVGltZXMsc2VyaWYnIGZvbnQtc2l6ZT0nMTQuMDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIHg9JzIwNi43JyB5PSctMjMuMTcnPm1vZHVsZSYjNDU7aW5mby5qYXZhPC90ZXh0Pgo8L2c+Cgo8ZyBjbGFzcz0nZWRnZScgaWQ9J2VkZ2U0Jz4KPHRpdGxlPndlYmZ4JiM0NTtjbGkmIzQ1OyZndDttb2R1bGUmIzQ1O2luZm8uamF2YTwvdGl0bGU+CjxwYXRoIGQ9J00zMTAuMDUsLTg5LjYzQzI5MC4yOCwtNzcuODEgMjYzLjg0LC02Mi4wMSAyNDIuNjUsLTQ5LjM1JyBmaWxsPSdub25lJyBzdHJva2U9J2JsYWNrJy8+Cjxwb2x5Z29uIGZpbGw9J2JsYWNrJyBwb2ludHM9JzI0NC4zMSwtNDYuMjcgMjMzLjkzLC00NC4xNCAyNDAuNzIsLTUyLjI4IDI0NC4zMSwtNDYuMjcnIHN0cm9rZT0nYmxhY2snLz4KPC9nPgoKPGcgY2xhc3M9J25vZGUnIGlkPSdub2RlNic+Cjx0aXRsZT5HV1QgbW9kdWxlLmd3dC54bWwKc3VwZXIgc291cmNlcywgYnVuZGxlcywgZXRjLi4uPC90aXRsZT4KPGVsbGlwc2UgY3g9JzQ3MS43JyBjeT0nLTI2Ljg3JyBmaWxsPSdub25lJyByeD0nMTU5LjYxJyByeT0nMjYuNzQnIHN0cm9rZT0nYmxhY2snLz4KPHRleHQgZm9udC1mYW1pbHk9J1RpbWVzLHNlcmlmJyBmb250LXNpemU9JzE0LjAwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyB4PSc0NzEuNycgeT0nLTMwLjY3Jz5HV1QgbW9kdWxlLmd3dC54bWw8L3RleHQ+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nNDcxLjcnIHk9Jy0xNS42Nyc+c3VwZXIgc291cmNlcywgYnVuZGxlcywgZXRjLi4uPC90ZXh0Pgo8L2c+Cgo8ZyBjbGFzcz0nZWRnZScgaWQ9J2VkZ2U1Jz4KPHRpdGxlPndlYmZ4JiM0NTtjbGkmIzQ1OyZndDtHV1QgbW9kdWxlLmd3dC54bWwKc3VwZXIgc291cmNlcywgYnVuZGxlcywgZXRjLi4uPC90aXRsZT4KPHBhdGggZD0nTTM2Ny41NSwtODkuNjNDMzgzLjExLC04MC40IDQwMi43OCwtNjguNzQgNDIwLjgxLC01OC4wNScgZmlsbD0nbm9uZScgc3Ryb2tlPSdibGFjaycvPgo8cG9seWdvbiBmaWxsPSdibGFjaycgcG9pbnRzPSc0MjIuNjksLTYxIDQyOS41MSwtNTIuODkgNDE5LjEyLC01NC45OCA0MjIuNjksLTYxJyBzdHJva2U9J2JsYWNrJy8+CjwvZz4KCjxnIGNsYXNzPSdub2RlJyBpZD0nbm9kZTcnPgo8dGl0bGU+R3JhYWxWTSBjb25mPC90aXRsZT4KPGVsbGlwc2UgY3g9JzcyMy43JyBjeT0nLTI2Ljg3JyBmaWxsPSdub25lJyByeD0nNzQuMTknIHJ5PScxOCcgc3Ryb2tlPSdibGFjaycvPgo8dGV4dCBmb250LWZhbWlseT0nVGltZXMsc2VyaWYnIGZvbnQtc2l6ZT0nMTQuMDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIHg9JzcyMy43JyB5PSctMjMuMTcnPkdyYWFsVk0gY29uZjwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J2VkZ2UnIGlkPSdlZGdlNic+Cjx0aXRsZT53ZWJmeCYjNDU7Y2xpJiM0NTsmZ3Q7R3JhYWxWTSBjb25mPC90aXRsZT4KPHBhdGggZD0nTTM3OS4wOSwtMTAxLjM0QzQzNy4zNCwtOTMuMTYgNTQ4LjEsLTc2LjIgNjQwLjcsLTUzLjc0IDY1MS4wMywtNTEuMjMgNjYxLjk3LC00OC4xNSA2NzIuMzksLTQ0Ljk5JyBmaWxsPSdub25lJyBzdHJva2U9J2JsYWNrJy8+Cjxwb2x5Z29uIGZpbGw9J2JsYWNrJyBwb2ludHM9JzY3My42NywtNDguMjUgNjgyLjE5LC00MS45NSA2NzEuNiwtNDEuNTcgNjczLjY3LC00OC4yNScgc3Ryb2tlPSdibGFjaycvPgo8L2c+Cgo8ZyBjbGFzcz0nbm9kZScgaWQ9J25vZGUyJz4KPHRpdGxlPndlYmZ4LnhtbDwvdGl0bGU+CjxlbGxpcHNlIGN4PScyMzcuNycgY3k9Jy0xNzkuNzQnIGZpbGw9J25vbmUnIHJ4PSc1OC40OScgcnk9JzE4JyBzdHJva2U9J2JsYWNrJy8+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nMjM3LjcnIHk9Jy0xNzYuMDQnPndlYmZ4LnhtbDwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J2VkZ2UnIGlkPSdlZGdlMSc+Cjx0aXRsZT53ZWJmeC54bWwmIzQ1OyZndDt3ZWJmeCYjNDU7Y2xpPC90aXRsZT4KPHBhdGggZD0nTTI2MC4zNiwtMTYzLjAzQzI3My42OCwtMTUzLjggMjkwLjc2LC0xNDEuOTYgMzA1LjU3LC0xMzEuNycgZmlsbD0nbm9uZScgc3Ryb2tlPSdibGFjaycvPgo8cG9seWdvbiBmaWxsPSdibGFjaycgcG9pbnRzPSczMDcuNzYsLTEzNC40NCAzMTMuOTgsLTEyNS44NyAzMDMuNzcsLTEyOC42OSAzMDcuNzYsLTEzNC40NCcgc3Ryb2tlPSdibGFjaycvPgo8L2c+Cgo8ZyBjbGFzcz0nbm9kZScgaWQ9J25vZGUzJz4KPHRpdGxlPllvdXIgbW9kdWxlIHNvdXJjZSBjb2RlPC90aXRsZT4KPGVsbGlwc2UgY3g9JzQ0MC43JyBjeT0nLTE3OS43NCcgZmlsbD0nbm9uZScgcng9JzEyNi45OCcgcnk9JzE4JyBzdHJva2U9J2JsYWNrJy8+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nNDQwLjcnIHk9Jy0xNzYuMDQnPllvdXIgbW9kdWxlIHNvdXJjZSBjb2RlPC90ZXh0Pgo8L2c+Cgo8ZyBjbGFzcz0nZWRnZScgaWQ9J2VkZ2UyJz4KPHRpdGxlPllvdXIgbW9kdWxlIHNvdXJjZSBjb2RlJiM0NTsmZ3Q7d2ViZngmIzQ1O2NsaTwvdGl0bGU+CjxwYXRoIGQ9J000MTYuMjYsLTE2MS45N0M0MDMuMDksLTE1Mi45MyAzODYuNjIsLTE0MS42MyAzNzIuMjYsLTEzMS43OCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdibGFjaycvPgo8cG9seWdvbiBmaWxsPSdibGFjaycgcG9pbnRzPSczNzMuODYsLTEyOC42MyAzNjMuNjQsLTEyNS44NiAzNjkuOSwtMTM0LjQgMzczLjg2LC0xMjguNjMnIHN0cm9rZT0nYmxhY2snLz4KPC9nPgo8L2c+Cjwvc3ZnPgo=" alt="wbfx cli" width="1071" height="273">
+<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnIHN0YW5kYWxvbmU9J25vJz8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyBoZWlnaHQ9JzE5MHB0JyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSd4TWlkWU1pZCBtZWV0JyB2aWV3Qm94PScwLjAwIDAuMDAgNjE0LjAwIDE5MC4wMCcgd2lkdGg9JzYxNHB0JyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluaycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz4KPGcgY2xhc3M9J2dyYXBoJyBpZD0nZ3JhcGgwJyB0cmFuc2Zvcm09J3NjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSg0IDE4NiknPgo8dGl0bGU+JTM8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSd3aGl0ZScgcG9pbnRzPSctNCw0IC00LC0xODYgNjEwLC0xODYgNjEwLDQgLTQsNCcgc3Ryb2tlPSd0cmFuc3BhcmVudCcvPgoKPGcgY2xhc3M9J25vZGUnIGlkPSdub2RlMSc+Cjx0aXRsZT53ZWJmeCYjNDU7Y2xpPC90aXRsZT4KPGVsbGlwc2UgY3g9JzI2MicgY3k9Jy05MicgZmlsbD0nbm9uZScgcng9JzUxLjk5JyByeT0nMTgnIHN0cm9rZT0nYmxhY2snLz4KPHRleHQgZm9udC1mYW1pbHk9J1RpbWVzLHNlcmlmJyBmb250LXNpemU9JzE0LjAwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyB4PScyNjInIHk9Jy04OC4zJz53ZWJmeCYjNDU7Y2xpPC90ZXh0Pgo8L2c+Cgo8ZyBjbGFzcz0nbm9kZScgaWQ9J25vZGU0Jz4KPHRpdGxlPnBvbS54bWw8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSdub25lJyBwb2ludHM9Jzc4LC0zNyAwLC0zNyAwLC0xIDc4LC0xIDc4LC0zNycgc3Ryb2tlPSdibGFjaycvPgo8dGV4dCBmb250LWZhbWlseT0nVGltZXMsc2VyaWYnIGZvbnQtc2l6ZT0nMTQuMDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIHg9JzM5JyB5PSctMTUuMyc+cG9tLnhtbDwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J2VkZ2UnIGlkPSdlZGdlMyc+Cjx0aXRsZT53ZWJmeCYjNDU7Y2xpJiM0NTsmZ3Q7cG9tLnhtbDwvdGl0bGU+CjxwYXRoIGQ9J00yMjIuODUsLTc5LjkzQzE4OS4zMiwtNzAuMjcgMTM5LjU2LC01NS41MyA4Ny44OSwtMzguMjEnIGZpbGw9J25vbmUnIHN0cm9rZT0nYmxhY2snLz4KPHBvbHlnb24gZmlsbD0nYmxhY2snIHBvaW50cz0nODguODEsLTM0LjgzIDc4LjIyLC0zNC45NCA4Ni41NywtNDEuNDYgODguODEsLTM0LjgzJyBzdHJva2U9J2JsYWNrJy8+CjwvZz4KCjxnIGNsYXNzPSdub2RlJyBpZD0nbm9kZTUnPgo8dGl0bGU+bW9kdWxlJiM0NTtpbmZvLmphdmE8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSdub25lJyBwb2ludHM9JzIzMCwtMzcgOTYsLTM3IDk2LC0xIDIzMCwtMSAyMzAsLTM3JyBzdHJva2U9J2JsYWNrJy8+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nMTYzJyB5PSctMTUuMyc+bW9kdWxlJiM0NTtpbmZvLmphdmE8L3RleHQ+CjwvZz4KCjxnIGNsYXNzPSdlZGdlJyBpZD0nZWRnZTQnPgo8dGl0bGU+d2ViZngmIzQ1O2NsaSYjNDU7Jmd0O21vZHVsZSYjNDU7aW5mby5qYXZhPC90aXRsZT4KPHBhdGggZD0nTTI0MC41MiwtNzUuNTlDMjI3LjMsLTY2LjEyIDIxMC4xMSwtNTMuNzkgMTk1LjI4LC00My4xNScgZmlsbD0nbm9uZScgc3Ryb2tlPSdibGFjaycvPgo8cG9seWdvbiBmaWxsPSdibGFjaycgcG9pbnRzPScxOTcuMDMsLTQwLjEgMTg2Ljg3LC0zNy4xMiAxOTIuOTUsLTQ1Ljc5IDE5Ny4wMywtNDAuMScgc3Ryb2tlPSdibGFjaycvPgo8L2c+Cgo8ZyBjbGFzcz0nbm9kZScgaWQ9J25vZGU2Jz4KPHRpdGxlPkdXVCBtb2R1bGUuZ3d0LnhtbApzdXBlciBzb3VyY2VzLCBidW5kbGVzLCBldGMuLi48L3RpdGxlPgo8cG9seWdvbiBmaWxsPSdub25lJyBwb2ludHM9JzQ3NCwtMzggMjQ4LC0zOCAyNDgsMCA0NzQsMCA0NzQsLTM4JyBzdHJva2U9J2JsYWNrJy8+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nMzYxJyB5PSctMjIuOCc+R1dUIG1vZHVsZS5nd3QueG1sPC90ZXh0Pgo8dGV4dCBmb250LWZhbWlseT0nVGltZXMsc2VyaWYnIGZvbnQtc2l6ZT0nMTQuMDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIHg9JzM2MScgeT0nLTcuOCc+c3VwZXIgc291cmNlcywgYnVuZGxlcywgZXRjLi4uPC90ZXh0Pgo8L2c+Cgo8ZyBjbGFzcz0nZWRnZScgaWQ9J2VkZ2U1Jz4KPHRpdGxlPndlYmZ4JiM0NTtjbGkmIzQ1OyZndDtHV1QgbW9kdWxlLmd3dC54bWwKc3VwZXIgc291cmNlcywgYnVuZGxlcywgZXRjLi4uPC90aXRsZT4KPHBhdGggZD0nTTI4My40OCwtNzUuNTlDMjk2LjMyLC02Ni4zOSAzMTIuOSwtNTQuNSAzMjcuNDMsLTQ0LjA3JyBmaWxsPSdub25lJyBzdHJva2U9J2JsYWNrJy8+Cjxwb2x5Z29uIGZpbGw9J2JsYWNrJyBwb2ludHM9JzMyOS42MiwtNDYuODEgMzM1LjcxLC0zOC4xNCAzMjUuNTQsLTQxLjEyIDMyOS42MiwtNDYuODEnIHN0cm9rZT0nYmxhY2snLz4KPC9nPgoKPGcgY2xhc3M9J25vZGUnIGlkPSdub2RlNyc+Cjx0aXRsZT5HcmFhbFZNIGNvbmY8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSdub25lJyBwb2ludHM9JzYwNiwtMzcgNDkyLC0zNyA0OTIsLTEgNjA2LC0xIDYwNiwtMzcnIHN0cm9rZT0nYmxhY2snLz4KPHRleHQgZm9udC1mYW1pbHk9J1RpbWVzLHNlcmlmJyBmb250LXNpemU9JzE0LjAwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyB4PSc1NDknIHk9Jy0xNS4zJz5HcmFhbFZNIGNvbmY8L3RleHQ+CjwvZz4KCjxnIGNsYXNzPSdlZGdlJyBpZD0nZWRnZTYnPgo8dGl0bGU+d2ViZngmIzQ1O2NsaSYjNDU7Jmd0O0dyYWFsVk0gY29uZjwvdGl0bGU+CjxwYXRoIGQ9J00zMDQuMDUsLTgxLjMyQzM0Ni41LC03MS40NiA0MTQuMTcsLTU1LjUgNDgxLjgxLC0zOC4yNycgZmlsbD0nbm9uZScgc3Ryb2tlPSdibGFjaycvPgo8cG9seWdvbiBmaWxsPSdibGFjaycgcG9pbnRzPSc0ODIuOTcsLTQxLjU5IDQ5MS43OSwtMzUuNzIgNDgxLjI0LC0zNC44IDQ4Mi45NywtNDEuNTknIHN0cm9rZT0nYmxhY2snLz4KPC9nPgoKPGcgY2xhc3M9J25vZGUnIGlkPSdub2RlMic+Cjx0aXRsZT53ZWJmeC54bWw8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSdub25lJyBwb2ludHM9JzIyNywtMTgyIDEzNywtMTgyIDEzNywtMTQ2IDIyNywtMTQ2IDIyNywtMTgyJyBzdHJva2U9J2JsYWNrJy8+Cjx0ZXh0IGZvbnQtZmFtaWx5PSdUaW1lcyxzZXJpZicgZm9udC1zaXplPScxNC4wMCcgdGV4dC1hbmNob3I9J21pZGRsZScgeD0nMTgyJyB5PSctMTYwLjMnPndlYmZ4LnhtbDwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J2VkZ2UnIGlkPSdlZGdlMSc+Cjx0aXRsZT53ZWJmeC54bWwmIzQ1OyZndDt3ZWJmeCYjNDU7Y2xpPC90aXRsZT4KPHBhdGggZD0nTTIwMS43OCwtMTQ1LjdDMjEyLjEzLC0xMzYuNjQgMjI0LjkzLC0xMjUuNDQgMjM2LjA2LC0xMTUuNjknIGZpbGw9J25vbmUnIHN0cm9rZT0nYmxhY2snLz4KPHBvbHlnb24gZmlsbD0nYmxhY2snIHBvaW50cz0nMjM4LjYsLTExOC4xMyAyNDMuODIsLTEwOC45MSAyMzMuOTksLTExMi44NiAyMzguNiwtMTE4LjEzJyBzdHJva2U9J2JsYWNrJy8+CjwvZz4KCjxnIGNsYXNzPSdub2RlJyBpZD0nbm9kZTMnPgo8dGl0bGU+WW91ciBtb2R1bGUgc291cmNlIGNvZGU8L3RpdGxlPgo8cG9seWdvbiBmaWxsPSdub25lJyBwb2ludHM9JzQ0MC41LC0xODIgMjQ1LjUsLTE4MiAyNDUuNSwtMTQ2IDQ0MC41LC0xNDYgNDQwLjUsLTE4Micgc3Ryb2tlPSdibGFjaycvPgo8dGV4dCBmb250LWZhbWlseT0nVGltZXMsc2VyaWYnIGZvbnQtc2l6ZT0nMTQuMDAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIHg9JzM0MycgeT0nLTE2MC4zJz5Zb3VyIG1vZHVsZSBzb3VyY2UgY29kZTwvdGV4dD4KPC9nPgoKPGcgY2xhc3M9J2VkZ2UnIGlkPSdlZGdlMic+Cjx0aXRsZT5Zb3VyIG1vZHVsZSBzb3VyY2UgY29kZSYjNDU7Jmd0O3dlYmZ4JiM0NTtjbGk8L3RpdGxlPgo8cGF0aCBkPSdNMzIyLjk4LC0xNDUuN0MzMTIuNSwtMTM2LjY0IDI5OS41MywtMTI1LjQ0IDI4OC4yNiwtMTE1LjY5JyBmaWxsPSdub25lJyBzdHJva2U9J2JsYWNrJy8+Cjxwb2x5Z29uIGZpbGw9J2JsYWNrJyBwb2ludHM9JzI5MC4yNiwtMTEyLjggMjgwLjQxLC0xMDguOTEgMjg1LjY4LC0xMTguMDkgMjkwLjI2LC0xMTIuOCcgc3Ryb2tlPSdibGFjaycvPgo8L2c+CjwvZz4KPC9zdmc+Cg==" alt="wbfx cli" width="816" height="252">
 </div>
 </div>
 <div class="paragraph">
@@ -1206,7 +1209,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-27 21:11:20 UTC
+Last updated 2022-05-28 09:26:45 UTC
 </div>
 </div>
 </body>
