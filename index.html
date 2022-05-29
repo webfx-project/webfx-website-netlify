@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-05-28">
+<meta name="author" content="Last updated: 2022-05-29">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-05-28</span><br>
+<span id="author" class="author">Last updated: 2022-05-29</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -674,7 +674,7 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <div class="sect3">
 <h4 id="_no_server">No server</h4>
 <div class="paragraph">
-<p>There are already great solutions to run Swing or JavaFX applications in the browser without plugins by actually running them on a server. And these solutions don&#8217;t have the limitations WebFX currently has. However, a standard self-contained JS packaging is a much more simple, scalable and reliable execution model. This is precisely that benefit that WebFX offers, and probably the main reason why you would prefer it over the other existing solutions.</p>
+<p>There are already great solutions to run Swing or JavaFX applications in the browser without plugins by actually running them on a server. And these solutions don&#8217;t have the limitations WebFX currently has. However, a standard self-contained JS packaging is a much more simple, scalable and reliable execution model. This is precisely that benefit that WebFX is offering, and probably the main reason why you would prefer it over the other existing solutions.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1113,19 +1113,53 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 </table>
 </div>
 <div class="paragraph">
-<p>The init command just creates a webfx.xml and a pom.xml file at the root level of your repository. If this is the first time you use the CLI, it will also download some webfx.xml files from the Maven repository to get some meta info about the essential WebFX modules, in order to complete this job.</p>
+<p>The init command creates only 2 files: webfx.xml and pom.xml. If this is the first time you use the CLI, it will download some other files through Maven to get the essential information about the WebFX modules, before completing this job.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_creating_your_application_modules">Creating your application modules</h4>
+<div class="paragraph">
+<p>When we create an application, we pass the fully qualified name of the JavaFX class we want to create, and the prefix to use for the application modules:</p>
+</div>
 <div class="literalblock">
 <div class="content">
-<pre>webfx create application --class org.example.webfxexample.WebFxExampleApplication --helloWorld</pre>
+<pre>webfx create application --prefix webfx-example org.example.webfxexample.WebFxExampleApplication --helloWorld</pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+we could omit the prefix here, because the CLI takes the parent module name in that case.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This command created the following modules:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnIHN0YW5kYWxvbmU9J25vJz8+PHN2ZyBjb250ZW50U2NyaXB0VHlwZT0nYXBwbGljYXRpb24vZWNtYXNjcmlwdCcgY29udGVudFN0eWxlVHlwZT0ndGV4dC9jc3MnIGhlaWdodD0nMTUycHgnIHByZXNlcnZlQXNwZWN0UmF0aW89J25vbmUnIHN0eWxlPSd3aWR0aDozNzNweDtoZWlnaHQ6MTUycHg7YmFja2dyb3VuZDojRkZGRkZGOycgdmVyc2lvbj0nMS4xJyB2aWV3Qm94PScwIDAgMzczIDE1Micgd2lkdGg9JzM3M3B4JyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluaycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB6b29tQW5kUGFuPSdtYWduaWZ5Jz48ZGVmcy8+PGc+PHJlY3QgZmlsbD0nI0ZGRkZGRicgaGVpZ2h0PScxMTguNzY1Nicgcng9JzUnIHJ5PSc1JyBzdHlsZT0nc3Ryb2tlOiNGRkZGRkY7c3Ryb2tlLXdpZHRoOjEuMDsnIHdpZHRoPSczNDknIHg9JzgnIHk9JzE4Jy8+PHRleHQgZmlsbD0nIzQ0NDQ0NCcgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtc2l6ZT0nMTgnIGxlbmd0aEFkanVzdD0nc3BhY2luZycgdGV4dExlbmd0aD0nMTM4JyB4PScxNCcgeT0nMzkuNzA4Jz53ZWJmeC1leGFtcGxlPC90ZXh0Pjx0ZXh0IGZpbGw9JyM0NDQ0NDQnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJyBmb250LXNpemU9JzE4JyBsZW5ndGhBZGp1c3Q9J3NwYWNpbmcnIHRleHRMZW5ndGg9JzI0MCcgeD0nMzgnIHk9JzYyLjY2MTEnPndlYmZ4LWV4YW1wbGUtYXBwbGljYXRpb248L3RleHQ+PHRleHQgZmlsbD0nIzQ0NDQ0NCcgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtc2l6ZT0nMTgnIGxlbmd0aEFkanVzdD0nc3BhY2luZycgdGV4dExlbmd0aD0nMjk2JyB4PSczOCcgeT0nODMuNjE0Myc+d2ViZngtZXhhbXBsZS1hcHBsaWNhdGlvbi1nbHVvbjwvdGV4dD48dGV4dCBmaWxsPScjNDQ0NDQ0JyBmb250LWZhbWlseT0nc2Fucy1zZXJpZicgZm9udC1zaXplPScxOCcgbGVuZ3RoQWRqdXN0PSdzcGFjaW5nJyB0ZXh0TGVuZ3RoPScyODEnIHg9JzM4JyB5PScxMDQuNTY3NCc+d2ViZngtZXhhbXBsZS1hcHBsaWNhdGlvbi1nd3Q8L3RleHQ+PHRleHQgZmlsbD0nIzQ0NDQ0NCcgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtc2l6ZT0nMTgnIGxlbmd0aEFkanVzdD0nc3BhY2luZycgdGV4dExlbmd0aD0nMzEzJyB4PSczOCcgeT0nMTI1LjUyMDUnPndlYmZ4LWV4YW1wbGUtYXBwbGljYXRpb24tb3BlbmpmeDwvdGV4dD48cmVjdCBmaWxsPSdub25lJyBoZWlnaHQ9JzInIHN0eWxlPSdzdHJva2U6IzQ0NDQ0NDtzdHJva2Utd2lkdGg6MS4wOycgd2lkdGg9JzInIHg9JzI5JyB5PSc1NS40Mjk3Jy8+PGxpbmUgc3R5bGU9J3N0cm9rZTojNDQ0NDQ0O3N0cm9rZS13aWR0aDoxLjA7JyB4MT0nMjInIHgyPSczMCcgeTE9JzU2LjQyOTcnIHkyPSc1Ni40Mjk3Jy8+PGxpbmUgc3R5bGU9J3N0cm9rZTojNDQ0NDQ0O3N0cm9rZS13aWR0aDoxLjA7JyB4MT0nMjInIHgyPScyMicgeTE9JzQ1Ljk1MzEnIHkyPSc1Ni40Mjk3Jy8+PHJlY3QgZmlsbD0nbm9uZScgaGVpZ2h0PScyJyBzdHlsZT0nc3Ryb2tlOiM0NDQ0NDQ7c3Ryb2tlLXdpZHRoOjEuMDsnIHdpZHRoPScyJyB4PScyOScgeT0nNzYuMzgyOCcvPjxsaW5lIHN0eWxlPSdzdHJva2U6IzQ0NDQ0NDtzdHJva2Utd2lkdGg6MS4wOycgeDE9JzIyJyB4Mj0nMzAnIHkxPSc3Ny4zODI4JyB5Mj0nNzcuMzgyOCcvPjxsaW5lIHN0eWxlPSdzdHJva2U6IzQ0NDQ0NDtzdHJva2Utd2lkdGg6MS4wOycgeDE9JzIyJyB4Mj0nMjInIHkxPSc1Ni40Mjk3JyB5Mj0nNzcuMzgyOCcvPjxyZWN0IGZpbGw9J25vbmUnIGhlaWdodD0nMicgc3R5bGU9J3N0cm9rZTojNDQ0NDQ0O3N0cm9rZS13aWR0aDoxLjA7JyB3aWR0aD0nMicgeD0nMjknIHk9Jzk3LjMzNTknLz48bGluZSBzdHlsZT0nc3Ryb2tlOiM0NDQ0NDQ7c3Ryb2tlLXdpZHRoOjEuMDsnIHgxPScyMicgeDI9JzMwJyB5MT0nOTguMzM1OScgeTI9Jzk4LjMzNTknLz48bGluZSBzdHlsZT0nc3Ryb2tlOiM0NDQ0NDQ7c3Ryb2tlLXdpZHRoOjEuMDsnIHgxPScyMicgeDI9JzIyJyB5MT0nNzcuMzgyOCcgeTI9Jzk4LjMzNTknLz48cmVjdCBmaWxsPSdub25lJyBoZWlnaHQ9JzInIHN0eWxlPSdzdHJva2U6IzQ0NDQ0NDtzdHJva2Utd2lkdGg6MS4wOycgd2lkdGg9JzInIHg9JzI5JyB5PScxMTguMjg5MScvPjxsaW5lIHN0eWxlPSdzdHJva2U6IzQ0NDQ0NDtzdHJva2Utd2lkdGg6MS4wOycgeDE9JzIyJyB4Mj0nMzAnIHkxPScxMTkuMjg5MScgeTI9JzExOS4yODkxJy8+PGxpbmUgc3R5bGU9J3N0cm9rZTojNDQ0NDQ0O3N0cm9rZS13aWR0aDoxLjA7JyB4MT0nMjInIHgyPScyMicgeTE9Jzk4LjMzNTknIHkyPScxMTkuMjg5MScvPjwvZz48L3N2Zz4=" alt="webfx example structure" width="373" height="152">
+</div>
+</div>
+<div class="paragraph">
+<p>The JavaFX class is located in the first module. Normally its <code>start()</code> method is empty at this stage, but because we specified the <code>--helloWorld</code> option, it has been populated with this simple template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class WebFxExampleApplication extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setScene(new Scene(new StackPane(new Text("Hello world!")), 800, 600));
+        primaryStage.show();
+    }
+
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1206,13 +1240,13 @@ The screenshots will be taken from IntelliJ IDEA, but you can easily transpose t
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can just type <code>AB</code> and your IDE should quickly find and suggest the WebFX ApplicationBooter class.
+You can just type <code>AB</code> for the main class, and your IDE should quickly find and suggest the WebFX ApplicationBooter class.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Explanation: GWT has a different entry point than standard Java applications, but WebFX offers a single cross-platform entry point that will correctly bootstrap your application. <mark>The main class of a WebFX application will always be <span class="red monospace">dev.webfx.platform.shared.services.boot.ApplicationBooter</span> whatever the platform</mark>. It will find your JavaFX application because it has been automatically declared as a Java service by the CLI.</p>
+<p>The way to boot GWT and OpenJFX applications are different, but WebFX offers a cross-platform way to do it. For this reason, <mark>the main class of a WebFX application is always <span class="red monospace">dev.webfx.platform.shared.services.boot.ApplicationBooter</span></mark>. It will find your JavaFX application because it has been automatically declared as a Java service by the CLI.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1221,13 +1255,15 @@ You can just type <code>AB</code> and your IDE should quickly find and suggest t
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-GWT normally doesn&#8217;t support the Java service API, but WebFX does, because the CLI emulates it by generating a GWT super source. You can rely on this feature to declare and implement your own services. Your services can even have platform-dependent implementations. A service can be a cross-platform UI API for example, with an OpenJFX implementation, and a different GWT implementation using a JS library you want for your web app.
+<div class="paragraph">
+<p>GWT normally doesn&#8217;t support the Java service API, but WebFX does, because the CLI emulates it by generating a GWT super source. You can rely on this feature to declare and implement your own services. Your services can even have platform-dependent implementations. A service can be a cross-platform UI API for example, with an OpenJFX implementation, and a different GWT implementation using a JS library you want for your web app.</p>
+</div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If you run this configuration, it will build and run your WebFX application with the OpenJFX runtime. This is this configuration that you will use to develop and debug your application.</p>
+<p>If you run this configuration, it will build and run your WebFX application in your IDE with the OpenJFX runtime. This is this configuration that you will use to develop and debug your application.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1258,7 +1294,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-28 20:15:34 UTC
+Last updated 2022-05-29 12:04:33 UTC
 </div>
 </div>
 </body>
