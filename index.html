@@ -911,13 +911,13 @@ We will distribute the CLI in a better way with the first WebFX official release
 <div class="listingblock primary">
 <div class="title">HTTPS</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">git clone https://github.com/webfx-project/webfx-cli.git</code></pre>
+<pre class="pygments highlight"><code data-lang="shell">git clone https://github.com/webfx-project/webfx-cli.git</code></pre>
 </div>
 </div>
 <div class="listingblock secondary">
 <div class="title">SSH</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">git clone git@github.com:webfx-project/webfx-cli.git</code></pre>
+<pre class="pygments highlight"><code data-lang="shell">git clone git@github.com:webfx-project/webfx-cli.git</code></pre>
 </div>
 </div>
 </div>
@@ -961,7 +961,7 @@ As previously mentioned, WebFX CLI requires JDK 13 or above to successfully comp
 <div class="listingblock primary">
 <div class="title">Linux</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bashrc <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bashrc <i class="conum" data-value="1"></i><b>(1)</b>
 
 source ~/.bashrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -981,7 +981,7 @@ source ~/.bashrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="listingblock secondary">
 <div class="title">macOS &gt;= Catalina</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.zshrc <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.zshrc <i class="conum" data-value="1"></i><b>(1)</b>
 
 source ~/.zshrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -1001,7 +1001,7 @@ source ~/.zshrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="listingblock secondary">
 <div class="title">macOS &lt; Catalina</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
 
 source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -1021,7 +1021,7 @@ source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pr
 <div class="listingblock secondary">
 <div class="title">Windows PowerShell</div>
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">If (!(Test-Path $profile)) { New-Item -Path $profile -Force } <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">If (!(Test-Path $profile)) { New-Item -Path $profile -Force } <i class="conum" data-value="1"></i><b>(1)</b>
 
 "`r`nfunction webfx([String[]] [Parameter(ValueFromRemainingArguments)] `$params) { java -jar $((Get-Item .).fullName)\target\webfx-cli-0.1.0-SNAPSHOT-fat.jar `$params }`r`n" &gt;&gt; $profile <i class="conum" data-value="2"></i><b>(2)</b>
 
@@ -1151,7 +1151,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public class WebFxExampleApplication extends Application {
+<pre class="pygments highlight"><code data-lang="java">public class WebFxExampleApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -1294,7 +1294,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-29 12:04:33 UTC
+Last updated 2022-05-29 13:57:29 UTC
 </div>
 </div>
 </body>
