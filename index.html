@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-05-30">
+<meta name="author" content="Last updated: 2022-06-06">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-05-30</span><br>
+<span id="author" class="author">Last updated: 2022-06-06</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -611,6 +611,8 @@ window.onload = function() {
 <li><a href="#_installing_the_webfx_cli">Installing the WebFX CLI</a></li>
 <li><a href="#_creating_your_first_webfx_app">Creating your first WebFX app</a></li>
 <li><a href="#_developing_in_your_ide">Developing in your IDE</a></li>
+<li><a href="#_building_the_executables_with_openjfx">Building the executables with OpenJFX</a></li>
+<li><a href="#_building_the_executables_with_gluon">Building the executables with Gluon</a></li>
 </ul>
 </li>
 <li><a href="#_pdf_version">PDF version</a></li>
@@ -709,6 +711,10 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://moderngauge.webfx.dev" target="_blank" rel="noopener">Modern gauge demo</a></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">139 kB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://medusaclock.webfx.dev" target="_blank" rel="noopener">Medusa clock demo</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">180 kB</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://enzoclocks.webfx.dev" target="_blank" rel="noopener">Enzo clocks demo</a></p></td>
@@ -1279,6 +1285,46 @@ You can just type <code>AB</code> for the main class, and your IDE should quickl
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_building_the_executables_with_openjfx">Building the executables with OpenJFX</h3>
+<div class="literalblock">
+<div class="content">
+<pre>webfx -m webfx-example-application-openjfx build --openjfx-desktop</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>macos: sudo spctl --master-disable</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_building_the_executables_with_gluon">Building the executables with Gluon</h3>
+<div class="sect3">
+<h4 id="_installing_graalvm">Installing GraalVM</h4>
+<div class="literalblock">
+<div class="content">
+<pre>webfx bump graalvm</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_building_the_native_desktop_app">Building the native desktop app</h4>
+<div class="literalblock">
+<div class="content">
+<pre>webfx -m webfx-example-application-gluon build --gluon-desktop</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_building_the_native_mobile_app">Building the native mobile app</h4>
+<div class="literalblock">
+<div class="content">
+<pre>webfx -m webfx-example-application-gluon build --gluon-mobile</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1294,7 +1340,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-30 13:41:18 UTC
+Last updated 2022-06-06 17:13:14 UTC
 </div>
 </div>
 </body>
