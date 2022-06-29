@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-06-06">
+<meta name="author" content="Last updated: 2022-06-29">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-06-06</span><br>
+<span id="author" class="author">Last updated: 2022-06-29</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -611,8 +611,8 @@ window.onload = function() {
 <li><a href="#_installing_the_webfx_cli">Installing the WebFX CLI</a></li>
 <li><a href="#_creating_your_first_webfx_app">Creating your first WebFX app</a></li>
 <li><a href="#_developing_in_your_ide">Developing in your IDE</a></li>
-<li><a href="#_building_the_executables_with_openjfx">Building the executables with OpenJFX</a></li>
-<li><a href="#_building_the_executables_with_gluon">Building the executables with Gluon</a></li>
+<li><a href="#_building_the_standard_executables_desktop">Building the standard executables (desktop)</a></li>
+<li><a href="#_building_the_native_executables_desktop_mobiles">Building the native executables (desktop &amp; mobiles)</a></li>
 </ul>
 </li>
 <li><a href="#_pdf_version">PDF version</a></li>
@@ -1090,6 +1090,18 @@ This is the only command that uses <code>git</code>, and it&#8217;s just a <code
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The CLI can display help at different levels. For example, <code>webfx bump --help</code> will display all available bump sub-commands, and <code>webfx bump cli --help</code> the usage of that specific command.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1171,9 +1183,111 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 </div>
 <div class="sect3">
 <h4 id="_building_your_application">Building your application</h4>
+<div class="paragraph">
+<p>You can build your application using the <code>webfx build</code> command, passing it the following build flag(s):</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Build platform</th>
+<th class="tableblock halign-center valign-top">Build flag</th>
+<th class="tableblock halign-center valign-top">Target platform</th>
+<th class="tableblock halign-center valign-top">Bump command</th>
+<th class="tableblock halign-center valign-top">Generated file(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gwt</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Web</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">html/JS + war</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-fatjar</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Any desktop with Java</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">fat jar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (embed JVM)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .rpm, .deb</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (embed JVM)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (embed JVM)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">wix*, inno*</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi, .exe</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-devtools</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, wix*</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-mobile</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Android (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-devtools</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">.apk, .aab</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-mobile</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">iOS (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">.app, .ipa</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><span class="small">* these installer tools are optional</span></p>
+</div>
+<div class="paragraph">
+<p>Some builds require additional pieces of software to work. You can use <code>webfx bump graalvm</code>, <code>webfx bump wix</code>, etc&#8230;&#8203; to install or upgrade them on your build machine. Also on macOS, for builds other than -gwt and -openjfx-fatjar, Xcode must be installed and configured for a proper code signing (otherwise the executables will refuse to run).</p>
+</div>
+<div class="paragraph">
+<p>For now, let&#8217;s just build the Web and OpenJFX desktop apps:</p>
+</div>
 <div class="literalblock">
 <div class="content">
-<pre>webfx build</pre>
+<pre>webfx build --gwt --openjfx-desktop</pre>
 </div>
 </div>
 </div>
@@ -1286,10 +1400,10 @@ You can just type <code>AB</code> for the main class, and your IDE should quickl
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_the_executables_with_openjfx">Building the executables with OpenJFX</h3>
+<h3 id="_building_the_standard_executables_desktop">Building the standard executables (desktop)</h3>
 <div class="literalblock">
 <div class="content">
-<pre>webfx -m webfx-example-application-openjfx build --openjfx-desktop</pre>
+<pre>webfx build --openjfx-desktop</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -1299,7 +1413,7 @@ You can just type <code>AB</code> for the main class, and your IDE should quickl
 </div>
 </div>
 <div class="sect2">
-<h3 id="_building_the_executables_with_gluon">Building the executables with Gluon</h3>
+<h3 id="_building_the_native_executables_desktop_mobiles">Building the native executables (desktop &amp; mobiles)</h3>
 <div class="sect3">
 <h4 id="_installing_graalvm">Installing GraalVM</h4>
 <div class="literalblock">
@@ -1340,7 +1454,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-06-06 17:13:14 UTC
+Last updated 2022-06-29 15:53:15 UTC
 </div>
 </div>
 </body>
