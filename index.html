@@ -834,7 +834,7 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are in the path of your terminal. The WebFX CLI will invoke these commands without specifying their full path.
+Be sure that <code>java</code>, <code>mvn</code> and <code>git</code> are referenced in the environment path. The WebFX CLI will invoke these commands without specifying their full path.
 </td>
 </tr>
 </table>
@@ -959,7 +959,7 @@ As previously mentioned, WebFX CLI requires JDK 13 or above to successfully comp
 </div>
 </div>
 <div class="paragraph">
-<p>which can also be invoked by more simply by <code>webfx.sh</code> and <code>webfx.bat</code> script files.</p>
+<p>The <code>webfx.sh</code> and <code>webfx.bat</code> script files (located under the webfx-cli directory) are simply doing this call. We will use them in the next step.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1060,7 +1060,7 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 </table>
 </div>
 <div class="paragraph">
-<p>Alternatively on Windows, you can just add the CLI repository path to the environment path.</p>
+<p>A simpler alternative on Windows is to just add the webfx-cli repository to the environment path, so <code>webfx.bat</code> will be directly executed when typing the <code>webfx</code> command. This is the recommended way if you are using the legacy Command Prompt.</p>
 </div>
 <div class="paragraph">
 <p>Then you should be able to invoke the CLI from the terminal:</p>
@@ -1092,18 +1092,6 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 </td>
 <td class="content">
 This is the only command that uses <code>git</code>, and it&#8217;s just a <code>git pull</code> of the webfx-cli repository. The CLI will not call <code>git</code> on your own repositories.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The CLI can display help at different levels. For example, <code>webfx bump --help</code> will display all available bump sub-commands, and <code>webfx bump cli --help</code> the usage of that specific command.
 </td>
 </tr>
 </table>
@@ -1288,8 +1276,20 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <div class="paragraph">
 <p>Some builds require additional pieces of software to work. You can use <code>webfx bump graalvm</code>, <code>webfx bump wix</code>, etc&#8230;&#8203; to install or upgrade them on your build machine. Also on macOS, for builds other than -gwt and -openjfx-fatjar, Xcode must be installed and configured for a proper code signing (otherwise the executables will refuse to run).</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The CLI can display help at different levels. For example, <code>webfx bump --help</code> will display all available bump sub-commands.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>For now, let&#8217;s just build the Web and OpenJFX desktop apps:</p>
+<p>For now, let&#8217;s just build the Web and OpenJFX desktop apps (we will target the other platforms later in this guide):</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1304,7 +1304,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>webfx -m webfx-example-application-openjfx run</pre>
+<pre>webfx run --openjfx-desktop</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1312,7 +1312,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>webfx -m webfx-example-application-gwt run</pre>
+<pre>webfx run --gwt</pre>
 </div>
 </div>
 </div>
@@ -1460,7 +1460,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-06-30 11:43:18 UTC
+Last updated 2022-06-30 20:24:02 UTC
 </div>
 </div>
 </body>
