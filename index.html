@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-06-29">
+<meta name="author" content="Last updated: 2022-06-30">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-06-29</span><br>
+<span id="author" class="author">Last updated: 2022-06-30</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -955,8 +955,11 @@ As previously mentioned, WebFX CLI requires JDK 13 or above to successfully comp
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>java -jar target/webfx-cli-0.1.0-SNAPSHOT-fat.jar --help</pre>
+<pre>java -jar target/webfx-cli-0.1.0-SNAPSHOT-fat.jar</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>which can also be invoked by more simply by <code>webfx.sh</code> and <code>webfx.bat</code> script files.</p>
 </div>
 </div>
 <div class="sect3">
@@ -967,7 +970,7 @@ As previously mentioned, WebFX CLI requires JDK 13 or above to successfully comp
 <div class="listingblock primary">
 <div class="title">Linux</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bashrc <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='sh $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/webfx.sh'" &gt;&gt; ~/.bashrc <i class="conum" data-value="1"></i><b>(1)</b>
 
 source ~/.bashrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -987,7 +990,7 @@ source ~/.bashrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="listingblock secondary">
 <div class="title">macOS &gt;= Catalina</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.zshrc <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='sh $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/webfx.sh'" &gt;&gt; ~/.zshrc <i class="conum" data-value="1"></i><b>(1)</b>
 
 source ~/.zshrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -1007,7 +1010,7 @@ source ~/.zshrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="listingblock secondary">
 <div class="title">macOS &lt; Catalina</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='java -jar $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/target/webfx-cli-0.1.0-SNAPSHOT-fat.jar'" &gt;&gt; ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='sh $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/webfx.sh'" &gt;&gt; ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
 
 source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -1029,7 +1032,7 @@ source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pr
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">If (!(Test-Path $profile)) { New-Item -Path $profile -Force } <i class="conum" data-value="1"></i><b>(1)</b>
 
-"`r`nfunction webfx([String[]] [Parameter(ValueFromRemainingArguments)] `$params) { java -jar $((Get-Item .).fullName)\target\webfx-cli-0.1.0-SNAPSHOT-fat.jar `$params }`r`n" &gt;&gt; $profile <i class="conum" data-value="2"></i><b>(2)</b>
+"`r`nfunction webfx([String[]] [Parameter(ValueFromRemainingArguments)] `$params) { $((Get-Item .).fullName)\webfx.bat `$params }`r`n" &gt;&gt; $profile <i class="conum" data-value="2"></i><b>(2)</b>
 
 If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb runAs "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned" -Wait } <i class="conum" data-value="3"></i><b>(3)</b>
 
@@ -1055,6 +1058,9 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 <td>Applying it to the current session</td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Alternatively on Windows, you can just add the CLI repository path to the environment path.</p>
 </div>
 <div class="paragraph">
 <p>Then you should be able to invoke the CLI from the terminal:</p>
@@ -1184,7 +1190,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <div class="sect3">
 <h4 id="_building_your_application">Building your application</h4>
 <div class="paragraph">
-<p>You can build your application using the <code>webfx build</code> command, passing it the following build flag(s):</p>
+<p>You can build your application using the <code>webfx build</code> command, passing it the following build option(s):</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1197,7 +1203,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Build platform</th>
-<th class="tableblock halign-center valign-top">Build flag</th>
+<th class="tableblock halign-center valign-top">Build option</th>
 <th class="tableblock halign-center valign-top">Target platform</th>
 <th class="tableblock halign-center valign-top">Bump command</th>
 <th class="tableblock halign-center valign-top">Generated file(s)</th>
@@ -1277,7 +1283,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 </tbody>
 </table>
 <div class="paragraph">
-<p><span class="small">* these installer tools are optional</span></p>
+<p><span class="small">* these tools are optional, allowing you to create a Windows installer</span></p>
 </div>
 <div class="paragraph">
 <p>Some builds require additional pieces of software to work. You can use <code>webfx bump graalvm</code>, <code>webfx bump wix</code>, etc&#8230;&#8203; to install or upgrade them on your build machine. Also on macOS, for builds other than -gwt and -openjfx-fatjar, Xcode must be installed and configured for a proper code signing (otherwise the executables will refuse to run).</p>
@@ -1454,7 +1460,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-06-29 15:53:15 UTC
+Last updated 2022-06-30 11:43:18 UTC
 </div>
 </div>
 </body>
