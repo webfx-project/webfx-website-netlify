@@ -961,7 +961,7 @@ As previously mentioned, WebFX CLI requires JDK 13 or above to successfully comp
 <div class="listingblock primary">
 <div class="title">Linux</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='sh $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/webfx.sh'" &gt;&gt; ~/.bashrc <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='sh \"$(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/webfx.sh\"'" &gt;&gt; ~/.bashrc <i class="conum" data-value="1"></i><b>(1)</b>
 
 source ~/.bashrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -981,7 +981,7 @@ source ~/.bashrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="listingblock secondary">
 <div class="title">macOS &gt;= Catalina</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='sh $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/webfx.sh'" &gt;&gt; ~/.zshrc <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='sh \"$(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/webfx.sh\"'" &gt;&gt; ~/.zshrc <i class="conum" data-value="1"></i><b>(1)</b>
 
 source ~/.zshrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -1001,7 +1001,7 @@ source ~/.zshrc <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="listingblock secondary">
 <div class="title">macOS &lt; Catalina</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='sh $(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/webfx.sh'" &gt;&gt; ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="pygments highlight"><code data-lang="shell">echo "alias webfx='sh \"$(cd "$(dirname "$1")" &amp;&amp; pwd -P)/$(basename "$1")/webfx.sh\"'" &gt;&gt; ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
 
 source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -1463,7 +1463,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-02 10:30:28 UTC
+Last updated 2022-07-02 19:13:38 UTC
 </div>
 </div>
 </body>
