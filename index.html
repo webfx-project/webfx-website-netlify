@@ -1019,7 +1019,7 @@ source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pr
 </table>
 </div>
 <div class="listingblock secondary">
-<div class="title">Windows PowerShell</div>
+<div class="title">Windows (PowerShell)</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">If (!(Test-Path $profile)) { New-Item -Path $profile -Force } <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -1050,8 +1050,11 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>A simpler alternative on Windows is to just add the webfx-cli repository to the environment path, so <code>webfx.bat</code> will be directly executed when typing the <code>webfx</code> command. This is the recommended way if you are using the legacy Command Prompt.</p>
+<div class="listingblock secondary">
+<div class="title">Windows (manual)</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="text">You can just add the webfx-cli repository to your environment path, so `webfx.bat` will be directly executed when typing the `webfx` command.</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Then you should be able to invoke the CLI from the terminal:</p>
@@ -1463,7 +1466,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-03 13:44:43 UTC
+Last updated 2022-07-03 14:03:52 UTC
 </div>
 </div>
 </body>
