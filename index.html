@@ -610,9 +610,15 @@ window.onload = function() {
 <li><a href="#_introducing_the_webfx_cli">Introducing the WebFX CLI</a></li>
 <li><a href="#_installing_the_webfx_cli">Installing the WebFX CLI</a></li>
 <li><a href="#_creating_your_first_webfx_app">Creating your first WebFX app</a></li>
+<li><a href="#_web_platform">Web platform</a></li>
+<li><a href="#_desktop_platform_jar">Desktop platform (JAR)</a></li>
+<li><a href="#_desktop_platform_embed_jre">Desktop platform (embed JRE)</a></li>
+<li><a href="#_desktop_platform_native">Desktop platform (native)</a></li>
+<li><a href="#_android_platform">Android platform</a></li>
+<li><a href="#_ios_platform">iOS platform</a></li>
+<li><a href="#_platform_summary_table">Platform summary table</a></li>
+<li><a href="#_github_workflow">GitHub workflow</a></li>
 <li><a href="#_developing_in_your_ide">Developing in your IDE</a></li>
-<li><a href="#_building_the_executables_on_local_machines">Building the executables on local machines</a></li>
-<li><a href="#_building_the_executables_on_github_servers">Building the executables on GitHub servers</a></li>
 </ul>
 </li>
 <li><a href="#_pdf_version">PDF version</a></li>
@@ -690,7 +696,7 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <p>In addition to the web platform, a WebFX application can also run on desktops &amp; mobiles. WebFX will invoke the standard Java toolchain to produce desktop executables (embedding an optimized JRE), and the Gluon toolchains to produce native executables for the desktop and mobiles.</p>
 </div>
 <div class="paragraph">
-<p>Some other technologies or JVM language allows you to do the same but only for the application logic, they don&#8217;t offer a cross-platform UI toolkit. With WebFX, you can do a full cross-platform development of your entire application from a single source code base.</p>
+<p>Some alternative technologies, or JVM language, allow you to do the same but only for the application logic, because they don&#8217;t offer a cross-platform UI toolkit. With WebFX, you can do a full cross-platform development of your entire application from a single source code base.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1053,11 +1059,8 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 <div class="listingblock secondary">
 <div class="title">Windows (manual)</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">You can just add the webfx-cli repository to your environment path, so webfx.bat will be directly executed when typing the webfx command.</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>You can just add the webfx-cli repository to your environment path, so webfx.bat will be directly executed when typing the webfx command.</p>
 </div>
 <div class="paragraph">
 <p>Then you should be able to invoke the CLI from the terminal:</p>
@@ -1175,7 +1178,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <div class="sect3">
 <h4 id="_building_your_application">Building your application</h4>
 <div class="paragraph">
-<p>To do a simple build of your application without generating any executable, just type the following command:</p>
+<p>The following command will do a simple build of your application (without generating any final executable):</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1183,16 +1186,449 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 </div>
 </div>
 <div class="paragraph">
-<p>To generate the executables you wish, you need to pass some extra build options. You can discover them in the build help:</p>
+<p>To generate the executables for the different platforms, you need to pass some extra build options. You can discover them in the build help:</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>webfx build --help</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Some builds require additional third-party software to work. The CLI will help you to install them through the <code>webfx install</code> command.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Some builds require additional third-party software to work. We will cover this in detail in the next sections as well with the different build options.
+</td>
+</tr>
+</table>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_web_platform">Web platform</h3>
+<div class="paragraph">
+<p>You can use the following commands to target the Web platform:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gwt <i class="conum" data-value="1"></i><b>(1)</b>
+webfx build --gwt --locate <i class="conum" data-value="2"></i><b>(2)</b>
+webfx build --gwt --reveal <i class="conum" data-value="3"></i><b>(3)</b>
+webfx run --gwt <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Build the html executable file with the GWT Maven plugin</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Locate the generated executable file</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Reveal the generated executable file in the file explorer</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Execute the generated executable in the browser</td>
+</tr>
+</table>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -g <i class="conum" data-value="1"></i><b>(1)</b>
+webfx build -gl <i class="conum" data-value="2"></i><b>(2)</b>
+webfx build -gr <i class="conum" data-value="3"></i><b>(3)</b>
+webfx run -g <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Build the html executable file with the GWT Maven plugin</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Locate the generated executable file</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Reveal the generated executable file in the file explorer</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Execute the generated executable in the browser</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+As opposed to <code>--reveal</code>, <code>--locate</code> works even before the build, as it prints the expected location, whether the executable file is present or not.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_desktop_platform_jar">Desktop platform (JAR)</h3>
+<div class="paragraph">
+<p>You can use the following commands to target the Desktop platform with a fat JAR (requires Java installed on the target machine):</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar <i class="conum" data-value="1"></i><b>(1)</b>
+webfx build --openjfx-fatjar --locate <i class="conum" data-value="2"></i><b>(2)</b>
+webfx build --openjfx-fatjar --reveal <i class="conum" data-value="3"></i><b>(3)</b>
+webfx run --openjfx-fatjar <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Build the fat jar executable file with Maven</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Locate the generated executable file</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Reveal the generated executable file in the file explorer</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Run the generated executable file</td>
+</tr>
+</table>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -f <i class="conum" data-value="1"></i><b>(1)</b>
+webfx build -fl <i class="conum" data-value="2"></i><b>(2)</b>
+webfx build -fr <i class="conum" data-value="3"></i><b>(3)</b>
+webfx run -f <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Build the fat jar executable file with Maven</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Locate the generated executable file</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Reveal the generated executable file in the file explorer</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Run the generated executable file</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can combine the build options. For example <code>webfx build --gwt --openjfx-fatjar</code> (short syntax: <code>webfx build -gf</code>) will build both the GWT html and OpenJFX fat jar executables.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_desktop_platform_embed_jre">Desktop platform (embed JRE)</h3>
+<div class="paragraph">
+<p>As opposed to the JAR, the embed JRE will be specific to the target platform. Therefore, a Linux machine will build a Linux executable, a Mac a macOS executable, and a Windows machine a Windows executable.</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-requisite</strong>: you can install the following tools if you wish to also generate the installers:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Linux</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx install ubuntu-devtools <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Optional. These tools are used to generate the .deb and .rpm installers.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock secondary">
+<div class="title">Windows</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx install wix <i class="conum" data-value="1"></i><b>(1)</b>
+webfx install inno <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Optional. The WiX Toolset is used to create a simple .msi installer.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Optional. Inno Setup is used to create a more elaborate .exe installer.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The CLI will help you to customize these installers in a next version. For now, we just use the default settings.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Then, you can use the following commands to target the Desktop platform (embed JRE):</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-desktop
+webfx build --openjfx-desktop --locate
+webfx build --openjfx-desktop --reveal
+webfx run --openjfx-desktop</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -k
+webfx build -kl
+webfx build -kr
+webfx run -k</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>macos: sudo spctl --master-disable</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_desktop_platform_native">Desktop platform (native)</h3>
+<div class="paragraph">
+<p>Like for the embed JRE, 3 different machines are required to target the Linux, macOS, and Windows executables.</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-requisite</strong>: you must install the following tools for a successful build:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Linux</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx install graalvm <i class="conum" data-value="1"></i><b>(1)</b>
+webfx install ubuntu-devtools <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Required for the Gluon toolchain</td>
+</tr>
+</table>
+</div>
+<div class="listingblock secondary">
+<div class="title">macOS</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx install graalvm <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Required for the Gluon toolchain</td>
+</tr>
+</table>
+</div>
+<div class="listingblock secondary">
+<div class="title">Windows</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx install graalvm <i class="conum" data-value="1"></i><b>(1)</b>
+webfx install vstools <i class="conum" data-value="1"></i><b>(1)</b>
+webfx install wix <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Required for the Gluon toolchain</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Optional. WiX Toolset is used to create a simple .msi installer.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Then, you can use the following commands to target the Desktop platform (native):</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-desktop
+webfx build --gluon-desktop --locate
+webfx build --gluon-desktop --reveal
+webfx run --gluon-desktop</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -t
+webfx build -tl
+webfx build -tr
+webfx run -t</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_android_platform">Android platform</h3>
+<div class="paragraph">
+<p>A Linux machine is required to build the Android executable.</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-requisite</strong>: you must install the following tools for a successful build:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>webfx install graalvm
+webfx install ubuntu-devtools</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, you can use the following commands to target the Android platform (native):</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-mobile
+webfx build --gluon-mobile --locate
+webfx build --gluon-mobile --reveal
+webfx run --gluon-mobile <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Will invoke the Gluon Maven plugin to install and run the executable on your Android device connected to your Linux machine via USB.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -b
+webfx build -bl
+webfx build -br
+webfx run -b <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Will invoke the Gluon Maven plugin to install and run the executable on your Android device connected to your Linux machine via USB.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use the more explicit <code>--gluon-android</code> or <code>-a</code> options.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ios_platform">iOS platform</h3>
+<div class="paragraph">
+<p>A Mac is required to build the iOS executable.</p>
+</div>
+<div class="paragraph">
+<p><strong>Pre-requisite</strong>: you must install the following tools for a successful build:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>webfx install graalvm</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, you can use the following commands to target the Android platform (native):</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-mobile
+webfx build --gluon-mobile --locate
+webfx build --gluon-mobile --reveal
+webfx run --gluon-mobile <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Will invoke the Gluon Maven plugin to install and run the executable on your iOS device connected to your Mac via USB.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -b
+webfx build -bl
+webfx build -br
+webfx run -b <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Will invoke the Gluon Maven plugin to install and run the executable on your iOS device connected to your Mac via USB.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use the more explicit <code>--gluon-ios</code> or <code>-i</code> options.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_platform_summary_table">Platform summary table</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1284,99 +1720,12 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 </tbody>
 </table>
 <div class="paragraph">
-<p><span class="small">* these tools are optional, it&#8217;s only if you want to create installers</span></p>
-</div>
-<div class="paragraph">
-<p>For now, let&#8217;s just build the fat jar and html executables (we will target the other platforms later in this guide):</p>
-</div>
-<div class="listingblock primary">
-<div class="title">Long syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar --gwt</code></pre>
+<p><span class="small">* these tools are optional, they are used to create installers (.rpm, .deb, .dmg, .pkg, .msi or .exe)</span></p>
 </div>
 </div>
-<div class="listingblock secondary">
-<div class="title">Short syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -fg</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To locate the executable files, just add the --locate option to the previous command:</p>
-</div>
-<div class="listingblock primary">
-<div class="title">Long syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar --gwt --locate</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Short syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -fgl</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you prefer to reveal them in your file browser, use the <code>--reveal</code> option instead:</p>
-</div>
-<div class="listingblock primary">
-<div class="title">Long syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar --gwt --reveal</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Short syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -fgr</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-As opposed to <code>--reveal</code>, <code>--locate</code> works even before the build, as it prints the expected location, whether the executable file is present or not.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_running_your_application">Running your application</h4>
-<div class="paragraph">
-<p>Once your application is built, you can run the executable file using the <code>webfx run</code> command using the same syntax. So to run the fat jar it will be:</p>
-</div>
-<div class="listingblock primary">
-<div class="title">Long syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx run --openjfx-fatjar</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Short syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx run -f</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And for the html file it will be:</p>
-</div>
-<div class="listingblock primary">
-<div class="title">Long syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx run --gwt</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Short syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx run -g</code></pre>
-</div>
-</div>
-</div>
+<div class="sect2">
+<h3 id="_github_workflow">GitHub workflow</h3>
+
 </div>
 <div class="sect2">
 <h3 id="_developing_in_your_ide">Developing in your IDE</h3>
@@ -1457,181 +1806,6 @@ You can just type <code>AB</code> for the main class, and your IDE should quickl
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_building_the_executables_on_local_machines">Building the executables on local machines</h3>
-<div class="sect3">
-<h4 id="_openjfx_desktops_embed_jre">OpenJFX desktops (embed JRE)</h4>
-<div class="paragraph">
-<p>A Linux machine is required to build the Linux executables, a Mac for the macOS executables, and a Windows machine for the Windows executables.</p>
-</div>
-<div class="paragraph">
-<p>Pre-requisites: if you want to also generate the installers, you will need to install these optional tools:</p>
-</div>
-<div class="listingblock primary">
-<div class="title">Linux</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx install ubuntu-devtools</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>These tools are required to generate the .deb and .rpm installers.</p>
-</div>
-<div class="listingblock secondary">
-<div class="title">Windows</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx install wix <i class="conum" data-value="1"></i><b>(1)</b>
-webfx install inno <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>WiX Toolset is used to create a simple .msi installer.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Inno Setup is used to create a more elaborate .exe installer.</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The CLI will help you to customize these installers in a next version. For now, we just use the default settings.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock primary">
-<div class="title">Long syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-desktop</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Short syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -k</code></pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>macos: sudo spctl --master-disable</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_native_desktops">Native desktops</h4>
-<div class="paragraph">
-<p>A Linux machine is required to build the Linux executables, a Mac for the macOS executables, and a Windows machine for the Windows executables.</p>
-</div>
-<div class="paragraph">
-<p>Pre-requisites: as we use the Gluon toolchain here, GraalVM must be installed on the machine, with eventually other tools:</p>
-</div>
-<div class="listingblock primary">
-<div class="title">Linux</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx install graalvm
-webfx install ubuntu-devtools</code></pre>
-</div>
-</div>
-<div class="listingblock primary">
-<div class="title">macOS</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx install graalvm</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Windows</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx install graalvm
-webfx install wix <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Optional. WiX Toolset is used to create a simple .msi installer.</td>
-</tr>
-</table>
-</div>
-<div class="listingblock primary">
-<div class="title">Long syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-desktop</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Short syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -t</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_android">Android</h4>
-<div class="paragraph">
-<p>A Linux machine is required to build the Android executables.</p>
-</div>
-<div class="paragraph">
-<p>Pre-requisites: as we use the Gluon toolchain here, GraalVM must be installed on the machine with some other dev tools:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>webfx install graalvm
-webfx install ubuntu-devtools</pre>
-</div>
-</div>
-<div class="listingblock primary">
-<div class="title">Long syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-mobile</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Short syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -b</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_ios">iOS</h4>
-<div class="paragraph">
-<p>A Mac is required to build the iOS executables.</p>
-</div>
-<div class="paragraph">
-<p>Pre-requisites: as we use the Gluon toolchain here, GraalVM must be installed on the machine:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>webfx install graalvm</pre>
-</div>
-</div>
-<div class="listingblock primary">
-<div class="title">Long syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-mobile</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Short syntax</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -b</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_building_the_executables_on_github_servers">Building the executables on GitHub servers</h3>
-
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1647,7 +1821,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-03 19:58:40 UTC
+Last updated 2022-07-03 23:00:37 UTC
 </div>
 </div>
 </body>
