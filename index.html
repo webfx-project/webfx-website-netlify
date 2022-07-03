@@ -1053,7 +1053,7 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 <div class="listingblock secondary">
 <div class="title">Windows (manual)</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="text">You can just add the webfx-cli repository to your environment path, so `webfx.bat` will be directly executed when typing the `webfx` command.</code></pre>
+<pre class="pygments highlight"><code data-lang="text">You can just add the webfx-cli repository to your environment path, so webfx.bat will be directly executed when typing the webfx command.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1172,7 +1172,23 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <div class="sect3">
 <h4 id="_building_your_application">Building your application</h4>
 <div class="paragraph">
-<p>You can build your application using the <code>webfx build</code> command, passing it the following build option(s):</p>
+<p>To do a simple build of your application without generating any executable, just type the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>webfx build</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To generate the executables you wish, you need to pass some extra build options. You can discover them in the build help:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>webfx build --help</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some builds require additional third-party software to work. The CLI will help you to install them through the <code>webfx install</code> command.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1188,7 +1204,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <th class="tableblock halign-center valign-top">Build option</th>
 <th class="tableblock halign-center valign-top">Target platform</th>
 <th class="tableblock halign-center valign-top">Install command</th>
-<th class="tableblock halign-center valign-top">Generated file(s)</th>
+<th class="tableblock halign-center valign-top">Executable file(s)</th>
 </tr>
 </thead>
 <tbody>
@@ -1197,7 +1213,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gwt</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Web</p></td>
 <td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">html/JS + war</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">html</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
@@ -1209,21 +1225,21 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (embed JVM)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (embed JRE)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">ubuntu-devtools*</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .rpm, .deb</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (embed JVM)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (embed JRE)</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (embed JVM)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (embed JRE)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">wix*, inno*</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi, .exe</p></td>
 </tr>
@@ -1268,45 +1284,48 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <p><span class="small">* these tools are optional, it&#8217;s only if you want to create installers</span></p>
 </div>
 <div class="paragraph">
-<p>Some builds require additional pieces of software to work. You can use <code>webfx install graalvm</code>, <code>webfx install wix</code>, etc&#8230;&#8203; to install or upgrade them on your build machine. Also on macOS, for builds other than -gwt and -openjfx-fatjar, Xcode must be installed and configured for a proper code signing (otherwise the executables will refuse to run).</p>
+<p>For now, let&#8217;s just build the fat jar and html executables (we will target the other platforms later in this guide):</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The CLI can display help at different levels. For example, <code>webfx install --help</code> will display all available bump sub-commands.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For now, let&#8217;s just build the GWT and fat jar apps (we will target the other platforms later in this guide):</p>
-</div>
-<div class="literalblock">
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
 <div class="content">
-<pre>webfx build --gwt --openjfx-fatjar</pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar --gwt</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_running_your_application">Running your application</h4>
-<div class="paragraph">
-<p>You can run the OpenJFX fat jar version of your application with the following command:</p>
-</div>
-<div class="literalblock">
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
 <div class="content">
-<pre>webfx run --openjfx-fatjar</pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build -fg</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can run the GWT version of your application with the following command:</p>
+<p>To locate the executable files, just add the --locate option to the previous command:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
 <div class="content">
-<pre>webfx run --gwt</pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar --gwt --locate</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -fgl</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you prefer to reveal them in your file browser, use the <code>--reveal</code> option instead:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar --gwt --reveal</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -fgr</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1316,10 +1335,43 @@ The CLI can display help at different levels. For example, <code>webfx install -
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Alternative syntax: <code>webfx run -m webfx-example-application-gwt</code>
+As opposed to <code>--reveal</code>, <code>--locate</code> works even before the build as it prints the expected location, whether the file is present or not.
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_your_application">Running your application</h4>
+<div class="paragraph">
+<p>Once your application is built, you can run the executable file using the <code>webfx run</code> command using the same syntax. So to run the fat jar it will be:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -f</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And for the html file it will be:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Long syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gwt</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Short syntax</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell">webfx build -g</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1466,7 +1518,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-03 14:03:52 UTC
+Last updated 2022-07-03 15:57:41 UTC
 </div>
 </div>
 </body>
