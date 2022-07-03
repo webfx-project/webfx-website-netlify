@@ -1184,7 +1184,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <th class="tableblock halign-left valign-top">Build platform</th>
 <th class="tableblock halign-center valign-top">Build option</th>
 <th class="tableblock halign-center valign-top">Target platform</th>
-<th class="tableblock halign-center valign-top">Bump command</th>
+<th class="tableblock halign-center valign-top">Install command</th>
 <th class="tableblock halign-center valign-top">Generated file(s)</th>
 </tr>
 </thead>
@@ -1265,7 +1265,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <p><span class="small">* these tools are optional, it&#8217;s only if you want to create installers</span></p>
 </div>
 <div class="paragraph">
-<p>Some builds require additional pieces of software to work. You can use <code>webfx bump graalvm</code>, <code>webfx bump wix</code>, etc&#8230;&#8203; to install or upgrade them on your build machine. Also on macOS, for builds other than -gwt and -openjfx-fatjar, Xcode must be installed and configured for a proper code signing (otherwise the executables will refuse to run).</p>
+<p>Some builds require additional pieces of software to work. You can use <code>webfx install graalvm</code>, <code>webfx install wix</code>, etc&#8230;&#8203; to install or upgrade them on your build machine. Also on macOS, for builds other than -gwt and -openjfx-fatjar, Xcode must be installed and configured for a proper code signing (otherwise the executables will refuse to run).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1274,7 +1274,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The CLI can display help at different levels. For example, <code>webfx bump --help</code> will display all available bump sub-commands.
+The CLI can display help at different levels. For example, <code>webfx install --help</code> will display all available bump sub-commands.
 </td>
 </tr>
 </table>
@@ -1427,7 +1427,7 @@ You can just type <code>AB</code> for the main class, and your IDE should quickl
 <h4 id="_installing_graalvm">Installing GraalVM</h4>
 <div class="literalblock">
 <div class="content">
-<pre>webfx bump graalvm</pre>
+<pre>webfx install graalvm</pre>
 </div>
 </div>
 </div>
@@ -1463,7 +1463,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-03 13:38:46 UTC
+Last updated 2022-07-03 13:44:43 UTC
 </div>
 </div>
 </body>
