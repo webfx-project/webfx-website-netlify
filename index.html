@@ -1575,7 +1575,7 @@ webfx run -t</code></pre>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-There is an issue with the Gluon Maven plugin which may cause the build to fail on some versions of macOS. Details are provided in the GitHub issue <a href="https://github.com/gluonhq/gluonfx-maven-plugin/issues/429">here</a>.
+There is an issue with the Gluon Maven plugin which may cause the build to fail on some versions of macOS. Details are provided in the GitHub issue <a href="https://github.com/gluonhq/gluonfx-maven-plugin/issues/429" target="_blank" rel="noopener">here</a>.
 </td>
 </tr>
 </table>
@@ -1685,7 +1685,7 @@ webfx run -i <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 <div class="sect2">
 <h3 id="_github_workflows">GitHub workflows</h3>
 <div class="paragraph">
-<p>In a future release of the CLI we plan to support automatic generation of GitHub workflows. Each push to the main branch of your project will then trigger the generation of all your executables on the GitHub servers.</p>
+<p>In a future release of the CLI we plan to support automatic generation of GitHub workflows. Each push to the main branch of your GitHub repository will then trigger the generation of all your executables on the Linux, macOS and Windows GitHub servers.</p>
 </div>
 <div class="paragraph">
 <p>For now, you can check out the demos to see sample GitHub workflow configuration. For example, the <a href="https://github.com/webfx-demos/webfx-demo-fx2048/blob/main/.github/workflows/builds.yml">FX2048 GitHub workflow</a> and the <a href="https://github.com/webfx-demos/webfx-demo-fx2048/releases" target="_blank" rel="noopener">generated executables</a> (expand the <code>Assets</code> link to view them).</p>
@@ -1759,17 +1759,71 @@ You can just type <code>AB</code> for the main class, and your IDE should quickl
 </div>
 <div class="sect3">
 <h4 id="_building_and_running_the_gwt_application">Building and running the GWT application</h4>
-
+<div class="paragraph">
+<p>As opposed to the OpenJFX version where the IDE can use its own build system, the GWT version can only be built through the Maven build system.</p>
+</div>
+<div class="paragraph">
+<p>One way to build it is to open a terminal window in your IDE, and to type the <code>webfx build -gwt</code>.</p>
+</div>
+<div class="paragraph">
+<p>Another way is to trigger the build in the Maven IDE window, but be sure you activated the gwt-compile Maven profile.</p>
+</div>
+<div class="paragraph">
+<p>You can also create a configuration that triggers the Maven build.</p>
+</div>
+<div class="paragraph">
+<p>Once built, you can bookmark the generated html file in your IDE, and ask your IDE to open it in the browser.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_making_changes">Making changes</h4>
 <div class="paragraph">
-<p>Use the following command to update the build chain from the webfx.xml files. For example:</p>
+<p>Let&#8217;s do a first little change by replacing the Text with a Button. At first sight, it looks an insignificant change, but actually it&#8217;s not, because this involves a new dependency to the <code>javafx-controls</code> module (so far, our application was only using the <code>javafx-graphics</code> module). To take advantage of the CLI, let&#8217;s first enter the fully qualified Button class name like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java">public class ExampleApplication extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setScene(new Scene(new StackPane(new javafx.scene.control.Button("Hello world!")), 800, 600));
+        primaryStage.show();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The IDE doesn&#8217;t recognize this class yet, but let&#8217;s ask the CLI to update the build chain:</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>webfx update</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The CLI should make all necessary changes in the Java, Maven, and GWT build chain. After your IDE detected and considered these changes, it should recognize the Button class, and allow you to import it. Then, let&#8217;s add a simple code to react to the button:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java">public class ExampleApplication extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        Button button = new Button("Hello world!");
+        button.setOnAction(event -&gt; button.setText("You clicked me!"));
+        primaryStage.setScene(new Scene(new StackPane(button), 800, 600));
+        primaryStage.show();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can first check the code is working as expected with the OpenJFX runtime by running the OpenJFX configuration.</p>
+</div>
+<div class="paragraph">
+<p>Then you can check the Web version by running a GWT build.</p>
 </div>
 </div>
 </div>
@@ -1788,7 +1842,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-04 15:04:26 UTC
+Last updated 2022-07-04 16:36:28 UTC
 </div>
 </div>
 </body>
