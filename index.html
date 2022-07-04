@@ -670,7 +670,7 @@ window.onload = function() {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note for the impatient: OpenJFX is a huge library (about 10MB) compared to standard JS frameworks (typically 100KB). It will take time to complete its coverage (some parts may not be possible). Thanks for your understanding.
+Note for the impatient: OpenJFX is a huge library (about 10MB) compared to standard JS frameworks (typically 100KB). It will take time to complete its coverage. Thanks for your understanding.
 </td>
 </tr>
 </table>
@@ -695,7 +695,7 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <p>In addition to the web platform, a WebFX application can also run on desktops &amp; mobiles. WebFX will invoke the standard Java toolchain to produce desktop executables (embedding an optimized JRE), and the Gluon toolchains to produce native executables for the desktop and mobiles.</p>
 </div>
 <div class="paragraph">
-<p>Some alternative technologies, or JVM language, allow you to do the same but only for the application logic, because they don&#8217;t offer a cross-platform UI toolkit. With WebFX, you can do a full cross-platform development of your entire application from a single source code base.</p>
+<p>Some alternative technologies or JVM language allow you to do the same but only for the application logic, because they don&#8217;t offer a cross-platform UI toolkit. With WebFX, you can do a full cross-platform development of your entire application from a single source code base.</p>
 </div>
 </div>
 <div class="sect3">
@@ -867,7 +867,7 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 </table>
 </div>
 <div class="paragraph">
-<p>You can create several WebFX applications in the same repository. If your application code grows, you can split your code into more modules. The CLI will help you to create and maintain all your modules. For each module, it will create and maintain your build chain as follows (when applicable to the module):</p>
+<p>You can create several WebFX applications in the same repository. If your application code grows, you can split your code into more modules. The CLI will help you to create and maintain all your modules. For each module, it will create and maintain your build chain as follows:</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1024,7 +1024,7 @@ source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pr
 </table>
 </div>
 <div class="listingblock secondary">
-<div class="title">Windows PowerShell</div>
+<div class="title">Windows (PowerShell)</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">If (!(Test-Path $profile)) { New-Item -Path $profile -Force } <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -1058,7 +1058,7 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 <div class="listingblock secondary">
 <div class="title">Windows (manual)</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">You can just add the webfx-cli repository to your environment path, so webfx.bat will be directly executed when typing the webfx command.</code></pre>
+<pre class="pygments highlight"><code data-lang="shell">You can simply add the webfx-cli repository to your environment path, so webfx.bat will be directly executed when typing the webfx command.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1090,7 +1090,7 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This is sp far the only command that uses <code>git</code> (a <code>git pull</code> of the webfx-cli repository). The CLI will not call <code>git</code> on your own repositories.
+This is so far the only command that uses <code>git</code> (a <code>git pull</code> of the webfx-cli repository). The CLI will not call <code>git</code> on your own repositories.
 </td>
 </tr>
 </table>
@@ -1144,7 +1144,7 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-we could omit the prefix here, because the CLI takes the parent module name in that case.
+we could omit the prefix here, because the CLI takes the parent module name in that case (which is also webfx-example here).
 </td>
 </tr>
 </table>
@@ -1208,8 +1208,8 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <th class="tableblock halign-left valign-top">Build platform</th>
 <th class="tableblock halign-center valign-top">Target platform</th>
 <th class="tableblock halign-center valign-top">Install command</th>
-<th class="tableblock halign-center valign-top"></th>
-<th class="tableblock halign-center valign-top">Build option Executable file(s)</th>
+<th class="tableblock halign-center valign-top">Build option</th>
+<th class="tableblock halign-center valign-top">Executable file(s)</th>
 </tr>
 </thead>
 <tbody>
@@ -1375,7 +1375,7 @@ As opposed to <code>--reveal</code>, <code>--locate</code> works even before the
 <p>This executable requires Java installed on the target machine.</p>
 </div>
 <div class="paragraph">
-<p>You can use the following commands to target the Desktop platform with a fat JAR (you can still use the <code>--reveal</code>, <code>--locate</code> options in addition):</p>
+<p>You can use the following commands to target the Desktop platform with (JAR):</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
@@ -1390,6 +1390,9 @@ webfx run --openjfx-fatjar</code></pre>
 <pre class="pygments highlight"><code data-lang="shell">webfx build -f
 webfx run -f</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>You can of course still use the <code>--reveal</code>, <code>--locate</code> options in addition.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1472,11 +1475,6 @@ webfx run --openjfx-desktop</code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx build -k
 webfx run -k</code></pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>macos: sudo spctl --master-disable</pre>
 </div>
 </div>
 </div>
@@ -1759,7 +1757,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-04 06:58:11 UTC
+Last updated 2022-07-04 07:45:00 UTC
 </div>
 </div>
 </body>
