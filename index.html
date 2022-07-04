@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-07-03">
+<meta name="author" content="Last updated: 2022-07-04">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-07-03</span><br>
+<span id="author" class="author">Last updated: 2022-07-04</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -606,7 +606,7 @@ window.onload = function() {
 </li>
 <li><a href="#_getting_started">Getting started</a>
 <ul class="sectlevel2">
-<li><a href="#_prerequisite">Prerequisite</a></li>
+<li><a href="#_pre_requisites">Pre-requisites</a></li>
 <li><a href="#_introducing_the_webfx_cli">Introducing the WebFX CLI</a></li>
 <li><a href="#_installing_the_webfx_cli">Installing the WebFX CLI</a></li>
 <li><a href="#_creating_your_first_webfx_app">Creating your first WebFX app</a></li>
@@ -616,7 +616,6 @@ window.onload = function() {
 <li><a href="#_desktop_platform_native">Desktop platform (native)</a></li>
 <li><a href="#_android_platform">Android platform</a></li>
 <li><a href="#_ios_platform">iOS platform</a></li>
-<li><a href="#_platform_summary_table">Platform summary table</a></li>
 <li><a href="#_github_workflow">GitHub workflow</a></li>
 <li><a href="#_developing_in_your_ide">Developing in your IDE</a></li>
 </ul>
@@ -671,7 +670,7 @@ window.onload = function() {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note for the impatient: OpenJFX is a huge library (about 10MB) compared to standard JS frameworks (typically 100KB). It will take time to complete its coverage (some parts may not be possible). Thanks for your understanding. But compared to some frameworks, you can already do a lot with the current coverage.
+Note for the impatient: OpenJFX is a huge library (about 10MB) compared to standard JS frameworks (typically 100KB). It will take time to complete its coverage (some parts may not be possible). Thanks for your understanding.
 </td>
 </tr>
 </table>
@@ -816,7 +815,7 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <h2 id="_getting_started">Getting started</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_prerequisite">Prerequisite</h3>
+<h3 id="_pre_requisites">Pre-requisites</h3>
 <div class="paragraph">
 <p>To develop WebFX applications, you will need the following software already installed on your development machine:</p>
 </div>
@@ -855,7 +854,7 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This module targets the native desktop &amp; mobile platforms. It binds your application with the OpenJFX runtime, and can call the Gluon toolchain to produce the Windows, macOS, Linux, Android &amp; iOS native executables (depending on your OS).</td>
+<td>This module targets the native desktop &amp; mobile platforms. It binds your application with the OpenJFX runtime, and can call the Gluon toolchain to produce the Windows, macOS, Linux, Android &amp; iOS native executables (depending on the OS of your local machine).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -863,7 +862,7 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This module targets the standard desktop platform. It binds your application with the OpenJFX runtime, and is directly executable in your IDE. It can also call the standard JavaFX toolchain to produce the desktop executables (Windows, macOS or Linux) with an embed JVM.</td>
+<td>This module targets the standard desktop platform. It binds your application with the OpenJFX runtime, and is directly executable in your IDE. It can also call the standard Java toolchain to produce the desktop executables (Windows, macOS or Linux) with an embed JRE.</td>
 </tr>
 </table>
 </div>
@@ -1025,7 +1024,7 @@ source ~/.bash_profile <i class="conum" data-value="2"></i><b>(2)</b></code></pr
 </table>
 </div>
 <div class="listingblock secondary">
-<div class="title">Windows (PowerShell)</div>
+<div class="title">Windows PowerShell</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">If (!(Test-Path $profile)) { New-Item -Path $profile -Force } <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -1091,7 +1090,7 @@ If ($(Get-ExecutionPolicy) -eq "Restricted") { Start-Process powershell -Verb ru
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This is the only command that uses <code>git</code>, and it&#8217;s just a <code>git pull</code> of the webfx-cli repository. The CLI will not call <code>git</code> on your own repositories.
+This is sp far the only command that uses <code>git</code> (a <code>git pull</code> of the webfx-cli repository). The CLI will not call <code>git</code> on your own repositories.
 </td>
 </tr>
 </table>
@@ -1193,17 +1192,104 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <pre>webfx build --help</pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
+<div class="paragraph">
+<p>Some builds require the installation of third-party software, as shown in the following table:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Some builds require additional third-party software to work. We will cover this in detail in the next sections as well with the different build options.
-</td>
+<th class="tableblock halign-left valign-top">Build platform</th>
+<th class="tableblock halign-center valign-top">Target platform</th>
+<th class="tableblock halign-center valign-top">Install command</th>
+<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top">Build option Executable file(s)</th>
 </tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Web</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gwt</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">html</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Any desktop with Java</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-fatjar</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">fat jar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (embed JRE)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ubuntu-devtools*</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .rpm, .deb</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (embed JRE)</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (embed JRE)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">wix*, inno*</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi, .exe</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-devtools</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, wix*</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Android (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-devtools</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-android (or --gluon-mobile)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">.apk</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">iOS (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-ios (or --gluon-mobile)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">.ipa</p></td>
+</tr>
+</tbody>
 </table>
+<div class="paragraph">
+<p><span class="small">* these tools are optional, they are used to create installers (.rpm, .deb, .dmg, .pkg, .msi or .exe)</span></p>
+</div>
+<div class="paragraph">
+<p>We will now cover each target platform in detail.</p>
 </div>
 </div>
 </div>
@@ -1286,65 +1372,24 @@ As opposed to <code>--reveal</code>, <code>--locate</code> works even before the
 <div class="sect2">
 <h3 id="_desktop_platform_jar">Desktop platform (JAR)</h3>
 <div class="paragraph">
-<p>You can use the following commands to target the Desktop platform with a fat JAR (requires Java installed on the target machine):</p>
+<p>This executable requires Java installed on the target machine.</p>
+</div>
+<div class="paragraph">
+<p>You can use the following commands to target the Desktop platform with a fat JAR (you can still use the <code>--reveal</code>, <code>--locate</code> options in addition):</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar <i class="conum" data-value="1"></i><b>(1)</b>
-webfx build --openjfx-fatjar --locate <i class="conum" data-value="2"></i><b>(2)</b>
-webfx build --openjfx-fatjar --reveal <i class="conum" data-value="3"></i><b>(3)</b>
-webfx run --openjfx-fatjar <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar
+webfx run --openjfx-fatjar</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Build the fat jar executable file with Maven</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Locate the generated executable file</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Reveal the generated executable file in the file explorer</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Run the generated executable file</td>
-</tr>
-</table>
 </div>
 <div class="listingblock secondary">
 <div class="title">Short syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -f <i class="conum" data-value="1"></i><b>(1)</b>
-webfx build -fl <i class="conum" data-value="2"></i><b>(2)</b>
-webfx build -fr <i class="conum" data-value="3"></i><b>(3)</b>
-webfx run -f <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build -f
+webfx run -f</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Build the fat jar executable file with Maven</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Locate the generated executable file</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Reveal the generated executable file in the file explorer</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Run the generated executable file</td>
-</tr>
-</table>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1365,7 +1410,7 @@ You can combine the build options. For example <code>webfx build --gwt --openjfx
 <p>As opposed to the JAR, the embed JRE will be specific to the target platform. Therefore, a Linux machine will build a Linux executable, a Mac a macOS executable, and a Windows machine a Windows executable.</p>
 </div>
 <div class="paragraph">
-<p><strong>Pre-requisite</strong>: you can install the following tools if you wish to also generate the installers:</p>
+<p><strong>Pre-requisite</strong>: you can install the following software if you wish to also generate the installers:</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Linux</div>
@@ -1419,8 +1464,6 @@ The CLI will help you to customize these installers in a next version. For now, 
 <div class="title">Long syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-desktop
-webfx build --openjfx-desktop --locate
-webfx build --openjfx-desktop --reveal
 webfx run --openjfx-desktop</code></pre>
 </div>
 </div>
@@ -1428,8 +1471,6 @@ webfx run --openjfx-desktop</code></pre>
 <div class="title">Short syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx build -k
-webfx build -kl
-webfx build -kr
 webfx run -k</code></pre>
 </div>
 </div>
@@ -1445,7 +1486,7 @@ webfx run -k</code></pre>
 <p>Like for the embed JRE, 3 different machines are required to target the Linux, macOS, and Windows executables.</p>
 </div>
 <div class="paragraph">
-<p><strong>Pre-requisite</strong>: you must install the following tools for a successful build:</p>
+<p><strong>Pre-requisites</strong>: you must install the following software for a successful build:</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Linux</div>
@@ -1503,8 +1544,6 @@ webfx install wix <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="title">Long syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-desktop
-webfx build --gluon-desktop --locate
-webfx build --gluon-desktop --reveal
 webfx run --gluon-desktop</code></pre>
 </div>
 </div>
@@ -1512,8 +1551,6 @@ webfx run --gluon-desktop</code></pre>
 <div class="title">Short syntax</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx build -t
-webfx build -tl
-webfx build -tr
 webfx run -t</code></pre>
 </div>
 </div>
@@ -1524,7 +1561,7 @@ webfx run -t</code></pre>
 <p>A Linux machine is required to build the Android executable.</p>
 </div>
 <div class="paragraph">
-<p><strong>Pre-requisite</strong>: you must install the following tools for a successful build:</p>
+<p><strong>Pre-requisites</strong>: you must install the following software for a successful build:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1538,10 +1575,8 @@ webfx install ubuntu-devtools</pre>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-mobile
-webfx build --gluon-mobile --locate
-webfx build --gluon-mobile --reveal
-webfx run --gluon-mobile <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-android
+webfx run --gluon-android <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1555,10 +1590,8 @@ webfx run --gluon-mobile <i class="conum" data-value="1"></i><b>(1)</b></code></
 <div class="listingblock secondary">
 <div class="title">Short syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -b
-webfx build -bl
-webfx build -br
-webfx run -b <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build -a
+webfx run -a <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1570,7 +1603,7 @@ webfx run -b <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can use the more explicit <code>--gluon-android</code> or <code>-a</code> options.</p>
+<p>Alternatively, you can use the <code>--gluon-mobile</code> (short: <code>-b</code>) cross-platform option. It will be interpreted as <code>--gluon-android</code> on Linux machines.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1579,7 +1612,7 @@ webfx run -b <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 <p>A Mac is required to build the iOS executable.</p>
 </div>
 <div class="paragraph">
-<p><strong>Pre-requisite</strong>: you must install the following tools for a successful build:</p>
+<p><strong>Pre-requisite</strong>: you must install the following software for a successful build:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1587,15 +1620,13 @@ webfx run -b <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then, you can use the following commands to target the Android platform (native):</p>
+<p>Then, you can use the following commands to target the iOS platform (native):</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-mobile
-webfx build --gluon-mobile --locate
-webfx build --gluon-mobile --reveal
-webfx run --gluon-mobile <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-ios
+webfx run --gluon-ios <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1609,10 +1640,8 @@ webfx run --gluon-mobile <i class="conum" data-value="1"></i><b>(1)</b></code></
 <div class="listingblock secondary">
 <div class="title">Short syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -b
-webfx build -bl
-webfx build -br
-webfx run -b <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build -i
+webfx run -i <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1624,108 +1653,17 @@ webfx run -b <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>Alternatively, you can use the more explicit <code>--gluon-ios</code> or <code>-i</code> options.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_platform_summary_table">Platform summary table</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Build platform</th>
-<th class="tableblock halign-center valign-top">Build option</th>
-<th class="tableblock halign-center valign-top">Target platform</th>
-<th class="tableblock halign-center valign-top">Install command</th>
-<th class="tableblock halign-center valign-top">Executable file(s)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--gwt</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Web</p></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">html</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-fatjar</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Any desktop with Java</p></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">fat jar</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (embed JRE)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">ubuntu-devtools*</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .rpm, .deb</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (embed JRE)</p></td>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (embed JRE)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">wix*, inno*</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi, .exe</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-devtools</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">executable</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, wix*</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-mobile</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Android (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-devtools</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">.apk</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-mobile</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">iOS (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">.ipa</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p><span class="small">* these tools are optional, they are used to create installers (.rpm, .deb, .dmg, .pkg, .msi or .exe)</span></p>
+<p>Alternatively, you can use the <code>--gluon-mobile</code> (short: <code>-b</code>) cross-platform option. It will be interpreted as <code>--gluon-ios</code> on Macs.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_github_workflow">GitHub workflow</h3>
-
+<div class="paragraph">
+<p>We plan to add the automatic generation of GitHub workflows to the CLI. This will allow you to automatically generate the different executables on each push on the main branch.</p>
+</div>
+<div class="paragraph">
+<p>For now, you can check out the demos to see how these GitHub workflows look like, and what executables they generate. For example, here is the <a href="https://github.com/webfx-demos/webfx-demo-fx2048/blob/main/.github/workflows/builds.yml">FX2048 GitHub workflow</a> and the <a href="https://github.com/webfx-demos/webfx-demo-fx2048/releases">generated executables</a> (just expand the release Assets to see them).</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_developing_in_your_ide">Developing in your IDE</h3>
@@ -1821,7 +1759,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-03 23:00:37 UTC
+Last updated 2022-07-04 06:58:11 UTC
 </div>
 </div>
 </body>
