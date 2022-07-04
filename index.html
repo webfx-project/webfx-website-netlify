@@ -1227,14 +1227,14 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Linux (embed JRE)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">ubuntu-devtools*</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ubuntu-tools*</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .rpm, .deb</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">macOS (embed JRE)</p></td>
-<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">xcode-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
 </tr>
@@ -1248,35 +1248,35 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Linux (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-devtools</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">macOS (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, xcode-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Windows (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, wix*</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, vs-tools, wix*</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Android (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-devtools</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-android (or --gluon-mobile)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">.apk</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">iOS (native)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, xcode-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-ios (or --gluon-mobile)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">.ipa</p></td>
 </tr>
@@ -1415,7 +1415,7 @@ You can combine the build options. For example <code>webfx build --gwt --openjfx
 <div class="listingblock primary">
 <div class="title">Linux</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx install ubuntu-devtools <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx install ubuntu-tools <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1423,6 +1423,20 @@ You can combine the build options. For example <code>webfx build --gwt --openjfx
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>Optional. These tools are used to generate the .deb and .rpm installers.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">macOS</div>
+<div class="content">
+<pre>webfx install xcode-tools <i class="conum" data-value="1"></i><b>(1)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Required for code signing.</td>
 </tr>
 </table>
 </div>
@@ -1487,7 +1501,7 @@ webfx run -k</code></pre>
 <div class="title">Linux</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx install graalvm <i class="conum" data-value="1"></i><b>(1)</b>
-webfx install ubuntu-devtools <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+webfx install ubuntu-tools <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1501,7 +1515,8 @@ webfx install ubuntu-devtools <i class="conum" data-value="1"></i><b>(1)</b></co
 <div class="listingblock secondary">
 <div class="title">macOS</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx install graalvm <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx install graalvm <i class="conum" data-value="1"></i><b>(1)</b>
+webfx install xcode-tools <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1516,7 +1531,7 @@ webfx install ubuntu-devtools <i class="conum" data-value="1"></i><b>(1)</b></co
 <div class="title">Windows</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx install graalvm <i class="conum" data-value="1"></i><b>(1)</b>
-webfx install vstools <i class="conum" data-value="1"></i><b>(1)</b>
+webfx install vs-tools <i class="conum" data-value="1"></i><b>(1)</b>
 webfx install wix <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
@@ -1561,7 +1576,7 @@ webfx run -t</code></pre>
 <div class="literalblock">
 <div class="content">
 <pre>webfx install graalvm
-webfx install ubuntu-devtools</pre>
+webfx install ubuntu-tools</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1757,7 +1772,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-04 14:35:13 UTC
+Last updated 2022-07-04 14:46:32 UTC
 </div>
 </div>
 </body>
