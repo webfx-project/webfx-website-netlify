@@ -5,31 +5,31 @@
 <polygon fill='white' points='-4,4 -4,-186 610,-186 610,4 -4,4' stroke='transparent'/>
 
 <g class='node' id='node1'>
-<title>webfx&#45;cli</title>
-<ellipse cx='262' cy='-92' fill='none' rx='51.99' ry='18' stroke='black'/>
+<title>WebFXCli</title>
+<ellipse cx='262' cy='-92' fill='#e0aaff' rx='51.99' ry='18' stroke='black'/>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='262' y='-88.3'>webfx&#45;cli</text>
 </g>
 
 <g class='node' id='node4'>
 <title>pom.xml</title>
-<polygon fill='none' points='78,-37 0,-37 0,-1 78,-1 78,-37' stroke='black'/>
+<polygon fill='#ffdccc' points='78,-37 0,-37 0,-1 78,-1 78,-37' stroke='black'/>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='39' y='-15.3'>pom.xml</text>
 </g>
 
 <g class='edge' id='edge3'>
-<title>webfx&#45;cli&#45;&gt;pom.xml</title>
+<title>WebFXCli&#45;&gt;pom.xml</title>
 <path d='M222.85,-79.93C189.32,-70.27 139.56,-55.53 87.89,-38.21' fill='none' stroke='black'/>
 <polygon fill='black' points='88.81,-34.83 78.22,-34.94 86.57,-41.46 88.81,-34.83' stroke='black'/>
 </g>
 
 <g class='node' id='node5'>
 <title>module&#45;info.java</title>
-<polygon fill='none' points='230,-37 96,-37 96,-1 230,-1 230,-37' stroke='black'/>
+<polygon fill='#ffdccc' points='230,-37 96,-37 96,-1 230,-1 230,-37' stroke='black'/>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='163' y='-15.3'>module&#45;info.java</text>
 </g>
 
 <g class='edge' id='edge4'>
-<title>webfx&#45;cli&#45;&gt;module&#45;info.java</title>
+<title>WebFXCli&#45;&gt;module&#45;info.java</title>
 <path d='M240.52,-75.59C227.3,-66.12 210.11,-53.79 195.28,-43.15' fill='none' stroke='black'/>
 <polygon fill='black' points='197.03,-40.1 186.87,-37.12 192.95,-45.79 197.03,-40.1' stroke='black'/>
 </g>
@@ -37,13 +37,13 @@
 <g class='node' id='node6'>
 <title>GWT module.gwt.xml
 super sources, bundles, etc...</title>
-<polygon fill='none' points='474,-38 248,-38 248,0 474,0 474,-38' stroke='black'/>
+<polygon fill='#ffdccc' points='474,-38 248,-38 248,0 474,0 474,-38' stroke='black'/>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='361' y='-22.8'>GWT module.gwt.xml</text>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='361' y='-7.8'>super sources, bundles, etc...</text>
 </g>
 
 <g class='edge' id='edge5'>
-<title>webfx&#45;cli&#45;&gt;GWT module.gwt.xml
+<title>WebFXCli&#45;&gt;GWT module.gwt.xml
 super sources, bundles, etc...</title>
 <path d='M283.48,-75.59C296.32,-66.39 312.9,-54.5 327.43,-44.07' fill='none' stroke='black'/>
 <polygon fill='black' points='329.62,-46.81 335.71,-38.14 325.54,-41.12 329.62,-46.81' stroke='black'/>
@@ -51,36 +51,36 @@ super sources, bundles, etc...</title>
 
 <g class='node' id='node7'>
 <title>GraalVM conf</title>
-<polygon fill='none' points='606,-37 492,-37 492,-1 606,-1 606,-37' stroke='black'/>
+<polygon fill='#ffdccc' points='606,-37 492,-37 492,-1 606,-1 606,-37' stroke='black'/>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='549' y='-15.3'>GraalVM conf</text>
 </g>
 
 <g class='edge' id='edge6'>
-<title>webfx&#45;cli&#45;&gt;GraalVM conf</title>
+<title>WebFXCli&#45;&gt;GraalVM conf</title>
 <path d='M304.05,-81.32C346.5,-71.46 414.17,-55.5 481.81,-38.27' fill='none' stroke='black'/>
 <polygon fill='black' points='482.97,-41.59 491.79,-35.72 481.24,-34.8 482.97,-41.59' stroke='black'/>
 </g>
 
 <g class='node' id='node2'>
-<title>webfx.xml</title>
-<polygon fill='none' points='227,-182 137,-182 137,-146 227,-146 227,-182' stroke='black'/>
+<title>WebFXXml</title>
+<polygon fill='#fdffbc' points='227,-182 137,-182 137,-146 227,-146 227,-182' stroke='black'/>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='182' y='-160.3'>webfx.xml</text>
 </g>
 
 <g class='edge' id='edge1'>
-<title>webfx.xml&#45;&gt;webfx&#45;cli</title>
+<title>WebFXXml&#45;&gt;WebFXCli</title>
 <path d='M201.78,-145.7C212.13,-136.64 224.93,-125.44 236.06,-115.69' fill='none' stroke='black'/>
 <polygon fill='black' points='238.6,-118.13 243.82,-108.91 233.99,-112.86 238.6,-118.13' stroke='black'/>
 </g>
 
 <g class='node' id='node3'>
-<title>Your module source code</title>
-<polygon fill='none' points='440.5,-182 245.5,-182 245.5,-146 440.5,-146 440.5,-182' stroke='black'/>
+<title>Code</title>
+<polygon fill='#fdffbc' points='440.5,-182 245.5,-182 245.5,-146 440.5,-146 440.5,-182' stroke='black'/>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='343' y='-160.3'>Your module source code</text>
 </g>
 
 <g class='edge' id='edge2'>
-<title>Your module source code&#45;&gt;webfx&#45;cli</title>
+<title>Code&#45;&gt;WebFXCli</title>
 <path d='M322.98,-145.7C312.5,-136.64 299.53,-125.44 288.26,-115.69' fill='none' stroke='black'/>
 <polygon fill='black' points='290.26,-112.8 280.41,-108.91 285.68,-118.09 290.26,-112.8' stroke='black'/>
 </g>
