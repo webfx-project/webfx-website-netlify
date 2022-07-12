@@ -19,7 +19,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import dev.webfx.extras.webtext.controls.HtmlText;
+import dev.webfx.extras.webtext.HtmlText;
 
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -463,7 +463,7 @@ public class Board extends VBox {
                         "    </div>\n" +
                         "    <div class='game-lblAboutSub'>\n" +
                         "        <div>\n" +
-                        "            JavaFx game - WebFx version\n" +
+                        "            JavaFX game - WebFX version\n" +
                         "        </div>\n" +
                         "        <br/>\n" +
                         "        <div>\n" +
