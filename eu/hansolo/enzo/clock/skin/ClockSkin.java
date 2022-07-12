@@ -60,7 +60,7 @@ import java.util.List;
  * Time: 14:18
  */
 public class ClockSkin extends SkinBase<Clock> implements Skin<Clock> {
-    private static final boolean STYLE_WITH_CSS = false; // Turned to false (hardcoded style) as WebFx doesn't support CSS yet
+    private static final boolean STYLE_WITH_CSS = false; // Turned to false (hardcoded style) as WebFX doesn't support CSS yet
 
     private static final double PREFERRED_WIDTH = 200;
     private static final double PREFERRED_HEIGHT = 200;
@@ -759,7 +759,7 @@ public class ClockSkin extends SkinBase<Clock> implements Skin<Clock> {
     }
 
     /******************************************
-     * HARDCODED STYLING (required for WebFx) *
+     * HARDCODED STYLING (required for WebFX) *
      *****************************************/
 
     private final static Color POINTER_TICK_KNOB_DAY_COLOR = Color.grayRgb(10);
