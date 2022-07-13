@@ -45,7 +45,7 @@ import javafx.scene.shape.SVGPath;
 import javafx.scene.text.*;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import dev.webfx.kit.util.properties.Properties;
+import dev.webfx.kit.util.properties.FXProperties;
 import dev.webfx.kit.util.properties.Unregisterable;
 
 import java.time.LocalTime;
@@ -794,7 +794,7 @@ public class ClockSkin extends SkinBase<Clock> implements Skin<Clock> {
             }
             if (radiiBinding != null)
                 radiiBinding.unregister();
-            radiiBinding = Properties.runOnPropertiesChange(width -> styleBackground(style), background.widthProperty());
+            radiiBinding = FXProperties.runOnPropertiesChange(width -> styleBackground(style), background.widthProperty());
             background.setBorder(new Border(new BorderStroke(Color.web("#303030") /*LinearGradient.valueOf("#202020, #505050")*/, BorderStrokeStyle.SOLID, radii, BorderStroke.THIN)));
         }
     }
