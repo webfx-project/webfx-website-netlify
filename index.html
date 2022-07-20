@@ -1400,7 +1400,7 @@ You can combine the build options. For example <code>webfx build --gwt --openjfx
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Check if Xcode is correctly installed, otherwise redirect to the Xcode installation page.</td>
+<td>Actually just check if Xcode is installed with a correct path, otherwise suggest solutions.</td>
 </tr>
 </table>
 </div>
@@ -1430,7 +1430,19 @@ webfx install inno <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The CLI will help you to customize these installers in a next version. For now, we just use the default settings.
+The CLI will help you to customize the installers (application name, icon, etc&#8230;&#8203;) in a next version. For now, we just use the default settings.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+On macOS, you need to configure at least a Team ID in Xcode in order to make the application runnable on your machine. We will provide a guide for this later.
 </td>
 </tr>
 </table>
@@ -1449,6 +1461,18 @@ The CLI will help you to customize these installers in a next version. For now, 
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx build -kr</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If the application fails to run on macOS, you can try <code>webfx run -k --open</code> to execute it via the <code>open</code> command. This can open a problem report with more information.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1832,7 +1856,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-20 15:55:45 UTC
+Last updated 2022-07-20 17:30:04 UTC
 </div>
 </div>
 </body>
