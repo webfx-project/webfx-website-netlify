@@ -1171,14 +1171,14 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Linux (embed JRE)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">ubuntu-tools*</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ubuntu-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .AppImage, .rpm, .deb</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">macOS (embed JRE)</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">xcode-tools</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">xcode</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
 </tr>
@@ -1320,7 +1320,7 @@ As opposed to <code>--show</code>, <code>--locate</code> works even before the b
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>run</code> command has exactly the same options as the <code>build</code> command. The main difference is that with <code>run</code> you can run the app without rebuilding it (unless <code>--build</code> is specified), and with <code>build</code> you can build the app without running it (unless <code>--run</code> is specified).</p>
+<p>The <code>run</code> command has exactly the same options as the <code>build</code> command. The only difference between these 2 commands is that with <code>run</code> you can run the app without rebuilding it (unless <code>--build</code> is specified), and with <code>build</code> you can build the app without running it (unless <code>--run</code> is specified).</p>
 </div>
 <div class="paragraph">
 <p>In the next sections, we won&#8217;t repeat all the commands, we will use only the last command to build and run the application in one go, but of course you can still choose to separate the build and the run.</p>
@@ -1328,8 +1328,17 @@ As opposed to <code>--show</code>, <code>--locate</code> works even before the b
 </div>
 <div class="sect2">
 <h3 id="_desktop_platform_jar">Desktop platform (JAR)</h3>
-<div class="paragraph">
-<p>This executable requires Java installed on the target machine.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The desktop JAR executable is usually used for local testing. If you want to distribute your desktop application, the embed JRE or native executables are preferred, as they don&#8217;t require Java installed on the users machines.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>You can use the following command to target the Desktop platform (JAR):</p>
@@ -1365,7 +1374,7 @@ You can combine the build options. For example <code>webfx build --gwt --openjfx
 <p>As opposed to the JAR, the embed JRE will be specific to the target platform. Therefore, a Linux machine will build a Linux executable, a Mac a macOS executable, and a Windows machine a Windows executable.</p>
 </div>
 <div class="paragraph">
-<p><strong>Prerequisite</strong>: you can install the following software if you wish to also generate the installers:</p>
+<p><strong>Prerequisite</strong>: you must install the following software for a successful build:</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Linux</div>
@@ -1377,21 +1386,21 @@ You can combine the build options. For example <code>webfx build --gwt --openjfx
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Optional. These tools are used to generate the .deb and .rpm installers.</td>
+<td>These tools are used to generate the .deb and .rpm installers.</td>
 </tr>
 </table>
 </div>
 <div class="listingblock secondary">
 <div class="title">macOS</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx install xcode-tools <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx install xcode <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Required for code signing</td>
+<td>Check if Xcode is correctly installed, otherwise redirect to the Xcode installation page.</td>
 </tr>
 </table>
 </div>
@@ -1518,6 +1527,18 @@ webfx install wix <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx build -dr</code></pre>
 </div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+On some Linux virtual machines that don&#8217;t support OpenGL, JavaFX may report: Error initializing QuantumRenderer: no suitable pipeline found.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1811,7 +1832,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-20 13:13:46 UTC
+Last updated 2022-07-20 15:55:45 UTC
 </div>
 </div>
 </body>
