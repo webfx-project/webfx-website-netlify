@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-07-09">
+<meta name="author" content="Last updated: 2022-07-20">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-07-09</span><br>
+<span id="author" class="author">Last updated: 2022-07-20</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1076,18 +1076,6 @@ cd webfx-example
 webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 </div>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<code>webfx init org.example:1.0.0-SNAPSHOT</code> will also work as the CLI takes the repository directory name as the artifactId when omitted in the command.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>The init command creates only 2 files: webfx.xml and pom.xml. Note that if this is the first time you have used the CLI, it will download some other files through Maven to retrieve essential information about the available WebFX modules.</p>
 </div>
@@ -1101,18 +1089,6 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 <div class="content">
 <pre>webfx create application --prefix webfx-example org.example.webfxexample.WebFxExampleApplication --helloWorld</pre>
 </div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-we could omit the prefix here, because the CLI takes the parent module name in that case.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>This command created the following modules:</p>
@@ -1197,7 +1173,7 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <td class="tableblock halign-center valign-top"><p class="tableblock">Linux (embed JRE)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">ubuntu-tools*</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .rpm, .deb</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">executable, .AppImage, .rpm, .deb</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
@@ -1268,8 +1244,9 @@ we could omit the prefix here, because the CLI takes the parent module name in t
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx build --gwt <i class="conum" data-value="1"></i><b>(1)</b>
 webfx build --gwt --locate <i class="conum" data-value="2"></i><b>(2)</b>
-webfx build --gwt --reveal <i class="conum" data-value="3"></i><b>(3)</b>
-webfx run --gwt <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+webfx build --gwt --show <i class="conum" data-value="3"></i><b>(3)</b>
+webfx run --gwt <i class="conum" data-value="4"></i><b>(4)</b>
+webfx build --gwt --run <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1284,11 +1261,15 @@ webfx run --gwt <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Reveal the generated executable file in the file explorer</td>
+<td>Show the generated executable file in the file explorer</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>Execute the generated executable in the browser</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Build the app and execute it in a single command</td>
 </tr>
 </table>
 </div>
@@ -1297,8 +1278,9 @@ webfx run --gwt <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell">webfx build -g <i class="conum" data-value="1"></i><b>(1)</b>
 webfx build -gl <i class="conum" data-value="2"></i><b>(2)</b>
-webfx build -gr <i class="conum" data-value="3"></i><b>(3)</b>
-webfx run -g <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+webfx build -gs <i class="conum" data-value="3"></i><b>(3)</b>
+webfx run -g <i class="conum" data-value="4"></i><b>(4)</b>
+webfx build -gr <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1313,11 +1295,15 @@ webfx run -g <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Reveal the generated executable file in the file explorer</td>
+<td>Show the generated executable file in the file explorer</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>Execute the generated executable in the browser</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Build the app and execute it in a single command</td>
 </tr>
 </table>
 </div>
@@ -1328,10 +1314,16 @@ webfx run -g <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-As opposed to <code>--reveal</code>, <code>--locate</code> works even before the build, as it prints the expected location, whether the executable file is present or not.
+As opposed to <code>--show</code>, <code>--locate</code> works even before the build, as it prints the expected location, whether the executable file is present or not.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The <code>run</code> command has exactly the same options as the <code>build</code> command. The main difference is that with <code>run</code> you can run the app without rebuilding it (unless <code>--build</code> is specified), and with <code>build</code> you can build the app without running it (unless <code>--run</code> is specified).</p>
+</div>
+<div class="paragraph">
+<p>In the next sections, we won&#8217;t repeat all the commands, we will use only the last command to build and run the application in one go, but of course you can still choose to separate the build and the run.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1340,24 +1332,19 @@ As opposed to <code>--reveal</code>, <code>--locate</code> works even before the
 <p>This executable requires Java installed on the target machine.</p>
 </div>
 <div class="paragraph">
-<p>You can use the following commands to target the Desktop platform (JAR):</p>
+<p>You can use the following command to target the Desktop platform (JAR):</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar
-webfx run --openjfx-fatjar</code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-fatjar --run</code></pre>
 </div>
 </div>
 <div class="listingblock secondary">
 <div class="title">Short syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -f
-webfx run -f</code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build -fr</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The <code>run</code> command has the same options as the <code>build</code> command. So the <code>--reveal</code> and <code>--locate</code> options work with both commands.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1440,20 +1427,18 @@ The CLI will help you to customize these installers in a next version. For now, 
 </table>
 </div>
 <div class="paragraph">
-<p>Then, you can use the following commands to target the Desktop platform (embed JRE):</p>
+<p>Then, you can use the following command to target the Desktop platform (embed JRE):</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-desktop
-webfx run --openjfx-desktop</code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --openjfx-desktop --run</code></pre>
 </div>
 </div>
 <div class="listingblock secondary">
 <div class="title">Short syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -k
-webfx run -k</code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build -kr</code></pre>
 </div>
 </div>
 </div>
@@ -1520,33 +1505,19 @@ webfx install wix <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>Then, you can use the below commands to target the Desktop platform (native):</p>
+<p>Then, you can use the below command to target the Desktop platform (native):</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-desktop
-webfx run --gluon-desktop</code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-desktop --run</code></pre>
 </div>
 </div>
 <div class="listingblock secondary">
 <div class="title">Short syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -d
-webfx run -d</code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build -dr</code></pre>
 </div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-There is an issue with the Gluon Maven plugin which may cause the build to fail on some versions of macOS. Details are provided in the GitHub issue <a href="https://github.com/gluonhq/gluonfx-maven-plugin/issues/429" target="_blank" rel="noopener">here</a>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -1569,35 +1540,32 @@ webfx install ubuntu-tools</pre>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-android
-webfx run --gluon-android <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-android --run</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Will invoke the Gluon Maven plugin to install and run the executable on your Android device connected to your Linux machine via USB.</td>
-</tr>
-</table>
 </div>
 <div class="listingblock secondary">
 <div class="title">Short syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -a
-webfx run -a <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build -ar</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Will invoke the Gluon Maven plugin to install and run the executable on your Android device connected to your Linux machine via USB.</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>Alternatively, you can use the <code>--gluon-mobile</code> (short: <code>-m</code>) cross-platform option. It will be interpreted as <code>--gluon-android</code> on Linux machines.</p>
+</div>
+<div class="paragraph">
+<p>In this context, running the application means invoking the Gluon Maven plugin to install and run the generated package on your Android device connected to your Linux machine via USB. For this to succeed, you must first activate the Developer mode and then the USB debugging option on your Android device.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Only 64-bit architecture is supported (the installation will fail on 32-bit devices). Please check your Android kernel version specifies <code>x64</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1619,32 +1587,14 @@ webfx run -a <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-ios
-webfx run --gluon-ios <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build --gluon-ios --run</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Will invoke the Gluon Maven plugin to install and run the executable on your iOS device connected to your Mac via USB.</td>
-</tr>
-</table>
 </div>
 <div class="listingblock secondary">
 <div class="title">Short syntax</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell">webfx build -i
-webfx run -i <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="pygments highlight"><code data-lang="shell">webfx build -ir</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Will invoke the Gluon Maven plugin to install and run the executable on your iOS device connected to your Mac via USB.</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>Alternatively, you can use the <code>--gluon-mobile</code> (short: <code>-m</code>) cross-platform option. It will be interpreted as <code>--gluon-ios</code> on Macs.</p>
@@ -1861,7 +1811,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-09 20:33:04 UTC
+Last updated 2022-07-20 13:13:46 UTC
 </div>
 </div>
 </body>
