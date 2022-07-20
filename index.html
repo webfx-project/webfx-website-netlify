@@ -1549,6 +1549,18 @@ webfx install wix <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </tr>
 </table>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+On macOS, you need to configure at least a Team ID in Xcode in order to make the application runnable on your machine. We will provide a guide for this later.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Then, you can use the below command:</p>
 </div>
@@ -1613,7 +1625,7 @@ webfx install ubuntu-tools</pre>
 <p>Alternatively, you can use the <code>--gluon-mobile</code> (short: <code>-m</code>) cross-platform option. It will be interpreted as <code>--gluon-android</code> on Linux machines.</p>
 </div>
 <div class="paragraph">
-<p>In this context, running the application means invoking the Gluon Maven plugin to install and run the generated package on your Android device connected to your Linux machine via USB. For this to succeed, you must first activate the Developer mode and then the USB debugging option on your Android device.</p>
+<p>In this context, running the application means invoking the GluonFX Maven plugin to install and run the generated package on your Android device connected to your Linux machine via USB. For this to succeed, you must first activate the Developer mode and then the USB debugging option on your Android device.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1645,8 +1657,20 @@ Only 64-bit architecture is supported (the installation will fail on 32-bit devi
 webfx install xcode</pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You also need a provisioning profile for your app that lists your test device, otherwise you won&#8217;t be able to install the application . We will provide a guide for this later.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Then, you can use the following commands to target the iOS platform (native):</p>
+<p>Then, you can use the following command:</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Long syntax</div>
@@ -1875,7 +1899,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-20 18:54:41 UTC
+Last updated 2022-07-20 19:25:32 UTC
 </div>
 </div>
 </body>
