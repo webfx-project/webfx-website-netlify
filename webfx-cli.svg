@@ -63,7 +63,7 @@ super sources, bundles, etc...</title>
 
 <g class='node' id='node2'>
 <title>WebFXXml</title>
-<polygon fill='#fdffbc' points='227,-182 137,-182 137,-146 227,-146 227,-182' stroke='black'/>
+<polygon fill='#f5dd90' points='227,-182 137,-182 137,-146 227,-146 227,-182' stroke='black'/>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='182' y='-160.3'>webfx.xml</text>
 </g>
 
@@ -75,7 +75,7 @@ super sources, bundles, etc...</title>
 
 <g class='node' id='node3'>
 <title>Code</title>
-<polygon fill='#fdffbc' points='440.5,-182 245.5,-182 245.5,-146 440.5,-146 440.5,-182' stroke='black'/>
+<polygon fill='#f5dd90' points='440.5,-182 245.5,-182 245.5,-146 440.5,-146 440.5,-182' stroke='black'/>
 <text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='343' y='-160.3'>Your module source code</text>
 </g>
 
