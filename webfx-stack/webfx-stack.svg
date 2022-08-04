@@ -1,240 +1,241 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='581pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 620.00 581.00' width='620pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
-<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 577)'>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='507pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 635.00 507.00' width='635pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 503)'>
 <title>D</title>
-<polygon fill='white' points='-4,4 -4,-577 616,-577 616,4 -4,4' stroke='transparent'/>
+<polygon fill='white' points='-4,4 -4,-503 631,-503 631,4 -4,4' stroke='transparent'/>
 <g class='cluster' id='clust1'>
 <title>cluster_C</title>
-<polygon fill='none' points='8,-296 8,-565 604,-565 604,-296 8,-296' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='306' y='-549.8'>Client</text>
+<polygon fill='none' points='8,-248 8,-491 508,-491 508,-248 8,-248' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='258' y='-479'>Client</text>
 </g>
 <g class='cluster' id='clust2'>
 <title>cluster_UI</title>
-<polygon fill='none' points='248,-459 248,-534 596,-534 596,-459 248,-459' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='422' y='-518.8'>UI</text>
+<polygon fill='none' points='196,-393 196,-464 500,-464 500,-393 196,-393' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='348' y='-452'>UI</text>
 </g>
 <g class='cluster' id='clust4'>
 <title>cluster_NUI</title>
-<polygon fill='none' points='16,-304 16,-534 240,-534 240,-304 16,-304' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='128' y='-518.8'>Non&#45;UI</text>
+<polygon fill='none' points='16,-256 16,-464 188,-464 188,-256 16,-256' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='102' y='-452'>Non&#45;UI</text>
 </g>
-<g class='cluster' id='clust7'>
+<g class='cluster' id='clust8'>
 <title>cluster_P</title>
-<polygon fill='none' points='248,-304 248,-451 544,-451 544,-304 248,-304' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='396' y='-435.8'> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Platform</text>
+<polygon fill='none' points='213,-256 213,-385 483,-385 483,-256 213,-256' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='348' y='-373'> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Platform</text>
 </g>
-<g class='cluster' id='clust10'>
+<g class='cluster' id='clust11'>
 <title>cluster_SHR</title>
-<polygon fill='none' points='135,-192 135,-267 516,-267 516,-192 135,-192' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='325.5' y='-251.8'>Shared &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text>
+<polygon fill='none' points='256,-160 256,-231 610,-231 610,-160 256,-160' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='433' y='-219'>Shared &#160;&#160;&#160;&#160;&#160;</text>
 </g>
-<g class='cluster' id='clust12'>
+<g class='cluster' id='clust13'>
 <title>cluster_S</title>
-<polygon fill='none' points='122,-8 122,-155 513,-155 513,-8 122,-8' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='317.5' y='-139.8'>Server</text>
+<polygon fill='none' points='274,-8 274,-137 619,-137 619,-8 274,-8' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='446.5' y='-125'>Server</text>
 </g>
 
 <g class='node' id='node1'>
 <title>Routing</title>
-<path d='M469.5,-503C469.5,-503 420.5,-503 420.5,-503 414.5,-503 408.5,-497 408.5,-491 408.5,-491 408.5,-479 408.5,-479 408.5,-473 414.5,-467 420.5,-467 420.5,-467 469.5,-467 469.5,-467 475.5,-467 481.5,-473 481.5,-479 481.5,-479 481.5,-491 481.5,-491 481.5,-497 475.5,-503 469.5,-503' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='445' y='-481.3'>Routing</text>
-</g>
-
-<g class='node' id='node13'>
-<title>WindowHistory</title>
-<path d='M523.5,-420C523.5,-420 420.5,-420 420.5,-420 414.5,-420 408.5,-414 408.5,-408 408.5,-408 408.5,-396 408.5,-396 408.5,-390 414.5,-384 420.5,-384 420.5,-384 523.5,-384 523.5,-384 529.5,-384 535.5,-390 535.5,-396 535.5,-396 535.5,-408 535.5,-408 535.5,-414 529.5,-420 523.5,-420' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='472' y='-398.3'>WindowHistory</text>
-</g>
-
-<g class='edge' id='edge16'>
-<title>Routing&#45;&gt;WindowHistory</title>
-<path d='M450.73,-466.82C454.31,-456.08 458.99,-442.03 463.05,-429.84' fill='none' stroke='black'/>
-<polygon fill='black' points='466.44,-430.75 466.28,-420.15 459.8,-428.53 466.44,-430.75' stroke='black'/>
-</g>
-
-<g class='node' id='node14'>
-<title>WindowLocation</title>
-<path d='M378,-420C378,-420 268,-420 268,-420 262,-420 256,-414 256,-408 256,-408 256,-396 256,-396 256,-390 262,-384 268,-384 268,-384 378,-384 378,-384 384,-384 390,-390 390,-396 390,-396 390,-408 390,-408 390,-414 384,-420 378,-420' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='323' y='-398.3'>WindowLocation</text>
-</g>
-
-<g class='edge' id='edge15'>
-<title>Routing&#45;&gt;WindowLocation</title>
-<path d='M419.13,-466.82C401.09,-454.85 376.84,-438.75 357.21,-425.71' fill='none' stroke='black'/>
-<polygon fill='black' points='359.1,-422.77 348.84,-420.15 355.23,-428.6 359.1,-422.77' stroke='black'/>
+<path d='M319.5,-437C319.5,-437 284.5,-437 284.5,-437 278.5,-437 272.5,-431 272.5,-425 272.5,-425 272.5,-413 272.5,-413 272.5,-407 278.5,-401 284.5,-401 284.5,-401 319.5,-401 319.5,-401 325.5,-401 331.5,-407 331.5,-413 331.5,-413 331.5,-425 331.5,-425 331.5,-431 325.5,-437 319.5,-437' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='302' y='-416.5'>Routing</text>
 </g>
 
 <g class='node' id='node2'>
 <title>I18n</title>
-<path d='M378,-503C378,-503 348,-503 348,-503 342,-503 336,-497 336,-491 336,-491 336,-479 336,-479 336,-473 342,-467 348,-467 348,-467 378,-467 378,-467 384,-467 390,-473 390,-479 390,-479 390,-491 390,-491 390,-497 384,-503 378,-503' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='363' y='-481.3'>I18n</text>
+<path d='M388,-437C388,-437 358,-437 358,-437 352,-437 346,-431 346,-425 346,-425 346,-413 346,-413 346,-407 352,-401 358,-401 358,-401 388,-401 388,-401 394,-401 400,-407 400,-413 400,-413 400,-425 400,-425 400,-431 394,-437 388,-437' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='373' y='-416.5'>I18n</text>
 </g>
 
 
+<g class='node' id='node11'>
+<title>WindowHistory</title>
+<path d='M419.5,-358C419.5,-358 348.5,-358 348.5,-358 342.5,-358 336.5,-352 336.5,-346 336.5,-346 336.5,-334 336.5,-334 336.5,-328 342.5,-322 348.5,-322 348.5,-322 419.5,-322 419.5,-322 425.5,-322 431.5,-328 431.5,-334 431.5,-334 431.5,-346 431.5,-346 431.5,-352 425.5,-358 419.5,-358' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='384' y='-337.5'>WindowHistory</text>
+</g>
+
+<g class='edge' id='edge18'>
+<title>Routing&#45;&gt;WindowHistory</title>
+<path d='M320.2,-400.91C331.45,-390.34 346.07,-376.62 358.47,-364.98' fill='none' stroke='black'/>
+<polygon fill='black' points='360.96,-367.44 365.85,-358.04 356.17,-362.33 360.96,-367.44' stroke='black'/>
+</g>
+
+<g class='node' id='node12'>
+<title>WindowLocation</title>
+<path d='M310.5,-358C310.5,-358 233.5,-358 233.5,-358 227.5,-358 221.5,-352 221.5,-346 221.5,-346 221.5,-334 221.5,-334 221.5,-328 227.5,-322 233.5,-322 233.5,-322 310.5,-322 310.5,-322 316.5,-322 322.5,-328 322.5,-334 322.5,-334 322.5,-346 322.5,-346 322.5,-352 316.5,-358 310.5,-358' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='272' y='-337.5'>WindowLocation</text>
+</g>
+
+<g class='edge' id='edge17'>
+<title>Routing&#45;&gt;WindowLocation</title>
+<path d='M295.34,-400.91C291.54,-391.14 286.68,-378.68 282.38,-367.65' fill='none' stroke='black'/>
+<polygon fill='black' points='285.53,-366.09 278.64,-358.04 279.01,-368.63 285.53,-366.09' stroke='black'/>
+</g>
+
 <g class='node' id='node3'>
 <title>Validation</title>
-<path d='M576,-503C576,-503 512,-503 512,-503 506,-503 500,-497 500,-491 500,-491 500,-479 500,-479 500,-473 506,-467 512,-467 512,-467 576,-467 576,-467 582,-467 588,-473 588,-479 588,-479 588,-491 588,-491 588,-497 582,-503 576,-503' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='544' y='-481.3'>Validation</text>
+<path d='M479.5,-437C479.5,-437 426.5,-437 426.5,-437 420.5,-437 414.5,-431 414.5,-425 414.5,-425 414.5,-413 414.5,-413 414.5,-407 420.5,-401 426.5,-401 426.5,-401 479.5,-401 479.5,-401 485.5,-401 491.5,-407 491.5,-413 491.5,-413 491.5,-425 491.5,-425 491.5,-431 485.5,-437 479.5,-437' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='453' y='-416.5'>Validation</text>
 </g>
 
 <g class='node' id='node4'>
 <title>Action</title>
-<path d='M306,-503C306,-503 268,-503 268,-503 262,-503 256,-497 256,-491 256,-491 256,-479 256,-479 256,-473 262,-467 268,-467 268,-467 306,-467 306,-467 312,-467 318,-473 318,-479 318,-479 318,-491 318,-491 318,-497 312,-503 306,-503' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='287' y='-481.3'>Action</text>
+<path d='M246,-437C246,-437 216,-437 216,-437 210,-437 204,-431 204,-425 204,-425 204,-413 204,-413 204,-407 210,-401 216,-401 216,-401 246,-401 246,-401 252,-401 258,-407 258,-413 258,-413 258,-425 258,-425 258,-431 252,-437 246,-437' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='231' y='-416.5'>Action</text>
 </g>
 
 
 <g class='node' id='node5'>
 <title>Authn</title>
-<path d='M71.5,-503C71.5,-503 36.5,-503 36.5,-503 30.5,-503 24.5,-497 24.5,-491 24.5,-491 24.5,-479 24.5,-479 24.5,-473 30.5,-467 36.5,-467 36.5,-467 71.5,-467 71.5,-467 77.5,-467 83.5,-473 83.5,-479 83.5,-479 83.5,-491 83.5,-491 83.5,-497 77.5,-503 71.5,-503' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='54' y='-481.3'>Authn</text>
+<path d='M168,-437C168,-437 138,-437 138,-437 132,-437 126,-431 126,-425 126,-425 126,-413 126,-413 126,-407 132,-401 138,-401 138,-401 168,-401 168,-401 174,-401 180,-407 180,-413 180,-413 180,-425 180,-425 180,-431 174,-437 168,-437' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='153' y='-416.5'>Authn</text>
 </g>
 
 <g class='node' id='node6'>
 <title>Authz</title>
-<path d='M148,-503C148,-503 114,-503 114,-503 108,-503 102,-497 102,-491 102,-491 102,-479 102,-479 102,-473 108,-467 114,-467 114,-467 148,-467 148,-467 154,-467 160,-473 160,-479 160,-479 160,-491 160,-491 160,-497 154,-503 148,-503' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='131' y='-481.3'>Authz</text>
+<path d='M168,-358C168,-358 138,-358 138,-358 132,-358 126,-352 126,-346 126,-346 126,-334 126,-334 126,-328 132,-322 138,-322 138,-322 168,-322 168,-322 174,-322 180,-328 180,-334 180,-334 180,-346 180,-346 180,-352 174,-358 168,-358' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='153' y='-337.5'>Authz</text>
 </g>
 
 
 <g class='node' id='node8'>
 <title>ORM</title>
-<path d='M220,-503C220,-503 190,-503 190,-503 184,-503 178,-497 178,-491 178,-491 178,-479 178,-479 178,-473 184,-467 190,-467 190,-467 220,-467 220,-467 226,-467 232,-473 232,-479 232,-479 232,-491 232,-491 232,-497 226,-503 220,-503' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='205' y='-481.3'>ORM</text>
+<path d='M100,-437C100,-437 70,-437 70,-437 64,-437 58,-431 58,-425 58,-425 58,-413 58,-413 58,-407 64,-401 70,-401 70,-401 100,-401 100,-401 106,-401 112,-407 112,-413 112,-413 112,-425 112,-425 112,-431 106,-437 100,-437' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='85' y='-416.5'>ORM</text>
 </g>
 
 
 <g class='node' id='node7'>
 <title>DB</title>
-<path d='M220,-348C220,-348 190,-348 190,-348 184,-348 178,-342 178,-336 178,-336 178,-324 178,-324 178,-318 184,-312 190,-312 190,-312 220,-312 220,-312 226,-312 232,-318 232,-324 232,-324 232,-336 232,-336 232,-342 226,-348 220,-348' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='205' y='-326.3'>DB</text>
+<path d='M134,-300C134,-300 104,-300 104,-300 98,-300 92,-294 92,-288 92,-288 92,-276 92,-276 92,-270 98,-264 104,-264 104,-264 134,-264 134,-264 140,-264 146,-270 146,-276 146,-276 146,-288 146,-288 146,-294 140,-300 134,-300' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='119' y='-279.5'>DB</text>
 </g>
 
-<g class='node' id='node16'>
-<title>Async</title>
-<path d='M279.5,-236C279.5,-236 244.5,-236 244.5,-236 238.5,-236 232.5,-230 232.5,-224 232.5,-224 232.5,-212 232.5,-212 232.5,-206 238.5,-200 244.5,-200 244.5,-200 279.5,-200 279.5,-200 285.5,-200 291.5,-206 291.5,-212 291.5,-212 291.5,-224 291.5,-224 291.5,-230 285.5,-236 279.5,-236' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='262' y='-214.3'>Async</text>
-</g>
-
-
-<g class='edge' id='edge18'>
+<g class='edge' id='edge20'>
 <title>ORM&#45;&gt;DB</title>
-<path d='M205,-466.75C205,-440.46 205,-390.13 205,-358.69' fill='none' stroke='black'/>
-<polygon fill='black' points='208.5,-358.43 205,-348.43 201.5,-358.43 208.5,-358.43' stroke='black'/>
+<path d='M95.05,-400.97C97.65,-395.96 100.21,-390.38 102,-385 110.14,-360.48 114.5,-331.29 116.76,-310.44' fill='none' stroke='black'/>
+<polygon fill='black' points='120.25,-310.65 117.76,-300.36 113.29,-309.96 120.25,-310.65' stroke='black'/>
 </g>
 
 <g class='node' id='node10'>
 <title>QueryPush</title>
-<path d='M173.5,-420C173.5,-420 102.5,-420 102.5,-420 96.5,-420 90.5,-414 90.5,-408 90.5,-408 90.5,-396 90.5,-396 90.5,-390 96.5,-384 102.5,-384 102.5,-384 173.5,-384 173.5,-384 179.5,-384 185.5,-390 185.5,-396 185.5,-396 185.5,-408 185.5,-408 185.5,-414 179.5,-420 173.5,-420' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='138' y='-398.3'>QueryPush</text>
+<path d='M83.5,-358C83.5,-358 36.5,-358 36.5,-358 30.5,-358 24.5,-352 24.5,-346 24.5,-346 24.5,-334 24.5,-334 24.5,-328 30.5,-322 36.5,-322 36.5,-322 83.5,-322 83.5,-322 89.5,-322 95.5,-328 95.5,-334 95.5,-334 95.5,-346 95.5,-346 95.5,-352 89.5,-358 83.5,-358' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='60' y='-337.5'>QueryPush</text>
 </g>
 
-<g class='edge' id='edge19'>
+<g class='edge' id='edge21'>
 <title>ORM&#45;&gt;QueryPush</title>
-<path d='M190.79,-466.82C181.46,-455.55 169.11,-440.61 158.7,-428.02' fill='none' stroke='black'/>
-<polygon fill='black' points='161.26,-425.63 152.19,-420.15 155.87,-430.09 161.26,-425.63' stroke='black'/>
+<path d='M79.45,-400.91C76.28,-391.14 72.23,-378.68 68.65,-367.65' fill='none' stroke='black'/>
+<polygon fill='black' points='71.95,-366.47 65.53,-358.04 65.29,-368.63 71.95,-366.47' stroke='black'/>
 </g>
 
 <g class='node' id='node9'>
 <title>Push</title>
-<path d='M148,-348C148,-348 118,-348 118,-348 112,-348 106,-342 106,-336 106,-336 106,-324 106,-324 106,-318 112,-312 118,-312 118,-312 148,-312 148,-312 154,-312 160,-318 160,-324 160,-324 160,-336 160,-336 160,-342 154,-348 148,-348' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='133' y='-326.3'>Push</text>
+<path d='M66,-300C66,-300 36,-300 36,-300 30,-300 24,-294 24,-288 24,-288 24,-276 24,-276 24,-270 30,-264 36,-264 36,-264 66,-264 66,-264 72,-264 78,-270 78,-276 78,-276 78,-288 78,-288 78,-294 72,-300 66,-300' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='51' y='-279.5'>Push</text>
 </g>
 
 
-<g class='edge' id='edge21'>
+<g class='edge' id='edge23'>
 <title>QueryPush&#45;&gt;DB</title>
-<path d='M154.56,-383.7C162.68,-375.22 172.59,-364.86 181.47,-355.58' fill='none' stroke='black'/>
-<polygon fill='black' points='184.24,-357.75 188.63,-348.1 179.19,-352.91 184.24,-357.75' stroke='black'/>
+<path d='M78.02,-321.89C82.94,-317.23 88.36,-312.08 93.61,-307.1' fill='none' stroke='black'/>
+<polygon fill='black' points='96.24,-309.42 101.09,-300 91.43,-304.35 96.24,-309.42' stroke='black'/>
 </g>
 
-<g class='edge' id='edge20'>
+<g class='edge' id='edge22'>
 <title>QueryPush&#45;&gt;Push</title>
-<path d='M136.76,-383.7C136.21,-375.98 135.55,-366.71 134.94,-358.11' fill='none' stroke='black'/>
-<polygon fill='black' points='138.43,-357.83 134.22,-348.1 131.44,-358.33 138.43,-357.83' stroke='black'/>
+<path d='M57.25,-321.89C56.64,-318.09 55.98,-313.98 55.32,-309.89' fill='none' stroke='black'/>
+<polygon fill='black' points='58.77,-309.32 53.73,-300 51.86,-310.43 58.77,-309.32' stroke='black'/>
 </g>
 
-<g class='node' id='node11'>
+<g class='node' id='node14'>
 <title>WebAssembly</title>
-<path d='M383,-348C383,-348 291,-348 291,-348 285,-348 279,-342 279,-336 279,-336 279,-324 279,-324 279,-318 285,-312 291,-312 291,-312 383,-312 383,-312 389,-312 395,-318 395,-324 395,-324 395,-336 395,-336 395,-342 389,-348 383,-348' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='337' y='-326.3'>WebAssembly</text>
+<path d='M377.5,-300C377.5,-300 318.5,-300 318.5,-300 312.5,-300 306.5,-294 306.5,-288 306.5,-288 306.5,-276 306.5,-276 306.5,-270 312.5,-264 318.5,-264 318.5,-264 377.5,-264 377.5,-264 383.5,-264 389.5,-270 389.5,-276 389.5,-276 389.5,-288 389.5,-288 389.5,-294 383.5,-300 377.5,-300' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='348' y='-279.5'>WebAssembly</text>
 </g>
 
-<g class='node' id='node17'>
+
+
+
+<g class='node' id='node15'>
+<title>WebWorker</title>
+<path d='M462.5,-300C462.5,-300 415.5,-300 415.5,-300 409.5,-300 403.5,-294 403.5,-288 403.5,-288 403.5,-276 403.5,-276 403.5,-270 409.5,-264 415.5,-264 415.5,-264 462.5,-264 462.5,-264 468.5,-264 474.5,-270 474.5,-276 474.5,-276 474.5,-288 474.5,-288 474.5,-294 468.5,-300 462.5,-300' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='439' y='-279.5'>WebWorker</text>
+</g>
+
+
+<g class='node' id='node18'>
 <title>Com</title>
-<path d='M352,-236C352,-236 322,-236 322,-236 316,-236 310,-230 310,-224 310,-224 310,-212 310,-212 310,-206 316,-200 322,-200 322,-200 352,-200 352,-200 358,-200 364,-206 364,-212 364,-212 364,-224 364,-224 364,-230 358,-236 352,-236' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='337' y='-214.3'>Com</text>
+<path d='M454,-204C454,-204 424,-204 424,-204 418,-204 412,-198 412,-192 412,-192 412,-180 412,-180 412,-174 418,-168 424,-168 424,-168 454,-168 454,-168 460,-168 466,-174 466,-180 466,-180 466,-192 466,-192 466,-198 460,-204 454,-204' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='439' y='-183.5'>Com</text>
 </g>
 
 <g class='edge' id='edge24'>
-<title>WebAssembly&#45;&gt;Com</title>
-<path d='M337,-296C337,-280.06 337,-261.16 337,-246.07' fill='none' stroke='black' stroke-dasharray='5,2'/>
-<polygon fill='black' points='340.5,-246.07 337,-236.07 333.5,-246.07 340.5,-246.07' stroke='black'/>
+<title>WebWorker&#45;&gt;Com</title>
+<path d='M439,-248C439,-237.04 439,-224.96 439,-214.47' fill='none' stroke='black' stroke-dasharray='5,2'/>
+<polygon fill='black' points='442.5,-214.13 439,-204.13 435.5,-214.13 442.5,-214.13' stroke='black'/>
 </g>
 
-<g class='node' id='node12'>
-<title>WebWorker</title>
-<path d='M500.5,-348C500.5,-348 425.5,-348 425.5,-348 419.5,-348 413.5,-342 413.5,-336 413.5,-336 413.5,-324 413.5,-324 413.5,-318 419.5,-312 425.5,-312 425.5,-312 500.5,-312 500.5,-312 506.5,-312 512.5,-318 512.5,-324 512.5,-324 512.5,-336 512.5,-336 512.5,-342 506.5,-348 500.5,-348' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='463' y='-326.3'>WebWorker</text>
+
+<g class='node' id='node17'>
+<title>Async</title>
+<path d='M386,-204C386,-204 356,-204 356,-204 350,-204 344,-198 344,-192 344,-192 344,-180 344,-180 344,-174 350,-168 356,-168 356,-168 386,-168 386,-168 392,-168 398,-174 398,-180 398,-180 398,-192 398,-192 398,-198 392,-204 386,-204' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='371' y='-183.5'>Async</text>
 </g>
 
-<g class='node' id='node18'>
+
+
+<g class='node' id='node19'>
 <title>Json</title>
-<path d='M424,-236C424,-236 394,-236 394,-236 388,-236 382,-230 382,-224 382,-224 382,-212 382,-212 382,-206 388,-200 394,-200 394,-200 424,-200 424,-200 430,-200 436,-206 436,-212 436,-212 436,-224 436,-224 436,-230 430,-236 424,-236' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='409' y='-214.3'>Json</text>
+<path d='M522,-204C522,-204 492,-204 492,-204 486,-204 480,-198 480,-192 480,-192 480,-180 480,-180 480,-174 486,-168 492,-168 492,-168 522,-168 522,-168 528,-168 534,-174 534,-180 534,-180 534,-192 534,-192 534,-198 528,-204 522,-204' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='507' y='-183.5'>Json</text>
 </g>
 
 
-
-
-
-
-
-<g class='node' id='node22'>
+<g class='node' id='node23'>
 <title>QueryPushS</title>
-<path d='M403,-124C403,-124 271,-124 271,-124 265,-124 259,-118 259,-112 259,-112 259,-100 259,-100 259,-94 265,-88 271,-88 271,-88 403,-88 403,-88 409,-88 415,-94 415,-100 415,-100 415,-112 415,-112 415,-118 409,-124 403,-124' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='337' y='-102.3'>QueryPush (server)</text>
+<path d='M489.5,-110C489.5,-110 388.5,-110 388.5,-110 382.5,-110 376.5,-104 376.5,-98 376.5,-98 376.5,-86 376.5,-86 376.5,-80 382.5,-74 388.5,-74 388.5,-74 489.5,-74 489.5,-74 495.5,-74 501.5,-80 501.5,-86 501.5,-86 501.5,-98 501.5,-98 501.5,-104 495.5,-110 489.5,-110' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='439' y='-89.5'>QueryPush (server)</text>
 </g>
 
 <g class='edge' id='edge25'>
 <title>Com&#45;&gt;QueryPushS</title>
-<path d='M337,-199.81C337,-190.29 337,-177.84 337,-165.16' fill='none' stroke='black' stroke-dasharray='5,2'/>
-<polygon fill='black' points='340.5,-165 337,-155 333.5,-165 340.5,-165' stroke='black'/>
+<path d='M439,-167.7C439,-161.68 439,-154.58 439,-147.19' fill='none' stroke='black' stroke-dasharray='5,2'/>
+<polygon fill='black' points='442.5,-147 439,-137 435.5,-147 442.5,-147' stroke='black'/>
 </g>
 
 
-
-<g class='node' id='node20'>
-<title>DBS</title>
-<path d='M420.5,-52C420.5,-52 345.5,-52 345.5,-52 339.5,-52 333.5,-46 333.5,-40 333.5,-40 333.5,-28 333.5,-28 333.5,-22 339.5,-16 345.5,-16 345.5,-16 420.5,-16 420.5,-16 426.5,-16 432.5,-22 432.5,-28 432.5,-28 432.5,-40 432.5,-40 432.5,-46 426.5,-52 420.5,-52' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='383' y='-30.3'>DB (server)</text>
-</g>
 
 <g class='node' id='node21'>
+<title>DBS</title>
+<path d='M530.5,-52C530.5,-52 471.5,-52 471.5,-52 465.5,-52 459.5,-46 459.5,-40 459.5,-40 459.5,-28 459.5,-28 459.5,-22 465.5,-16 471.5,-16 471.5,-16 530.5,-16 530.5,-16 536.5,-16 542.5,-22 542.5,-28 542.5,-28 542.5,-40 542.5,-40 542.5,-46 536.5,-52 530.5,-52' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='501' y='-31.5'>DB (server)</text>
+</g>
+
+<g class='node' id='node22'>
 <title>PushS</title>
-<path d='M303.5,-52C303.5,-52 214.5,-52 214.5,-52 208.5,-52 202.5,-46 202.5,-40 202.5,-40 202.5,-28 202.5,-28 202.5,-22 208.5,-16 214.5,-16 214.5,-16 303.5,-16 303.5,-16 309.5,-16 315.5,-22 315.5,-28 315.5,-28 315.5,-40 315.5,-40 315.5,-46 309.5,-52 303.5,-52' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='259' y='-30.3'>Push (server)</text>
+<path d='M433.5,-52C433.5,-52 362.5,-52 362.5,-52 356.5,-52 350.5,-46 350.5,-40 350.5,-40 350.5,-28 350.5,-28 350.5,-22 356.5,-16 362.5,-16 362.5,-16 433.5,-16 433.5,-16 439.5,-16 445.5,-22 445.5,-28 445.5,-28 445.5,-40 445.5,-40 445.5,-46 439.5,-52 433.5,-52' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='398' y='-31.5'>Push (server)</text>
 </g>
 
 
 <g class='edge' id='edge27'>
 <title>QueryPushS&#45;&gt;DBS</title>
-<path d='M348.37,-87.7C353.72,-79.56 360.2,-69.69 366.11,-60.7' fill='none' stroke='black'/>
-<polygon fill='black' points='369.19,-62.38 371.76,-52.1 363.34,-58.54 369.19,-62.38' stroke='black'/>
+<path d='M457.94,-73.89C463.23,-69.12 469.07,-63.84 474.7,-58.75' fill='none' stroke='black'/>
+<polygon fill='black' points='477.1,-61.3 482.18,-52 472.41,-56.11 477.1,-61.3' stroke='black'/>
 </g>
 
 <g class='edge' id='edge26'>
 <title>QueryPushS&#45;&gt;PushS</title>
-<path d='M317.72,-87.7C308.08,-79.05 296.27,-68.45 285.77,-59.03' fill='none' stroke='black'/>
-<polygon fill='black' points='287.84,-56.18 278.06,-52.1 283.16,-61.39 287.84,-56.18' stroke='black'/>
+<path d='M426.48,-73.89C423.3,-69.55 419.81,-64.8 416.41,-60.14' fill='none' stroke='black'/>
+<polygon fill='black' points='419.18,-58 410.45,-52 413.53,-62.14 419.18,-58' stroke='black'/>
 </g>
 
 
 
-<g class='node' id='node23'>
+<g class='node' id='node24'>
 <title>Vertx</title>
-<path d='M211.5,-124C211.5,-124 176.5,-124 176.5,-124 170.5,-124 164.5,-118 164.5,-112 164.5,-112 164.5,-100 164.5,-100 164.5,-94 170.5,-88 176.5,-88 176.5,-88 211.5,-88 211.5,-88 217.5,-88 223.5,-94 223.5,-100 223.5,-100 223.5,-112 223.5,-112 223.5,-118 217.5,-124 211.5,-124' fill='#f5dd90' stroke='black'/>
-<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='194' y='-102.3'>Vert.x</text>
+<path d='M333,-110C333,-110 303,-110 303,-110 297,-110 291,-104 291,-98 291,-98 291,-86 291,-86 291,-80 297,-74 303,-74 303,-74 333,-74 333,-74 339,-74 345,-80 345,-86 345,-86 345,-98 345,-98 345,-104 339,-110 333,-110' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='318' y='-89.5'>Vert.x</text>
 </g>
 
 
