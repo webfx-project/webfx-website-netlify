@@ -1,1 +1,245 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?><svg contentStyleType='text/css' height='594px' preserveAspectRatio='none' style='width:1138px;height:594px;background:#FFFFFF;' version='1.1' viewBox='0 0 1138 594' width='1138px' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' zoomAndPan='magnify'><defs><filter height='300%' id='f19wb3j437eo4n' width='300%' x='-1' y='-1'><feGaussianBlur result='blurOut' stdDeviation='2.0'/><feColorMatrix in='blurOut' result='blurOut2' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0'/><feOffset dx='4.0' dy='4.0' in='blurOut2' result='blurOut3'/><feBlend in='SourceGraphic' in2='blurOut3' mode='normal'/></filter></defs><g><g id='cluster_Eco'><rect height='581' rx='2.5' ry='2.5' style='stroke:#181818;stroke-width:1.0;fill:none;' width='1125' x='7' y='7'/><text fill='#000000' font-family='sans-serif' font-size='14' font-weight='bold' lengthAdjust='spacing' textLength='137' x='501' y='21.9951'>The WebFX Stack</text></g><g id='cluster_UI'><rect height='113' rx='2.5' ry='2.5' style='stroke:#181818;stroke-width:1.0;fill:none;' width='470' x='621' y='58'/><text fill='#000000' font-family='sans-serif' font-size='14' font-weight='bold' lengthAdjust='spacing' textLength='15' x='848.5' y='72.9951'>UI</text></g><g id='cluster_NonUI'><rect height='229' rx='2.5' ry='2.5' style='stroke:#181818;stroke-width:1.0;fill:none;' width='512' x='125' y='211'/><text fill='#000000' font-family='sans-serif' font-size='14' font-weight='bold' lengthAdjust='spacing' textLength='46' x='358' y='225.9951'>NonUI</text></g><g id='cluster_Platform'><rect height='229' rx='2.5' ry='2.5' style='stroke:#181818;stroke-width:1.0;fill:none;' width='423' x='677' y='327'/><text fill='#000000' font-family='sans-serif' font-size='14' font-weight='bold' lengthAdjust='spacing' textLength='66' x='855.5' y='341.9951'>Platform</text></g><g id='elem_Vertx'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='22.5,380,32.5,370,101.5,370,101.5,406.2969,91.5,416.2969,22.5,416.2969,22.5,380' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='91.5' x2='101.5' y1='380' y2='370'/><line style='stroke:#181818;stroke-width:0.5;' x1='22.5' x2='91.5' y1='380' y2='380'/><line style='stroke:#181818;stroke-width:0.5;' x1='91.5' x2='91.5' y1='380' y2='416.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='39' x='37.5' y='402.9951'>Vert.x</text></g><g id='elem_Routing'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='883,111,893,101,977,101,977,137.2969,967,147.2969,883,147.2969,883,111' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='967' x2='977' y1='111' y2='101'/><line style='stroke:#181818;stroke-width:0.5;' x1='883' x2='967' y1='111' y2='111'/><line style='stroke:#181818;stroke-width:0.5;' x1='967' x2='967' y1='111' y2='147.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='54' x='898' y='133.9951'>Routing</text></g><g id='elem_I18n'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='997,111,1007,101,1067,101,1067,137.2969,1057,147.2969,997,147.2969,997,111' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='1057' x2='1067' y1='111' y2='101'/><line style='stroke:#181818;stroke-width:0.5;' x1='997' x2='1057' y1='111' y2='111'/><line style='stroke:#181818;stroke-width:0.5;' x1='1057' x2='1057' y1='111' y2='147.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='30' x='1012' y='133.9951'>I18n</text></g><g id='elem_Validation'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='757,111,767,101,863,101,863,137.2969,853,147.2969,757,147.2969,757,111' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='853' x2='863' y1='111' y2='101'/><line style='stroke:#181818;stroke-width:0.5;' x1='757' x2='853' y1='111' y2='111'/><line style='stroke:#181818;stroke-width:0.5;' x1='853' x2='853' y1='111' y2='147.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='66' x='772' y='133.9951'>Validation</text></g><g id='elem_Action'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='653.5,111,663.5,101,736.5,101,736.5,137.2969,726.5,147.2969,653.5,147.2969,653.5,111' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='726.5' x2='736.5' y1='111' y2='101'/><line style='stroke:#181818;stroke-width:0.5;' x1='653.5' x2='726.5' y1='111' y2='111'/><line style='stroke:#181818;stroke-width:0.5;' x1='726.5' x2='726.5' y1='111' y2='147.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='43' x='668.5' y='133.9951'>Action</text></g><g id='elem_Async'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='149.5,264,159.5,254,230.5,254,230.5,290.2969,220.5,300.2969,149.5,300.2969,149.5,264' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='220.5' x2='230.5' y1='264' y2='254'/><line style='stroke:#181818;stroke-width:0.5;' x1='149.5' x2='220.5' y1='264' y2='264'/><line style='stroke:#181818;stroke-width:0.5;' x1='220.5' x2='220.5' y1='264' y2='300.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='41' x='164.5' y='286.9951'>Async</text></g><g id='elem_Authn'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='250.5,264,260.5,254,331.5,254,331.5,290.2969,321.5,300.2969,250.5,300.2969,250.5,264' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='321.5' x2='331.5' y1='264' y2='254'/><line style='stroke:#181818;stroke-width:0.5;' x1='250.5' x2='321.5' y1='264' y2='264'/><line style='stroke:#181818;stroke-width:0.5;' x1='321.5' x2='321.5' y1='264' y2='300.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='41' x='265.5' y='286.9951'>Authn</text></g><g id='elem_Authz'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='433,264,443,254,513,254,513,290.2969,503,300.2969,433,300.2969,433,264' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='503' x2='513' y1='264' y2='254'/><line style='stroke:#181818;stroke-width:0.5;' x1='433' x2='503' y1='264' y2='264'/><line style='stroke:#181818;stroke-width:0.5;' x1='503' x2='503' y1='264' y2='300.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='40' x='448' y='286.9951'>Authz</text></g><g id='elem_Com'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='533,264,543,254,605,254,605,290.2969,595,300.2969,533,300.2969,533,264' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='595' x2='605' y1='264' y2='254'/><line style='stroke:#181818;stroke-width:0.5;' x1='533' x2='595' y1='264' y2='264'/><line style='stroke:#181818;stroke-width:0.5;' x1='595' x2='595' y1='264' y2='300.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='32' x='548' y='286.9951'>Com</text></g><g id='elem_DB'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='351.5,264,361.5,254,412.5,254,412.5,290.2969,402.5,300.2969,351.5,300.2969,351.5,264' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='402.5' x2='412.5' y1='264' y2='254'/><line style='stroke:#181818;stroke-width:0.5;' x1='351.5' x2='402.5' y1='264' y2='264'/><line style='stroke:#181818;stroke-width:0.5;' x1='402.5' x2='402.5' y1='264' y2='300.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='21' x='366.5' y='286.9951'>DB</text></g><g id='elem_ORM'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='153.5,380,163.5,370,226.5,370,226.5,406.2969,216.5,416.2969,153.5,416.2969,153.5,380' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='216.5' x2='226.5' y1='380' y2='370'/><line style='stroke:#181818;stroke-width:0.5;' x1='153.5' x2='216.5' y1='380' y2='380'/><line style='stroke:#181818;stroke-width:0.5;' x1='216.5' x2='216.5' y1='380' y2='416.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='33' x='168.5' y='402.9951'>ORM</text></g><g id='elem_Push'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='246.5,380,256.5,370,321.5,370,321.5,406.2969,311.5,416.2969,246.5,416.2969,246.5,380' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='311.5' x2='321.5' y1='380' y2='370'/><line style='stroke:#181818;stroke-width:0.5;' x1='246.5' x2='311.5' y1='380' y2='380'/><line style='stroke:#181818;stroke-width:0.5;' x1='311.5' x2='311.5' y1='380' y2='416.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='35' x='261.5' y='402.9951'>Push</text></g><g id='elem_QueryPush'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='341,380,351,370,457,370,457,406.2969,447,416.2969,341,416.2969,341,380' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='447' x2='457' y1='380' y2='370'/><line style='stroke:#181818;stroke-width:0.5;' x1='341' x2='447' y1='380' y2='380'/><line style='stroke:#181818;stroke-width:0.5;' x1='447' x2='447' y1='380' y2='416.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='76' x='356' y='402.9951'>QueryPush</text></g><g id='elem_Json'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='709.5,380,719.5,370,778.5,370,778.5,406.2969,768.5,416.2969,709.5,416.2969,709.5,380' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='768.5' x2='778.5' y1='380' y2='370'/><line style='stroke:#181818;stroke-width:0.5;' x1='709.5' x2='768.5' y1='380' y2='380'/><line style='stroke:#181818;stroke-width:0.5;' x1='768.5' x2='768.5' y1='380' y2='416.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='29' x='724.5' y='402.9951'>Json</text></g><g id='elem_WebAssembly'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='798.5,380,808.5,370,935.5,370,935.5,406.2969,925.5,416.2969,798.5,416.2969,798.5,380' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='925.5' x2='935.5' y1='380' y2='370'/><line style='stroke:#181818;stroke-width:0.5;' x1='798.5' x2='925.5' y1='380' y2='380'/><line style='stroke:#181818;stroke-width:0.5;' x1='925.5' x2='925.5' y1='380' y2='416.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='97' x='813.5' y='402.9951'>WebAssembly</text></g><g id='elem_WebWorker'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='956,380,966,370,1076,370,1076,406.2969,1066,416.2969,956,416.2969,956,380' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='1066' x2='1076' y1='380' y2='370'/><line style='stroke:#181818;stroke-width:0.5;' x1='956' x2='1066' y1='380' y2='380'/><line style='stroke:#181818;stroke-width:0.5;' x1='1066' x2='1066' y1='380' y2='416.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='80' x='971' y='402.9951'>WebWorker</text></g><g id='elem_WindowHistory'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='709.5,496,719.5,486,850.5,486,850.5,522.2969,840.5,532.2969,709.5,532.2969,709.5,496' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='840.5' x2='850.5' y1='496' y2='486'/><line style='stroke:#181818;stroke-width:0.5;' x1='709.5' x2='840.5' y1='496' y2='496'/><line style='stroke:#181818;stroke-width:0.5;' x1='840.5' x2='840.5' y1='496' y2='532.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='101' x='724.5' y='518.9951'>WindowHistory</text></g><g id='elem_WindowLocation'><polygon fill='#F5DD90' filter='url(#f19wb3j437eo4n)' points='871,496,881,486,1023,486,1023,522.2969,1013,532.2969,871,532.2969,871,496' style='stroke:#181818;stroke-width:0.5;'/><line style='stroke:#181818;stroke-width:0.5;' x1='1013' x2='1023' y1='496' y2='486'/><line style='stroke:#181818;stroke-width:0.5;' x1='871' x2='1013' y1='496' y2='496'/><line style='stroke:#181818;stroke-width:0.5;' x1='1013' x2='1013' y1='496' y2='532.2969'/><text fill='#000000' font-family='sans-serif' font-size='14' lengthAdjust='spacing' textLength='112' x='886' y='518.9951'>WindowLocation</text></g><g id='link_Routing_I18n'><path d='M977.05,124 C982.04,124 987.51,124 991.61,124 ' fill='none' id='Routing-to-I18n' style='stroke:#181818;stroke-width:1.0;'/><polygon fill='#181818' points='996.89,124,987.89,120,991.89,124,987.89,128,996.89,124' style='stroke:#181818;stroke-width:1.0;'/></g><g id='link_Authz_Com'><path d='M513.07,277 C517.45,277 522.88,277 527.46,277 ' fill='none' id='Authz-to-Com' style='stroke:#181818;stroke-width:1.0;'/><polygon fill='#181818' points='532.67,277,523.67,273,527.67,277,523.67,281,532.67,277' style='stroke:#181818;stroke-width:1.0;'/></g><g id='link_UI_NonUI'><path d='M629,171.2205 C629,171.4862 629,171.7525 629,172.0194 C629,172.5532 629,173.0891 629,173.6272 C629,182.2363 629,191.3816 629,200.5262 C629,202.8124 629,205.0986 629,207.3763 C629,208.5151 629,209.6519 629,210.7855 ' fill='none' id='UI-to-NonUI' style='stroke:#181818;stroke-width:1.0;'/><polygon fill='#181818' points='629,210.7855,633,201.7855,629,205.7855,625,201.7855,629,210.7855' style='stroke:#181818;stroke-width:1.0;'/></g><g id='link_NonUI_Platform'><path d='M637.0643,294.4143 C637.1414,294.5712 637.2189,294.729 637.2968,294.8876 C637.6085,295.5222 637.9269,296.1701 638.2514,296.8308 C643.4441,307.4009 650.2281,321.2106 657.0113,335.0187 C663.7944,348.8269 670.5766,362.6334 675.7655,373.1973 C676.0898,373.8576 676.4079,374.5052 676.7193,375.1393 C676.7972,375.2978 676.8747,375.4555 676.9517,375.6123 ' fill='none' id='NonUI-to-Platform' style='stroke:#181818;stroke-width:1.0;'/><polygon fill='#181818' points='676.9517,375.6123,676.5741,365.7707,674.7473,371.1245,669.3936,369.2977,676.9517,375.6123' style='stroke:#181818;stroke-width:1.0;'/></g><g id='link_Vertx_Platform'><path d='M83.01,369.72 C104.89,345.48 136,311 136,311 C136,311 146,305.5 146,305.5 C146,305.5 608,305.5 608,305.5 C608,305.5 618,311 618,311 C618,311 633.2175,329.6225 649.1475,349.1188 C657.1125,358.8669 665.2556,368.8334 671.7638,376.7998 C673.3908,378.7914 674.9156,380.658 676.31,382.365 C676.4842,382.5783 676.6565,382.7892 676.8267,382.9975 ' fill='none' id='Vertx-to-Platform' style='stroke:#181818;stroke-width:1.0;'/><polygon fill='#181818' points='676.8267,382.9975,674.2309,373.4969,673.6635,379.1252,668.0352,378.5578,676.8267,382.9975' style='stroke:#181818;stroke-width:1.0;'/></g></g></svg>
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='581pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 620.00 581.00' width='620pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 577)'>
+<title>D</title>
+<polygon fill='white' points='-4,4 -4,-577 616,-577 616,4 -4,4' stroke='transparent'/>
+<g class='cluster' id='clust1'>
+<title>cluster_C</title>
+<polygon fill='none' points='8,-296 8,-565 604,-565 604,-296 8,-296' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='306' y='-549.8'>Client</text>
+</g>
+<g class='cluster' id='clust2'>
+<title>cluster_UI</title>
+<polygon fill='none' points='248,-459 248,-534 596,-534 596,-459 248,-459' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='422' y='-518.8'>UI</text>
+</g>
+<g class='cluster' id='clust4'>
+<title>cluster_NUI</title>
+<polygon fill='none' points='16,-304 16,-534 240,-534 240,-304 16,-304' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='128' y='-518.8'>Non&#45;UI</text>
+</g>
+<g class='cluster' id='clust7'>
+<title>cluster_P</title>
+<polygon fill='none' points='248,-304 248,-451 544,-451 544,-304 248,-304' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='396' y='-435.8'> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Platform</text>
+</g>
+<g class='cluster' id='clust10'>
+<title>cluster_SHR</title>
+<polygon fill='none' points='135,-192 135,-267 516,-267 516,-192 135,-192' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='325.5' y='-251.8'>Shared &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text>
+</g>
+<g class='cluster' id='clust12'>
+<title>cluster_S</title>
+<polygon fill='none' points='122,-8 122,-155 513,-155 513,-8 122,-8' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='317.5' y='-139.8'>Server</text>
+</g>
+
+<g class='node' id='node1'>
+<title>Routing</title>
+<path d='M469.5,-503C469.5,-503 420.5,-503 420.5,-503 414.5,-503 408.5,-497 408.5,-491 408.5,-491 408.5,-479 408.5,-479 408.5,-473 414.5,-467 420.5,-467 420.5,-467 469.5,-467 469.5,-467 475.5,-467 481.5,-473 481.5,-479 481.5,-479 481.5,-491 481.5,-491 481.5,-497 475.5,-503 469.5,-503' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='445' y='-481.3'>Routing</text>
+</g>
+
+<g class='node' id='node13'>
+<title>WindowHistory</title>
+<path d='M523.5,-420C523.5,-420 420.5,-420 420.5,-420 414.5,-420 408.5,-414 408.5,-408 408.5,-408 408.5,-396 408.5,-396 408.5,-390 414.5,-384 420.5,-384 420.5,-384 523.5,-384 523.5,-384 529.5,-384 535.5,-390 535.5,-396 535.5,-396 535.5,-408 535.5,-408 535.5,-414 529.5,-420 523.5,-420' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='472' y='-398.3'>WindowHistory</text>
+</g>
+
+<g class='edge' id='edge16'>
+<title>Routing&#45;&gt;WindowHistory</title>
+<path d='M450.73,-466.82C454.31,-456.08 458.99,-442.03 463.05,-429.84' fill='none' stroke='black'/>
+<polygon fill='black' points='466.44,-430.75 466.28,-420.15 459.8,-428.53 466.44,-430.75' stroke='black'/>
+</g>
+
+<g class='node' id='node14'>
+<title>WindowLocation</title>
+<path d='M378,-420C378,-420 268,-420 268,-420 262,-420 256,-414 256,-408 256,-408 256,-396 256,-396 256,-390 262,-384 268,-384 268,-384 378,-384 378,-384 384,-384 390,-390 390,-396 390,-396 390,-408 390,-408 390,-414 384,-420 378,-420' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='323' y='-398.3'>WindowLocation</text>
+</g>
+
+<g class='edge' id='edge15'>
+<title>Routing&#45;&gt;WindowLocation</title>
+<path d='M419.13,-466.82C401.09,-454.85 376.84,-438.75 357.21,-425.71' fill='none' stroke='black'/>
+<polygon fill='black' points='359.1,-422.77 348.84,-420.15 355.23,-428.6 359.1,-422.77' stroke='black'/>
+</g>
+
+<g class='node' id='node2'>
+<title>I18n</title>
+<path d='M378,-503C378,-503 348,-503 348,-503 342,-503 336,-497 336,-491 336,-491 336,-479 336,-479 336,-473 342,-467 348,-467 348,-467 378,-467 378,-467 384,-467 390,-473 390,-479 390,-479 390,-491 390,-491 390,-497 384,-503 378,-503' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='363' y='-481.3'>I18n</text>
+</g>
+
+
+<g class='node' id='node3'>
+<title>Validation</title>
+<path d='M576,-503C576,-503 512,-503 512,-503 506,-503 500,-497 500,-491 500,-491 500,-479 500,-479 500,-473 506,-467 512,-467 512,-467 576,-467 576,-467 582,-467 588,-473 588,-479 588,-479 588,-491 588,-491 588,-497 582,-503 576,-503' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='544' y='-481.3'>Validation</text>
+</g>
+
+<g class='node' id='node4'>
+<title>Action</title>
+<path d='M306,-503C306,-503 268,-503 268,-503 262,-503 256,-497 256,-491 256,-491 256,-479 256,-479 256,-473 262,-467 268,-467 268,-467 306,-467 306,-467 312,-467 318,-473 318,-479 318,-479 318,-491 318,-491 318,-497 312,-503 306,-503' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='287' y='-481.3'>Action</text>
+</g>
+
+
+<g class='node' id='node5'>
+<title>Authn</title>
+<path d='M71.5,-503C71.5,-503 36.5,-503 36.5,-503 30.5,-503 24.5,-497 24.5,-491 24.5,-491 24.5,-479 24.5,-479 24.5,-473 30.5,-467 36.5,-467 36.5,-467 71.5,-467 71.5,-467 77.5,-467 83.5,-473 83.5,-479 83.5,-479 83.5,-491 83.5,-491 83.5,-497 77.5,-503 71.5,-503' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='54' y='-481.3'>Authn</text>
+</g>
+
+<g class='node' id='node6'>
+<title>Authz</title>
+<path d='M148,-503C148,-503 114,-503 114,-503 108,-503 102,-497 102,-491 102,-491 102,-479 102,-479 102,-473 108,-467 114,-467 114,-467 148,-467 148,-467 154,-467 160,-473 160,-479 160,-479 160,-491 160,-491 160,-497 154,-503 148,-503' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='131' y='-481.3'>Authz</text>
+</g>
+
+
+<g class='node' id='node8'>
+<title>ORM</title>
+<path d='M220,-503C220,-503 190,-503 190,-503 184,-503 178,-497 178,-491 178,-491 178,-479 178,-479 178,-473 184,-467 190,-467 190,-467 220,-467 220,-467 226,-467 232,-473 232,-479 232,-479 232,-491 232,-491 232,-497 226,-503 220,-503' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='205' y='-481.3'>ORM</text>
+</g>
+
+
+<g class='node' id='node7'>
+<title>DB</title>
+<path d='M220,-348C220,-348 190,-348 190,-348 184,-348 178,-342 178,-336 178,-336 178,-324 178,-324 178,-318 184,-312 190,-312 190,-312 220,-312 220,-312 226,-312 232,-318 232,-324 232,-324 232,-336 232,-336 232,-342 226,-348 220,-348' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='205' y='-326.3'>DB</text>
+</g>
+
+<g class='node' id='node16'>
+<title>Async</title>
+<path d='M279.5,-236C279.5,-236 244.5,-236 244.5,-236 238.5,-236 232.5,-230 232.5,-224 232.5,-224 232.5,-212 232.5,-212 232.5,-206 238.5,-200 244.5,-200 244.5,-200 279.5,-200 279.5,-200 285.5,-200 291.5,-206 291.5,-212 291.5,-212 291.5,-224 291.5,-224 291.5,-230 285.5,-236 279.5,-236' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='262' y='-214.3'>Async</text>
+</g>
+
+
+<g class='edge' id='edge18'>
+<title>ORM&#45;&gt;DB</title>
+<path d='M205,-466.75C205,-440.46 205,-390.13 205,-358.69' fill='none' stroke='black'/>
+<polygon fill='black' points='208.5,-358.43 205,-348.43 201.5,-358.43 208.5,-358.43' stroke='black'/>
+</g>
+
+<g class='node' id='node10'>
+<title>QueryPush</title>
+<path d='M173.5,-420C173.5,-420 102.5,-420 102.5,-420 96.5,-420 90.5,-414 90.5,-408 90.5,-408 90.5,-396 90.5,-396 90.5,-390 96.5,-384 102.5,-384 102.5,-384 173.5,-384 173.5,-384 179.5,-384 185.5,-390 185.5,-396 185.5,-396 185.5,-408 185.5,-408 185.5,-414 179.5,-420 173.5,-420' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='138' y='-398.3'>QueryPush</text>
+</g>
+
+<g class='edge' id='edge19'>
+<title>ORM&#45;&gt;QueryPush</title>
+<path d='M190.79,-466.82C181.46,-455.55 169.11,-440.61 158.7,-428.02' fill='none' stroke='black'/>
+<polygon fill='black' points='161.26,-425.63 152.19,-420.15 155.87,-430.09 161.26,-425.63' stroke='black'/>
+</g>
+
+<g class='node' id='node9'>
+<title>Push</title>
+<path d='M148,-348C148,-348 118,-348 118,-348 112,-348 106,-342 106,-336 106,-336 106,-324 106,-324 106,-318 112,-312 118,-312 118,-312 148,-312 148,-312 154,-312 160,-318 160,-324 160,-324 160,-336 160,-336 160,-342 154,-348 148,-348' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='133' y='-326.3'>Push</text>
+</g>
+
+
+<g class='edge' id='edge21'>
+<title>QueryPush&#45;&gt;DB</title>
+<path d='M154.56,-383.7C162.68,-375.22 172.59,-364.86 181.47,-355.58' fill='none' stroke='black'/>
+<polygon fill='black' points='184.24,-357.75 188.63,-348.1 179.19,-352.91 184.24,-357.75' stroke='black'/>
+</g>
+
+<g class='edge' id='edge20'>
+<title>QueryPush&#45;&gt;Push</title>
+<path d='M136.76,-383.7C136.21,-375.98 135.55,-366.71 134.94,-358.11' fill='none' stroke='black'/>
+<polygon fill='black' points='138.43,-357.83 134.22,-348.1 131.44,-358.33 138.43,-357.83' stroke='black'/>
+</g>
+
+<g class='node' id='node11'>
+<title>WebAssembly</title>
+<path d='M383,-348C383,-348 291,-348 291,-348 285,-348 279,-342 279,-336 279,-336 279,-324 279,-324 279,-318 285,-312 291,-312 291,-312 383,-312 383,-312 389,-312 395,-318 395,-324 395,-324 395,-336 395,-336 395,-342 389,-348 383,-348' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='337' y='-326.3'>WebAssembly</text>
+</g>
+
+<g class='node' id='node17'>
+<title>Com</title>
+<path d='M352,-236C352,-236 322,-236 322,-236 316,-236 310,-230 310,-224 310,-224 310,-212 310,-212 310,-206 316,-200 322,-200 322,-200 352,-200 352,-200 358,-200 364,-206 364,-212 364,-212 364,-224 364,-224 364,-230 358,-236 352,-236' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='337' y='-214.3'>Com</text>
+</g>
+
+<g class='edge' id='edge24'>
+<title>WebAssembly&#45;&gt;Com</title>
+<path d='M337,-296C337,-280.06 337,-261.16 337,-246.07' fill='none' stroke='black' stroke-dasharray='5,2'/>
+<polygon fill='black' points='340.5,-246.07 337,-236.07 333.5,-246.07 340.5,-246.07' stroke='black'/>
+</g>
+
+<g class='node' id='node12'>
+<title>WebWorker</title>
+<path d='M500.5,-348C500.5,-348 425.5,-348 425.5,-348 419.5,-348 413.5,-342 413.5,-336 413.5,-336 413.5,-324 413.5,-324 413.5,-318 419.5,-312 425.5,-312 425.5,-312 500.5,-312 500.5,-312 506.5,-312 512.5,-318 512.5,-324 512.5,-324 512.5,-336 512.5,-336 512.5,-342 506.5,-348 500.5,-348' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='463' y='-326.3'>WebWorker</text>
+</g>
+
+<g class='node' id='node18'>
+<title>Json</title>
+<path d='M424,-236C424,-236 394,-236 394,-236 388,-236 382,-230 382,-224 382,-224 382,-212 382,-212 382,-206 388,-200 394,-200 394,-200 424,-200 424,-200 430,-200 436,-206 436,-212 436,-212 436,-224 436,-224 436,-230 430,-236 424,-236' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='409' y='-214.3'>Json</text>
+</g>
+
+
+
+
+
+
+
+<g class='node' id='node22'>
+<title>QueryPushS</title>
+<path d='M403,-124C403,-124 271,-124 271,-124 265,-124 259,-118 259,-112 259,-112 259,-100 259,-100 259,-94 265,-88 271,-88 271,-88 403,-88 403,-88 409,-88 415,-94 415,-100 415,-100 415,-112 415,-112 415,-118 409,-124 403,-124' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='337' y='-102.3'>QueryPush (server)</text>
+</g>
+
+<g class='edge' id='edge25'>
+<title>Com&#45;&gt;QueryPushS</title>
+<path d='M337,-199.81C337,-190.29 337,-177.84 337,-165.16' fill='none' stroke='black' stroke-dasharray='5,2'/>
+<polygon fill='black' points='340.5,-165 337,-155 333.5,-165 340.5,-165' stroke='black'/>
+</g>
+
+
+
+<g class='node' id='node20'>
+<title>DBS</title>
+<path d='M420.5,-52C420.5,-52 345.5,-52 345.5,-52 339.5,-52 333.5,-46 333.5,-40 333.5,-40 333.5,-28 333.5,-28 333.5,-22 339.5,-16 345.5,-16 345.5,-16 420.5,-16 420.5,-16 426.5,-16 432.5,-22 432.5,-28 432.5,-28 432.5,-40 432.5,-40 432.5,-46 426.5,-52 420.5,-52' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='383' y='-30.3'>DB (server)</text>
+</g>
+
+<g class='node' id='node21'>
+<title>PushS</title>
+<path d='M303.5,-52C303.5,-52 214.5,-52 214.5,-52 208.5,-52 202.5,-46 202.5,-40 202.5,-40 202.5,-28 202.5,-28 202.5,-22 208.5,-16 214.5,-16 214.5,-16 303.5,-16 303.5,-16 309.5,-16 315.5,-22 315.5,-28 315.5,-28 315.5,-40 315.5,-40 315.5,-46 309.5,-52 303.5,-52' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='259' y='-30.3'>Push (server)</text>
+</g>
+
+
+<g class='edge' id='edge27'>
+<title>QueryPushS&#45;&gt;DBS</title>
+<path d='M348.37,-87.7C353.72,-79.56 360.2,-69.69 366.11,-60.7' fill='none' stroke='black'/>
+<polygon fill='black' points='369.19,-62.38 371.76,-52.1 363.34,-58.54 369.19,-62.38' stroke='black'/>
+</g>
+
+<g class='edge' id='edge26'>
+<title>QueryPushS&#45;&gt;PushS</title>
+<path d='M317.72,-87.7C308.08,-79.05 296.27,-68.45 285.77,-59.03' fill='none' stroke='black'/>
+<polygon fill='black' points='287.84,-56.18 278.06,-52.1 283.16,-61.39 287.84,-56.18' stroke='black'/>
+</g>
+
+
+
+<g class='node' id='node23'>
+<title>Vertx</title>
+<path d='M211.5,-124C211.5,-124 176.5,-124 176.5,-124 170.5,-124 164.5,-118 164.5,-112 164.5,-112 164.5,-100 164.5,-100 164.5,-94 170.5,-88 176.5,-88 176.5,-88 211.5,-88 211.5,-88 217.5,-88 223.5,-94 223.5,-100 223.5,-100 223.5,-112 223.5,-112 223.5,-118 217.5,-124 211.5,-124' fill='#f5dd90' stroke='black'/>
+<text font-family='Times,serif' font-size='14.00' text-anchor='middle' x='194' y='-102.3'>Vert.x</text>
+</g>
+
+
+
+
+
+</g>
+</svg>
