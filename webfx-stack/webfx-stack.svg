@@ -163,13 +163,14 @@
 </g>
 
 
+
 <g class='node' id='node18'>
 <title>Com</title>
 <path d='M454,-204C454,-204 424,-204 424,-204 418,-204 412,-198 412,-192 412,-192 412,-180 412,-180 412,-174 418,-168 424,-168 424,-168 454,-168 454,-168 460,-168 466,-174 466,-180 466,-180 466,-192 466,-192 466,-198 460,-204 454,-204' fill='#f5dd90' stroke='black'/>
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='439' y='-183.5'>Com</text>
 </g>
 
-<g class='edge' id='edge24'>
+<g class='edge' id='edge25'>
 <title>WebWorker&#45;&gt;Com</title>
 <path d='M439,-248C439,-237.04 439,-224.96 439,-214.47' fill='none' stroke='black' stroke-dasharray='5,2'/>
 <polygon fill='black' points='442.5,-214.13 439,-204.13 435.5,-214.13 442.5,-214.13' stroke='black'/>
@@ -197,7 +198,7 @@
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='439' y='-89.5'>QueryPush (server)</text>
 </g>
 
-<g class='edge' id='edge25'>
+<g class='edge' id='edge26'>
 <title>Com&#45;&gt;QueryPushS</title>
 <path d='M439,-167.7C439,-161.68 439,-154.58 439,-147.19' fill='none' stroke='black' stroke-dasharray='5,2'/>
 <polygon fill='black' points='442.5,-147 439,-137 435.5,-147 442.5,-147' stroke='black'/>
@@ -218,13 +219,13 @@
 </g>
 
 
-<g class='edge' id='edge27'>
+<g class='edge' id='edge28'>
 <title>QueryPushS&#45;&gt;DBS</title>
 <path d='M457.94,-73.89C463.23,-69.12 469.07,-63.84 474.7,-58.75' fill='none' stroke='black'/>
 <polygon fill='black' points='477.1,-61.3 482.18,-52 472.41,-56.11 477.1,-61.3' stroke='black'/>
 </g>
 
-<g class='edge' id='edge26'>
+<g class='edge' id='edge27'>
 <title>QueryPushS&#45;&gt;PushS</title>
 <path d='M426.48,-73.89C423.3,-69.55 419.81,-64.8 416.41,-60.14' fill='none' stroke='black'/>
 <polygon fill='black' points='419.18,-58 410.45,-52 413.53,-62.14 419.18,-58' stroke='black'/>
