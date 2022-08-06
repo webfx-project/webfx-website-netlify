@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='130pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 593.00 130.00' width='593pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 126)'>
+<title>D</title>
+<polygon fill='white' points='-4,4 -4,-126 589,-126 589,4 -4,4' stroke='transparent'/>
+<g class='cluster' id='clust1'>
+<title>cluster_SHR</title>
+<polygon fill='none' points='8,-8 8,-114 577,-114 577,-8 8,-8' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='292.5' y='-102'>UI</text>
+</g>
+<g class='cluster' id='clust2'>
+<title>cluster_SHRP</title>
+<polygon fill='none' points='431,-16 431,-87 569,-87 569,-16 431,-16' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='500' y='-75'>Visual</text>
+</g>
+
+<g class='node' id='node1'>
+<title>FlexBox</title>
+<path d='M410.5,-60C410.5,-60 375.5,-60 375.5,-60 369.5,-60 363.5,-54 363.5,-48 363.5,-48 363.5,-36 363.5,-36 363.5,-30 369.5,-24 375.5,-24 375.5,-24 410.5,-24 410.5,-24 416.5,-24 422.5,-30 422.5,-36 422.5,-36 422.5,-48 422.5,-48 422.5,-54 416.5,-60 410.5,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='393' y='-39.5'>FlexBox</text>
+</g>
+
+<g class='node' id='node2'>
+<title>MaterialDesign</title>
+<path d='M337.5,-60C337.5,-60 260.5,-60 260.5,-60 254.5,-60 248.5,-54 248.5,-48 248.5,-48 248.5,-36 248.5,-36 248.5,-30 254.5,-24 260.5,-24 260.5,-24 337.5,-24 337.5,-24 343.5,-24 349.5,-30 349.5,-36 349.5,-36 349.5,-48 349.5,-48 349.5,-54 343.5,-60 337.5,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='299' y='-39.5'>MaterialDesign</text>
+</g>
+
+<g class='node' id='node3'>
+<title>WebText</title>
+<path d='M222.5,-60C222.5,-60 187.5,-60 187.5,-60 181.5,-60 175.5,-54 175.5,-48 175.5,-48 175.5,-36 175.5,-36 175.5,-30 181.5,-24 187.5,-24 187.5,-24 222.5,-24 222.5,-24 228.5,-24 234.5,-30 234.5,-36 234.5,-36 234.5,-48 234.5,-48 234.5,-54 228.5,-60 222.5,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='205' y='-39.5'>WebText</text>
+</g>
+
+<g class='node' id='node4'>
+<title>ImageStore</title>
+<path d='M149.5,-60C149.5,-60 96.5,-60 96.5,-60 90.5,-60 84.5,-54 84.5,-48 84.5,-48 84.5,-36 84.5,-36 84.5,-30 90.5,-24 96.5,-24 96.5,-24 149.5,-24 149.5,-24 155.5,-24 161.5,-30 161.5,-36 161.5,-36 161.5,-48 161.5,-48 161.5,-54 155.5,-60 149.5,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='123' y='-39.5'>ImageStore</text>
+</g>
+
+<g class='node' id='node5'>
+<title>Gantt</title>
+<path d='M58,-60C58,-60 28,-60 28,-60 22,-60 16,-54 16,-48 16,-48 16,-36 16,-36 16,-30 22,-24 28,-24 28,-24 58,-24 58,-24 64,-24 70,-30 70,-36 70,-36 70,-48 70,-48 70,-54 64,-60 58,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='43' y='-39.5'>Gantt</text>
+</g>
+
+<g class='node' id='node6'>
+<title>Charts</title>
+<path d='M549,-60C549,-60 519,-60 519,-60 513,-60 507,-54 507,-48 507,-48 507,-36 507,-36 507,-30 513,-24 519,-24 519,-24 549,-24 549,-24 555,-24 561,-30 561,-36 561,-36 561,-48 561,-48 561,-54 555,-60 549,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='534' y='-39.5'>Charts</text>
+</g>
+
+<g class='node' id='node7'>
+<title>Grid</title>
+<path d='M481,-60C481,-60 451,-60 451,-60 445,-60 439,-54 439,-48 439,-48 439,-36 439,-36 439,-30 445,-24 451,-24 451,-24 481,-24 481,-24 487,-24 493,-30 493,-36 493,-36 493,-48 493,-48 493,-54 487,-60 481,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='466' y='-39.5'>Grid</text>
+</g>
+</g>
+</svg>
