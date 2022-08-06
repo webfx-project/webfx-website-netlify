@@ -4,14 +4,14 @@
 <title>D</title>
 <polygon fill='white' points='-4,4 -4,-126 589,-126 589,4 -4,4' stroke='transparent'/>
 <g class='cluster' id='clust1'>
-<title>cluster_SHR</title>
+<title>cluster_UI</title>
 <polygon fill='none' points='8,-8 8,-114 577,-114 577,-8 8,-8' stroke='black'/>
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='292.5' y='-102'>UI</text>
 </g>
 <g class='cluster' id='clust2'>
-<title>cluster_SHRP</title>
+<title>cluster_V</title>
 <polygon fill='none' points='431,-16 431,-87 569,-87 569,-16 431,-16' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='500' y='-75'>Visual</text>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='500' y='-75'>Visual API</text>
 </g>
 
 <g class='node' id='node1'>
