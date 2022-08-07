@@ -1,260 +1,219 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='557pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 538.00 557.00' width='538pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
-<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 553)'>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='598pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 402.00 597.59' width='402pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 593.59)'>
 <title>D</title>
-<polygon fill='white' points='-4,4 -4,-553 534,-553 534,4 -4,4' stroke='transparent'/>
+<polygon fill='white' points='-4,4 -4,-593.59 398,-593.59 398,4 -4,4' stroke='transparent'/>
 <g class='cluster' id='clust1'>
 <title>cluster_C</title>
-<polygon fill='none' points='8,-298 8,-541 522,-541 522,-298 8,-298' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='265' y='-529'>Client</text>
+<polygon fill='none' points='9,-269 9,-570 386,-570 386,-269 9,-269' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-558'> &#160;&#160;&#160;Client</text>
 </g>
 <g class='cluster' id='clust2'>
-<title>cluster_NonUI</title>
-<polygon fill='none' points='342,-306 342,-514 514,-514 514,-306 342,-306' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='428' y='-502'>Non&#45;UI</text>
-</g>
-<g class='cluster' id='clust6'>
 <title>cluster_UI</title>
-<polygon fill='none' points='16,-443 16,-514 333,-514 333,-443 16,-443' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='174.5' y='-502'>UI</text>
+<polygon fill='none' points='17,-472 17,-543 378,-543 378,-472 17,-472' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-531'> &#160;&#160;&#160;UI</text>
+</g>
+<g class='cluster' id='clust4'>
+<title>cluster_NonUI</title>
+<polygon fill='none' points='17,-277 17,-464 378,-464 378,-277 17,-277' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-452'>Non&#45;UI &#160;&#160;&#160;&#160;&#160;</text>
 </g>
 <g class='cluster' id='clust8'>
-<title>cluster_P</title>
-<polygon fill='none' points='16,-306 16,-435 334,-435 334,-306 16,-306' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='175' y='-423'> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Platform</text>
+<title>cluster_SHR</title>
+<polygon fill='none' points='8,-181 8,-252 386,-252 386,-181 8,-181' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197' y='-240'>Shared &#160;&#160;&#160;&#160;&#160;&#160;</text>
+</g>
+<g class='cluster' id='clust10'>
+<title>cluster_S</title>
+<polygon fill='none' points='8,-8 8,-158 386,-158 386,-8 8,-8' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197' y='-146'>Server</text>
 </g>
 <g class='cluster' id='clust11'>
-<title>cluster_SHR</title>
-<polygon fill='none' points='163,-175 163,-281 379,-281 379,-175 163,-175' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='271' y='-269'>Shared &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text>
-</g>
-<g class='cluster' id='clust12'>
-<title>cluster_SHRP</title>
-<polygon fill='none' points='301,-183 301,-254 371,-254 371,-183 301,-183' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='336' y='-242'>Platform</text>
-</g>
-<g class='cluster' id='clust14'>
-<title>cluster_S</title>
-<polygon fill='none' points='107,-8 107,-158 425,-158 425,-8 107,-8' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='266' y='-146'>Server</text>
-</g>
-<g class='cluster' id='clust15'>
 <title>cluster_I</title>
-<polygon fill='none' points='316,-16 316,-87 417,-87 417,-16 316,-16' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='366.5' y='-75'>Implementation</text>
+<polygon fill='none' points='257,-16 257,-87 358,-87 358,-16 257,-16' stroke='black' stroke-dasharray='5,2'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='307.5' y='-75'>Implementation</text>
 </g>
 
 <g class='node' id='node1'>
-<title>Authn</title>
-<path d='M392,-408C392,-408 362,-408 362,-408 356,-408 350,-402 350,-396 350,-396 350,-384 350,-384 350,-378 356,-372 362,-372 362,-372 392,-372 392,-372 398,-372 404,-378 404,-384 404,-384 404,-396 404,-396 404,-402 398,-408 392,-408' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='377' y='-387.5'>Authn</text>
+<title>Routing</title>
+<path d='M72.5,-516C72.5,-516 37.5,-516 37.5,-516 31.5,-516 25.5,-510 25.5,-504 25.5,-504 25.5,-492 25.5,-492 25.5,-486 31.5,-480 37.5,-480 37.5,-480 72.5,-480 72.5,-480 78.5,-480 84.5,-486 84.5,-492 84.5,-492 84.5,-504 84.5,-504 84.5,-510 78.5,-516 72.5,-516' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='55' y='-495.5'>Routing</text>
 </g>
-
-<g class='node' id='node6'>
-<title>QueryPush</title>
-<path d='M477.5,-408C477.5,-408 430.5,-408 430.5,-408 424.5,-408 418.5,-402 418.5,-396 418.5,-396 418.5,-384 418.5,-384 418.5,-378 424.5,-372 430.5,-372 430.5,-372 477.5,-372 477.5,-372 483.5,-372 489.5,-378 489.5,-384 489.5,-384 489.5,-396 489.5,-396 489.5,-402 483.5,-408 477.5,-408' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='454' y='-387.5'>QueryPush</text>
-</g>
-
 
 <g class='node' id='node2'>
-<title>Authz</title>
-<path d='M413,-487C413,-487 383,-487 383,-487 377,-487 371,-481 371,-475 371,-475 371,-463 371,-463 371,-457 377,-451 383,-451 383,-451 413,-451 413,-451 419,-451 425,-457 425,-463 425,-463 425,-475 425,-475 425,-481 419,-487 413,-487' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='398' y='-466.5'>Authz</text>
+<title>I18n</title>
+<path d='M141,-516C141,-516 111,-516 111,-516 105,-516 99,-510 99,-504 99,-504 99,-492 99,-492 99,-486 105,-480 111,-480 111,-480 141,-480 141,-480 147,-480 153,-486 153,-492 153,-492 153,-504 153,-504 153,-510 147,-516 141,-516' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='126' y='-495.5'>I18n</text>
+</g>
+
+
+<g class='node' id='node3'>
+<title>Action</title>
+<path d='M223,-516C223,-516 193,-516 193,-516 187,-516 181,-510 181,-504 181,-504 181,-492 181,-492 181,-486 187,-480 193,-480 193,-480 223,-480 223,-480 229,-480 235,-486 235,-492 235,-492 235,-504 235,-504 235,-510 229,-516 223,-516' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='208' y='-495.5'>Action</text>
+</g>
+
+<g class='edge' id='edge1'>
+<title>I18n&#45;&gt;Action</title>
+<path d='M153.23,-498C158.93,-498 164.64,-498 170.34,-498' fill='none' stroke='black'/>
+<polygon fill='black' points='170.61,-501.5 180.61,-498 170.61,-494.5 170.61,-501.5' stroke='black'/>
 </g>
 
 <g class='node' id='node4'>
-<title>ORM</title>
-<path d='M481,-487C481,-487 451,-487 451,-487 445,-487 439,-481 439,-475 439,-475 439,-463 439,-463 439,-457 445,-451 451,-451 451,-451 481,-451 481,-451 487,-451 493,-457 493,-463 493,-463 493,-475 493,-475 493,-481 487,-487 481,-487' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='466' y='-466.5'>ORM</text>
+<title>Validation</title>
+<path d='M314.5,-516C314.5,-516 261.5,-516 261.5,-516 255.5,-516 249.5,-510 249.5,-504 249.5,-504 249.5,-492 249.5,-492 249.5,-486 255.5,-480 261.5,-480 261.5,-480 314.5,-480 314.5,-480 320.5,-480 326.5,-486 326.5,-492 326.5,-492 326.5,-504 326.5,-504 326.5,-510 320.5,-516 314.5,-516' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='288' y='-495.5'>Validation</text>
+</g>
+
+
+
+<g class='node' id='node9'>
+<title>Authz</title>
+<path d='M222,-437C222,-437 192,-437 192,-437 186,-437 180,-431 180,-425 180,-425 180,-413 180,-413 180,-407 186,-401 192,-401 192,-401 222,-401 222,-401 228,-401 234,-407 234,-413 234,-413 234,-425 234,-425 234,-431 228,-437 222,-437' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='207' y='-416.5'>Authz</text>
+</g>
+
+<g class='edge' id='edge28'>
+<title>Action&#45;&gt;Authz</title>
+<path d='M207.64,-469.62C207.5,-458.76 207.35,-446.6 207.22,-437.04' fill='none' stroke='black'/>
+<polygon fill='black' points='204.15,-469.96 207.78,-479.91 211.15,-469.87 204.15,-469.96' stroke='black'/>
+</g>
+
+
+
+
+
+
+<g class='node' id='node8'>
+<title>Authn</title>
+<path d='M154,-437C154,-437 124,-437 124,-437 118,-437 112,-431 112,-425 112,-425 112,-413 112,-413 112,-407 118,-401 124,-401 124,-401 154,-401 154,-401 160,-401 166,-407 166,-413 166,-413 166,-425 166,-425 166,-431 160,-437 154,-437' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='139' y='-416.5'>Authn</text>
+</g>
+
+
+
+<g class='node' id='node14'>
+<title>QueryPush</title>
+<path d='M238.5,-379C238.5,-379 191.5,-379 191.5,-379 185.5,-379 179.5,-373 179.5,-367 179.5,-367 179.5,-355 179.5,-355 179.5,-349 185.5,-343 191.5,-343 191.5,-343 238.5,-343 238.5,-343 244.5,-343 250.5,-349 250.5,-355 250.5,-355 250.5,-367 250.5,-367 250.5,-373 244.5,-379 238.5,-379' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='215' y='-358.5'>QueryPush</text>
 </g>
 
 
 <g class='node' id='node10'>
-<title>Action</title>
-<path d='M313,-487C313,-487 283,-487 283,-487 277,-487 271,-481 271,-475 271,-475 271,-463 271,-463 271,-457 277,-451 283,-451 283,-451 313,-451 313,-451 319,-451 325,-457 325,-463 325,-463 325,-475 325,-475 325,-481 319,-487 313,-487' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='298' y='-466.5'>Action</text>
-</g>
-
-<g class='edge' id='edge24'>
-<title>Authz&#45;&gt;Action</title>
-<path d='M370.75,-479.7C358.93,-482.61 347.1,-483.25 335.28,-481.63' fill='none' stroke='black'/>
-<polygon fill='black' points='335.82,-478.17 325.34,-479.73 334.51,-485.04 335.82,-478.17' stroke='black'/>
-<path d='M370.75,-458.3C358.93,-455.39 347.1,-454.75 335.28,-456.37' fill='none' stroke='black'/>
-<polygon fill='black' points='334.51,-452.96 325.34,-458.27 335.82,-459.83 334.51,-452.96' stroke='black'/>
-</g>
-
-<g class='node' id='node3'>
-<title>DB</title>
-<path d='M494,-350C494,-350 464,-350 464,-350 458,-350 452,-344 452,-338 452,-338 452,-326 452,-326 452,-320 458,-314 464,-314 464,-314 494,-314 494,-314 500,-314 506,-320 506,-326 506,-326 506,-338 506,-338 506,-344 500,-350 494,-350' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='479' y='-329.5'>DB</text>
-</g>
-
-<g class='edge' id='edge4'>
-<title>ORM&#45;&gt;DB</title>
-<path d='M486.53,-450.94C490.79,-446.26 494.68,-440.85 497,-435 507.31,-408.97 503.01,-399.35 497,-372 496.08,-367.82 494.67,-363.56 493.04,-359.45' fill='none' stroke='black'/>
-<polygon fill='black' points='496.21,-357.99 488.93,-350.29 489.83,-360.85 496.21,-357.99' stroke='black'/>
-</g>
-
-<g class='edge' id='edge5'>
-<title>ORM&#45;&gt;QueryPush</title>
-<path d='M463.34,-450.91C461.83,-441.24 459.91,-428.93 458.21,-417.98' fill='none' stroke='black'/>
-<polygon fill='black' points='461.65,-417.38 456.66,-408.04 454.74,-418.46 461.65,-417.38' stroke='black'/>
-</g>
-
-<g class='node' id='node5'>
-<title>Push</title>
-<path d='M426,-350C426,-350 396,-350 396,-350 390,-350 384,-344 384,-338 384,-338 384,-326 384,-326 384,-320 390,-314 396,-314 396,-314 426,-314 426,-314 432,-314 438,-320 438,-326 438,-326 438,-338 438,-338 438,-344 432,-350 426,-350' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='411' y='-329.5'>Push</text>
+<title>ORM</title>
+<path d='M290,-437C290,-437 260,-437 260,-437 254,-437 248,-431 248,-425 248,-425 248,-413 248,-413 248,-407 254,-401 260,-401 260,-401 290,-401 290,-401 296,-401 302,-407 302,-413 302,-413 302,-425 302,-425 302,-431 296,-437 290,-437' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='275' y='-416.5'>ORM</text>
 </g>
 
 
-<g class='edge' id='edge7'>
-<title>QueryPush&#45;&gt;DB</title>
-<path d='M461.64,-371.89C463.43,-367.88 465.38,-363.51 467.31,-359.19' fill='none' stroke='black'/>
-<polygon fill='black' points='470.53,-360.56 471.41,-350 464.14,-357.71 470.53,-360.56' stroke='black'/>
-</g>
 
-<g class='edge' id='edge6'>
-<title>QueryPush&#45;&gt;Push</title>
-<path d='M440.86,-371.89C437.53,-367.55 433.88,-362.8 430.31,-358.14' fill='none' stroke='black'/>
-<polygon fill='black' points='432.92,-355.8 424.05,-350 427.37,-360.06 432.92,-355.8' stroke='black'/>
-</g>
-
-<g class='node' id='node7'>
-<title>Validation</title>
-<path d='M89.5,-487C89.5,-487 36.5,-487 36.5,-487 30.5,-487 24.5,-481 24.5,-475 24.5,-475 24.5,-463 24.5,-463 24.5,-457 30.5,-451 36.5,-451 36.5,-451 89.5,-451 89.5,-451 95.5,-451 101.5,-457 101.5,-463 101.5,-463 101.5,-475 101.5,-475 101.5,-481 95.5,-487 89.5,-487' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='63' y='-466.5'>Validation</text>
-</g>
-
-<g class='node' id='node8'>
-<title>Routing</title>
-<path d='M162.5,-487C162.5,-487 127.5,-487 127.5,-487 121.5,-487 115.5,-481 115.5,-475 115.5,-475 115.5,-463 115.5,-463 115.5,-457 121.5,-451 127.5,-451 127.5,-451 162.5,-451 162.5,-451 168.5,-451 174.5,-457 174.5,-463 174.5,-463 174.5,-475 174.5,-475 174.5,-481 168.5,-487 162.5,-487' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='145' y='-466.5'>Routing</text>
-</g>
-
-
-<g class='node' id='node9'>
-<title>I18n</title>
-<path d='M231,-487C231,-487 201,-487 201,-487 195,-487 189,-481 189,-475 189,-475 189,-463 189,-463 189,-457 195,-451 201,-451 201,-451 231,-451 231,-451 237,-451 243,-457 243,-463 243,-463 243,-475 243,-475 243,-481 237,-487 231,-487' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='216' y='-466.5'>I18n</text>
-</g>
-
-
-<g class='node' id='node11'>
-<title>WindowHistory</title>
-<path d='M222.5,-408C222.5,-408 151.5,-408 151.5,-408 145.5,-408 139.5,-402 139.5,-396 139.5,-396 139.5,-384 139.5,-384 139.5,-378 145.5,-372 151.5,-372 151.5,-372 222.5,-372 222.5,-372 228.5,-372 234.5,-378 234.5,-384 234.5,-384 234.5,-396 234.5,-396 234.5,-402 228.5,-408 222.5,-408' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='187' y='-387.5'>WindowHistory</text>
-</g>
-
-<g class='edge' id='edge21'>
-<title>Routing&#45;&gt;WindowHistory</title>
-<path d='M154.32,-450.91C159.76,-440.94 166.73,-428.17 172.83,-416.97' fill='none' stroke='black'/>
-<polygon fill='black' points='175.99,-418.5 177.7,-408.04 169.84,-415.14 175.99,-418.5' stroke='black'/>
-</g>
 
 <g class='node' id='node12'>
-<title>WindowLocation</title>
-<path d='M113.5,-408C113.5,-408 36.5,-408 36.5,-408 30.5,-408 24.5,-402 24.5,-396 24.5,-396 24.5,-384 24.5,-384 24.5,-378 30.5,-372 36.5,-372 36.5,-372 113.5,-372 113.5,-372 119.5,-372 125.5,-378 125.5,-384 125.5,-384 125.5,-396 125.5,-396 125.5,-402 119.5,-408 113.5,-408' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='75' y='-387.5'>WindowLocation</text>
+<title>DB</title>
+<path d='M290,-321C290,-321 260,-321 260,-321 254,-321 248,-315 248,-309 248,-309 248,-297 248,-297 248,-291 254,-285 260,-285 260,-285 290,-285 290,-285 296,-285 302,-291 302,-297 302,-297 302,-309 302,-309 302,-315 296,-321 290,-321' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='275' y='-300.5'>DB</text>
 </g>
 
-<g class='edge' id='edge20'>
-<title>Routing&#45;&gt;WindowLocation</title>
-<path d='M129.46,-450.91C120.04,-440.54 107.85,-427.14 97.4,-415.64' fill='none' stroke='black'/>
-<polygon fill='black' points='99.81,-413.09 90.49,-408.04 94.63,-417.79 99.81,-413.09' stroke='black'/>
+<g class='edge' id='edge13'>
+<title>ORM&#45;&gt;DB</title>
+<path d='M275,-400.69C275,-382.25 275,-352.82 275,-331.26' fill='none' stroke='black'/>
+<polygon fill='black' points='278.5,-331.1 275,-321.1 271.5,-331.1 278.5,-331.1' stroke='black'/>
 </g>
 
-<g class='edge' id='edge8'>
-<title>I18n&#45;&gt;Action</title>
-<path d='M243.23,-469C248.93,-469 254.64,-469 260.34,-469' fill='none' stroke='black'/>
-<polygon fill='black' points='260.61,-472.5 270.61,-469 260.61,-465.5 260.61,-472.5' stroke='black'/>
+<g class='edge' id='edge14'>
+<title>ORM&#45;&gt;QueryPush</title>
+<path d='M256.67,-400.89C251.67,-396.23 246.16,-391.08 240.82,-386.1' fill='none' stroke='black'/>
+<polygon fill='black' points='242.91,-383.27 233.22,-379 238.14,-388.38 242.91,-383.27' stroke='black'/>
 </g>
 
-<g class='node' id='node14'>
-<title>WebAssembly</title>
-<path d='M95.5,-350C95.5,-350 36.5,-350 36.5,-350 30.5,-350 24.5,-344 24.5,-338 24.5,-338 24.5,-326 24.5,-326 24.5,-320 30.5,-314 36.5,-314 36.5,-314 95.5,-314 95.5,-314 101.5,-314 107.5,-320 107.5,-326 107.5,-326 107.5,-338 107.5,-338 107.5,-344 101.5,-350 95.5,-350' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='66' y='-329.5'>WebAssembly</text>
+<g class='node' id='node13'>
+<title>Push</title>
+<path d='M222,-321C222,-321 192,-321 192,-321 186,-321 180,-315 180,-309 180,-309 180,-297 180,-297 180,-291 186,-285 192,-285 192,-285 222,-285 222,-285 228,-285 234,-291 234,-297 234,-297 234,-309 234,-309 234,-315 228,-321 222,-321' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='207' y='-300.5'>Push</text>
 </g>
-
 
 
 <g class='node' id='node17'>
 <title>Com</title>
-<path d='M281,-227C281,-227 251,-227 251,-227 245,-227 239,-221 239,-215 239,-215 239,-203 239,-203 239,-197 245,-191 251,-191 251,-191 281,-191 281,-191 287,-191 293,-197 293,-203 293,-203 293,-215 293,-215 293,-221 287,-227 281,-227' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='266' y='-206.5'>Com</text>
+<path d='M222,-225C222,-225 192,-225 192,-225 186,-225 180,-219 180,-213 180,-213 180,-201 180,-201 180,-195 186,-189 192,-189 192,-189 222,-189 222,-189 228,-189 234,-195 234,-201 234,-201 234,-213 234,-213 234,-219 228,-225 222,-225' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='207' y='-204.5'>Com</text>
 </g>
 
-<g class='edge' id='edge22'>
-<title>PBR&#45;&gt;Com</title>
-<path d='M266,-298C266,-279 266,-255.4 266,-237.42' fill='none' stroke='black' stroke-dasharray='5,2'/>
-<polygon fill='black' points='269.5,-237.38 266,-227.38 262.5,-237.38 269.5,-237.38' stroke='black'/>
+<g class='edge' id='edge26'>
+<title>Push&#45;&gt;Com</title>
+<path d='M207,-269C207,-258.04 207,-245.96 207,-235.47' fill='none' stroke='black' stroke-dasharray='5,2'/>
+<polygon fill='black' points='210.5,-235.13 207,-225.13 203.5,-235.13 210.5,-235.13' stroke='black'/>
 </g>
 
-<g class='node' id='node15'>
-<title>WebWorker</title>
-<path d='M180.5,-350C180.5,-350 133.5,-350 133.5,-350 127.5,-350 121.5,-344 121.5,-338 121.5,-338 121.5,-326 121.5,-326 121.5,-320 127.5,-314 133.5,-314 133.5,-314 180.5,-314 180.5,-314 186.5,-314 192.5,-320 192.5,-326 192.5,-326 192.5,-338 192.5,-338 192.5,-344 186.5,-350 180.5,-350' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='157' y='-329.5'>WebWorker</text>
+<g class='edge' id='edge16'>
+<title>QueryPush&#45;&gt;DB</title>
+<path d='M233.33,-342.89C238.33,-338.23 243.84,-333.08 249.18,-328.1' fill='none' stroke='black'/>
+<polygon fill='black' points='251.86,-330.38 256.78,-321 247.09,-325.27 251.86,-330.38' stroke='black'/>
 </g>
 
+<g class='edge' id='edge15'>
+<title>QueryPush&#45;&gt;Push</title>
+<path d='M212.56,-342.89C212.03,-339.2 211.46,-335.21 210.89,-331.24' fill='none' stroke='black'/>
+<polygon fill='black' points='214.31,-330.41 209.43,-321 207.38,-331.4 214.31,-330.41' stroke='black'/>
+</g>
 
 
 <g class='node' id='node16'>
 <title>Async</title>
-<path d='M213,-227C213,-227 183,-227 183,-227 177,-227 171,-221 171,-215 171,-215 171,-203 171,-203 171,-197 177,-191 183,-191 183,-191 213,-191 213,-191 219,-191 225,-197 225,-203 225,-203 225,-215 225,-215 225,-221 219,-227 213,-227' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='198' y='-206.5'>Async</text>
+<path d='M154,-225C154,-225 124,-225 124,-225 118,-225 112,-219 112,-213 112,-213 112,-201 112,-201 112,-195 118,-189 124,-189 124,-189 154,-189 154,-189 160,-189 166,-195 166,-201 166,-201 166,-213 166,-213 166,-219 160,-225 154,-225' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='139' y='-204.5'>Async</text>
 </g>
 
 
-<g class='node' id='node18'>
-<title>Json</title>
-<path d='M351,-227C351,-227 321,-227 321,-227 315,-227 309,-221 309,-215 309,-215 309,-203 309,-203 309,-197 315,-191 321,-191 321,-191 351,-191 351,-191 357,-191 363,-197 363,-203 363,-203 363,-215 363,-215 363,-221 357,-227 351,-227' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='336' y='-206.5'>Json</text>
-</g>
 
 
-<g class='node' id='node21'>
+
+<g class='node' id='node20'>
 <title>QueryPushS</title>
-<path d='M316.5,-131C316.5,-131 215.5,-131 215.5,-131 209.5,-131 203.5,-125 203.5,-119 203.5,-119 203.5,-107 203.5,-107 203.5,-101 209.5,-95 215.5,-95 215.5,-95 316.5,-95 316.5,-95 322.5,-95 328.5,-101 328.5,-107 328.5,-107 328.5,-119 328.5,-119 328.5,-125 322.5,-131 316.5,-131' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='266' y='-110.5'>QueryPush (server)</text>
+<path d='M257.5,-131C257.5,-131 156.5,-131 156.5,-131 150.5,-131 144.5,-125 144.5,-119 144.5,-119 144.5,-107 144.5,-107 144.5,-101 150.5,-95 156.5,-95 156.5,-95 257.5,-95 257.5,-95 263.5,-95 269.5,-101 269.5,-107 269.5,-107 269.5,-119 269.5,-119 269.5,-125 263.5,-131 257.5,-131' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='207' y='-110.5'>QueryPush (server)</text>
+</g>
+
+<g class='edge' id='edge27'>
+<title>Com&#45;&gt;QueryPushS</title>
+<path d='M207,-188.7C207,-182.68 207,-175.58 207,-168.19' fill='none' stroke='black' stroke-dasharray='5,2'/>
+<polygon fill='black' points='210.5,-168 207,-158 203.5,-168 210.5,-168' stroke='black'/>
+</g>
+
+
+
+
+
+<g class='node' id='node22'>
+<title>PushS</title>
+<path d='M139.5,-60C139.5,-60 68.5,-60 68.5,-60 62.5,-60 56.5,-54 56.5,-48 56.5,-48 56.5,-36 56.5,-36 56.5,-30 62.5,-24 68.5,-24 68.5,-24 139.5,-24 139.5,-24 145.5,-24 151.5,-30 151.5,-36 151.5,-36 151.5,-48 151.5,-48 151.5,-54 145.5,-60 139.5,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='104' y='-39.5'>Push (server)</text>
 </g>
 
 <g class='edge' id='edge23'>
-<title>Com&#45;&gt;QueryPushS</title>
-<path d='M266,-190.76C266,-184.18 266,-176.27 266,-168.07' fill='none' stroke='black' stroke-dasharray='5,2'/>
-<polygon fill='black' points='269.5,-168 266,-158 262.5,-168 269.5,-168' stroke='black'/>
-</g>
-
-<g class='node' id='node19'>
-<title>DBS</title>
-<path d='M295.5,-60C295.5,-60 236.5,-60 236.5,-60 230.5,-60 224.5,-54 224.5,-48 224.5,-48 224.5,-36 224.5,-36 224.5,-30 230.5,-24 236.5,-24 236.5,-24 295.5,-24 295.5,-24 301.5,-24 307.5,-30 307.5,-36 307.5,-36 307.5,-48 307.5,-48 307.5,-54 301.5,-60 295.5,-60' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='266' y='-39.5'>DB (server)</text>
-</g>
-
-<g class='node' id='node20'>
-<title>PushS</title>
-<path d='M198.5,-60C198.5,-60 127.5,-60 127.5,-60 121.5,-60 115.5,-54 115.5,-48 115.5,-48 115.5,-36 115.5,-36 115.5,-30 121.5,-24 127.5,-24 127.5,-24 198.5,-24 198.5,-24 204.5,-24 210.5,-30 210.5,-36 210.5,-36 210.5,-48 210.5,-48 210.5,-54 204.5,-60 198.5,-60' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='163' y='-39.5'>Push (server)</text>
-</g>
-
-
-<g class='edge' id='edge18'>
-<title>QueryPushS&#45;&gt;DBS</title>
-<path d='M266,-94.94C266,-87.54 266,-78.67 266,-70.38' fill='none' stroke='black'/>
-<polygon fill='black' points='269.5,-70.34 266,-60.34 262.5,-70.34 269.5,-70.34' stroke='black'/>
-</g>
-
-<g class='edge' id='edge17'>
 <title>QueryPushS&#45;&gt;PushS</title>
-<path d='M231.19,-94.9C226.67,-92.38 222.17,-89.72 218,-87 208.61,-80.88 198.88,-73.5 190.28,-66.54' fill='none' stroke='black'/>
-<polygon fill='black' points='192.35,-63.72 182.41,-60.06 187.9,-69.12 192.35,-63.72' stroke='black'/>
+<path d='M171.43,-94.99C166.82,-92.46 162.24,-89.76 158,-87 148.79,-80.99 139.31,-73.7 130.91,-66.8' fill='none' stroke='black'/>
+<polygon fill='black' points='133.14,-64.1 123.24,-60.35 128.64,-69.46 133.14,-64.1' stroke='black'/>
 </g>
 
-<g class='node' id='node22'>
-<title>Vertx</title>
-<path d='M366,-60C366,-60 336,-60 336,-60 330,-60 324,-54 324,-48 324,-48 324,-36 324,-36 324,-30 330,-24 336,-24 336,-24 366,-24 366,-24 372,-24 378,-30 378,-36 378,-36 378,-48 378,-48 378,-54 372,-60 366,-60' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='351' y='-39.5'>Vert.x</text>
+<g class='node' id='node23'>
+<title>DBS</title>
+<path d='M236.5,-60C236.5,-60 177.5,-60 177.5,-60 171.5,-60 165.5,-54 165.5,-48 165.5,-48 165.5,-36 165.5,-36 165.5,-30 171.5,-24 177.5,-24 177.5,-24 236.5,-24 236.5,-24 242.5,-24 248.5,-30 248.5,-36 248.5,-36 248.5,-48 248.5,-48 248.5,-54 242.5,-60 236.5,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='207' y='-39.5'>DB (server)</text>
 </g>
+
+<g class='edge' id='edge24'>
+<title>QueryPushS&#45;&gt;DBS</title>
+<path d='M207,-94.94C207,-87.54 207,-78.67 207,-70.38' fill='none' stroke='black'/>
+<polygon fill='black' points='210.5,-70.34 207,-60.34 203.5,-70.34 210.5,-70.34' stroke='black'/>
+</g>
+
+<g class='node' id='node24'>
+<title>Vertx</title>
+<path d='M307,-60C307,-60 277,-60 277,-60 271,-60 265,-54 265,-48 265,-48 265,-36 265,-36 265,-30 271,-24 277,-24 277,-24 307,-24 307,-24 313,-24 319,-30 319,-36 319,-36 319,-48 319,-48 319,-54 313,-60 307,-60' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='292' y='-39.5'>Vert.x</text>
+</g>
+
 
 </g>
 </svg>
