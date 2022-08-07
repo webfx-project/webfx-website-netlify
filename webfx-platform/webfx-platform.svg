@@ -21,7 +21,7 @@
 <g class='cluster' id='clust6'>
 <title>cluster_S</title>
 <polygon fill='none' points='18,-95 18,-166 611,-166 611,-95 18,-95' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='314.5' y='-154'> &#160;&#160;&#160;&#160;&#160;&#160;Server</text>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='314.5' y='-154'>Server &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text>
 </g>
 <g class='cluster' id='clust8'>
 <title>cluster_L</title>
@@ -126,9 +126,15 @@
 </g>
 
 
-
-
 <g class='edge' id='edge17'>
+<title>Scheduler&#45;&gt;Vertx</title>
+<path d='M363.47,-174.97C350.61,-163.32 335.47,-149.6 323.81,-139.04' fill='none' stroke='black' stroke-dasharray='5,2'/>
+<polygon fill='black' points='361.37,-177.79 371.14,-181.91 366.07,-172.6 361.37,-177.79' stroke='black'/>
+</g>
+
+
+
+<g class='edge' id='edge18'>
 <title>Json&#45;&gt;Vertx</title>
 <path d='M430.83,-181.81C402.87,-168.52 364.51,-150.28 337.51,-137.45' fill='none' stroke='black' stroke-dasharray='5,2'/>
 <polygon fill='black' points='429.35,-184.98 439.88,-186.11 432.36,-178.66 429.35,-184.98' stroke='black'/>
