@@ -107,12 +107,6 @@
 </g>
 
 
-<g class='edge' id='edge18'>
-<title>Resources&#45;&gt;Vertx</title>
-<path d='M220.03,-176.44C239.13,-164.49 262.2,-150.05 279.78,-139.04' fill='none' stroke='black' stroke-dasharray='5,2'/>
-<polygon fill='black' points='217.92,-173.64 211.3,-181.91 221.63,-179.57 217.92,-173.64' stroke='black'/>
-</g>
-
 
 <g class='node' id='node13'>
 <title>Shutdown</title>
@@ -135,7 +129,7 @@
 </g>
 
 
-<g class='edge' id='edge19'>
+<g class='edge' id='edge18'>
 <title>Scheduler&#45;&gt;Vertx</title>
 <path d='M400.21,-176.78C379.11,-164.38 353.31,-149.22 334.2,-137.99' fill='none' stroke='black' stroke-dasharray='5,2'/>
 <polygon fill='black' points='398.53,-179.86 408.93,-181.91 402.08,-173.83 398.53,-179.86' stroke='black'/>
@@ -143,7 +137,7 @@
 
 
 
-<g class='edge' id='edge20'>
+<g class='edge' id='edge19'>
 <title>Json&#45;&gt;Vertx</title>
 <path d='M478.4,-185.45C437.17,-170.19 371.11,-145.73 334.2,-132.07' fill='none' stroke='black' stroke-dasharray='5,2'/>
 <polygon fill='black' points='477.21,-188.74 487.81,-188.93 479.64,-182.18 477.21,-188.74' stroke='black'/>
