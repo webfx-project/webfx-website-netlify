@@ -83,7 +83,7 @@
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='207' y='-458.5'>Authz</text>
 </g>
 
-<g class='edge' id='edge28'>
+<g class='edge' id='edge27'>
 <title>Action&#45;&gt;Authz</title>
 <path d='M207.64,-511.62C207.5,-500.76 207.35,-488.6 207.22,-479.04' fill='none' stroke='black'/>
 <polygon fill='black' points='204.15,-511.96 207.78,-521.91 211.15,-511.87 204.15,-511.96' stroke='black'/>
@@ -136,13 +136,13 @@
 <polygon fill='black' points='233.9,-387.64 225.63,-381.01 227.97,-391.35 233.9,-387.64' stroke='black'/>
 </g>
 
-<g class='node' id='node25'>
+<g class='node' id='node24'>
 <title>Visual</title>
 <path d='M511.5,-381C511.5,-381 422.5,-381 422.5,-381 416.5,-381 410.5,-375 410.5,-369 410.5,-369 410.5,-357 410.5,-357 410.5,-351 416.5,-345 422.5,-345 422.5,-345 511.5,-345 511.5,-345 517.5,-345 523.5,-351 523.5,-357 523.5,-357 523.5,-369 523.5,-369 523.5,-375 517.5,-381 511.5,-381' fill='#f5dd90' stroke='black'/>
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='467' y='-360.5'>Visual component</text>
 </g>
 
-<g class='edge' id='edge29'>
+<g class='edge' id='edge28'>
 <title>ORM&#45;&gt;Visual</title>
 <path d='M302.1,-446.45C333.74,-430.63 386.48,-404.26 423.78,-385.61' fill='none' stroke='black'/>
 <polygon fill='black' points='425.53,-388.65 432.91,-381.04 422.4,-382.39 425.53,-388.65' stroke='black'/>
@@ -155,13 +155,13 @@
 </g>
 
 
-<g class='node' id='node17'>
+<g class='node' id='node16'>
 <title>Com</title>
 <path d='M222,-225C222,-225 192,-225 192,-225 186,-225 180,-219 180,-213 180,-213 180,-201 180,-201 180,-195 186,-189 192,-189 192,-189 222,-189 222,-189 228,-189 234,-195 234,-201 234,-201 234,-213 234,-213 234,-219 228,-225 222,-225' fill='#f5dd90' stroke='black'/>
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='207' y='-204.5'>Com</text>
 </g>
 
-<g class='edge' id='edge26'>
+<g class='edge' id='edge25'>
 <title>Push&#45;&gt;Com</title>
 <path d='M207,-269C207,-258.12 207,-246.18 207,-235.71' fill='none' stroke='black' stroke-dasharray='5,2'/>
 <polygon fill='black' points='210.5,-235.3 207,-225.3 203.5,-235.3 210.5,-235.3' stroke='black'/>
@@ -180,23 +180,16 @@
 </g>
 
 
-<g class='node' id='node16'>
-<title>Async</title>
-<path d='M154,-225C154,-225 124,-225 124,-225 118,-225 112,-219 112,-213 112,-213 112,-201 112,-201 112,-195 118,-189 124,-189 124,-189 154,-189 154,-189 160,-189 166,-195 166,-201 166,-201 166,-213 166,-213 166,-219 160,-225 154,-225' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='139' y='-204.5'>Async</text>
-</g>
 
 
 
-
-
-<g class='node' id='node20'>
+<g class='node' id='node19'>
 <title>QueryPushS</title>
 <path d='M257.5,-131C257.5,-131 156.5,-131 156.5,-131 150.5,-131 144.5,-125 144.5,-119 144.5,-119 144.5,-107 144.5,-107 144.5,-101 150.5,-95 156.5,-95 156.5,-95 257.5,-95 257.5,-95 263.5,-95 269.5,-101 269.5,-107 269.5,-107 269.5,-119 269.5,-119 269.5,-125 263.5,-131 257.5,-131' fill='#f5dd90' stroke='black'/>
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='207' y='-110.5'>QueryPush (server)</text>
 </g>
 
-<g class='edge' id='edge27'>
+<g class='edge' id='edge26'>
 <title>Com&#45;&gt;QueryPushS</title>
 <path d='M207,-188.88C207,-182.79 207,-175.65 207,-168.22' fill='none' stroke='black' stroke-dasharray='5,2'/>
 <polygon fill='black' points='210.5,-168 207,-158 203.5,-168 210.5,-168' stroke='black'/>
@@ -206,31 +199,31 @@
 
 
 
-<g class='node' id='node22'>
+<g class='node' id='node21'>
 <title>PushS</title>
 <path d='M139.5,-60C139.5,-60 68.5,-60 68.5,-60 62.5,-60 56.5,-54 56.5,-48 56.5,-48 56.5,-36 56.5,-36 56.5,-30 62.5,-24 68.5,-24 68.5,-24 139.5,-24 139.5,-24 145.5,-24 151.5,-30 151.5,-36 151.5,-36 151.5,-48 151.5,-48 151.5,-54 145.5,-60 139.5,-60' fill='#f5dd90' stroke='black'/>
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='104' y='-39.5'>Push (server)</text>
 </g>
 
-<g class='edge' id='edge23'>
+<g class='edge' id='edge22'>
 <title>QueryPushS&#45;&gt;PushS</title>
 <path d='M181.54,-94.94C168.42,-86.15 152.23,-75.31 138.05,-65.81' fill='none' stroke='black'/>
 <polygon fill='black' points='139.78,-62.76 129.52,-60.1 135.88,-68.57 139.78,-62.76' stroke='black'/>
 </g>
 
-<g class='node' id='node23'>
+<g class='node' id='node22'>
 <title>DBS</title>
 <path d='M236.5,-60C236.5,-60 177.5,-60 177.5,-60 171.5,-60 165.5,-54 165.5,-48 165.5,-48 165.5,-36 165.5,-36 165.5,-30 171.5,-24 177.5,-24 177.5,-24 236.5,-24 236.5,-24 242.5,-24 248.5,-30 248.5,-36 248.5,-36 248.5,-48 248.5,-48 248.5,-54 242.5,-60 236.5,-60' fill='#f5dd90' stroke='black'/>
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='207' y='-39.5'>DB (server)</text>
 </g>
 
-<g class='edge' id='edge24'>
+<g class='edge' id='edge23'>
 <title>QueryPushS&#45;&gt;DBS</title>
 <path d='M207,-94.94C207,-87.54 207,-78.67 207,-70.38' fill='none' stroke='black'/>
 <polygon fill='black' points='210.5,-70.34 207,-60.34 203.5,-70.34 210.5,-70.34' stroke='black'/>
 </g>
 
-<g class='node' id='node24'>
+<g class='node' id='node23'>
 <title>Vertx</title>
 <path d='M307,-60C307,-60 277,-60 277,-60 271,-60 265,-54 265,-48 265,-48 265,-36 265,-36 265,-30 271,-24 277,-24 277,-24 307,-24 307,-24 313,-24 319,-30 319,-36 319,-36 319,-48 319,-48 319,-54 313,-60 307,-60' fill='#f5dd90' stroke='black'/>
 <text font-family='monospace' font-size='10.00' text-anchor='middle' x='292' y='-39.5'>Vert.x</text>
