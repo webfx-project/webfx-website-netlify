@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="author" content="Last updated: 2022-08-09">
+<meta name="author" content="Last updated: 2022-08-11">
 <title>WebFX Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -591,7 +591,7 @@ window.onload = function() {
 <div id="header">
 <h1>WebFX Documentation</h1>
 <div class="details">
-<span id="author" class="author">Last updated: 2022-08-09</span><br>
+<span id="author" class="author">Last updated: 2022-08-11</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -739,10 +739,6 @@ Note for the impatient: OpenJFX is a huge library (about 10MB) compared to stand
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://moderngauge.webfx.dev" target="_blank" rel="noopener">Modern gauge demo</a></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">141 kB</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://medusaclock.webfx.dev" target="_blank" rel="noopener">Medusa clock demo</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">183 kB</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://enzoclocks.webfx.dev" target="_blank" rel="noopener">Enzo clocks demo</a></p></td>
@@ -1149,8 +1145,8 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Build platform</th>
-<th class="tableblock halign-center valign-top">Target platform</th>
+<th class="tableblock halign-left valign-top">Target platform</th>
+<th class="tableblock halign-center valign-top">Build platform</th>
 <th class="tableblock halign-center valign-top">Install command</th>
 <th class="tableblock halign-center valign-top">Build option</th>
 <th class="tableblock halign-center valign-top">Executable file(s)</th>
@@ -1158,71 +1154,71 @@ webfx init org.example:webfx-example:1.0.0-SNAPSHOT</pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Web</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gwt</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">html</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Any desktop with Java</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any desktop OS with Java</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux, macOS or Windows</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-fatjar</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">fat jar</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (embed JRE)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux (embed JRE)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">ubuntu-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .AppImage, .rpm, .deb</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (embed JRE)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">macOS (embed JRE)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">macOS</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">xcode</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (embed JRE)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows (embed JRE)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Windows</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">wix*, inno*</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--openjfx-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi, .exe</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Linux (native)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">macOS (native)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">macOS (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">macOS</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, xcode-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .dmg, .pkg</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Windows (native)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Windows</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, vs-tools, wix*</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-desktop</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">executable, .msi</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Android (native)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Linux</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, ubuntu-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-android (or --gluon-mobile)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">.apk</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">macOS</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">iOS (native)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iOS (native)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">macOS</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">graalvm, xcode-tools</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">--gluon-ios (or --gluon-mobile)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">.ipa</p></td>
@@ -1914,7 +1910,7 @@ of this documentation.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-09 19:38:54 UTC
+Last updated 2022-08-11 10:27:47 UTC
 </div>
 </div>
 </body>
