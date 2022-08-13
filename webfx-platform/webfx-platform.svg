@@ -25,7 +25,7 @@
 </g>
 <g class='cluster' id='clust8'>
 <title>cluster_L</title>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='295' y='-67'> &#160;&#160;&#160;&#160;Legend</text>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='313' y='-67'>Legend &#160;</text>
 </g>
 
 <g class='node' id='node1'>
@@ -168,8 +168,8 @@
 
 <g class='node' id='node22'>
 <title>Demos</title>
-<path d='M505.5,-52C505.5,-52 410.5,-52 410.5,-52 404.5,-52 398.5,-46 398.5,-40 398.5,-40 398.5,-28 398.5,-28 398.5,-22 404.5,-16 410.5,-16 410.5,-16 505.5,-16 505.5,-16 511.5,-16 517.5,-22 517.5,-28 517.5,-28 517.5,-40 517.5,-40 517.5,-46 511.5,-52 505.5,-52' fill='#f5dd90' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='458' y='-31.5'>Used be the demos</text>
+<path d='M541.5,-52C541.5,-52 410.5,-52 410.5,-52 404.5,-52 398.5,-46 398.5,-40 398.5,-40 398.5,-28 398.5,-28 398.5,-22 404.5,-16 410.5,-16 410.5,-16 541.5,-16 541.5,-16 547.5,-16 553.5,-22 553.5,-28 553.5,-28 553.5,-40 553.5,-40 553.5,-46 547.5,-52 541.5,-52' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='476' y='-31.5'>Used by the WebFX demos</text>
 </g>
 
 </g>
