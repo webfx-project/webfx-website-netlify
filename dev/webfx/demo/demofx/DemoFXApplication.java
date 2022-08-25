@@ -27,49 +27,31 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class DemoFXApplication extends Application {
-
     private final StackPane root = new StackPane();
     private final Scene scene = new Scene(root, 1600, 1200);
     private DemoFX introDemo, actualDemo;
     private boolean started;
-    long t1, t2, t3, t4, t5, t6, t7, t8, t9;
+    long t1, t2, t3, t4, t5, t6, t7, t8, t9, t10;
 
     @Override
     public void start(Stage stage) {
         stage.setTitle("DemoFX");
         stage.setScene(scene);
         stage.show();
-        introDemo = new DemoFX(newDemoConfig(null), (IEffectFactory) demoConfig -> dev.webfx.platform.util.collection.Collections.listOf(
-                new WordSearch(demoConfig, "Animation using DemoFX\n\nA JavaFX Canvas library\n\nby Chris Newland"),
-                new TextWaveSprite(demoConfig, new String[] {"Click to play"}, demoConfig.getHeight() - 200, 1, 5, true)
-        ));
-        actualDemo = new DemoFX(newDemoConfig("DemoFX3.mp3"), (IEffectFactory) demoConfig -> dev.webfx.platform.util.collection.Collections.listOf(
-                scheduleEffect(new StarfieldSprite(demoConfig), 0, t1 = 16200),
-                scheduleEffect(new RotateAddOnEffect(new FractalRings(demoConfig), 24300, 1, t3 = 32000, -1), t1, t2 = 40000),
-                scheduleEffect(new Sierpinski(demoConfig), t3, t2),
-                scheduleEffect(new Mandelbrot(demoConfig), t2, t4 = 64000),
-                scheduleEffect(new TextWaveSprite(demoConfig, new String[] {"Realtime Mandelbrot computation"}, demoConfig.getHeight() - 200, 0.8, 10), t2 + 2000, t5 = 64000),
-                scheduleEffect(new Checkerboard(demoConfig), t4, t5 = 70000),
-                scheduleEffect(new Chord(demoConfig, Color.ORANGE), 48300, t5),
-                scheduleEffect(new Glowboard(demoConfig), t5, t6 = 96000),
-                scheduleEffect(new SineLines(demoConfig), t5, t6),
-                scheduleEffect(new Tiles(demoConfig), t6, t7 = 160200),
-                scheduleEffect(new Spin(demoConfig), t7, t8 = 192000),
-                scheduleEffect(new TextRing(demoConfig, new TextRing.RingData[] {
-                        new TextRing.RingData("Coded    in    Java    and    JavaFX", 300, 0.15, 1, 3, 2)}), t7 + 5000, t8),
-                scheduleEffect(new WordSearch(demoConfig, "Amazing work\n\nThank you Chris Newland\n\nalias @chriswhocodes"), t8, t9 = 265000),
-                scheduleEffect(new SnowfieldSprite(demoConfig), t8 + 10000, t9)
-        ));
-
+        introDemo = newIntroDemo();
+        actualDemo = newActualDemo();
         root.getChildren().setAll(introDemo.getPane());
         introDemo.runDemo();
-        root.setOnMousePressed(e -> {
-            if (!started) {
+        root.setOnMousePressed(e -> { // Using setOnMousePressed() because sound doesn't start on iPad if using setOnMouseClicked()
+            if (!started)
                 introDemo.stopDemo();
-                root.getChildren().setAll(actualDemo.getPane());
-                actualDemo.runDemo();
-                //started = true;
+            else {
+                actualDemo.stopDemo();
+                actualDemo = newActualDemo();
             }
+            root.getChildren().setAll(actualDemo.getPane());
+            actualDemo.runDemo();
+            started = true;
         });
     }
 
@@ -77,6 +59,33 @@ public class DemoFXApplication extends Application {
         DemoConfig demoConfig = new DemoConfig(scene.getWidth(), scene.getHeight());
         demoConfig.setAudioFilename(Resource.toUrl(audioResource, DemoFXApplication.class));
         return demoConfig;
+    }
+
+    private DemoFX newIntroDemo() {
+        return new DemoFX(newDemoConfig(null), (IEffectFactory) demoConfig -> dev.webfx.platform.util.collection.Collections.listOf(
+                new WordSearch(demoConfig, "Animation using DemoFX\n\nA JavaFX Canvas library\n\nby Chris Newland"),
+                new TextWaveSprite(demoConfig, new String[] {"Click to play"}, demoConfig.getHeight() - 200, 1, 5, true)
+        ));
+    }
+
+    private DemoFX newActualDemo() {
+        return new DemoFX(newDemoConfig("DemoFX3.mp3"), (IEffectFactory) demoConfig -> dev.webfx.platform.util.collection.Collections.listOf(
+                scheduleEffect(new StarfieldSprite(demoConfig), 0, t1 = 15820),
+                scheduleEffect(new RotateAddOnEffect(new FractalRings(demoConfig), 23920, -1, t2 = 32000, 1), t1, t3 = 39900),
+                scheduleEffect(new Mandelbrot(demoConfig), t3, t5 = 64000),
+                scheduleEffect(new Sierpinski(demoConfig), t2, t4 = 47850),
+                scheduleEffect(new TextWaveSprite(demoConfig, new String[] {"Realtime Mandelbrot computation"}, demoConfig.getHeight() - 200, 0.8, 10), t4 + 2000, t5),
+                scheduleEffect(new Checkerboard(demoConfig), t5, t6 = 70000),
+                scheduleEffect(new Chord(demoConfig, Color.ORANGE), t4, t6),
+                scheduleEffect(new Glowboard(demoConfig), t6 = 70000, t7 = 96000),
+                scheduleEffect(new SineLines(demoConfig), t6, t7),
+                scheduleEffect(new Tiles(demoConfig), t7, t8 = 160200),
+                scheduleEffect(new Spin(demoConfig), t8, t9 = 192000),
+                scheduleEffect(new TextRing(demoConfig, new TextRing.RingData[] {
+                        new TextRing.RingData("Coded    in    Java    and    JavaFX", 300, 0.15, 1, 3, 2)}), t8 + 5000, t9),
+                scheduleEffect(new WordSearch(demoConfig, "Amazing work\n\nThank you Chris Newland\n\nalias @chriswhocodes"), t9, t10 = 265000),
+                scheduleEffect(new SnowfieldSprite(demoConfig), t9 + 10000, t10)
+        ));
     }
 
     private IEffect scheduleEffect(IEffect effect, long start, long stop) {
