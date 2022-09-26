@@ -6,7 +6,7 @@
   <link href="https://blog.webfx.dev/atom.xml" rel="self"/>
   
   <link href="https://blog.webfx.dev/"/>
-  <updated>2022-09-26T11:51:42.023Z</updated>
+  <updated>2022-09-26T12:02:05.099Z</updated>
   <id>https://blog.webfx.dev/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.webfx.dev/2022/07/22/website-launch/"/>
     <id>https://blog.webfx.dev/2022/07/22/website-launch/</id>
     <published>2022-07-22T12:52:12.000Z</published>
-    <updated>2022-09-26T11:51:42.023Z</updated>
+    <updated>2022-09-26T12:02:05.099Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://webfx.dev/"><img src="/2022/07/22/website-launch/webfx-website.png" alt="WebFX website"></a></p><p>We are very happy to announce that the WebFX <a href="https://webfx.dev/">website</a> is now live. The whole project has been paused for nearly a year due to some circumstances, but the very good news is that the conditions have finally been gathered to restart it. So the WebFX project has resumed this year, and we managed to accomplish the next stage: publishing the website. </p><p>The website comes along with this blog and the <a href="https://docs.webfx.dev/">documentation</a> which is minimal for now but will grow over the time. Today, it’s mainly a guide to get you started, which is probably the thing you were awaiting the most, if you are following the project.</p><p>We hope you will enjoy your first experience with WebFX. The project is still in the incubation phase, and we are aware you will encounter some obstacles (limited JavaFX coverage, bugs in WebFX, GWT compilation errors in your code if you are not used to it, …), but we hope you will appreciate its great potential for Java-based environments.</p><p>Despite the limitations, you can already develop real applications. The website for example has been developed using WebFX. It presents the technology through a series of animated cards. If you are interested in its JavaFX code, you can check out its <a href="https://github.com/webfx-project/webfx-website">GitHub repository</a>.</p><!---The initial website had a couple of additional cards, but some found them be a bit controversial, so we considered their feedback, and finally removed them. These cards are still online [here](https://preview.webfx.dev) however for the curious.[![Additional cards](/2022/07/22/website-launch/webfx-preview.png)](https://preview.webfx.dev)--><p>Thank you all for starring the project, this was a very helpful feedback. It contributed to the decision made by the organization in which we are working to rebase its own main business system onto WebFX! It’s a quite big Java-based application, and we are in the process of open sourcing it as well. So it will be the first real world WebFX enterprise application, and it will be available on GitHub. We will give you more information on this soon in this blog. So don’t hesitate to subscribe the <a href="atom.xml">feed</a> to keep updated!</p>]]></content>
     
