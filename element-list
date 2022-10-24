@@ -47,6 +47,7 @@ dev.webfx.kit.mapper.spi.impl.base
 dev.webfx.kit.mapper.spi.impl.gwt
 dev.webfx.kit.registry.javafxcontrols
 dev.webfx.kit.registry.javafxgraphics
+dev.webfx.kit.registry.javafxmedia
 dev.webfx.kit.util.properties
 dev.webfx.kit.util.properties.conversion
 dev.webfx.platform.uischeduler.spi.impl.openjfx
