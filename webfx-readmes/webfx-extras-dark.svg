@@ -2,15 +2,14 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='180pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 448.00 180.00' width='448pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
 <g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 176)'>
 <title>D</title>
-<polygon fill='#161b21' points='-4,4 -4,-176 444,-176 444,4 -4,4' stroke='transparent'/>
 <g class='cluster' id='clust1'>
 <title>cluster_UI</title>
-<polygon fill='#161b21' points='8,-8 8,-164 432,-164 432,-8 8,-8' stroke='white'/>
+<polygon fill='transparent' points='8,-8 8,-164 432,-164 432,-8 8,-8' stroke='white'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='220' y='-152'>UI</text>
 </g>
 <g class='cluster' id='clust2'>
 <title>cluster_V</title>
-<polygon fill='#161b21' points='73,-66 73,-137 367,-137 367,-66 73,-66' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='transparent' points='73,-66 73,-137 367,-137 367,-66 73,-66' stroke='white' stroke-dasharray='5,2'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='220' y='-125'>Visual API</text>
 </g>
 

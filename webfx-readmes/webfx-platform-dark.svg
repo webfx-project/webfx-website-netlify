@@ -2,30 +2,29 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='367pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 704.00 367.00' width='704pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
 <g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 363)'>
 <title>D</title>
-<polygon fill='#161b21' points='-4,4 -4,-363 700,-363 700,4 -4,4' stroke='transparent'/>
 <g class='cluster' id='clust1'>
 <title>cluster_P</title>
-<polygon fill='#161b21' points='8,-87 8,-351 688,-351 688,-87 8,-87' stroke='white'/>
+<polygon fill='transparent' points='8,-87 8,-351 688,-351 688,-87 8,-87' stroke='white'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='348' y='-339'>Platform &#160;&#160;&#160;</text>
 </g>
 <g class='cluster' id='clust2'>
 <title>cluster_C</title>
-<polygon fill='#161b21' points='16,-253 16,-324 679,-324 679,-253 16,-253' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='transparent' points='16,-253 16,-324 679,-324 679,-253 16,-253' stroke='white' stroke-dasharray='5,2'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='347.5' y='-312'>Client &#160;&#160;&#160;</text>
 </g>
 <g class='cluster' id='clust4'>
 <title>cluster_SHR</title>
-<polygon fill='#161b21' points='16,-174 16,-245 679,-245 679,-174 16,-174' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='transparent' points='16,-174 16,-245 679,-245 679,-174 16,-174' stroke='white' stroke-dasharray='5,2'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='347.5' y='-233'>Shared &#160;&#160;</text>
 </g>
 <g class='cluster' id='clust6'>
 <title>cluster_S</title>
-<polygon fill='#161b21' points='16,-95 16,-166 680,-166 680,-95 16,-95' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='transparent' points='16,-95 16,-166 680,-166 680,-95 16,-95' stroke='white' stroke-dasharray='5,2'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='348' y='-154'>Server &#160;&#160;</text>
 </g>
 <g class='cluster' id='clust8'>
 <title>cluster_L</title>
-<polygon fill='#161b21' points='70,-8 70,-79 628,-79 628,-8 70,-8' stroke='transparent' stroke-dasharray='5,2'/>
+<polygon fill='transparent' points='70,-8 70,-79 628,-79 628,-8 70,-8' stroke='transparent' stroke-dasharray='5,2'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='349' y='-67'>Legend &#160;</text>
 </g>
 

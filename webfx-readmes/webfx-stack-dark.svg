@@ -2,45 +2,44 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='628pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 556.00 628.00' width='556pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
 <g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 624)'>
 <title>D</title>
-<polygon fill='#161b21' points='-4,4 -4,-624 552,-624 552,4 -4,4' stroke='transparent'/>
 <g class='cluster' id='clust1'>
 <title>cluster_C</title>
-<polygon fill='#161b21' points='9,-269 9,-612 386,-612 386,-269 9,-269' stroke='white'/>
+<polygon fill='transparent' points='9,-269 9,-612 386,-612 386,-269 9,-269' stroke='white'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-600'> &#160;&#160;&#160;Client</text>
 </g>
 <g class='cluster' id='clust2'>
 <title>cluster_UI</title>
-<polygon fill='#161b21' points='17,-514 17,-585 378,-585 378,-514 17,-514' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='transparent' points='17,-514 17,-585 378,-585 378,-514 17,-514' stroke='white' stroke-dasharray='5,2'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-573'> &#160;&#160;&#160;UI</text>
 </g>
 <g class='cluster' id='clust4'>
 <title>cluster_NonUI</title>
-<polygon fill='#161b21' points='17,-277 17,-506 378,-506 378,-277 17,-277' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='transparent' points='17,-277 17,-506 378,-506 378,-277 17,-277' stroke='white' stroke-dasharray='5,2'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-494'>Non&#45;UI &#160;&#160;&#160;&#160;&#160;</text>
 </g>
 <g class='cluster' id='clust8'>
 <title>cluster_SHR</title>
-<polygon fill='#161b21' points='8,-181 8,-252 386,-252 386,-181 8,-181' stroke='white'/>
+<polygon fill='transparent' points='8,-181 8,-252 386,-252 386,-181 8,-181' stroke='white'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197' y='-240'>Shared &#160;&#160;&#160;&#160;&#160;&#160;</text>
 </g>
 <g class='cluster' id='clust10'>
 <title>cluster_S</title>
-<polygon fill='#161b21' points='8,-8 8,-158 386,-158 386,-8 8,-8' stroke='white'/>
+<polygon fill='transparent' points='8,-8 8,-158 386,-158 386,-8 8,-8' stroke='white'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197' y='-146'>Server</text>
 </g>
 <g class='cluster' id='clust11'>
 <title>cluster_I</title>
-<polygon fill='#161b21' points='257,-16 257,-87 358,-87 358,-16 257,-16' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='transparent' points='257,-16 257,-87 358,-87 358,-16 257,-16' stroke='white' stroke-dasharray='5,2'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='307.5' y='-75'>Implementation</text>
 </g>
 <g class='cluster' id='clust14'>
 <title>cluster_X</title>
-<polygon fill='#161b21' points='394,-329 394,-435 540,-435 540,-329 394,-329' stroke='white'/>
+<polygon fill='transparent' points='394,-329 394,-435 540,-435 540,-329 394,-329' stroke='white'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='467' y='-423'>WebFX Extras</text>
 </g>
 <g class='cluster' id='clust15'>
 <title>cluster_A</title>
-<polygon fill='#161b21' points='402,-337 402,-408 532,-408 532,-337 402,-337' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='transparent' points='402,-337 402,-408 532,-408 532,-337 402,-337' stroke='white' stroke-dasharray='5,2'/>
 <text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='467' y='-396'>Visual API</text>
 </g>
 
