@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='367pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 704.00 367.00' width='704pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+<g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 363)'>
+<title>D</title>
+<polygon fill='#161b21' points='-4,4 -4,-363 700,-363 700,4 -4,4' stroke='transparent'/>
+<g class='cluster' id='clust1'>
+<title>cluster_P</title>
+<polygon fill='#161b21' points='8,-87 8,-351 688,-351 688,-87 8,-87' stroke='white'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='348' y='-339'>Platform &#160;&#160;&#160;</text>
+</g>
+<g class='cluster' id='clust2'>
+<title>cluster_C</title>
+<polygon fill='#161b21' points='16,-253 16,-324 679,-324 679,-253 16,-253' stroke='white' stroke-dasharray='5,2'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='347.5' y='-312'>Client &#160;&#160;&#160;</text>
+</g>
+<g class='cluster' id='clust4'>
+<title>cluster_SHR</title>
+<polygon fill='#161b21' points='16,-174 16,-245 679,-245 679,-174 16,-174' stroke='white' stroke-dasharray='5,2'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='347.5' y='-233'>Shared &#160;&#160;</text>
+</g>
+<g class='cluster' id='clust6'>
+<title>cluster_S</title>
+<polygon fill='#161b21' points='16,-95 16,-166 680,-166 680,-95 16,-95' stroke='white' stroke-dasharray='5,2'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='348' y='-154'>Server &#160;&#160;</text>
+</g>
+<g class='cluster' id='clust8'>
+<title>cluster_L</title>
+<polygon fill='#161b21' points='70,-8 70,-79 628,-79 628,-8 70,-8' stroke='transparent' stroke-dasharray='5,2'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='349' y='-67'>Legend &#160;</text>
+</g>
+
+
+<g class='node' id='node2'>
+<title>UIScheduler</title>
+<path d='M130.5,-297C130.5,-297 71.5,-297 71.5,-297 65.5,-297 59.5,-291 59.5,-285 59.5,-285 59.5,-273 59.5,-273 59.5,-267 65.5,-261 71.5,-261 71.5,-261 130.5,-261 130.5,-261 136.5,-261 142.5,-267 142.5,-273 142.5,-273 142.5,-285 142.5,-285 142.5,-291 136.5,-297 130.5,-297' fill='#ff5050' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='101' y='-276.5'>UIScheduler</text>
+</g>
+
+
+<g class='node' id='node3'>
+<title>Storage</title>
+<path d='M203.5,-297C203.5,-297 168.5,-297 168.5,-297 162.5,-297 156.5,-291 156.5,-285 156.5,-285 156.5,-273 156.5,-273 156.5,-267 162.5,-261 168.5,-261 168.5,-261 203.5,-261 203.5,-261 209.5,-261 215.5,-267 215.5,-273 215.5,-273 215.5,-285 215.5,-285 215.5,-291 209.5,-297 203.5,-297' fill='#ff5050' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='186' y='-276.5'>Storage</text>
+</g>
+
+
+<g class='node' id='node4'>
+<title>WindowHistory</title>
+<path d='M312.5,-297C312.5,-297 241.5,-297 241.5,-297 235.5,-297 229.5,-291 229.5,-285 229.5,-285 229.5,-273 229.5,-273 229.5,-267 235.5,-261 241.5,-261 241.5,-261 312.5,-261 312.5,-261 318.5,-261 324.5,-267 324.5,-273 324.5,-273 324.5,-285 324.5,-285 324.5,-291 318.5,-297 312.5,-297' fill='#e0aaff' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='277' y='-276.5'>WindowHistory</text>
+</g>
+
+
+
+
+<g class='node' id='node6'>
+<title>WindowLocation</title>
+<path d='M444.5,-297C444.5,-297 367.5,-297 367.5,-297 361.5,-297 355.5,-291 355.5,-285 355.5,-285 355.5,-273 355.5,-273 355.5,-267 361.5,-261 367.5,-261 367.5,-261 444.5,-261 444.5,-261 450.5,-261 456.5,-267 456.5,-273 456.5,-273 456.5,-285 456.5,-285 456.5,-291 450.5,-297 444.5,-297' fill='#e0aaff' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='406' y='-276.5'>WindowLocation</text>
+</g>
+
+
+<g class='node' id='node14'>
+<title>Shutdown</title>
+<path d='M347.5,-218C347.5,-218 306.5,-218 306.5,-218 300.5,-218 294.5,-212 294.5,-206 294.5,-206 294.5,-194 294.5,-194 294.5,-188 300.5,-182 306.5,-182 306.5,-182 347.5,-182 347.5,-182 353.5,-182 359.5,-188 359.5,-194 359.5,-194 359.5,-206 359.5,-206 359.5,-212 353.5,-218 347.5,-218' fill='#ff5050' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='327' y='-197.5'>Shutdown</text>
+</g>
+
+
+<g class='node' id='node7'>
+<title>WebAssembly</title>
+<path d='M541.5,-297C541.5,-297 482.5,-297 482.5,-297 476.5,-297 470.5,-291 470.5,-285 470.5,-285 470.5,-273 470.5,-273 470.5,-267 476.5,-261 482.5,-261 482.5,-261 541.5,-261 541.5,-261 547.5,-261 553.5,-267 553.5,-273 553.5,-273 553.5,-285 553.5,-285 553.5,-291 547.5,-297 541.5,-297' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='512' y='-276.5'>WebAssembly</text>
+</g>
+
+
+<g class='node' id='node8'>
+<title>WebWorker</title>
+<path d='M626.5,-297C626.5,-297 579.5,-297 579.5,-297 573.5,-297 567.5,-291 567.5,-285 567.5,-285 567.5,-273 567.5,-273 567.5,-267 573.5,-261 579.5,-261 579.5,-261 626.5,-261 626.5,-261 632.5,-261 638.5,-267 638.5,-273 638.5,-273 638.5,-285 638.5,-285 638.5,-291 632.5,-297 626.5,-297' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='603' y='-276.5'>WebWorker</text>
+</g>
+
+
+
+
+
+<g class='node' id='node12'>
+<title>Resources</title>
+<path d='M126.5,-218C126.5,-218 79.5,-218 79.5,-218 73.5,-218 67.5,-212 67.5,-206 67.5,-206 67.5,-194 67.5,-194 67.5,-188 73.5,-182 79.5,-182 79.5,-182 126.5,-182 126.5,-182 132.5,-182 138.5,-188 138.5,-194 138.5,-194 138.5,-206 138.5,-206 138.5,-212 132.5,-218 126.5,-218' fill='#ff5050' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='103' y='-197.5'>Resources</text>
+</g>
+
+
+<g class='node' id='node11'>
+<title>Boot</title>
+<path d='M268,-218C268,-218 238,-218 238,-218 232,-218 226,-212 226,-206 226,-206 226,-194 226,-194 226,-188 232,-182 238,-182 238,-182 268,-182 268,-182 274,-182 280,-188 280,-194 280,-194 280,-206 280,-206 280,-212 274,-218 268,-218' fill='#ff5050' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='253' y='-197.5'>Boot</text>
+</g>
+
+
+<g class='node' id='node21'>
+<title>Vertx</title>
+<path d='M358,-139C358,-139 328,-139 328,-139 322,-139 316,-133 316,-127 316,-127 316,-115 316,-115 316,-109 322,-103 328,-103 328,-103 358,-103 358,-103 364,-103 370,-109 370,-115 370,-115 370,-127 370,-127 370,-133 364,-139 358,-139' fill='#e0aaff' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='343' y='-118.5'>Vert.x</text>
+</g>
+
+<g class='edge' id='edge20'>
+<title>Boot&#45;&gt;Vertx</title>
+<path d='M280.7,-175.3C294.4,-163.58 310.63,-149.7 323.08,-139.04' fill='none' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='white' points='278.3,-172.75 272.97,-181.91 282.85,-178.07 278.3,-172.75' stroke='white'/>
+</g>
+
+<g class='node' id='node13'>
+<title>Console</title>
+<path d='M199.5,-218C199.5,-218 164.5,-218 164.5,-218 158.5,-218 152.5,-212 152.5,-206 152.5,-206 152.5,-194 152.5,-194 152.5,-188 158.5,-182 164.5,-182 164.5,-182 199.5,-182 199.5,-182 205.5,-182 211.5,-188 211.5,-194 211.5,-194 211.5,-206 211.5,-206 211.5,-212 205.5,-218 199.5,-218' fill='#ff5050' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='182' y='-197.5'>Console</text>
+</g>
+
+
+
+<g class='node' id='node15'>
+<title>Scheduler</title>
+<path d='M432.5,-218C432.5,-218 385.5,-218 385.5,-218 379.5,-218 373.5,-212 373.5,-206 373.5,-206 373.5,-194 373.5,-194 373.5,-188 379.5,-182 385.5,-182 385.5,-182 432.5,-182 432.5,-182 438.5,-182 444.5,-188 444.5,-194 444.5,-194 444.5,-206 444.5,-206 444.5,-212 438.5,-218 432.5,-218' fill='#ff5050' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='409' y='-197.5'>Scheduler</text>
+</g>
+
+
+<g class='node' id='node16'>
+<title>Json</title>
+<path d='M501,-218C501,-218 471,-218 471,-218 465,-218 459,-212 459,-206 459,-206 459,-194 459,-194 459,-188 465,-182 471,-182 471,-182 501,-182 501,-182 507,-182 513,-188 513,-194 513,-194 513,-206 513,-206 513,-212 507,-218 501,-218' fill='#e0aaff' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='486' y='-197.5'>Json</text>
+</g>
+
+
+<g class='edge' id='edge21'>
+<title>Scheduler&#45;&gt;Vertx</title>
+<path d='M387.84,-174.31C377.97,-162.8 366.49,-149.4 357.61,-139.04' fill='none' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='white' points='385.19,-176.6 394.35,-181.91 390.5,-172.04 385.19,-176.6' stroke='white'/>
+</g>
+
+<g class='node' id='node17'>
+<title>Async</title>
+<path d='M569,-218C569,-218 539,-218 539,-218 533,-218 527,-212 527,-206 527,-206 527,-194 527,-194 527,-188 533,-182 539,-182 539,-182 569,-182 569,-182 575,-182 581,-188 581,-194 581,-194 581,-206 581,-206 581,-212 575,-218 569,-218' fill='#e0aaff' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='554' y='-197.5'>Async</text>
+</g>
+
+
+<g class='edge' id='edge22'>
+<title>Json&#45;&gt;Vertx</title>
+<path d='M449.68,-179.44C424.92,-166.11 392.67,-148.74 370.13,-136.61' fill='none' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='white' points='448.3,-182.68 458.77,-184.34 451.62,-176.51 448.3,-182.68' stroke='white'/>
+</g>
+
+<g class='node' id='node18'>
+<title>File</title>
+<path d='M637,-218C637,-218 607,-218 607,-218 601,-218 595,-212 595,-206 595,-206 595,-194 595,-194 595,-188 601,-182 607,-182 607,-182 637,-182 637,-182 643,-182 649,-188 649,-194 649,-194 649,-206 649,-206 649,-212 643,-218 637,-218' fill='#e0aaff' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='622' y='-197.5'>File</text>
+</g>
+
+
+
+
+
+
+
+
+<g class='node' id='node24'>
+<title>Stack</title>
+<path d='M438.5,-52C438.5,-52 247.5,-52 247.5,-52 241.5,-52 235.5,-46 235.5,-40 235.5,-40 235.5,-28 235.5,-28 235.5,-22 241.5,-16 247.5,-16 247.5,-16 438.5,-16 438.5,-16 444.5,-16 450.5,-22 450.5,-28 450.5,-28 450.5,-40 450.5,-40 450.5,-46 444.5,-52 438.5,-52' fill='#e0aaff' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='343' y='-31.5'>Used by the WebFX Stack or Extras</text>
+</g>
+
+
+<g class='node' id='node23'>
+<title>Kit</title>
+<path d='M209.5,-52C209.5,-52 90.5,-52 90.5,-52 84.5,-52 78.5,-46 78.5,-40 78.5,-40 78.5,-28 78.5,-28 78.5,-22 84.5,-16 90.5,-16 90.5,-16 209.5,-16 209.5,-16 215.5,-16 221.5,-22 221.5,-28 221.5,-28 221.5,-40 221.5,-40 221.5,-46 215.5,-52 209.5,-52' fill='#ff5050' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='150' y='-31.5'>Used by the WebFX Kit</text>
+</g>
+
+
+<g class='node' id='node25'>
+<title>Demos</title>
+<path d='M607.5,-52C607.5,-52 476.5,-52 476.5,-52 470.5,-52 464.5,-46 464.5,-40 464.5,-40 464.5,-28 464.5,-28 464.5,-22 470.5,-16 476.5,-16 476.5,-16 607.5,-16 607.5,-16 613.5,-16 619.5,-22 619.5,-28 619.5,-28 619.5,-40 619.5,-40 619.5,-46 613.5,-52 607.5,-52' fill='#f5dd90' stroke='black'/>
+<text font-family='monospace' font-size='10.00' text-anchor='middle' x='542' y='-31.5'>Used by the WebFX demos</text>
+</g>
+
+</g>
+</svg>
