@@ -2,46 +2,46 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg height='628pt' preserveAspectRatio='xMidYMid meet' viewBox='0.00 0.00 556.00 628.00' width='556pt' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
 <g class='graph' id='graph0' transform='scale(1 1) rotate(0) translate(4 624)'>
 <title>D</title>
-<polygon fill='white' points='-4,4 -4,-624 552,-624 552,4 -4,4' stroke='transparent'/>
+<polygon fill='#161b21' points='-4,4 -4,-624 552,-624 552,4 -4,4' stroke='transparent'/>
 <g class='cluster' id='clust1'>
 <title>cluster_C</title>
-<polygon fill='none' points='9,-269 9,-612 386,-612 386,-269 9,-269' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-600'> &#160;&#160;&#160;Client</text>
+<polygon fill='#161b21' points='9,-269 9,-612 386,-612 386,-269 9,-269' stroke='white'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-600'> &#160;&#160;&#160;Client</text>
 </g>
 <g class='cluster' id='clust2'>
 <title>cluster_UI</title>
-<polygon fill='none' points='17,-514 17,-585 378,-585 378,-514 17,-514' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-573'> &#160;&#160;&#160;UI</text>
+<polygon fill='#161b21' points='17,-514 17,-585 378,-585 378,-514 17,-514' stroke='white' stroke-dasharray='5,2'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-573'> &#160;&#160;&#160;UI</text>
 </g>
 <g class='cluster' id='clust4'>
 <title>cluster_NonUI</title>
-<polygon fill='none' points='17,-277 17,-506 378,-506 378,-277 17,-277' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-494'>Non&#45;UI &#160;&#160;&#160;&#160;&#160;</text>
+<polygon fill='#161b21' points='17,-277 17,-506 378,-506 378,-277 17,-277' stroke='white' stroke-dasharray='5,2'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197.5' y='-494'>Non&#45;UI &#160;&#160;&#160;&#160;&#160;</text>
 </g>
 <g class='cluster' id='clust8'>
 <title>cluster_SHR</title>
-<polygon fill='none' points='8,-181 8,-252 386,-252 386,-181 8,-181' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197' y='-240'>Shared &#160;&#160;&#160;&#160;&#160;&#160;</text>
+<polygon fill='#161b21' points='8,-181 8,-252 386,-252 386,-181 8,-181' stroke='white'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197' y='-240'>Shared &#160;&#160;&#160;&#160;&#160;&#160;</text>
 </g>
 <g class='cluster' id='clust10'>
 <title>cluster_S</title>
-<polygon fill='none' points='8,-8 8,-158 386,-158 386,-8 8,-8' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='197' y='-146'>Server</text>
+<polygon fill='#161b21' points='8,-8 8,-158 386,-158 386,-8 8,-8' stroke='white'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='197' y='-146'>Server</text>
 </g>
 <g class='cluster' id='clust11'>
 <title>cluster_I</title>
-<polygon fill='none' points='257,-16 257,-87 358,-87 358,-16 257,-16' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='307.5' y='-75'>Implementation</text>
+<polygon fill='#161b21' points='257,-16 257,-87 358,-87 358,-16 257,-16' stroke='white' stroke-dasharray='5,2'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='307.5' y='-75'>Implementation</text>
 </g>
 <g class='cluster' id='clust14'>
 <title>cluster_X</title>
-<polygon fill='none' points='394,-329 394,-435 540,-435 540,-329 394,-329' stroke='black'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='467' y='-423'>WebFX Extras</text>
+<polygon fill='#161b21' points='394,-329 394,-435 540,-435 540,-329 394,-329' stroke='white'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='467' y='-423'>WebFX Extras</text>
 </g>
 <g class='cluster' id='clust15'>
 <title>cluster_A</title>
-<polygon fill='none' points='402,-337 402,-408 532,-408 532,-337 402,-337' stroke='black' stroke-dasharray='5,2'/>
-<text font-family='monospace' font-size='10.00' text-anchor='middle' x='467' y='-396'>Visual API</text>
+<polygon fill='#161b21' points='402,-337 402,-408 532,-408 532,-337 402,-337' stroke='white' stroke-dasharray='5,2'/>
+<text fill='white' font-family='monospace' font-size='10.00' text-anchor='middle' x='467' y='-396'>Visual API</text>
 </g>
 
 <g class='node' id='node1'>
@@ -65,8 +65,8 @@
 
 <g class='edge' id='edge1'>
 <title>I18n&#45;&gt;Action</title>
-<path d='M153.23,-540C158.93,-540 164.64,-540 170.34,-540' fill='none' stroke='black'/>
-<polygon fill='black' points='170.61,-543.5 180.61,-540 170.61,-536.5 170.61,-543.5' stroke='black'/>
+<path d='M153.23,-540C158.93,-540 164.64,-540 170.34,-540' fill='none' stroke='white'/>
+<polygon fill='white' points='170.61,-543.5 180.61,-540 170.61,-536.5 170.61,-543.5' stroke='white'/>
 </g>
 
 <g class='node' id='node4'>
@@ -85,8 +85,8 @@
 
 <g class='edge' id='edge27'>
 <title>Action&#45;&gt;Authz</title>
-<path d='M207.64,-511.62C207.5,-500.76 207.35,-488.6 207.22,-479.04' fill='none' stroke='black'/>
-<polygon fill='black' points='204.15,-511.96 207.78,-521.91 211.15,-511.87 204.15,-511.96' stroke='black'/>
+<path d='M207.64,-511.62C207.5,-500.76 207.35,-488.6 207.22,-479.04' fill='none' stroke='white'/>
+<polygon fill='white' points='204.15,-511.96 207.78,-521.91 211.15,-511.87 204.15,-511.96' stroke='white'/>
 </g>
 
 
@@ -126,14 +126,14 @@
 
 <g class='edge' id='edge13'>
 <title>ORM&#45;&gt;DB</title>
-<path d='M275,-442.88C275,-415.64 275,-363.91 275,-331.56' fill='none' stroke='black'/>
-<polygon fill='black' points='278.5,-331.4 275,-321.4 271.5,-331.4 278.5,-331.4' stroke='black'/>
+<path d='M275,-442.88C275,-415.64 275,-363.91 275,-331.56' fill='none' stroke='white'/>
+<polygon fill='white' points='278.5,-331.4 275,-321.4 271.5,-331.4 278.5,-331.4' stroke='white'/>
 </g>
 
 <g class='edge' id='edge14'>
 <title>ORM&#45;&gt;QueryPush</title>
-<path d='M264.27,-442.84C255.06,-428.09 241.64,-406.62 231.13,-389.8' fill='none' stroke='black'/>
-<polygon fill='black' points='233.9,-387.64 225.63,-381.01 227.97,-391.35 233.9,-387.64' stroke='black'/>
+<path d='M264.27,-442.84C255.06,-428.09 241.64,-406.62 231.13,-389.8' fill='none' stroke='white'/>
+<polygon fill='white' points='233.9,-387.64 225.63,-381.01 227.97,-391.35 233.9,-387.64' stroke='white'/>
 </g>
 
 <g class='node' id='node24'>
@@ -144,8 +144,8 @@
 
 <g class='edge' id='edge28'>
 <title>ORM&#45;&gt;Visual</title>
-<path d='M302.1,-446.45C333.74,-430.63 386.48,-404.26 423.78,-385.61' fill='none' stroke='black'/>
-<polygon fill='black' points='425.53,-388.65 432.91,-381.04 422.4,-382.39 425.53,-388.65' stroke='black'/>
+<path d='M302.1,-446.45C333.74,-430.63 386.48,-404.26 423.78,-385.61' fill='none' stroke='white'/>
+<polygon fill='white' points='425.53,-388.65 432.91,-381.04 422.4,-382.39 425.53,-388.65' stroke='white'/>
 </g>
 
 <g class='node' id='node13'>
@@ -163,20 +163,20 @@
 
 <g class='edge' id='edge25'>
 <title>Push&#45;&gt;Com</title>
-<path d='M207,-269C207,-258.12 207,-246.18 207,-235.71' fill='none' stroke='black' stroke-dasharray='5,2'/>
-<polygon fill='black' points='210.5,-235.3 207,-225.3 203.5,-235.3 210.5,-235.3' stroke='black'/>
+<path d='M207,-269C207,-258.12 207,-246.18 207,-235.71' fill='none' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='white' points='210.5,-235.3 207,-225.3 203.5,-235.3 210.5,-235.3' stroke='white'/>
 </g>
 
 <g class='edge' id='edge16'>
 <title>QueryPush&#45;&gt;DB</title>
-<path d='M232.68,-344.91C238,-339.77 243.95,-334.01 249.67,-328.49' fill='none' stroke='black'/>
-<polygon fill='black' points='252.48,-330.63 257.24,-321.17 247.62,-325.6 252.48,-330.63' stroke='black'/>
+<path d='M232.68,-344.91C238,-339.77 243.95,-334.01 249.67,-328.49' fill='none' stroke='white'/>
+<polygon fill='white' points='252.48,-330.63 257.24,-321.17 247.62,-325.6 252.48,-330.63' stroke='white'/>
 </g>
 
 <g class='edge' id='edge15'>
 <title>QueryPush&#45;&gt;Push</title>
-<path d='M212.64,-344.91C212.05,-340.58 211.39,-335.83 210.74,-331.14' fill='none' stroke='black'/>
-<polygon fill='black' points='214.2,-330.59 209.37,-321.17 207.27,-331.55 214.2,-330.59' stroke='black'/>
+<path d='M212.64,-344.91C212.05,-340.58 211.39,-335.83 210.74,-331.14' fill='none' stroke='white'/>
+<polygon fill='white' points='214.2,-330.59 209.37,-321.17 207.27,-331.55 214.2,-330.59' stroke='white'/>
 </g>
 
 
@@ -191,8 +191,8 @@
 
 <g class='edge' id='edge26'>
 <title>Com&#45;&gt;QueryPushS</title>
-<path d='M207,-188.88C207,-182.79 207,-175.65 207,-168.22' fill='none' stroke='black' stroke-dasharray='5,2'/>
-<polygon fill='black' points='210.5,-168 207,-158 203.5,-168 210.5,-168' stroke='black'/>
+<path d='M207,-188.88C207,-182.79 207,-175.65 207,-168.22' fill='none' stroke='white' stroke-dasharray='5,2'/>
+<polygon fill='white' points='210.5,-168 207,-158 203.5,-168 210.5,-168' stroke='white'/>
 </g>
 
 
@@ -207,8 +207,8 @@
 
 <g class='edge' id='edge22'>
 <title>QueryPushS&#45;&gt;PushS</title>
-<path d='M181.54,-94.94C168.42,-86.15 152.23,-75.31 138.05,-65.81' fill='none' stroke='black'/>
-<polygon fill='black' points='139.78,-62.76 129.52,-60.1 135.88,-68.57 139.78,-62.76' stroke='black'/>
+<path d='M181.54,-94.94C168.42,-86.15 152.23,-75.31 138.05,-65.81' fill='none' stroke='white'/>
+<polygon fill='white' points='139.78,-62.76 129.52,-60.1 135.88,-68.57 139.78,-62.76' stroke='white'/>
 </g>
 
 <g class='node' id='node22'>
@@ -219,8 +219,8 @@
 
 <g class='edge' id='edge23'>
 <title>QueryPushS&#45;&gt;DBS</title>
-<path d='M207,-94.94C207,-87.54 207,-78.67 207,-70.38' fill='none' stroke='black'/>
-<polygon fill='black' points='210.5,-70.34 207,-60.34 203.5,-70.34 210.5,-70.34' stroke='black'/>
+<path d='M207,-94.94C207,-87.54 207,-78.67 207,-70.38' fill='none' stroke='white'/>
+<polygon fill='white' points='210.5,-70.34 207,-60.34 203.5,-70.34 210.5,-70.34' stroke='white'/>
 </g>
 
 <g class='node' id='node23'>
