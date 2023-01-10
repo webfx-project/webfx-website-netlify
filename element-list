@@ -47,7 +47,7 @@ dev.webfx.kit.mapper.peers.javafxweb.spi.gwt
 dev.webfx.kit.mapper.spi
 dev.webfx.kit.mapper.spi.impl.base
 dev.webfx.kit.mapper.spi.impl.gwt
-dev.webfx.kit.platform.audio.spi.impl.openjfx
+dev.webfx.kit.platform.audio.spi.impl.openjfxgwt
 dev.webfx.kit.platform.visibility.spi.impl.openjfx
 dev.webfx.kit.registry.javafxcontrols
 dev.webfx.kit.registry.javafxgraphics
