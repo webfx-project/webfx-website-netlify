@@ -485,7 +485,7 @@ public class TracerView {
     private String completeSpace(String text) {
         StringBuilder sb = new StringBuilder(text);
         while (sb.length() < 11)
-            sb.append("\u3000");
+            sb.append(" "); // was "\u3000" before, but sometimes printed as a rectangle on mobiles, so we just use a standard space
         return sb.toString();
     }
 
