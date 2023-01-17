@@ -1522,12 +1522,18 @@ public class SpaceFXView extends StackPane {
         }
         Helper.enableNode(hallOfFameBox, false);
         screenTimer.stop();
+        autoFire = false;
         running = true;
         timer.start();
+        userInteracted();
     }
 
     public void userInteracted() {
-        platformWaitsUserInteractionBeforeAllowingSound = false;
+        if (platformWaitsUserInteractionBeforeAllowingSound) {
+            platformWaitsUserInteractionBeforeAllowingSound = false;
+            if (PLAY_MUSIC && !isRunning())
+                WebFxUtil.playMusic(music);
+        }
     }
 
     public boolean isReadyToStart() { return readyToStart; }
@@ -1574,7 +1580,7 @@ public class SpaceFXView extends StackPane {
     public void setAutoFire(boolean autoFire) {
         if (this.autoFire != autoFire) {
             this.autoFire = autoFire;
-            if (autoFire)
+            if (autoFire && isRunning())
                 fireSpaceShipWeapon();
         }
     }
