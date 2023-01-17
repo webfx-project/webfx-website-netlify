@@ -3,6 +3,7 @@ package dev.webfx.lib.tracerframework;
 import dev.webfx.platform.console.Console;
 import dev.webfx.platform.resource.Resource;
 import dev.webfx.platform.uischeduler.UiScheduler;
+import dev.webfx.platform.useragent.UserAgent;
 import eu.hansolo.fx.odometer.Odometer;
 import eu.hansolo.fx.odometer.OdometerBuilder;
 import javafx.animation.*;
@@ -34,7 +35,15 @@ import java.util.function.Consumer;
 /**
  * @author Bruno Salmon
  */
-public class TracerView {
+public final class TracerView {
+
+    private final static boolean IS_BROWSER = UserAgent.isBrowser();
+    private final static String DEFAULT_TARGET = IS_BROWSER ? "JavaScript" : UserAgent.isNative() ? "Gluon/GraalVM" : "JVM";
+    private final static String DEFAULT_COMPILER = IS_BROWSER ? "GWT" : UserAgent.isNative() ? "Gluon/GraalVM" : "Javac";
+    private final static String THREADS_TEXT = IS_BROWSER ? "Workers" : "Threads";
+
+    private final static int AVAILABLE_PROCESSORS = UiScheduler.availableProcessors();
+
 
     static {
         Font.loadFont(Resource.toUrl("Bitwise-m19x.ttf", TracerView.class), 16);
@@ -254,7 +263,7 @@ public class TracerView {
     private Timeline odometerTimeline;
     private final Pane incrementButton = createSvgButton(SvgButtonPaths.getUpPath(),   this::increment);
     private final Pane decrementButton = createSvgButton(SvgButtonPaths.getDownPath(), this::decrement);
-    private final Text workersText = new Text("Workers"), webAssemblyText = new Text("WebAssembly");
+    private final Text threadsText = new Text(THREADS_TEXT), webAssemblyText = new Text("WebAssembly");
     private int requestedThreadCounts = -1;
     private boolean requestUsingWebAssembly;
     private final static double radius = 18, width = 76;
@@ -269,7 +278,7 @@ public class TracerView {
             if (requestedThreadCounts == -1)
                 requestedThreadCounts = tracer.getThreadsCount();
             Font settingsFont = Font.font("Arial", FontWeight.BOLD, null, 28);
-            workersText.setFont(settingsFont);
+            threadsText.setFont(settingsFont);
             webAssemblyText.setFont(settingsFont);
             odometer = OdometerBuilder.create()
                     .digits(2)
@@ -294,9 +303,11 @@ public class TracerView {
             settingsView = new GridPane();
             settingsView.setHgap(30);
             settingsView.setVgap(20);
-            settingsView.add(webAssemblyText, 0, 0);
-            settingsView.add(switchButton, 1, 0);
-            settingsView.add(workersText, 0, 1);
+            if (IS_BROWSER) {
+                settingsView.add(webAssemblyText, 0, 0);
+                settingsView.add(switchButton, 1, 0);
+            }
+            settingsView.add(threadsText, 0, 1);
             settingsView.add(new HBox(10, odometer, odometerButtons), 1, 1);
             settingsView.setAlignment(Pos.CENTER);
             overlayVBox.getChildren().add(0, settingsView);
@@ -382,7 +393,7 @@ public class TracerView {
 
     private void updatePlaceButtonBar() {
         placeButtonBar.getChildren().forEach(this::setOverlayFillOnShapes);
-        setOverlayFillOnShapes(exitButton, incrementButton, decrementButton, workersText, webAssemblyText);
+        setOverlayFillOnShapes(exitButton, incrementButton, decrementButton, threadsText, webAssemblyText);
         switchKnob.setFill(overlayFill == Color.WHITE || overlayFill == Color.YELLOW || overlayFill == Color.CYAN ? Color.BLACK : Color.WHITE);
         switchButton.setBackground(new Background(new BackgroundFill(overlayFill, new CornerRadii(radius), null)));
         showButton(pauseButton, !completed && !zoomingPaused);
@@ -465,19 +476,19 @@ public class TracerView {
                 long t = tracer.getLastFrameComputationTime();
                 showOverlayTexts(
                         completeSpace("Frame"), "" + snapshots.size() + " (" + (int) (100 * completion) + "%)",
-                        completeSpace("Iterations"), getIntegerWith2Decimals(count * 100 / MILLION) + "M",
+                        completeSpace("Iterations"), count == 0 ? null : getIntegerWith2Decimals(count * 100 / MILLION) + "M",
                         completeSpace("Time"), "" + getIntegerWith2Decimals(t * 100 / 1000) + "s",
-                        completeSpace("IPS"), "" + getIntegerWith2Decimals(count * 100 / t * 1_000 / MILLION) + "M",
+                        completeSpace("IPS"), count == 0 ? null : "" + getIntegerWith2Decimals(count * 100 / t * 1_000 / MILLION) + "M",
                         completeSpace("FPS"), "" + getIntegerWith2Decimals(1_000 * 100 / t),
-                        completeSpace("CPU cores"), UiScheduler.availableProcessors() <= 0 ? "Unrevealed" : "" + UiScheduler.availableProcessors(),
-                        completeSpace("Threads"), "" + tracer.getLastThreadsCount() + " worker" + (tracer.getLastThreadsCount() > 1 ? "s" : ""),
+                        completeSpace("CPU cores"), AVAILABLE_PROCESSORS <= 0 ? "Unrevealed" : "" + AVAILABLE_PROCESSORS,
+                        completeSpace(THREADS_TEXT), "" + tracer.getLastThreadsCount(),
                         completeSpace("UI source"), "JavaFX",
-                        completeSpace("UI target"), "JavaScript",
-                        completeSpace("Compiler"), "GWT",
+                        completeSpace("UI Compiler"), DEFAULT_COMPILER,
+                        completeSpace("UI target"), DEFAULT_TARGET,
                         completeSpace("Math source"), "Java",
-                        completeSpace("Math target"), tracer.wasLastFrameUsingWebAssembly() ? "WebAssembly" : "JavaScript",
-                        completeSpace("Compiler"), "TeaVM"
-                );
+                        completeSpace("Math Compiler"), IS_BROWSER ? "TeaVM" : DEFAULT_COMPILER,
+                        completeSpace("Math target"), IS_BROWSER && tracer.wasLastFrameUsingWebAssembly() ? "WebAssembly" : DEFAULT_TARGET
+                        );
             }
         }
     }
@@ -504,20 +515,27 @@ public class TracerView {
         //octx.setEffect(dropShadow);
         octx.setFont(overlayFont);
         int charCount = 0;
+        double yText = 20;
         for (int i = 0; i < texts.length && charCount < overlayCharactersMax; i++) {
             String text = texts[i];
-            int length = text.length();
-            charCount += length;
-            if (charCount > overlayCharactersMax)
-                text = text.substring(0, length - charCount + overlayCharactersMax) + CURSOR_CHAR;
-            octx.fillText(text, i % 2 == 0 ? 10 : 175, 20 + 20 * (i / 2));
+            boolean leftText = i % 2 == 0;
+            boolean rightText = !leftText;
+            if (text != null && (rightText || texts[i + 1] != null)) {
+                int length = text.length();
+                charCount += length;
+                if (charCount > overlayCharactersMax)
+                    text = text.substring(0, length - charCount + overlayCharactersMax) + CURSOR_CHAR;
+                octx.fillText(text, leftText ? 10 : 175, yText);
+                if (rightText)
+                    yText += 20;
+            }
         }
         // Cursor blinking animation
         if (overlayTextAnimationTimer != null && overlayCharactersMax > charCount + 2) {
             if (overlayCharactersMax > charCount + 220) // Stopping animation after a while
                 stopOverlayTextAnimation();
             else if (overlayCharactersMax / 20 % 2 == 0) // Blinking cursor every 20 frames
-                octx.fillText(CURSOR_CHAR, 10, 20 + 20 * (texts.length / 2));
+                octx.fillText(CURSOR_CHAR, 10, yText);
         }
         lastOverlayTexts = texts;
     }
