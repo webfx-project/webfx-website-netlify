@@ -1,9 +1,11 @@
 package dev.webfx.lib.tracerframework;
 
+import dev.webfx.platform.arch.Arch;
 import dev.webfx.platform.console.Console;
 import dev.webfx.platform.resource.Resource;
 import dev.webfx.platform.uischeduler.UiScheduler;
 import dev.webfx.platform.useragent.UserAgent;
+import dev.webfx.platform.os.OperatingSystem;
 import eu.hansolo.fx.odometer.Odometer;
 import eu.hansolo.fx.odometer.OdometerBuilder;
 import javafx.animation.*;
@@ -38,11 +40,11 @@ import java.util.function.Consumer;
 public final class TracerView {
 
     private final static boolean IS_BROWSER = UserAgent.isBrowser();
-    private final static String DEFAULT_TARGET = IS_BROWSER ? "JavaScript" : UserAgent.isNative() ? "Gluon/GraalVM" : "JVM";
     private final static String DEFAULT_COMPILER = IS_BROWSER ? "GWT" : UserAgent.isNative() ? "Gluon/GraalVM" : "Javac";
+    private final static String DEFAULT_TARGET = IS_BROWSER ? "JavaScript" : UserAgent.isNative() ? OperatingSystem.getOSName() : "JVM";
     private final static String THREADS_TEXT = IS_BROWSER ? "Workers" : "Threads";
 
-    private final static int AVAILABLE_PROCESSORS = UiScheduler.availableProcessors();
+    private final static int AVAILABLE_PROCESSORS = Arch.availableProcessors();
 
 
     static {
