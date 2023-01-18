@@ -1,5 +1,6 @@
 package dev.webfx.lib.tracerframework;
 
+import dev.webfx.platform.arch.Arch;
 import dev.webfx.platform.console.Console;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
@@ -21,7 +22,7 @@ public final class TracerEngine {
     private final Canvas canvas;
     private GraphicsContext ctx;
     private final PixelComputer pixelComputer;
-    private int threadsCount = Math.max(2, UiScheduler.availableProcessors());
+    private int threadsCount = Math.max(2, Arch.availableProcessors());
     private int lastThreadsCount;
     private Runnable onFinished;
     private AnimationTimer animationTimer;
