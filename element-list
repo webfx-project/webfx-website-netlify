@@ -55,6 +55,7 @@ dev.webfx.kit.registry.javafxmedia
 dev.webfx.kit.registry.javafxweb
 dev.webfx.kit.util.properties
 dev.webfx.kit.util.properties.conversion
+dev.webfx.kit.util.scene
 dev.webfx.platform.uischeduler.spi.impl.openjfx
 javafx.animation
 javafx.application
