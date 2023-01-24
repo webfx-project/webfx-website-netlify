@@ -2,10 +2,10 @@ package dev.webfx.lib.tracerframework;
 
 import dev.webfx.platform.arch.Arch;
 import dev.webfx.platform.console.Console;
+import dev.webfx.platform.os.OperatingSystem;
 import dev.webfx.platform.resource.Resource;
 import dev.webfx.platform.uischeduler.UiScheduler;
 import dev.webfx.platform.useragent.UserAgent;
-import dev.webfx.platform.os.OperatingSystem;
 import eu.hansolo.fx.odometer.Odometer;
 import eu.hansolo.fx.odometer.OdometerBuilder;
 import javafx.animation.*;
@@ -21,7 +21,6 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 import javafx.scene.text.Font;
@@ -60,10 +59,13 @@ public final class TracerView {
     private final static long TIME_BETWEEN_FRAME_NS = 16 * MILLIS_IN_NANO; // 16ms per frame
     private final static Background BLACK_BACKGROUND = new Background(new BackgroundFill(Color.BLACK, null, null));
     private final static Paint[] OVERLAY_FILLS = {
-            Color.WHITE, Color.BLACK, Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.CYAN, Color.PURPLE,
+            Color.WHITE, Color.BLACK, Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW,
+            Color.TRANSPARENT, // Added transparent so that it's possible to hide the overlay
+            /* Commented other fills options as the above are enough
+            Color.CYAN, Color.PURPLE,
             LinearGradient.valueOf("to bottom, blue, green, red"),
             LinearGradient.valueOf("to bottom, green, orange, brown"),
-            LinearGradient.valueOf("to bottom, red, purple, blue"),
+            LinearGradient.valueOf("to bottom, red, purple, blue"),*/
     };
     private Paint overlayFill = OVERLAY_FILLS[0];
 
