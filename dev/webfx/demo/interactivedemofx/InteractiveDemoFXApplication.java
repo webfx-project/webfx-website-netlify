@@ -1,4 +1,4 @@
-package dev.webfx.demo.demofxkitchensink;
+package dev.webfx.demo.interactivedemofx;
 
 import com.chrisnewland.demofx.DemoConfig;
 import com.chrisnewland.demofx.DemoFX;
@@ -18,7 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class DemoFXKitchenSinkApplication extends Application {
+public class InteractiveDemoFXApplication extends Application {
 
     private final StackPane root = new StackPane();
     private final Scene scene;
@@ -69,10 +69,10 @@ public class DemoFXKitchenSinkApplication extends Application {
     private DemoFX demoFX;
     private BorderPane demoPane;
 
-    public DemoFXKitchenSinkApplication() {
+    public InteractiveDemoFXApplication() {
         scene = DeviceSceneUtil.newScene(root, 800, 600);
         // Loading the Roboto font for demo buttons (this also ensures that the ♪ symbol will be correctly rendered)
-        Font.loadFont(Resource.toUrl("Roboto-Regular.ttf", DemoFXKitchenSinkApplication.class), 18);
+        Font.loadFont(Resource.toUrl("Roboto-Regular.ttf", InteractiveDemoFXApplication.class), 18);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class DemoFXKitchenSinkApplication extends Application {
         topBox.setSpaceLeft(true);
         topBox.setSpaceRight(true);
         StackPane.setMargin(topBox, new Insets(10));
-        stage.setTitle("DemoFX Kitchen Sink");
+        stage.setTitle("Interactive DemoFX");
         stage.setScene(scene);
         stage.show();
         runDemo("textwavesprite");
