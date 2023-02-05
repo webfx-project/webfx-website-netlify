@@ -31,6 +31,7 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -52,6 +53,8 @@ import java.util.List;
  */
 @DefaultProperty("children")
 public class Odometer extends Region {
+
+    private static final boolean                USE_IMAGE_CACHE = true; // better performance on low devices
 
     static {
         // Loading the font file to ensure we have the same Arial font metrics over all platforms (noticed some differences between Android & iOS)
@@ -101,6 +104,9 @@ public class Odometer extends Region {
     private              DoubleProperty         value;
     private              BooleanBinding         showing;
     private              List<OdometerObserver> observers;
+    private final Image[] cacheDigitImages = USE_IMAGE_CACHE ? new Image[10] : null;
+    private final Image[] cacheDecimalImages = USE_IMAGE_CACHE ? new Image[10] : null;
+
 
 
     // ******************** Constructors **************************************
@@ -118,7 +124,8 @@ public class Odometer extends Region {
         value                   = new DoublePropertyBase(0) {
             @Override protected void invalidated() {
                 if (get() < 0) { set(0); }
-                redraw();
+                if (width > 0 && height > 0)
+                    redraw();
             }
             @Override public Object getBean() { return Odometer.this; }
             @Override public String getName() { return "value"; }
@@ -342,6 +349,8 @@ public class Odometer extends Region {
         }
         return decimalForegroundColor;
     }
+
+    private String oldNumbString;
     
     private void drawDigits() {
         int    pos   = 1;
@@ -353,8 +362,6 @@ public class Odometer extends Region {
         String numbString;
         int    prevNum;
 
-        backgroundCtx.clearRect(0, 0, width, height);
-
         for (i = 0; i < _decimals; i++) { value *= 10; }
 
         numb       = (int) Math.floor(value);
@@ -362,38 +369,70 @@ public class Odometer extends Region {
         numbString = Integer.toString(numb);
         prevNum    = 9;
 
-        if ((int) oldValue != (int) getValue()) { fireOdometerEvent(DIGIT_CHANGED_EVENT); }
+        boolean valueChanged = (int) oldValue != (int) getValue();
+        if (valueChanged) { fireOdometerEvent(DIGIT_CHANGED_EVENT); }
 
         for (i = 0; i < _decimals + _digits; i++) {
             int idx = numbString.length() - i - 1;
             num = idx < 0 ? 0 : Integer.parseInt(numbString.substring(idx, numbString.length() - i));
             if (prevNum != 9) { fraction = 0; }
             boolean isDecimal = i < _decimals;
-            drawDigit(num, isDecimal,width - digitWidth * pos, -(verticalSpace * (1 + fraction) + zeroOffset));
+            boolean numChanged = oldNumbString == null || fraction != 0;
+            if (!numChanged) {
+                int oldIdx = oldNumbString.length() - i - 1;
+                int oldNum = oldIdx < 0 ? 0 : Integer.parseInt(oldNumbString.substring(oldIdx, oldNumbString.length() - i));
+                numChanged = oldNum != num;
+            }
+            if (numChanged)
+                drawDigit(num, isDecimal, width - digitWidth * pos, -(verticalSpace * (1 + fraction) + zeroOffset));
             pos++;
             prevNum = num;
         }
+
+        if (oldNumbString == null || value == numb)
+            oldNumbString = numbString;
     }
 
+    private boolean ctxInitialized;
     private void drawDigit(int digit, boolean decimal, double x, double y) {
+        if (!ctxInitialized)
+            initDigitCtx(backgroundCtx);
         backgroundCtx.setFill(decimal ? getDecimalBackgroundColor() : getDigitBackgroundColor());
-        backgroundCtx.fillRect(0, 0, digitWidth, extendedHeight);
-
-        backgroundCtx.setLineWidth(1);
-        backgroundCtx.setStroke(Color.web("#f0f0f0"));
-        backgroundCtx.strokeLine(0, 0, 0, extendedHeight);
-        backgroundCtx.setStroke(Color.web("#202020"));
-        backgroundCtx.strokeLine(digitWidth, 0, digitWidth, extendedHeight);
-
-        backgroundCtx.setTextAlign(TextAlignment.CENTER);
-        //backgroundCtx.setTextBaseline(VPos.CENTER); // Doesn't produce the same result in HTML, so we change the baseline to BOTTOM (and updated zeroOffset accordingly)
-        backgroundCtx.setTextBaseline(VPos.BOTTOM);   // Produces the best similar result between JavaFX and HTML
-        backgroundCtx.setFont(font);
-        backgroundCtx.setFill(decimal ? getDecimalForegroundColor() : getDigitForegroundColor());
-
+        backgroundCtx.fillRect(x, y, digitWidth, extendedHeight);
+        backgroundCtx.strokeLine(x, 0, x, extendedHeight);
+        backgroundCtx.strokeLine(x + digitWidth, 0, x + digitWidth, extendedHeight);
         for (int i = -1 ; i <= 2 ; i++) {
-            backgroundCtx.fillText(Integer.toString((digit + i + 10) % 10), x + digitWidth * 0.5, y + verticalSpace * (i + 1) + verticalSpace / 2);
+            int drawingDigit = (digit + i + 10) % 10;
+            if (!USE_IMAGE_CACHE) {
+                backgroundCtx.setFill(decimal ? getDecimalForegroundColor() : getDigitForegroundColor());
+                // Scaling up the font to a big size (ex: 243px) can take a perceptible time on low devices => better to use USE_IMAGE_CACHE in this case
+                backgroundCtx.fillText(Integer.toString(drawingDigit), x + digitWidth * 0.5, y + verticalSpace * (i + 1) + verticalSpace / 2);
+            } else {
+                Image[] cacheImages = decimal ? cacheDecimalImages : cacheDigitImages;
+                Image cacheImage = cacheImages[drawingDigit];
+                if (cacheImage == null || cacheImage.getWidth() != digitWidth || cacheImage.getHeight() != digitHeight) {
+                    Canvas cacheCanvas = new Canvas(digitWidth, digitHeight);
+                    GraphicsContext cacheCtx = cacheCanvas.getGraphicsContext2D();
+                    initDigitCtx(cacheCtx);
+                    cacheCtx.setFill(decimal ? getDecimalBackgroundColor() : getDigitBackgroundColor());
+                    cacheCtx.fillRect(0, 0, digitWidth, digitHeight);
+                    cacheCtx.setFill(decimal ? getDecimalForegroundColor() : getDigitForegroundColor());
+                    cacheCtx.fillText(Integer.toString(drawingDigit), digitWidth * 0.5, digitHeight);
+                    cacheImages[drawingDigit] = cacheImage = cacheCanvas.snapshot(null, null);
+                }
+                backgroundCtx.drawImage(cacheImage, x, y + verticalSpace * (i + 1) + verticalSpace / 2 - digitHeight);
+            }
         }
+    }
+
+    private void initDigitCtx(GraphicsContext ctx) {
+        ctx.setTextAlign(TextAlignment.CENTER);
+        //ctx.setTextBaseline(VPos.CENTER); // Doesn't produce the same result in HTML, so we change the baseline to BOTTOM (and updated zeroOffset accordingly)
+        ctx.setTextBaseline(VPos.BOTTOM);   // Produces the best similar result between JavaFX and HTML
+        ctx.setFont(font);
+        backgroundCtx.setLineWidth(1);
+        backgroundCtx.setStroke(Color.web("#808080"));
+        ctxInitialized = true;
     }
 
     // ******************** Event handling ************************************
@@ -437,11 +476,11 @@ public class Odometer extends Region {
             digitHeight    = Math.floor(height * 0.85);
             digitWidth     = Math.floor(height * 0.68);
             width          = digitWidth * (_digits + _decimals);
-            font           = Font.font("Arial", digitHeight * (UserAgent.isBrowser() ? 0.95 : 1)); // Observing a 5% size increase on screen in HTML compared to JavaFX, so compensate that
+            font           = Font.font("Arial", digitHeight);
             columnHeight   = digitHeight * 3;
             extendedHeight = columnHeight * 1.1;
             verticalSpace  = digitHeight * 0.91;
-            zeroOffset     = -digitHeight * 0.7;
+            zeroOffset     = -digitHeight * 0.71;
 
             pane.setMaxSize(width, height);
             pane.setPrefSize(width, height);
@@ -449,6 +488,7 @@ public class Odometer extends Region {
 
             backgroundCanvas.setWidth(width);
             backgroundCanvas.setHeight(height);
+            initDigitCtx(backgroundCtx);
 
             foreground.setWidth(width);
             foreground.setHeight(height);
@@ -459,6 +499,7 @@ public class Odometer extends Region {
 
     private void redraw() {
         foreground.setFill(foregroundGradient);
+        oldNumbString = null;
         drawDigits();
     }
 }
