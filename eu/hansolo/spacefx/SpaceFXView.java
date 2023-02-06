@@ -1904,8 +1904,9 @@ public class SpaceFXView extends StackPane {
         }
     }
 
+    private static final long         ENEMY_SPAWN_INTERVAL = (long) (250_000_000L * SCALING_FACTOR);
+
     private class Wave {
-        private static final long         ENEMY_SPAWN_INTERVAL = 250_000_000L;
         private final        WaveType     waveType1;
         private final        WaveType     waveType2;
         private final        SpaceShip    spaceShip;
@@ -2198,8 +2199,8 @@ public class SpaceFXView extends StackPane {
             height     = image.getHeight() * scale;
             size       = Math.max(width, height);
             radius     = size * 0.5;
-            imgCenterX = image.getWidth() * 0.5;
-            imgCenterY = image.getHeight() * 0.5;
+            imgCenterX = width * 0.5;
+            imgCenterY = height * 0.5;
         }
 
         @Override public void respawn() {
