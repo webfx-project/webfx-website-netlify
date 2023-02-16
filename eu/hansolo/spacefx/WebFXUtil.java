@@ -3,17 +3,16 @@ package eu.hansolo.spacefx;
 import dev.webfx.platform.audio.Audio;
 import dev.webfx.platform.audio.AudioService;
 import dev.webfx.platform.resource.Resource;
-import dev.webfx.platform.scheduler.Scheduler;
 import dev.webfx.platform.shutdown.Shutdown;
 import javafx.scene.image.Image;
 
 /**
  * @author Bruno Salmon
  */
-final class WebFxUtil {
+final class WebFXUtil {
 
     static String toResourceUrl(String resourceName) {
-        return Resource.toUrl(resourceName, WebFxUtil.class);
+        return Resource.toUrl(resourceName, WebFXUtil.class);
     }
 
     static Audio newMusic(String resourceName) {
@@ -77,33 +76,7 @@ final class WebFxUtil {
         return true;
     }
 
-    static double getImageWidth(Image image) {
-        if (image == null)
-            return 0;
-        double width = image.getWidth();
-        if (width <= 0)
-            width = image.getRequestedWidth();
-        return width;
-    }
-
-    static double getImageHeight(Image image) {
-        if (image == null)
-            return 0;
-        double height = image.getHeight();
-        if (height <= 0)
-            height = image.getRequestedHeight();
-        return height;
-    }
-
-    static long nanoTime() {
-        return Scheduler.nanoTime();
-    }
-
     static void exit(int status) {
-/*
-        Platform.exit();
-        System.exit(status);
-*/
         Shutdown.softwareShutdown(true, status);
     }
 

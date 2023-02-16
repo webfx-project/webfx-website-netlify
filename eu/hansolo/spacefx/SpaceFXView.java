@@ -21,14 +21,14 @@ import dev.webfx.platform.scheduler.Scheduled;
 import dev.webfx.platform.scheduler.Scheduler;
 import dev.webfx.platform.useragent.UserAgent;
 import dev.webfx.platform.util.uuid.Uuid;
-import javafx.animation.AnimationTimer;
-import javafx.animation.PauseTransition;
+import dev.webfx.platform.visibility.Visibility;
+import dev.webfx.platform.visibility.VisibilityState;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
+import javafx.geometry.*;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -39,14 +39,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static eu.hansolo.spacefx.Config.*;
@@ -75,11 +80,12 @@ public class SpaceFXView extends StackPane {
     private              List<Player>               hallOfFame;
     private              VBox                       hallOfFameBox;
     private              Level                      level;
+    private              Difficulty                 initialDifficulty = Difficulty.EASY;
     private              Difficulty                 minLevelDifficulty;
     private              Difficulty                 levelDifficulty;
-    private final        Image                      startImg                = WebFxUtil.newImage("startscreen.jpg");
-    private final        Image                      gameOverImg             = WebFxUtil.newImage("gameover.jpg");
-    private final        Image                      hallOfFameImg           = WebFxUtil.newImage("halloffamescreen.jpg");
+    private final        Image                      startImg                = WebFXUtil.newImage("startscreen.jpg");
+    private final        Image                      gameOverImg             = WebFXUtil.newImage("gameover.jpg");
+    private final        Image                      hallOfFameImg           = WebFXUtil.newImage("halloffamescreen.jpg");
     //private final        Image                      startImg                = isDesktop() ? WebFxUtil.newImage("startscreen.jpg")) : isIOS() ? WebFxUtil.newImage("startscreenIOS.jpg")) : WebFxUtil.newImage("startscreenAndroid.png"));
     //private final        Image                      gameOverImg             = isDesktop() ? WebFxUtil.newImage("gameover.jpg")) : isIOS() ? WebFxUtil.newImage("gameoverIOS.jpg")) : WebFxUtil.newImage("gameoverAndroid.png"));
     //private final        Image                      hallOfFameImg           = isDesktop() ? WebFxUtil.newImage("halloffamescreen.jpg")) : isIOS() ? WebFxUtil.newImage("halloffamescreenIOS.jpg")) : WebFxUtil.newImage("halloffamescreenAndroid.png"));
@@ -194,11 +200,19 @@ public class SpaceFXView extends StackPane {
     private              double                     shipTouchGoalY;
     private              EventHandler<TouchEvent>   touchHandler;
     private              boolean                    autoFire; // WebFX addition for touch devices
+    private              boolean                    gamePaused;
+    private              long                       gamePauseNanoTime;
+    private              long                       gamePauseNanoDuration;
+    private              Text                       difficultyText;
+    private              Pane                       incrementDifficultyButton;
+    private              Pane                       decrementDifficultyButton;
+    private              VBox                       difficultyBox;
+    private              Pane                       volumeButton;
 
     // ******************** Constructor ***************************************
     public SpaceFXView(Stage stage) {
-        gameMusic = WebFxUtil.newMusic("RaceToMars.mp3");
-        music = WebFxUtil.newMusic("CityStomper.mp3");
+        gameMusic = WebFXUtil.newMusic("RaceToMars.mp3");
+        music = WebFXUtil.newMusic("CityStomper.mp3");
 
         init(stage);
         initOnBackground(stage);
@@ -207,11 +221,18 @@ public class SpaceFXView extends StackPane {
             if(!value) {
                 screenTimer.stop();
                 timer.stop();
-                WebFxUtil.stopMusic(music);
+                WebFXUtil.stopMusic(music);
             }
         });
 
-        Pane pane = new Pane(canvas, shipTouchArea, hallOfFameBox, playerInitialsLabel, playerInitialsDigits, saveInitialsButton);
+        Pane pane = new Pane(canvas, difficultyBox, volumeButton, shipTouchArea, hallOfFameBox, playerInitialsLabel, playerInitialsDigits, saveInitialsButton) {
+            @Override
+            protected void layoutChildren() {
+                super.layoutChildren();
+                layoutInArea(difficultyBox, 0, isRunning() ? 0 : -140 * SCALING_FACTOR, WIDTH, HEIGHT, 0, HPos.CENTER, VPos.TOP);
+                layoutInArea(volumeButton, WIDTH / 2 - 40 * SCALING_FACTOR, 45 * SCALING_FACTOR, 0, 0, 0, HPos.CENTER, VPos.TOP);
+            }
+        };
         pane.setMaxSize(WIDTH, HEIGHT);
         pane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
@@ -223,16 +244,18 @@ public class SpaceFXView extends StackPane {
             });
         } else {*/
         shipTouchArea.setOnMouseDragged(e -> {
-            shipTouchGoalX = e.getX();
-            shipTouchGoalY = e.getY();
-            double deltaGoalX = shipTouchGoalX - spaceShip.x;
-            double deltaGoalY = shipTouchGoalY - spaceShip.y;
-            double biggestDelta = Math.max(Math.abs(deltaGoalX), Math.abs(deltaGoalY));
-            if (biggestDelta > 0) {
-                spaceShip.vX = deltaGoalX / biggestDelta * 5;
-                spaceShip.vY = deltaGoalY / biggestDelta * 5;
+            if (!isGamePaused()) {
+                shipTouchGoalX = e.getX();
+                shipTouchGoalY = e.getY();
+                double deltaGoalX = shipTouchGoalX - spaceShip.x;
+                double deltaGoalY = shipTouchGoalY - spaceShip.y;
+                double biggestDelta = Math.max(Math.abs(deltaGoalX), Math.abs(deltaGoalY));
+                if (biggestDelta > 0) {
+                    spaceShip.vX = deltaGoalX / biggestDelta * 5;
+                    spaceShip.vY = deltaGoalY / biggestDelta * 5;
+                }
+                setAutoFire(true); // Activating auto fire when using mouse or touch (if not already done)
             }
-            setAutoFire(true); // Activating auto fire when using mouse or touch (if not already done)
         });
         // Space shield and rocket fire management
         if (!IS_BROWSER) // The problem with setOnDragDetected() in the browser is that it drags & move the shipTouchArea node
@@ -249,12 +272,11 @@ public class SpaceFXView extends StackPane {
         getChildren().add(pane);
 
         // Start playing background music
-        if (PLAY_MUSIC && !waitUserInteractionBeforePlayingSound) { WebFxUtil.playMusic(music); }
+        applyGameMusic();
 
         // Start timer to toggle between start screen and hall of fame
         screenTimer.start();
     }
-
 
     // ******************** Methods *******************************************
     public void init(Stage stage) {
@@ -262,7 +284,7 @@ public class SpaceFXView extends StackPane {
         running          = false;
         gameOverScreen   = false;
         levelBossActive  = false;
-        lastScreenToggle = WebFxUtil.nanoTime();
+        //lastScreenToggle = System.nanoTime();
         hallOfFameScreen = false;
 
         playerInitialsLabel = new Label("Type in your initials");
@@ -310,40 +332,54 @@ public class SpaceFXView extends StackPane {
         hallOfFameBox.relocate((WIDTH - hallOfFameBox.getPrefWidth()) * 0.5, (HEIGHT - hallOfFameBox.getPrefHeight()) * 0.5 -HEIGHT * 0.1);
         Helper.enableNode(hallOfFameBox, false);
 
+        difficultyText = new Text();
+        difficultyText.setFont(Fonts.spaceBoy(WIDTH / 10));
+
+        incrementDifficultyButton = createSvgButton(
+                "M 10.419383,2.7920361 0.44372521,19.200594 c -0.82159289,1.471294 0.2330761,3.327162 1.95783919,3.327162 H 21.793496 c 1.716023,0 2.779433,-1.847128 1.95784,-3.327162 L 14.335061,2.7920361 c -0.847814,-1.5295618 -3.059123,-1.5295618 -3.915678,0 z",
+                true, false, this::increaseDifficulty);
+        decrementDifficultyButton = createSvgButton(
+                "M 10.322413,21.701054 0.34675429,5.2924958 c -0.8215929,-1.471294 0.2330761,-3.327162 1.95783921,-3.327162 H 21.696526 c 1.716023,0 2.779433,1.847127 1.95784,3.327162 L 14.238091,21.701054 c -0.847814,1.529561 -3.059123,1.529561 -3.915678,0 z",
+                true, false, this::decreaseDifficulty);
+        difficultyBox = new VBox(30 * SCALING_FACTOR, incrementDifficultyButton, difficultyText, decrementDifficultyButton);
+        difficultyBox.setAlignment(Pos.CENTER);
+
+        volumeButton = createSvgButton(null,false, true, () -> toggleMuteSound());
+        displayVolume();
+
         // background music
-        WebFxUtil.setLooping(music, true);
-        WebFxUtil.setVolume(music, 1);
+        WebFXUtil.setLooping(music, true);
+        WebFXUtil.setVolume(music, 1);
 
         // for game background music
-        WebFxUtil.setLooping(gameMusic, true);
-        WebFxUtil.setVolume(gameMusic, 1);
+        WebFXUtil.setLooping(gameMusic, true);
+        WebFXUtil.setVolume(gameMusic, 1);
 
         // Load sounds
-        laserSound              = WebFxUtil.newSound("laserSound.mp3");
-        rocketLaunchSound       = WebFxUtil.newSound("rocketLaunch.mp3");
-        rocketExplosionSound    = WebFxUtil.newSound("rocketExplosion.mp3");
-        enemyLaserSound         = WebFxUtil.newSound("enemyLaserSound.mp3");
-        enemyBombSound          = WebFxUtil.newSound("enemyBomb.mp3");
-        explosionSound          = WebFxUtil.newSound("explosionSound.mp3");
-        asteroidExplosionSound  = WebFxUtil.newSound("asteroidExplosion.mp3");
-        torpedoHitSound         = WebFxUtil.newSound("hit.mp3");
-        spaceShipExplosionSound = WebFxUtil.newSound("spaceShipExplosionSound.mp3");
-        enemyBossExplosionSound = WebFxUtil.newSound("enemyBossExplosion.mp3");
-        gameoverSound           = WebFxUtil.newSound("gameover.mp3");
-        shieldHitSound          = WebFxUtil.newSound("shieldhit.mp3");
-        enemyHitSound           = WebFxUtil.newSound("enemyBossShieldHit.mp3");
-        deflectorShieldSound    = WebFxUtil.newSound("deflectorshieldSound.mp3");
-        levelBossTorpedoSound   = WebFxUtil.newSound("levelBossTorpedo.mp3");
-        levelBossRocketSound    = WebFxUtil.newSound("levelBossRocket.mp3");
-        levelBossBombSound      = WebFxUtil.newSound("levelBossBomb.mp3");
-        levelBossExplosionSound = WebFxUtil.newSound("explosionSound1.mp3");
-        shieldUpSound           = WebFxUtil.newSound("shieldUp.mp3");
-        lifeUpSound             = WebFxUtil.newSound("lifeUp.mp3");
-        levelUpSound            = WebFxUtil.newSound("levelUp.mp3");
-        bonusSound              = WebFxUtil.newSound("bonus.mp3");
+        laserSound              = WebFXUtil.newSound("laserSound.mp3");
+        rocketLaunchSound       = WebFXUtil.newSound("rocketLaunch.mp3");
+        rocketExplosionSound    = WebFXUtil.newSound("rocketExplosion.mp3");
+        enemyLaserSound         = WebFXUtil.newSound("enemyLaserSound.mp3");
+        enemyBombSound          = WebFXUtil.newSound("enemyBomb.mp3");
+        explosionSound          = WebFXUtil.newSound("explosionSound.mp3");
+        asteroidExplosionSound  = WebFXUtil.newSound("asteroidExplosion.mp3");
+        torpedoHitSound         = WebFXUtil.newSound("hit.mp3");
+        spaceShipExplosionSound = WebFXUtil.newSound("spaceShipExplosionSound.mp3");
+        enemyBossExplosionSound = WebFXUtil.newSound("enemyBossExplosion.mp3");
+        gameoverSound           = WebFXUtil.newSound("gameover.mp3");
+        shieldHitSound          = WebFXUtil.newSound("shieldhit.mp3");
+        enemyHitSound           = WebFXUtil.newSound("enemyBossShieldHit.mp3");
+        deflectorShieldSound    = WebFXUtil.newSound("deflectorshieldSound.mp3");
+        levelBossTorpedoSound   = WebFXUtil.newSound("levelBossTorpedo.mp3");
+        levelBossRocketSound    = WebFXUtil.newSound("levelBossRocket.mp3");
+        levelBossBombSound      = WebFXUtil.newSound("levelBossBomb.mp3");
+        levelBossExplosionSound = WebFXUtil.newSound("explosionSound1.mp3");
+        shieldUpSound           = WebFXUtil.newSound("shieldUp.mp3");
+        lifeUpSound             = WebFXUtil.newSound("lifeUp.mp3");
+        levelUpSound            = WebFXUtil.newSound("levelUp.mp3");
+        bonusSound              = WebFXUtil.newSound("bonus.mp3");
 
         // Variable initialization
-        backgroundViewportY           = SWITCH_POINT;
         canvas                        = new Canvas(WIDTH, HEIGHT);
         ctx                           = canvas.getGraphicsContext2D();
         stars                         = new Star[NO_OF_STARS];
@@ -373,26 +409,12 @@ public class SpaceFXView extends StackPane {
         rocketExplosions              = new ArrayList<>();
         hits                          = new ArrayList<>();
         enemyHits                     = new ArrayList<>();
-        score                         = 0;
-        levelKills                    = 0;
-        kills                         = 0;
-        hasBeenHit                    = false;
-        noOfLifes                     = NO_OF_LIFES;
-        noOfShields                   = NO_OF_SHIELDS;
-        bigTorpedosEnabled            = false;
-        starburstEnabled              = false;
-        lastShieldActivated           = 0;
-        lastEnemyBossAttack           = WebFxUtil.nanoTime();
-        lastShieldUp                  = WebFxUtil.nanoTime();
-        lastLifeUp                    = WebFxUtil.nanoTime();
-        lastWave                      = WebFxUtil.nanoTime();
-        lastTorpedoFired              = WebFxUtil.nanoTime();
-        lastStarBlast                 = WebFxUtil.nanoTime();
-        lastBigTorpedoBonus           = WebFxUtil.nanoTime();
-        lastStarburstBonus            = WebFxUtil.nanoTime();
         long deltaTime                = FPS_60;
         timer = new AnimationTimer() {
-            @Override public void handle(final long now) {
+            @Override public void handle(long now) {
+                if (gamePaused)
+                    return;
+                now = gameNanoTime();
                 if (now > lastTimerCall) {
                     lastTimerCall = now + deltaTime;
                     updateAndDraw();
@@ -424,16 +446,15 @@ public class SpaceFXView extends StackPane {
             }
         };
         screenTimer = new AnimationTimer() {
-            @Override public void handle(final long now) {
+            @Override public void handle(long now) {
+                if (lastScreenToggle == 0)
+                    lastScreenToggle = now;
                 if (!running && now > lastScreenToggle + SCREEN_TOGGLE_INTERVAL) {
                     hallOfFameScreen = !hallOfFameScreen;
-                    if (hallOfFameScreen) {
-                        ctx.drawImage(hallOfFameImg, 0, 0, WIDTH, HEIGHT);
-                        Helper.enableNode(hallOfFameBox, true);
-                    } else {
-                        ctx.drawImage(startImg, 0, 0, WIDTH, HEIGHT);
-                        Helper.enableNode(hallOfFameBox, false);
-                    }
+                    Helper.enableNode(hallOfFameBox, hallOfFameScreen);
+                    Helper.enableNode(volumeButton, !hallOfFameScreen);
+                    Helper.enableNode(difficultyBox, !hallOfFameScreen);
+                    ctx.drawImage(hallOfFameScreen ? hallOfFameImg : startImg, 0, 0, WIDTH, HEIGHT);
                     lastScreenToggle = now;
                 }
             }
@@ -478,7 +499,16 @@ public class SpaceFXView extends StackPane {
         ctx.setFont(scoreFont);
         ctx.setTextAlign(TextAlignment.CENTER);
         ctx.setTextBaseline(VPos.CENTER);
-        WebFxUtil.onImageLoaded(startImg, () -> ctx.drawImage(startImg, 0, 0, WIDTH, HEIGHT));
+        WebFXUtil.onImageLoaded(startImg, () -> ctx.drawImage(startImg, 0, 0, WIDTH, HEIGHT));
+        Visibility.addVisibilityListener(visibilityState -> {
+            if (isRunning()) {
+                if (visibilityState == VisibilityState.HIDDEN) {
+                    pauseGame();
+                } else {
+                    resumeGame();
+                }
+            }
+        });
     }
 
     private void initOnBackground(Stage stage) {
@@ -527,17 +557,16 @@ public class SpaceFXView extends StackPane {
 
         level2 = new Level2();
         level3 = new Level3();
-        initLevel();
 
         deflectorShieldRadius   = deflectorShieldImg.getWidth() * 0.5;
         spaceShip               = new SpaceShip(spaceshipImg, spaceshipUpImg, spaceshipDownImg);
 
         // Adjust audio clip volumes
-        WebFxUtil.setVolume(explosionSound, 0.5); // explosionSound.mp3
-        WebFxUtil.setVolume(torpedoHitSound, 0.5); // hit.mp3
-        WebFxUtil.setVolume(laserSound, 0.3); // laserSound.mp3
-        WebFxUtil.setVolume(spaceShipExplosionSound, 0.5); // spaceShipExplosionSound.mp3
-        WebFxUtil.setVolume(asteroidExplosionSound, 0.7); // asteroidExplosion.mp3
+        WebFXUtil.setVolume(explosionSound, 0.5); // explosionSound.mp3
+        WebFXUtil.setVolume(torpedoHitSound, 0.5); // hit.mp3
+        WebFXUtil.setVolume(laserSound, 0.3); // laserSound.mp3
+        WebFXUtil.setVolume(spaceShipExplosionSound, 0.5); // spaceShipExplosionSound.mp3
+        WebFXUtil.setVolume(asteroidExplosionSound, 0.7); // asteroidExplosion.mp3
 
         initAsteroids();
 
@@ -553,6 +582,8 @@ public class SpaceFXView extends StackPane {
         shipTouchArea.setStroke(Color.TRANSPARENT);
         shipTouchArea.setFill(Color.TRANSPARENT);
         readyToStart = true;
+
+        displayDifficulty();
 /*
         });
         initTask.setOnFailed(e -> readyToStart = false);
@@ -1113,13 +1144,15 @@ public class SpaceFXView extends StackPane {
         });
 
         // Draw Spaceship, score, lifes and shields
+        if (hasBeenHit) {
+            spaceShipExplosion.update();
+            spaceShipExplosion.drawFrame(ctx, spaceShipExplosionImg, SPACESHIP_EXPLOSION_FRAME_WIDTH, SPACESHIP_EXPLOSION_FRAME_HEIGHT, spaceShip.x - SPACESHIP_EXPLOSION_FRAME_CENTER, spaceShip.y - SPACESHIP_EXPLOSION_FRAME_CENTER);
+            if (noOfLifes > 0)
+                spaceShip.respawn();
+        }
         if (noOfLifes > 0) {
             // Draw Spaceship or it's explosion
-            if (hasBeenHit) {
-                spaceShipExplosion.update();
-                spaceShipExplosion.drawFrame(ctx, spaceShipExplosionImg, SPACESHIP_EXPLOSION_FRAME_WIDTH, SPACESHIP_EXPLOSION_FRAME_HEIGHT, spaceShip.x - SPACESHIP_EXPLOSION_FRAME_CENTER, spaceShip.y - SPACESHIP_EXPLOSION_FRAME_CENTER);
-                spaceShip.respawn();
-            } else {
+            if (!hasBeenHit) {
                 // Draw space ship
                 spaceShip.update();
 
@@ -1136,7 +1169,7 @@ public class SpaceFXView extends StackPane {
                 ctx.restore();
 
                 if (spaceShip.shield) {
-                    long delta = WebFxUtil.nanoTime() - lastShieldActivated;
+                    long delta = gameNanoTime() - lastShieldActivated;
                     if (delta > DEFLECTOR_SHIELD_TIME) {
                         spaceShip.shield = false;
                         noOfShields--;
@@ -1153,14 +1186,14 @@ public class SpaceFXView extends StackPane {
                 }
 
                 if (bigTorpedosEnabled) {
-                    long delta = WebFxUtil.nanoTime() - lastBigTorpedoBonus;
+                    long delta = gameNanoTime() - lastBigTorpedoBonus;
                     if (delta > BIG_TORPEDO_TIME) {
                         bigTorpedosEnabled = false;
                     }
                 }
 
                 if (starburstEnabled) {
-                    long delta = WebFxUtil.nanoTime() - lastStarburstBonus;
+                    long delta = gameNanoTime() - lastStarburstBonus;
                     if (delta > STARBURST_TIME) {
                         starburstEnabled = false;
                     }
@@ -1198,28 +1231,28 @@ public class SpaceFXView extends StackPane {
         }*/
 
         // Remove sprites
-        enemyBosses.removeIf(sprite -> sprite.toBeRemoved);
-        levelBosses.removeIf(sprite -> sprite.toBeRemoved);
-        bonuses.removeIf(sprite -> sprite.toBeRemoved);
-        torpedos.removeIf(sprite -> sprite.toBeRemoved);
-        bigTorpedos.removeIf(sprite -> sprite.toBeRemoved);
-        rockets.removeIf(sprite -> sprite.toBeRemoved);
-        enemyTorpedos.removeIf(sprite -> sprite.toBeRemoved);
-        enemyBombs.removeIf(sprite -> sprite.toBeRemoved);
-        enemyBossTorpedos.removeIf(sprite -> sprite.toBeRemoved);
-        enemyBossRockets.removeIf(sprite -> sprite.toBeRemoved);
-        levelBossTorpedos.removeIf(sprite -> sprite.toBeRemoved);
-        levelBossRockets.removeIf(sprite -> sprite.toBeRemoved);
-        levelBossBombs.removeIf(sprite -> sprite.toBeRemoved);
-        levelBossExplosions.removeIf(sprite -> sprite.toBeRemoved);
-        enemyBossExplosions.removeIf(sprite -> sprite.toBeRemoved);
-        enemyRocketExplosions.removeIf(sprite -> sprite.toBeRemoved);
-        rocketExplosions.removeIf(sprite -> sprite.toBeRemoved);
-        explosions.removeIf(sprite -> sprite.toBeRemoved);
-        asteroidExplosions.removeIf(sprite -> sprite.toBeRemoved);
-        upExplosions.removeIf(sprite -> sprite.toBeRemoved);
-        hits.removeIf(sprite -> sprite.toBeRemoved);
-        enemyHits.removeIf(sprite -> sprite.toBeRemoved);
+        removeIf(enemyBosses, sprite -> sprite.toBeRemoved);
+        removeIf(levelBosses, sprite -> sprite.toBeRemoved);
+        removeIf(bonuses, sprite -> sprite.toBeRemoved);
+        removeIf(torpedos, sprite -> sprite.toBeRemoved);
+        removeIf(bigTorpedos, sprite -> sprite.toBeRemoved);
+        removeIf(rockets, sprite -> sprite.toBeRemoved);
+        removeIf(enemyTorpedos, sprite -> sprite.toBeRemoved);
+        removeIf(enemyBombs, sprite -> sprite.toBeRemoved);
+        removeIf(enemyBossTorpedos, sprite -> sprite.toBeRemoved);
+        removeIf(enemyBossRockets, sprite -> sprite.toBeRemoved);
+        removeIf(levelBossTorpedos, sprite -> sprite.toBeRemoved);
+        removeIf(levelBossRockets, sprite -> sprite.toBeRemoved);
+        removeIf(levelBossBombs, sprite -> sprite.toBeRemoved);
+        removeIf(levelBossExplosions, sprite -> sprite.toBeRemoved);
+        removeIf(enemyBossExplosions, sprite -> sprite.toBeRemoved);
+        removeIf(enemyRocketExplosions, sprite -> sprite.toBeRemoved);
+        removeIf(rocketExplosions, sprite -> sprite.toBeRemoved);
+        removeIf(explosions, sprite -> sprite.toBeRemoved);
+        removeIf(asteroidExplosions, sprite -> sprite.toBeRemoved);
+        removeIf(upExplosions, sprite -> sprite.toBeRemoved);
+        removeIf(hits, sprite -> sprite.toBeRemoved);
+        removeIf(enemyHits, sprite -> sprite.toBeRemoved);
 
         // Remove waves
         wavesToRemove.clear();
@@ -1285,8 +1318,9 @@ public class SpaceFXView extends StackPane {
     }
 
     private void spawnStarburstBonus() {
-        if (level.equals(level1)) { return; }
-        bonuses.add(new StarburstBonus(starburstBonusImg));
+        //if (level.equals(level1)) { return; }
+        if (levelDifficulty != Difficulty.EASY)
+            bonuses.add(new StarburstBonus(starburstBonusImg));
     }
 
     private void spawnWave() {
@@ -1306,7 +1340,7 @@ public class SpaceFXView extends StackPane {
                     waves.add(new Wave(WAVE_TYPES_MEDIUM[RND.nextInt(WAVE_TYPES_MEDIUM.length)], spaceShip, levelDifficulty.noOfEnemies, level.getEnemyImages()[RND.nextInt(level.getEnemyImages().length)], true, true));
                 }
                 break;
-            case NORMAL:
+            case RELAX:
                 if (levelKills < NO_OF_KILLS_STAGE_1 && !levelBossActive) {
                     if (RND.nextBoolean()) {
                         waves.add(new Wave(WAVE_TYPES_MEDIUM[RND.nextInt(WAVE_TYPES_MEDIUM.length)], spaceShip, levelDifficulty.noOfEnemies, level.getEnemyImages()[RND.nextInt(level.getEnemyImages().length)], false, false));
@@ -1329,9 +1363,7 @@ public class SpaceFXView extends StackPane {
                     }
                 }
                 break;
-            case HARD:
-            case PRO:
-            case IMPOSSIBLE:
+            default: // HARD, HERO, etc...
                 if (levelKills < NO_OF_KILLS_STAGE_1 && !levelBossActive) {
                     if (RND.nextBoolean()) {
                         waves.add(new Wave(WAVE_TYPES_FAST[RND.nextInt(WAVE_TYPES_FAST.length)], spaceShip, levelDifficulty.noOfEnemies, level.getEnemyImages()[RND.nextInt(level.getEnemyImages().length)], true, false));
@@ -1396,23 +1428,22 @@ public class SpaceFXView extends StackPane {
 
     // Game Over
     private void gameOver() {
-        timer.stop();
         running = false;
         gameOverScreen = true;
-        if (PLAY_MUSIC && gameMusic != null) {
-            gameMusic.pause();
-        }
 
         boolean isInHallOfFame = score > hallOfFame.get(2).score;
 
-        PauseTransition pauseBeforeGameOverScreen = new PauseTransition(Duration.millis(1000));
+        PauseTransition pauseBeforeGameOverScreen = new PauseTransition(Duration.millis(2000));
         pauseBeforeGameOverScreen.setOnFinished(e -> {
             ctx.clearRect(0, 0, WIDTH, HEIGHT);
             ctx.drawImage(gameOverImg, 0, 0, WIDTH, HEIGHT);
             ctx.setFill(SPACEFX_COLOR);
             ctx.setFont(scoreFont);
             ctx.fillText(Long.toString(score), scorePosX, HEIGHT * 0.25);
+            timer.stop();
             playSound(gameoverSound);
+            if (PLAY_MUSIC)
+                WebFXUtil.stopMusic(gameMusic);
         });
         pauseBeforeGameOverScreen.play();
 
@@ -1449,6 +1480,7 @@ public class SpaceFXView extends StackPane {
         ctx.drawImage(startImg, 0, 0, WIDTH, HEIGHT);
 
         Helper.enableNode(hallOfFameBox, false);
+        Helper.enableNode(volumeButton, true);
         gameOverScreen = false;
         explosions.clear();
         torpedos.clear();
@@ -1469,14 +1501,14 @@ public class SpaceFXView extends StackPane {
         hasBeenHit  = false;
         noOfLifes   = NO_OF_LIFES;
         noOfShields = NO_OF_SHIELDS;
-        initLevel();
+        //initLevel();
         score       = 0;
         kills       = 0;
         levelKills  = 0;
-        if (PLAY_MUSIC && !waitUserInteractionBeforePlayingSound) {
-            WebFxUtil.playMusic(music);
-        }
+        applyGameMusic();
 
+        displayDifficulty();
+        displayVolume();
         screenTimer.start();
     }
 
@@ -1487,18 +1519,65 @@ public class SpaceFXView extends StackPane {
 
     private void setLevel(Level level) {
         this.level = level;
-        levelDifficulty = level.getDifficulty();
         // Minimal difficulty management
-        if (minLevelDifficulty == null) // happens when initialising the game
-            minLevelDifficulty = levelDifficulty; // actually = level1 difficulty = easy
-        else if (level == level1) { // returning to level 1 => increasing minimal difficulty
-            Difficulty[] difficulties = Difficulty.values();
+        if (minLevelDifficulty == null) { // happens when initialising the game
+            minLevelDifficulty = initialDifficulty; // initial difficulty = easy
+            displayDifficulty();
+        } else if (level == level1) { // returning to level 1 => increasing minimal difficulty
             // Increasing minimal difficulty, unless we already reach the most difficulty level
-            if (minLevelDifficulty != difficulties[difficulties.length - 1])
-                minLevelDifficulty = difficulties[minLevelDifficulty.ordinal() + 1];
+            increaseDifficulty();
+        } else
+            displayDifficulty();
+
+        levelDifficulty = minLevelDifficulty;
+    }
+
+    private void increaseDifficulty() {
+        Difficulty difficulty = isRunning() ? minLevelDifficulty : initialDifficulty;
+        Difficulty[] difficulties = Difficulty.values();
+        // Increasing minimal difficulty, unless we already reach the most difficulty level
+        if (difficulty != difficulties[difficulties.length - 1])
+            difficulty = difficulties[difficulty.ordinal() + 1];
+        if (isRunning())
+            minLevelDifficulty = difficulty;
+        else
+            initialDifficulty = difficulty;
+        displayDifficulty();
+    }
+
+    private void decreaseDifficulty() {
+        Difficulty difficulty = isRunning() ? minLevelDifficulty : initialDifficulty;
+        Difficulty[] difficulties = Difficulty.values();
+        // Increasing minimal difficulty, unless we already reach the most difficulty level
+        if (difficulty != difficulties[0])
+            difficulty = difficulties[difficulty.ordinal() - 1];
+        if (isRunning())
+            minLevelDifficulty = difficulty;
+        else
+            initialDifficulty = difficulty;
+        displayDifficulty();
+    }
+
+    private void displayDifficulty() {
+        boolean isRunning = isRunning();
+        Difficulty difficulty = isRunning ? minLevelDifficulty : initialDifficulty;
+        difficultyText.setText(difficulty.name());
+        difficultyText.setFill(difficulty.color);
+        double opacity = isRunning ? 0 : 1;
+        difficultyBox.setOpacity(opacity);
+        incrementDifficultyButton.setOpacity(opacity);
+        decrementDifficultyButton.setOpacity(opacity);
+        difficultyBox.setMouseTransparent(isRunning);
+        difficultyBox.requestLayout(); // In case the vertical position has changed (
+        if (isRunning) {
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().setAll(
+                    new KeyFrame(Duration.seconds(2), new KeyValue(difficultyBox.opacityProperty(), 1)),
+                    new KeyFrame(Duration.seconds(5), new KeyValue(difficultyBox.opacityProperty(), 0))
+            );
+            timeline.play();
         }
-        if (levelDifficulty.ordinal() < minLevelDifficulty.ordinal())
-            levelDifficulty = minLevelDifficulty;
+        lastScreenToggle = 0; // resetting the screen toggle (especially when user increased or decreased difficulty)
     }
 
     // Create Hall of Fame entry
@@ -1518,19 +1597,62 @@ public class SpaceFXView extends StackPane {
         return entry;
     }
 
+    private void playMusic(Audio music) {
+        if (PLAY_MUSIC && !soundMuted && !waitUserInteractionBeforePlayingSound && !gamePaused)
+            WebFXUtil.playMusic(music);
+        else
+            pauseMusic(music);
+    }
+
+    private void pauseMusic(Audio music) {
+        WebFXUtil.pauseMusic(music);
+    }
 
     // Play audio clips
-    private void playSound(final Audio Audio) {
-        if (PLAY_SOUND) {
-            WebFxUtil.playSound(Audio);
+    private void playSound(final Audio sound) {
+        if (PLAY_SOUND && !soundMuted && !waitUserInteractionBeforePlayingSound && !gamePaused)
+            WebFXUtil.playSound(sound);
+    }
+
+    private boolean soundMuted;
+
+    void muteSound(boolean soundMuted) {
+        this.soundMuted = soundMuted;
+        displayVolume();
+        applyGameMusic();
+    }
+
+    void toggleMuteSound() {
+        if (waitUserInteractionBeforePlayingSound) {
+            waitUserInteractionBeforePlayingSound = false;
+            applyGameMusic();
+        } else
+            muteSound(!soundMuted);
+        lastScreenToggle = 0; // resetting the screen toggle (especially when user increased or decreased difficulty)
+    }
+
+    private void displayVolume() {
+        volumeButton.getChildren().set(0, createSvgPath(
+                soundMuted ? "m 42.82353,13.646772 18.82353,22.588237 m 0,-22.588237 -18.82353,22.588237 M 33.411765,2.3526543 17.411764,16.470302 H 2.3529403 V 34.352655 H 17.411764 l 16.000001,14.117648 z"
+                        :                                            "m 53.5,5 q 16.409227,19.9254884 0,39.8509784 M 33.411765,2.3526543 17.411764,16.470302 H 2.3529403 V 34.352655 H 17.411764 l 16.000001,14.117648 z"
+                , false, true));
+    }
+
+    private void applyGameMusic() {
+        if (isRunning()) {
+            pauseMusic(music);
+            playMusic(gameMusic);
+        } else {
+            pauseMusic(gameMusic);
+            playMusic(music);
         }
     }
 
     private long lastNextLevelTime; // To fix possible multiple shortly calls to nextLevel()
     // Iterate through levels
     private void nextLevel() {
-        long now = System.currentTimeMillis();
-        if (now > lastNextLevelTime + 10000) { // Waiting at least 10s since last call to go to next level
+        long now = gameNanoTime();
+        if (now > lastNextLevelTime + 10_000_000_000L) { // Waiting at least 10s since last call (because sometimes nextLevel() is called multiple times)
             lastNextLevelTime = now;
             playSound(levelUpSound);
             if (level3.equals(level)) {
@@ -1547,18 +1669,36 @@ public class SpaceFXView extends StackPane {
     // ******************** Public Methods ************************************
     public void startGame() {
         if (gameOverScreen) { return; }
+        running = true;
+        initLevel();
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
         if (SHOW_BACKGROUND) {
             level.getBackgroundImg().drawImage(ctx, 0, 0);
         }
-        if (PLAY_MUSIC) {
-            WebFxUtil.pauseMusic(music);
-            WebFxUtil.playMusic(gameMusic);
-        }
+        pauseMusic(music);
+        playMusic(gameMusic);
         Helper.enableNode(hallOfFameBox, false);
+        Helper.enableNode(volumeButton, false);
         screenTimer.stop();
+        score                         = 0;
+        levelKills                    = 0;
+        kills                         = 0;
+        hasBeenHit                    = false;
+        noOfLifes                     = NO_OF_LIFES;
+        noOfShields                   = NO_OF_SHIELDS;
+        bigTorpedosEnabled            = false;
+        starburstEnabled              = false;
+        lastShieldActivated           = 0;
+        lastEnemyBossAttack           = gameNanoTime();
+        lastShieldUp                  = gameNanoTime();
+        lastLifeUp                    = gameNanoTime();
+        lastWave                      = gameNanoTime();
+        lastTorpedoFired              = gameNanoTime();
+        lastStarBlast                 = gameNanoTime();
+        lastBigTorpedoBonus           = gameNanoTime();
+        lastStarburstBonus            = gameNanoTime();
+        backgroundViewportY           = SWITCH_POINT;
         autoFire = false;
-        running = true;
         timer.start();
         userInteracted();
     }
@@ -1566,8 +1706,7 @@ public class SpaceFXView extends StackPane {
     public void userInteracted() {
         if (waitUserInteractionBeforePlayingSound) {
             waitUserInteractionBeforePlayingSound = false;
-            if (PLAY_MUSIC && !isRunning())
-                WebFxUtil.playMusic(music);
+            applyGameMusic();
         }
     }
 
@@ -1587,15 +1726,15 @@ public class SpaceFXView extends StackPane {
 
     public void activateSpaceShipShield() {
         if (noOfShields > 0 && !spaceShip.shield) {
-            lastShieldActivated = WebFxUtil.nanoTime();
+            lastShieldActivated = gameNanoTime();
             spaceShip.shield = true;
             playSound(deflectorShieldSound);
         }
     }
 
     public void fireSpaceShipRocket() {
-        // Max 5 rockets at the same time
-        if (rockets.size() < MAX_NO_OF_ROCKETS) {
+        // Max 3 rockets at the same time -- Only 1 rocket in auto fire (otherwise too easy) except when level boss fired torpedos
+        if (rockets.size() < MAX_NO_OF_ROCKETS + (autoFire && !spaceShip.shield && levelBossTorpedos.isEmpty() ? -2 : 0)) {
             spawnRocket(spaceShip.x, spaceShip.y);
         }
     }
@@ -1603,12 +1742,17 @@ public class SpaceFXView extends StackPane {
     private Scheduled autoFireScheduled;
 
     public void fireSpaceShipWeapon() {
-        if (WebFxUtil.nanoTime() - lastTorpedoFired >= MIN_TORPEDO_INTERVAL) {
-            spawnWeapon(spaceShip.x, spaceShip.y);
-            lastTorpedoFired = WebFxUtil.nanoTime();
-        }
         if (autoFireScheduled != null)
             autoFireScheduled.cancel();
+        if (gamePaused)
+            return;
+        if (gameNanoTime() - lastTorpedoFired >= MIN_TORPEDO_INTERVAL) {
+            spawnWeapon(spaceShip.x, spaceShip.y);
+            lastTorpedoFired = gameNanoTime();
+            // Auto firing rockets when autoFire is on and levelBoss has fired rockets and torpedo
+            if (autoFire && (spaceShip.shield || !levelBossRockets.isEmpty() || !levelBossTorpedos.isEmpty()))
+                fireSpaceShipRocket();
+        }
         if (autoFire && isRunning())
             autoFireScheduled = Scheduler.scheduleDelay(300, this::fireSpaceShipWeapon);
     }
@@ -1622,15 +1766,14 @@ public class SpaceFXView extends StackPane {
     }
 
     public void mouseFire(MouseEvent e) {
-        if (score > 0) {
-            if (spaceShip.isVulnerable)
-                activateSpaceShipShield();
+        if (isRunning() && score > 0 && !isGamePaused() && gameNanoTime() > spaceShip.born + SpaceShip.INVULNERABLE_TIME / 2) {
+            activateSpaceShipShield();
             fireSpaceShipRocket();
         }
     }
 
     public void fireStarburst() {
-        if (!starburstEnabled || (WebFxUtil.nanoTime() - lastStarBlast < MIN_STARBURST_INTERVAL)) { return; }
+        if (!starburstEnabled || (gameNanoTime() - lastStarBlast < MIN_STARBURST_INTERVAL)) { return; }
         double offset    = Math.toRadians(-135);
         double angleStep = Math.toRadians(22.5);
         double angle     = 0;
@@ -1644,7 +1787,7 @@ public class SpaceFXView extends StackPane {
             bigTorpedos.add(new BigTorpedo(bigTorpedoImg, x, y, vX * BIG_TORPEDO_SPEED, vY * BIG_TORPEDO_SPEED, Math.toDegrees(angle)));
             angle += angleStep;
         }
-        lastStarBlast = WebFxUtil.nanoTime();
+        lastStarBlast = gameNanoTime();
         playSound(laserSound);
     }
 
@@ -1733,7 +1876,7 @@ public class SpaceFXView extends StackPane {
             radius = size * 0.5;
             radiusX = width / 2;
             radiusY = height / 2;
-            WebFxUtil.onImageLoadedIfLoading(image.getImage(), () -> {
+            WebFXUtil.onImageLoadedIfLoading(image.getImage(), () -> {
                 computeImageSizeDependentFields();
                 update();
             });
@@ -1784,13 +1927,11 @@ public class SpaceFXView extends StackPane {
             countX++;
             if (countX == maxFrameX) {
                 countY++;
-                if (countX == maxFrameX && countY == maxFrameY) {
-                    toBeRemoved = true;
-                }
-                countX = 0;
                 if (countY == maxFrameY) {
+                    toBeRemoved = true;
                     countY = 0;
                 }
+                countX = 0;
             }
         }
 
@@ -1938,7 +2079,7 @@ public class SpaceFXView extends StackPane {
             this.enemies           = new ArrayList<>(noOfEnemies);
             this.smartEnemies      = new ArrayList<>();
             this.enemiesSpawned    = 0;
-            this.alternateWaveType = null == waveType2 ? false : true;
+            this.alternateWaveType = waveType2 != null;
             this.toggle            = true;
             this.isRunning         = true;
         }
@@ -1946,15 +2087,15 @@ public class SpaceFXView extends StackPane {
 
         public void update(final GraphicsContext ctx) {
             if (isRunning) {
-                if (enemiesSpawned < noOfEnemies && WebFxUtil.nanoTime() - lastEnemySpawned > ENEMY_SPAWN_INTERVAL) {
+                if (enemiesSpawned < noOfEnemies && gameNanoTime() - lastEnemySpawned > ENEMY_SPAWN_INTERVAL) {
                     Enemy enemy = spawnEnemy();
                     if (smartEnemies.size() < levelDifficulty.noOfSmartEnemies && RND.nextBoolean()) {
                         smartEnemies.add(enemy);
                     }
-                    lastEnemySpawned = WebFxUtil.nanoTime();
+                    lastEnemySpawned = gameNanoTime();
                 }
 
-                enemies.forEach(enemy -> {
+                forEach(enemies, enemy -> {
                     if (level.getIndex() > 1 &&
                         !enemy.smart &&
                         enemy.frameCounter > waveType1.totalFrames * 0.35 &&
@@ -2028,6 +2169,8 @@ public class SpaceFXView extends StackPane {
                             } else {
                                 spaceShipExplosion.countX = 0;
                                 spaceShipExplosion.countY = 0;
+                                shipTouchGoalX = 0;
+                                shipTouchGoalY = 0;
                                 spaceShipExplosion.x      = spaceShip.x - SPACESHIP_EXPLOSION_FRAME_WIDTH;
                                 spaceShipExplosion.y      = spaceShip.y - SPACESHIP_EXPLOSION_FRAME_HEIGHT;
                                 playSound(spaceShipExplosionSound);
@@ -2042,7 +2185,7 @@ public class SpaceFXView extends StackPane {
                     }
                 });
 
-                enemies.removeIf(enemy -> enemy.toBeRemoved);
+                removeIf(enemies, enemy -> enemy.toBeRemoved);
                 if (enemies.isEmpty() && enemiesSpawned == noOfEnemies) { isRunning = false; }
             }
         }
@@ -2081,7 +2224,7 @@ public class SpaceFXView extends StackPane {
 
 
         @Override protected void init() {
-            this.born         = WebFxUtil.nanoTime();
+            this.born         = gameNanoTime();
             this.x            = WIDTH * 0.5;
             computeImageSizeDependentFields();
             this.vX           = 0;
@@ -2099,12 +2242,12 @@ public class SpaceFXView extends StackPane {
             this.vX           = 0;
             this.vY           = 0;
             this.shield       = false;
-            this.born         = WebFxUtil.nanoTime();
+            this.born         = gameNanoTime();
             this.isVulnerable = false;
         }
 
         @Override public void update() {
-            if (!isVulnerable && WebFxUtil.nanoTime() - born > INVULNERABLE_TIME) {
+            if (!isVulnerable && gameNanoTime() - born > INVULNERABLE_TIME) {
                 isVulnerable = true;
             }
             x += vX;
@@ -2339,7 +2482,7 @@ public class SpaceFXView extends StackPane {
             vX = 0;
             vY = 1;
 
-            lastShot = WebFxUtil.nanoTime();
+            lastShot = gameNanoTime();
         }
 
         @Override public void update() {
@@ -2377,7 +2520,7 @@ public class SpaceFXView extends StackPane {
                 vY = y - oldY;
             }
 
-            long now = WebFxUtil.nanoTime();
+            long now = gameNanoTime();
 
             if (canFire) {
                 if (now - lastShot > TIME_BETWEEN_SHOTS) {
@@ -2431,7 +2574,9 @@ public class SpaceFXView extends StackPane {
             x += vX;
             y += vY;
 
-            if (spaceShip.isVulnerable && !hasBeenHit) {
+            if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
+                toBeRemoved = true;
+            } else if (spaceShip.isVulnerable && !hasBeenHit) {
                 boolean hit;
                 if (spaceShip.shield) {
                     hit = isHitCircleCircle(x, y, radius, spaceShip.x, spaceShip.y, deflectorShieldRadius);
@@ -2451,8 +2596,6 @@ public class SpaceFXView extends StackPane {
                         }
                     }
                 }
-            } else if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
-                toBeRemoved = true;
             }
         }
     }
@@ -2468,7 +2611,9 @@ public class SpaceFXView extends StackPane {
             x += vX;
             y += vY;
 
-            if (spaceShip.isVulnerable && !hasBeenHit) {
+            if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
+                toBeRemoved = true;
+            } else if (spaceShip.isVulnerable && !hasBeenHit) {
                 boolean hit;
                 if (spaceShip.shield) {
                     hit = isHitCircleCircle(x, y, radius, spaceShip.x, spaceShip.y, deflectorShieldRadius);
@@ -2488,8 +2633,6 @@ public class SpaceFXView extends StackPane {
                         }
                     }
                 }
-            } else if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
-                toBeRemoved = true;
             }
         }
     }
@@ -2552,7 +2695,7 @@ public class SpaceFXView extends StackPane {
 
             r = Math.toDegrees(Math.atan2(vY, vX)) - 90;
 
-            long now = WebFxUtil.nanoTime();
+            long now = gameNanoTime();
 
             if (hasRockets) {
                 if (now - lastRocket > TIME_BETWEEN_ROCKETS) {
@@ -2610,7 +2753,9 @@ public class SpaceFXView extends StackPane {
             x += vX;
             y += vY;
 
-            if (spaceShip.isVulnerable && !hasBeenHit) {
+            if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
+                toBeRemoved = true;
+            } else if (spaceShip.isVulnerable && !hasBeenHit) {
                 boolean hit;
                 if (spaceShip.shield) {
                     hit = isHitCircleCircle(x, y, radius, spaceShip.x, spaceShip.y, deflectorShieldRadius);
@@ -2630,8 +2775,6 @@ public class SpaceFXView extends StackPane {
                         }
                     }
                 }
-            } else if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
-                toBeRemoved = true;
             }
         }
     }
@@ -2649,7 +2792,7 @@ public class SpaceFXView extends StackPane {
         public EnemyBossRocket(final SpaceShip spaceShip, final ScaledImage image, final double x, final double y) {
             super(image, x - image.getWidth() / 2.0, y, 0, 1);
             this.spaceShip = spaceShip;
-            this.born      = WebFxUtil.nanoTime();
+            this.born      = gameNanoTime();
         }
 
 
@@ -2668,7 +2811,9 @@ public class SpaceFXView extends StackPane {
 
             r = Math.toDegrees(Math.atan2(vY, vX)) - 90;
 
-            if (spaceShip.isVulnerable && !hasBeenHit) {
+            if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
+                toBeRemoved = true;
+            } else if (spaceShip.isVulnerable && !hasBeenHit) {
                 boolean hit;
                 if (spaceShip.shield) {
                     hit = isHitCircleCircle(x, y, radius, spaceShip.x, spaceShip.y, deflectorShieldRadius);
@@ -2688,10 +2833,8 @@ public class SpaceFXView extends StackPane {
                         }
                     }
                 }
-            } else if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
-                toBeRemoved = true;
             }
-            if (WebFxUtil.nanoTime() - born > rocketLifespan) {
+            if (gameNanoTime() - born > rocketLifespan) {
                 enemyRocketExplosions.add(new EnemyRocketExplosion(x - ENEMY_ROCKET_EXPLOSION_FRAME_WIDTH * 0.25, y - ENEMY_ROCKET_EXPLOSION_FRAME_HEIGHT * 0.25, vX, vY, 0.5));
                 toBeRemoved = true;
             }
@@ -2767,7 +2910,7 @@ public class SpaceFXView extends StackPane {
                 vY = LEVEL_BOSS_SPEED;
             } else {
                 if (waitingStart == 0) {
-                    waitingStart = WebFxUtil.nanoTime();
+                    waitingStart = gameNanoTime();
                 }
                 dX     = spaceShip.x - x;
                 dY     = spaceShip.y - y;
@@ -2776,7 +2919,7 @@ public class SpaceFXView extends StackPane {
                 vpX    = dX * factor;
                 vpY    = dY * factor;
 
-                if (WebFxUtil.nanoTime() < waitingStart + WAITING_PHASE) {
+                if (gameNanoTime() < waitingStart + WAITING_PHASE) {
                     // Waiting
                     vX = dX * factor * 10;
                     vY = 0;
@@ -2791,7 +2934,7 @@ public class SpaceFXView extends StackPane {
             x += vX;
             y += vY;
 
-            long now = WebFxUtil.nanoTime();
+            long now = gameNanoTime();
 
             if (hasRockets) {
                 if (now - lastRocket > TIME_BETWEEN_ROCKETS) {
@@ -2858,7 +3001,9 @@ public class SpaceFXView extends StackPane {
             x += vX;
             y += vY;
 
-            if (spaceShip.isVulnerable && !hasBeenHit) {
+            if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
+                toBeRemoved = true;
+            } else if (spaceShip.isVulnerable && !hasBeenHit) {
                 boolean hit;
                 if (spaceShip.shield) {
                     hit = isHitCircleCircle(x, y, radius, spaceShip.x, spaceShip.y, deflectorShieldRadius);
@@ -2878,8 +3023,6 @@ public class SpaceFXView extends StackPane {
                         }
                     }
                 }
-            } else if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
-                toBeRemoved = true;
             }
         }
     }
@@ -2897,7 +3040,7 @@ public class SpaceFXView extends StackPane {
         public LevelBossRocket(final SpaceShip spaceShip, final ScaledImage image, final double x, final double y) {
             super(image, x - image.getWidth() / 2.0, y, 0, 1);
             this.spaceShip = spaceShip;
-            this.born      = WebFxUtil.nanoTime();
+            this.born      = gameNanoTime();
         }
 
 
@@ -2916,7 +3059,9 @@ public class SpaceFXView extends StackPane {
 
             r = Math.toDegrees(Math.atan2(vY, vX)) - 90;
 
-            if (spaceShip.isVulnerable && !hasBeenHit) {
+            if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
+                toBeRemoved = true;
+            } else if (spaceShip.isVulnerable && !hasBeenHit) {
                 boolean hit;
                 if (spaceShip.shield) {
                     hit = isHitCircleCircle(x, y, radius, spaceShip.x, spaceShip.y, deflectorShieldRadius);
@@ -2936,10 +3081,8 @@ public class SpaceFXView extends StackPane {
                         }
                     }
                 }
-            } else if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
-                toBeRemoved = true;
             }
-            if (WebFxUtil.nanoTime() - born > rocketLifespan) {
+            if (gameNanoTime() - born > rocketLifespan) {
                 enemyRocketExplosions.add(new EnemyRocketExplosion(x - ENEMY_ROCKET_EXPLOSION_FRAME_WIDTH * 0.25, y - ENEMY_ROCKET_EXPLOSION_FRAME_HEIGHT * 0.25, vX, vY, 0.5));
                 toBeRemoved = true;
             }
@@ -2957,7 +3100,9 @@ public class SpaceFXView extends StackPane {
             x += vX;
             y += vY;
 
-            if (spaceShip.isVulnerable && !hasBeenHit) {
+            if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
+                toBeRemoved = true;
+            } else if (spaceShip.isVulnerable && !hasBeenHit) {
                 boolean hit;
                 if (spaceShip.shield) {
                     hit = isHitCircleCircle(x, y, radius, spaceShip.x, spaceShip.y, deflectorShieldRadius);
@@ -2977,8 +3122,6 @@ public class SpaceFXView extends StackPane {
                         }
                     }
                 }
-            } else if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT) {
-                toBeRemoved = true;
             }
         }
     }
@@ -3481,7 +3624,88 @@ public class SpaceFXView extends StackPane {
 
     // Safe utility loop method that never raises ConcurrentModificationException
     private static <T> void forEach(List<T> list, Consumer<? super T> action) {
-        for (int i = 0; i < list.size(); i++)
-            action.accept(list.get(i));
+        for (int i = 0; i < list.size(); i++) {
+            T t = list.get(i);
+            if (t != null) // Very rare, but it was observed that for any reason it could be null (causing NPE in action code)
+                action.accept(t);
+        }
+    }
+
+    private static <T> void removeIf(List<T> list, Predicate<? super T> filter) {
+        for (int i = 0; i < list.size(); i++) {
+            T t = list.get(i);
+            if (t != null && filter.test(t))
+                list.remove(i--);
+        }
+    }
+
+    private long gameNanoTime() {
+        return gamePaused ? gamePauseNanoTime : System.nanoTime() - gamePauseNanoDuration;
+    }
+
+    boolean isGamePaused() {
+        return gamePaused;
+    }
+
+    void toggleGamePause() {
+        if (isGamePaused())
+            resumeGame();
+        else
+            pauseGame();
+    }
+
+    void pauseGame() {
+        if (!gamePaused) {
+            gamePauseNanoTime = gameNanoTime();
+            gamePaused = true;
+            applyGameMusic();
+        }
+    }
+
+    void resumeGame() {
+        if (gamePaused) {
+            gamePaused = false;
+            gamePauseNanoDuration += gameNanoTime() - gamePauseNanoTime;
+            applyGameMusic();
+            if (autoFire)
+                fireSpaceShipWeapon();
+        }
+    }
+
+    private static Pane createSvgButton(String content, boolean fill, boolean stroke, Runnable clickRunnable) {
+        SVGPath path = createSvgPath(content, fill, stroke);
+        // We now embed the svg path in a pane. The reason is for a better click experience. Because in JavaFX (not in
+        // the browser), the clicking area is only the filled shape, not the empty space in that shape. So when clicking
+        // on a gear icon on a mobile for example, even if globally our finger covers the icon, the final click point
+        // may be in this empty space, making the button not reacting, leading to a frustrating experience.
+        Pane pane = new Pane(path); // Will act as the mouse click area covering the entire surface
+        // The pane needs to be reduced to the svg path size (which we can get using the layout bounds).
+        path.sceneProperty().addListener(p -> { // This postpone is necessary only when running in the browser, not in standard JavaFX
+            Bounds b = path.getLayoutBounds(); // Bounds computation should be correct now even in the browser
+            pane.setMinSize(b.getWidth(), b.getHeight());
+            pane.setMaxSize(b.getWidth(), b.getHeight());
+        });
+        pane.setCursor(Cursor.HAND);
+        pane.setOnMouseClicked(e -> {
+            clickRunnable.run();
+            e.consume();
+        });
+        return pane;
+    }
+
+    private static SVGPath createSvgPath(String content, boolean fill, boolean stroke) {
+        SVGPath path = new SVGPath();
+        path.setContent(content);
+        path.setFill(fill ? Color.GRAY : Color.TRANSPARENT);
+        if (stroke) {
+            path.setStroke(Color.GRAY);
+            path.setStrokeWidth(7);
+            path.setStrokeLineJoin(StrokeLineJoin.ROUND);
+            path.setStrokeLineCap(StrokeLineCap.ROUND);
+        }
+        double scale = 2 * SCALING_FACTOR;
+        path.setScaleX(scale);
+        path.setScaleY(scale);
+        return path;
     }
 }
