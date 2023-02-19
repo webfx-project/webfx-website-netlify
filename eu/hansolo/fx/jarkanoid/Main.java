@@ -1,5 +1,6 @@
 package eu.hansolo.fx.jarkanoid;
 
+import dev.webfx.kit.launcher.WebFxKitLauncher;
 import dev.webfx.platform.resource.Resource;
 import dev.webfx.platform.scheduler.Scheduler;
 import dev.webfx.platform.shutdown.Shutdown;
@@ -8,6 +9,8 @@ import dev.webfx.platform.windowlocation.WindowLocation;
 import eu.hansolo.fx.jarkanoid.Constants.BlockType;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Pos;
@@ -434,7 +437,7 @@ public class Main extends Application {
         stage.show();
         stage.setResizable(false);
 
-        onImageLoaded(copyrightImg, this::startScreen);
+        onObservableListEmpty(WebFxKitLauncher.loadingFonts(), () -> onImageLoaded(copyrightImg, this::startScreen));
 
         timer.start();
 
@@ -442,7 +445,17 @@ public class Main extends Application {
             playSound(gameStartSnd);
     }
 
-    private void onImageLoaded(Image image, Runnable runnable) {
+    private static void onObservableListEmpty(ObservableList<Font> list, Runnable runnable) {
+        if (list.isEmpty())
+            runnable.run();
+        else
+            list.addListener((ListChangeListener<Font>) c -> {
+                if (list.isEmpty())
+                    runnable.run();
+            });
+    }
+
+    private static void onImageLoaded(Image image, Runnable runnable) {
         if (image.getProgress() >= 1)
             runnable.run();
         else
