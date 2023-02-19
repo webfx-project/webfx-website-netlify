@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -437,7 +438,7 @@ public class Main extends Application {
         stage.show();
         stage.setResizable(false);
 
-        onObservableListEmpty(WebFxKitLauncher.loadingFonts(), () -> onImageLoaded(copyrightImg, this::startScreen));
+        onObservableListEmpty(WebFxKitLauncher.loadingFonts(), () -> onImagesLoaded(this::startScreen, logoImg, copyrightImg));
 
         timer.start();
 
@@ -446,23 +447,27 @@ public class Main extends Application {
     }
 
     private static void onObservableListEmpty(ObservableList<Font> list, Runnable runnable) {
-        if (list.isEmpty())
-            runnable.run();
-        else
-            list.addListener((ListChangeListener<Font>) c -> {
-                if (list.isEmpty())
-                    runnable.run();
-            });
+        if (!runIfObservableListEmpty(list, runnable))
+            list.addListener((ListChangeListener<Font>) c -> runIfObservableListEmpty(list, runnable));
     }
 
-    private static void onImageLoaded(Image image, Runnable runnable) {
-        if (image.getProgress() >= 1)
+    private static boolean runIfObservableListEmpty(ObservableList<Font> list, Runnable runnable) {
+        boolean empty = list.isEmpty();
+        if (empty)
             runnable.run();
-        else
-            image.progressProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue.doubleValue() >= 1)
-                    runnable.run();
-            });
+        return empty;
+    }
+
+    private static void onImagesLoaded(Runnable runnable, Image... images) {
+        if (!runIfImagesLoaded(runnable, images))
+            Arrays.stream(images).forEach(i -> i.progressProperty().addListener((observable, oldValue, newValue) -> runIfImagesLoaded(runnable, images)));
+    }
+
+    private static boolean runIfImagesLoaded(Runnable runnable, Image... images) {
+        boolean loaded = Arrays.stream(images).allMatch(i -> i.getProgress() >= 1);
+        if (loaded)
+            runnable.run();
+        return loaded;
     }
 
     @Override public void stop() {
