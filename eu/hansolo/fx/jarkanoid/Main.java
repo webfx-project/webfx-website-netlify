@@ -9,6 +9,7 @@ import dev.webfx.platform.windowlocation.WindowLocation;
 import eu.hansolo.fx.jarkanoid.Constants.BlockType;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -438,7 +439,7 @@ public class Main extends Application {
         stage.show();
         stage.setResizable(false);
 
-        onObservableListEmpty(WebFxKitLauncher.loadingFonts(), () -> onImagesLoaded(this::startScreen, logoImg, copyrightImg));
+        onObservableListEmpty(WebFxKitLauncher.loadingFonts(), () -> Platform.runLater(() -> onImagesLoaded(this::startScreen, logoImg, copyrightImg)));
 
         timer.start();
 
