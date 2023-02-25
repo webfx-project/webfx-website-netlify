@@ -89,7 +89,7 @@ public class SpaceFXView extends StackPane {
     private              List<Player>               hallOfFame;
     private              VBox                       hallOfFameBox;
     private              Level                      level;
-    private              Difficulty                 initialDifficulty = Difficulty.EASY;
+    private              Difficulty                 initialDifficulty = Difficulty.valueOf(PropertyManager.INSTANCE.getDifficultyString("initialDifficulty"));
     private              Difficulty                 minLevelDifficulty;
     private              Difficulty                 levelDifficulty;
     private final        Image                      startImg                = WebFXUtil.newImage("startscreen.jpg");
@@ -228,8 +228,8 @@ public class SpaceFXView extends StackPane {
 
     // ******************** Constructor ***************************************
     public SpaceFXView(Stage stage) {
-        gameMusic = WebFXUtil.newMusic("RaceToMars.mp3");
-        music = WebFXUtil.newMusic("CityStomper.mp3");
+        gameMusic = newMusic("RaceToMars.mp3");
+        music = newMusic("CityStomper.mp3");
 
         init(stage);
         initOnBackground(stage);
@@ -247,7 +247,7 @@ public class SpaceFXView extends StackPane {
             protected void layoutChildren() {
                 super.layoutChildren();
                 layoutInArea(difficultyBox, 0, isRunning() ? 0 : -140 * SCALING_FACTOR, WIDTH, HEIGHT, 0, HPos.CENTER, VPos.TOP);
-                layoutInArea(volumeButton, WIDTH / 2 - 5 * SCALING_FACTOR, 45 * SCALING_FACTOR, 0, 0, 0, HPos.CENTER, VPos.TOP);
+                layoutInArea(volumeButton, WIDTH / 2 - 6 * SCALING_FACTOR, 37 * SCALING_FACTOR, 0, 0, 0, HPos.CENTER, VPos.TOP);
             }
         };
         pane.setMaxSize(WIDTH, HEIGHT);
@@ -370,35 +370,35 @@ public class SpaceFXView extends StackPane {
 
         // background music
         WebFXUtil.setLooping(music, true);
-        WebFXUtil.setVolume(music, 1);
+        setMusicVolume(music, 1);
 
         // for game background music
         WebFXUtil.setLooping(gameMusic, true);
-        WebFXUtil.setVolume(gameMusic, 1);
+        setMusicVolume(gameMusic, 1);
 
         // Load sounds
-        laserSound              = WebFXUtil.newSound("laserSound.mp3");
-        rocketLaunchSound       = WebFXUtil.newSound("rocketLaunch.mp3");
-        rocketExplosionSound    = WebFXUtil.newSound("rocketExplosion.mp3");
-        enemyLaserSound         = WebFXUtil.newSound("enemyLaserSound.mp3");
-        enemyBombSound          = WebFXUtil.newSound("enemyBomb.mp3");
-        explosionSound          = WebFXUtil.newSound("explosionSound.mp3");
-        asteroidExplosionSound  = WebFXUtil.newSound("asteroidExplosion.mp3");
-        torpedoHitSound         = WebFXUtil.newSound("hit.mp3");
-        spaceShipExplosionSound = WebFXUtil.newSound("spaceShipExplosionSound.mp3");
-        enemyBossExplosionSound = WebFXUtil.newSound("enemyBossExplosion.mp3");
-        gameoverSound           = WebFXUtil.newSound("gameover.mp3");
-        shieldHitSound          = WebFXUtil.newSound("shieldhit.mp3");
-        enemyHitSound           = WebFXUtil.newSound("enemyBossShieldHit.mp3");
-        deflectorShieldSound    = WebFXUtil.newSound("deflectorshieldSound.mp3");
-        levelBossTorpedoSound   = WebFXUtil.newSound("levelBossTorpedo.mp3");
-        levelBossRocketSound    = WebFXUtil.newSound("levelBossRocket.mp3");
-        levelBossBombSound      = WebFXUtil.newSound("levelBossBomb.mp3");
-        levelBossExplosionSound = WebFXUtil.newSound("explosionSound1.mp3");
-        shieldUpSound           = WebFXUtil.newSound("shieldUp.mp3");
-        lifeUpSound             = WebFXUtil.newSound("lifeUp.mp3");
-        levelUpSound            = WebFXUtil.newSound("levelUp.mp3");
-        bonusSound              = WebFXUtil.newSound("bonus.mp3");
+        laserSound              = newSound("laserSound.mp3");
+        rocketLaunchSound       = newSound("rocketLaunch.mp3");
+        rocketExplosionSound    = newSound("rocketExplosion.mp3");
+        enemyLaserSound         = newSound("enemyLaserSound.mp3");
+        enemyBombSound          = newSound("enemyBomb.mp3");
+        explosionSound          = newSound("explosionSound.mp3");
+        asteroidExplosionSound  = newSound("asteroidExplosion.mp3");
+        torpedoHitSound         = newSound("hit.mp3");
+        spaceShipExplosionSound = newSound("spaceShipExplosionSound.mp3");
+        enemyBossExplosionSound = newSound("enemyBossExplosion.mp3");
+        gameoverSound           = newSound("gameover.mp3");
+        shieldHitSound          = newSound("shieldhit.mp3");
+        enemyHitSound           = newSound("enemyBossShieldHit.mp3");
+        deflectorShieldSound    = newSound("deflectorshieldSound.mp3");
+        levelBossTorpedoSound   = newSound("levelBossTorpedo.mp3");
+        levelBossRocketSound    = newSound("levelBossRocket.mp3");
+        levelBossBombSound      = newSound("levelBossBomb.mp3");
+        levelBossExplosionSound = newSound("explosionSound1.mp3");
+        shieldUpSound           = newSound("shieldUp.mp3");
+        lifeUpSound             = newSound("lifeUp.mp3");
+        levelUpSound            = newSound("levelUp.mp3");
+        bonusSound              = newSound("bonus.mp3");
 
         // Variable initialization
         canvas                        = new Canvas(WIDTH, HEIGHT);
@@ -591,12 +591,12 @@ public class SpaceFXView extends StackPane {
         deflectorShieldRadius   = deflectorShieldImg.getWidth() * 0.5;
         spaceShip               = new SpaceShip(spaceshipImg, spaceshipUpImg, spaceshipDownImg);
 
-        // Adjust audio clip volumes
-        WebFXUtil.setVolume(explosionSound, 0.5); // explosionSound.mp3
-        WebFXUtil.setVolume(torpedoHitSound, 0.5); // hit.mp3
-        WebFXUtil.setVolume(laserSound, 0.3); // laserSound.mp3
-        WebFXUtil.setVolume(spaceShipExplosionSound, 0.5); // spaceShipExplosionSound.mp3
-        WebFXUtil.setVolume(asteroidExplosionSound, 0.7); // asteroidExplosion.mp3
+        // Adjust audio clip volumes (volume is relative to sound, a 0.5 factor will be applied in addition compared to music)
+        setSoundVolume(explosionSound, 0.5); // explosionSound.mp3
+        setSoundVolume(torpedoHitSound, 0.5); // hit.mp3
+        setSoundVolume(laserSound, 0.3); // laserSound.mp3
+        setSoundVolume(spaceShipExplosionSound, 0.5); // spaceShipExplosionSound.mp3
+        setSoundVolume(asteroidExplosionSound, 0.7); // asteroidExplosion.mp3
 
         initAsteroids();
 
@@ -1614,11 +1614,7 @@ public class SpaceFXView extends StackPane {
         // Increasing minimal difficulty, unless we already reach the most difficulty level
         if (difficulty != difficulties[difficulties.length - 1])
             difficulty = difficulties[difficulty.ordinal() + 1];
-        if (isRunning())
-            minLevelDifficulty = difficulty;
-        else
-            initialDifficulty = difficulty;
-        displayDifficulty();
+        setDifficulty(difficulty);
     }
 
     private void decreaseDifficulty() {
@@ -1627,10 +1623,16 @@ public class SpaceFXView extends StackPane {
         // Increasing minimal difficulty, unless we already reach the most difficulty level
         if (difficulty != difficulties[0])
             difficulty = difficulties[difficulty.ordinal() - 1];
+        setDifficulty(difficulty);
+    }
+
+    private void setDifficulty(Difficulty difficulty) {
         if (isRunning())
             minLevelDifficulty = difficulty;
-        else
+        else {
             initialDifficulty = difficulty;
+            PropertyManager.INSTANCE.set("initialDifficulty", difficulty.toString());
+        }
         displayDifficulty();
     }
 
@@ -1676,6 +1678,28 @@ public class SpaceFXView extends StackPane {
         return entry;
     }
 
+    private static Audio newMusic(String resourceName) {
+        return setMusicVolume(WebFXUtil.newMusic(resourceName), 1);
+    }
+
+    private static Audio newSound(String resourceName) {
+        return setSoundVolume(WebFXUtil.newSound(resourceName), 1);
+    }
+
+    private static Audio setMusicVolume(Audio music, double volume) {
+        if (music != null) {
+            music.setVolume(volume);
+        }
+        return music;
+    }
+
+    private static Audio setSoundVolume(Audio sound, double volume) {
+        if (sound != null) {
+            sound.setVolume(volume * 0.5); // Applying a 0.5 factor (otherwise sounds are too loud compared to music when there is a lot of ennemies)
+        }
+        return sound;
+    }
+
     private void playMusic(Audio music) {
         if (PLAY_MUSIC && !soundMuted && !waitUserInteractionBeforePlayingSound && !gamePaused)
             WebFXUtil.playMusic(music);
@@ -1693,18 +1717,24 @@ public class SpaceFXView extends StackPane {
             WebFXUtil.playSound(sound);
     }
 
-    private boolean soundMuted;
+    private boolean soundMuted = PropertyManager.INSTANCE.getBoolean("soundMuted");
 
     void muteSound(boolean soundMuted) {
         this.soundMuted = soundMuted;
         displayVolume();
         applyGameMusic();
+        PropertyManager.INSTANCE.set("soundMuted", Boolean.toString(soundMuted));
     }
 
     void toggleMuteSound() {
+        // If the music is not initially playing in the browser (because it is waiting for user interaction first), and
+        // the user clicks on the volume button, it's probably because he actually wants to turn on the music, and not
+        // turn it off! So in that case, the call to userInteracted() should turn on the music like the user expects,
+        // and we don't toggle the soundMuted (otherwise this would turn off the music).
+        boolean skip = waitUserInteractionBeforePlayingSound && !soundMuted;
         if (waitUserInteractionBeforePlayingSound)
             userInteracted();
-        else
+        if (!skip)
             muteSound(!soundMuted);
         lastScreenToggle = 0; // resetting the screen toggle (especially when user increased or decreased difficulty)
     }
