@@ -1,7 +1,9 @@
 package eu.hansolo.fx.jarkanoid;
 
 import dev.webfx.extras.scalepane.ScalePane;
-import dev.webfx.kit.launcher.WebFxKitLauncher;
+import dev.webfx.kit.util.scene.DeviceSceneUtil;
+import dev.webfx.platform.audio.Audio;
+import dev.webfx.platform.audio.AudioService;
 import dev.webfx.platform.resource.Resource;
 import dev.webfx.platform.scheduler.Scheduler;
 import dev.webfx.platform.shutdown.Shutdown;
@@ -10,8 +12,6 @@ import dev.webfx.platform.windowlocation.WindowLocation;
 import eu.hansolo.fx.jarkanoid.Constants.BlockType;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Pos;
@@ -22,7 +22,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
@@ -31,7 +30,6 @@ import javafx.stage.Stage;
 
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -162,14 +160,14 @@ public class Main extends Application {
     private Image                    blockShadowImg;
     private Image                    bonusBlockShadowImg;
     private Image                    explosionMapImg;
-    private AudioClip                gameStartSnd;
-    private AudioClip                startLevelSnd;
-    private AudioClip                ballPaddleSnd;
-    private AudioClip                ballBlockSnd;
-    private AudioClip                ballHardBlockSnd;
-    private AudioClip                laserSnd;
-    private AudioClip                explosionSnd;
-    private AudioClip                gameOverSnd;
+    private Audio                    gameStartSnd;
+    private Audio                    startLevelSnd;
+    private Audio                    ballPaddleSnd;
+    private Audio                    ballBlockSnd;
+    private Audio                    ballHardBlockSnd;
+    private Audio                    laserSnd;
+    private Audio                    explosionSnd;
+    private Audio                    gameOverSnd;
     private Paddle                   paddle;
     private List<Ball>               balls;
     private List<Block>              blocks;
@@ -369,7 +367,7 @@ public class Main extends Application {
         loadImages();
 
         // Load all sounds
-        loadSounds();
+        //loadSounds(); // => moved to start() as it doesn't work at this stage to load the Gluon audio servie (must be in UI thread)
 
         bkgPatternFill1   = new ImagePattern(bkgPatternImg1, 0, 0, 68, 117, false);
         bkgPatternFill2   = new ImagePattern(bkgPatternImg2, 0, 0, 64, 64, false);
@@ -397,6 +395,7 @@ public class Main extends Application {
         gameStartTime = Instant.now();
 
         final StackPane pane  = new StackPane(bkgCanvas, canvas, brdrCanvas);
+        pane.setMaxSize(WIDTH, HEIGHT); // Necessary to scale up with ScalePane
         final Scene     scene = new Scene(new ScalePane(pane), WIDTH, HEIGHT, Color.BLACK);
 
         scene.setOnKeyPressed(e -> {
@@ -448,37 +447,14 @@ public class Main extends Application {
         stage.setResizable(false);
 
         // Waiting that the font and required images are loaded before displaying the start screen
-        onObservableListEmpty(WebFxKitLauncher.loadingFonts(),
-                () -> onImagesLoaded(this::startScreen, logoImg, copyrightImg));
+        DeviceSceneUtil.onFontsAndImagesLoaded(this::startScreen, logoImg, copyrightImg);
 
         timer.start();
 
+        loadSounds();
+
         if (!IS_BROWSER)
             playSound(gameStartSnd);
-    }
-
-    private static void onObservableListEmpty(ObservableList<Font> list, Runnable runnable) {
-        if (!runIfObservableListEmpty(list, runnable))
-            list.addListener((ListChangeListener<Font>) c -> runIfObservableListEmpty(list, runnable));
-    }
-
-    private static boolean runIfObservableListEmpty(ObservableList<Font> list, Runnable runnable) {
-        boolean empty = list.isEmpty();
-        if (empty)
-            runnable.run();
-        return empty;
-    }
-
-    private static void onImagesLoaded(Runnable runnable, Image... images) {
-        if (!runIfImagesLoaded(runnable, images))
-            Arrays.stream(images).forEach(i -> i.progressProperty().addListener((observable, oldValue, newValue) -> runIfImagesLoaded(runnable, images)));
-    }
-
-    private static boolean runIfImagesLoaded(Runnable runnable, Image... images) {
-        boolean loaded = Arrays.stream(images).allMatch(i -> i.getProgress() >= 1);
-        if (loaded)
-            runnable.run();
-        return loaded;
     }
 
     @Override public void stop() {
@@ -538,14 +514,18 @@ public class Main extends Application {
     }
 
     private void loadSounds() {
-        gameStartSnd     = new AudioClip(Resource.toUrl("game_start.mp3", getClass()));
-        startLevelSnd    = new AudioClip(Resource.toUrl("level_ready.mp3", getClass()));
-        ballPaddleSnd    = new AudioClip(Resource.toUrl("ball_paddle.mp3", getClass()));
-        ballBlockSnd     = new AudioClip(Resource.toUrl("ball_block.mp3", getClass()));
-        ballHardBlockSnd = new AudioClip(Resource.toUrl("ball_hard_block.mp3", getClass()));
-        laserSnd         = new AudioClip(Resource.toUrl("gun.mp3", getClass()));
-        explosionSnd     = new AudioClip(Resource.toUrl("explosion.mp3", getClass()));
-        gameOverSnd      = new AudioClip(Resource.toUrl("game_over.mp3", getClass()));
+        gameStartSnd     = loadSound(Resource.toUrl("game_start.mp3", getClass()));
+        startLevelSnd    = loadSound(Resource.toUrl("level_ready.mp3", getClass()));
+        ballPaddleSnd    = loadSound(Resource.toUrl("ball_paddle.mp3", getClass()));
+        ballBlockSnd     = loadSound(Resource.toUrl("ball_block.mp3", getClass()));
+        ballHardBlockSnd = loadSound(Resource.toUrl("ball_hard_block.mp3", getClass()));
+        laserSnd         = loadSound(Resource.toUrl("gun.mp3", getClass()));
+        explosionSnd     = loadSound(Resource.toUrl("explosion.mp3", getClass()));
+        gameOverSnd      = loadSound(Resource.toUrl("game_over.mp3", getClass()));
+    }
+
+    private Audio loadSound(String url) {
+        return AudioService.loadSound(url);
     }
 
     private static double clamp(final double min, final double max, final double value) {
@@ -576,7 +556,10 @@ public class Main extends Application {
 
 
     // Play audio clips
-    private void playSound(final AudioClip audioClip) { audioClip.play(); }
+    private void playSound(final Audio audioClip) {
+        if (audioClip != null)
+            audioClip.play();
+    }
 
 
     // Spawn enemy
@@ -788,9 +771,9 @@ public class Main extends Application {
             ctx.setTextBaseline(VPos.TOP);
             ctx.setFill(HIGH_SCORE_RED);
             ctx.setTextAlign(TextAlignment.CENTER);
-            ctx.fillText("HIGH SCORE", WIDTH * 0.5, 0);
+            ctx.fillText("HIGH SCORE", WIDTH * 0.5, IS_BROWSER ? 5 : 0); // Adding 5px in browser otherwise looks cut
             ctx.setFill(SCORE_WHITE);
-            ctx.fillText(Long.toString(highscore), WIDTH * 0.5, 30);
+            ctx.fillText(Long.toString(highscore), WIDTH * 0.5, IS_BROWSER ? 35 : 30);
 
             if (showStartHint) {
                 ctx.fillText("Hit space to start", WIDTH * 0.5, HEIGHT * 0.6);
@@ -890,13 +873,13 @@ public class Main extends Application {
         ctx.setFont(SCORE_FONT);
         ctx.setTextAlign(TextAlignment.RIGHT);
         ctx.setTextBaseline(VPos.TOP);
-        ctx.fillText(Long.toString(score), 140, 30);
+        ctx.fillText(Long.toString(score), 140, IS_BROWSER ? 35 : 30);
 
         ctx.setFill(HIGH_SCORE_RED);
         ctx.setTextAlign(TextAlignment.CENTER);
-        ctx.fillText("HIGH SCORE", WIDTH * 0.5, 0);
+        ctx.fillText("HIGH SCORE", WIDTH * 0.5, IS_BROWSER ? 5 : 0); // Adding 5px in browser otherwise looks cut
         ctx.setFill(SCORE_WHITE);
-        ctx.fillText(Long.toString(score > highscore ? score : highscore), WIDTH * 0.5, 30);
+        ctx.fillText(Long.toString(score > highscore ? score : highscore), WIDTH * 0.5, IS_BROWSER ? 35: 30);
 
         // Draw no of lifes
         for (int i = 0 ; i < noOfLifes ; i++) {
