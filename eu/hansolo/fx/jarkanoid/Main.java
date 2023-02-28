@@ -29,10 +29,9 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 
 public class Main extends Application {
@@ -1233,6 +1232,13 @@ public class Main extends Application {
         }
     }
 
+    private final static double BORDER_BOUNDS_THICKNESS = 10000; // quite big value to ensure the ball won't cross the border
+    private final static Bounds[] BORDER_BOUNDS = {
+            new Bounds(-BORDER_BOUNDS_THICKNESS + INSET * 0.8, 0, BORDER_BOUNDS_THICKNESS, HEIGHT), // left border bounds
+            new Bounds(WIDTH - INSET * 0.8, 0, BORDER_BOUNDS_THICKNESS, HEIGHT), // right border bounds
+            new Bounds(0, -BORDER_BOUNDS_THICKNESS + UPPER_INSET, WIDTH, BORDER_BOUNDS_THICKNESS) // top border bounds
+    };
+
     private class Ball extends Sprite {
         public boolean active;
         public long    bornTimestamp;
@@ -1257,94 +1263,86 @@ public class Main extends Application {
 
         // ******************** Methods *******************************************
         @Override public void update() {
-            if (active) {
-                this.x += this.vX;
-                this.y += this.vY;
-            } else {
+            if (!active) {
                 this.x = paddle.bounds.centerX;
                 this.y = paddle.bounds.minY - image.getHeight() * 0.5 - BALL_SPEED - 1;
-            }
-
-            if (bounds.maxX > WIDTH - INSET) {
-                this.x  = WIDTH - INSET - this.radius;
-                this.vX = -ballSpeed;
-            }
-            if (bounds.minX < INSET) {
-                this.x  = INSET + this.radius;
-                this.vX = ballSpeed;
-            }
-            if (bounds.minY < UPPER_INSET) {
-                this.y  = UPPER_INSET + this.radius;
-                this.vY = ballSpeed;
-            }
-
-            this.bounds.set(this.x - this.width * 0.5, this.y - this.height * 0.5, this.width, this.height);
-
-            // Hit test ball with blocks
-            for (Block block : blocks) {
-                boolean ballHitsBlock = this.bounds.intersects(block.bounds);
-                if (ballHitsBlock) {
-                    switch (block.blockType) {
-                        case GOLD: {
-                            playSound(ballHardBlockSnd);
-                            blinks.add(new Blink(block.bounds.minX, block.bounds.minY));
-                            break;
-                        }
-                        case GRAY: {
-                            block.hits++;
-                            if (block.hits == block.maxHits) {
-                                score        += level * 50;
-                                blockCounter += 1;
-                                block.toBeRemoved = true;
-                                playSound(ballBlockSnd);
-                            } else {
+            } else { // We need to check if the ball hits a block
+                double x0 = x, y0 = y, x1 = x0 + vX, y1 = y0 + vY; // (x0, y0) = initial coordinates, (x1, y1) = final coordinates in case there is no hit
+                // (x1, y1) may need a correction if the ball hits a block
+                while (true) { // Several iterations are possible, because even the corrected (x1, y1) might hit another block
+                    double fx0 = x0, fy0 = y0, fx1 = x1, fy1 = y1; // Capturing final values for the lambda expression below
+                    BallHit ballHit = Stream.concat(blocks.stream().map(b -> b.bounds), Arrays.stream(BORDER_BOUNDS)) // Iterating over all block bounds together with the border bounds (processed identically)
+                            .map(bounds -> bounds.computeBallHit(fx0, fy0, fx1, fy1, radius)) // computing a possible ball hit with the bounds (returns null if no hits)
+                            .filter(Objects::nonNull) // removing non-hits
+                            // If that trajectory (x0, y0) -> (x1, y1) hits several blocks, we keep the first hit block
+                            .min(Comparator.comparingDouble(ballHit1 -> ballHit1.hitDistance)) // first hit = min hit distance (x0, y0) -> (xHit, yHit)
+                            .orElse(null); // returning null if no hit
+                    if (ballHit == null) { // If there is no hit, (x1, y1) doesn't need correction
+                        this.x = x1;
+                        this.y = y1;
+                        break; // breaking the loop
+                    }
+                    // We have a ball hit when reaching this code.
+                    // => inverting vX or Vy if needed
+                    if (ballHit.inverseVx)
+                        vX = -vX;
+                    if (ballHit.inverseVy)
+                        vY = -vY;
+                    // Preparing the next loop iteration by updating (x0, y0) -> (x1, y1) to (xHit, yHit) -> (correctedX, correctedY)
+                    x0 = ballHit.xHit;
+                    y0 = ballHit.yHit;
+                    x1 = ballHit.correctedX;
+                    y1 = ballHit.correctedY;
+                    // But before looping, we retrieve the block hit by the ball for the hit sound, block blink & score management:
+                    Block block = blocks.stream().filter(b -> b.bounds == ballHit.hitBounds).findFirst().orElse(null);
+                    if (block != null) { // Can be null if the ball hit a border, and not a block
+                        switch (block.blockType) {
+                            case GOLD: {
                                 playSound(ballHardBlockSnd);
                                 blinks.add(new Blink(block.bounds.minX, block.bounds.minY));
+                                break;
                             }
-                            break;
-                        }
-                        default: {
-                            block.hits++;
-                            if (block.hits >= block.maxHits) {
-                                score        += block.value;
-                                blockCounter += 1;
-                                block.toBeRemoved = true;
-                                playSound(ballBlockSnd);
-                                if (blockCounter % BONUS_BLOCK_INTERVAL == 0) {
-                                    bonusBlocks.add(new BonusBlock(block.x, block.y, BonusType.values()[RND.nextInt(BonusType.values().length)]));
+                            case GRAY: {
+                                block.hits++;
+                                if (block.hits == block.maxHits) {
+                                    score += level * 50;
+                                    blockCounter += 1;
+                                    block.toBeRemoved = true;
+                                    playSound(ballBlockSnd);
+                                } else {
+                                    playSound(ballHardBlockSnd);
+                                    blinks.add(new Blink(block.bounds.minX, block.bounds.minY));
+                                }
+                                break;
+                            }
+                            default: {
+                                block.hits++;
+                                if (block.hits >= block.maxHits) {
+                                    score += block.value;
+                                    blockCounter += 1;
+                                    block.toBeRemoved = true;
+                                    playSound(ballBlockSnd);
+                                    if (blockCounter % BONUS_BLOCK_INTERVAL == 0) {
+                                        bonusBlocks.add(new BonusBlock(block.x, block.y, BonusType.values()[RND.nextInt(BonusType.values().length)]));
+                                    }
                                 }
                             }
                         }
-                    }
-                    if (bounds.centerX > block.bounds.minX && bounds.centerX < block.bounds.maxX) {
-                        // Top or Bottom hit
-                        vY = -vY;
-                    } else if (bounds.centerY > block.bounds.minY && bounds.centerY < block.bounds.maxY) {
-                        // Left or Right hit
-                        vX = -vX;
-                    } else {
-                        double dx = Math.abs(bounds.centerX - block.bounds.centerX) - block.bounds.width * 0.5;
-                        double dy = Math.abs(bounds.centerY - block.bounds.centerY) - block.bounds.height * 0.5;
-                        if (dx > dy) {
-                            // Left or Right hit
-                            vX = -vX;
-                        } else {
-                            // Top or Bottom hit
-                            vY = -vY;
-                        }
-                    }
-                    blockFifo.add(block);
-                    // Checking for bounds
-                    final List<Block> items = blockFifo.getItems();
-                    if (items.size() == 9) {
-                        if (items.get(0).equals(items.get(6)) && items.get(1).equals(items.get(5)) && items.get(1).equals(items.get(7)) && items.get(2).equals(items.get(4)) && items.get(2).equals(items.get(8))) {
-                            this.vX += 0.1;
-                        } else if (items.get(0).equals(items.get(8)) && items.get(1).equals(items.get(7)) && items.get(2).equals(items.get(6)) && items.get(3).equals(items.get(5))) {
-                            this.vX += 0.1;
+                        blockFifo.add(block);
+                        // Checking for bounds
+                        final List<Block> items = blockFifo.getItems();
+                        if (items.size() == 9) {
+                            if (items.get(0).equals(items.get(6)) && items.get(1).equals(items.get(5)) && items.get(1).equals(items.get(7)) && items.get(2).equals(items.get(4)) && items.get(2).equals(items.get(8))) {
+                                this.vX += 0.1;
+                            } else if (items.get(0).equals(items.get(8)) && items.get(1).equals(items.get(7)) && items.get(2).equals(items.get(6)) && items.get(3).equals(items.get(5))) {
+                                this.vX += 0.1;
+                            }
                         }
                     }
                 }
             }
+
+            this.bounds.set(this.x - this.width * 0.5, this.y - this.height * 0.5, this.width, this.height);
 
             // Hit test ball with enemies
             for (Enemy enemy : enemies) {
@@ -1559,7 +1557,7 @@ public class Main extends Application {
         }
     }
 
-    public class Bounds {
+    public static class Bounds {
         public double x;
         public double y;
         public double width;
@@ -1608,8 +1606,100 @@ public class Main extends Application {
         public boolean intersects(final Bounds other) {
             return other.minX <= maxX && minX <= other.maxX && other.minY <= maxY && minY <= other.maxY;
         }
+
+        private BallHit computeBallHit(double x0, double y0, double x1, double y1, double r) {
+            // Increased +r bounds
+            double minXr = minX - r, minYr = minY - r, maxXr = maxX + r, maxYr = maxY + r;
+            double travelDistance = distance(x0, y0, x1, y1);
+            double yHit = 0, xHit = 0;
+            boolean inverseVy = false, inverseVx = false;
+            // Does it hit the bottom border?
+            if (y0 > maxYr && y1 < maxYr) {
+                xHit = computeLineIntersectionX(-1, maxYr, 1, maxYr, x0, y0, x1, y1);
+                if (xHit >= minXr && xHit <= maxXr) { // Yes
+                    yHit = maxYr;
+                    inverseVy = true;
+                }
+            }
+            // If not, does it hit the top border?
+            if (!inverseVy && y0 < minYr && y1 > minYr) {
+                xHit = computeLineIntersectionX(-1, minYr, 1, minYr, x0, y0, x1, y1);
+                if (xHit >= minXr && xHit <= maxXr) { // Yes
+                    yHit = minYr;
+                    inverseVy = true;
+                }
+            }
+            // If not, does it hit the left border?
+            if (!inverseVy && x0 < minXr && x1 > minXr) {
+                yHit = computeLineIntersectionY(minXr, 1, minXr, -1, x0, y0, x1, y1);
+                if (yHit >= minYr && yHit <= maxYr) { // Yes
+                    xHit = minXr;
+                    inverseVx = true;
+                }
+            }
+            // If not, does it hit the right border?
+            if (x0 > maxXr && x1 < maxXr) {
+                yHit = computeLineIntersectionY(maxXr, 1, maxXr, -1, x0, y0, x1, y1);
+                if (yHit >= minYr && yHit <= maxYr) { // Yes
+                    xHit = maxXr;
+                    inverseVx = true;
+                }
+            }
+            if (!inverseVx && !inverseVy)
+                return null;
+            BallHit ballHit = new BallHit(this);
+            ballHit.xHit = xHit;
+            ballHit.yHit = yHit;
+            ballHit.inverseVx = inverseVx;
+            ballHit.inverseVy = inverseVy;
+            ballHit.hitDistance = distance(x0, y0, xHit, yHit);
+            double correctionDistance = travelDistance - ballHit.hitDistance;
+            ballHit.correctedX = inverseVx ? xHit - (x1 - xHit) * correctionDistance : x1;
+            ballHit.correctedY = inverseVy ? yHit - (y1 - yHit) * correctionDistance : y1;
+            return ballHit;
+        }
     }
 
+    private static double computeLineIntersectionX(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
+        return computeLineIntersection(x1, y1, x2, y2, x3, y3, x4, y4, true);
+    }
+
+    private static double computeLineIntersectionY(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
+        return computeLineIntersection(x1, y1, x2, y2, x3, y3, x4, y4, false);
+    }
+
+    private static double computeLineIntersection(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, boolean x) {
+        double a1 = y2 - y1;
+        double b1 = x1 - x2;
+        double c1 = a1 * x1 + b1 * y1;
+
+        double a2 = y4 - y3;
+        double b2 = x3 - x4;
+        double c2 = a2 * x3 + b2 * y3;
+
+        double delta = a1 * b2 - a2 * b1;
+        return x ? (b2 * c1 - b1 * c2) / delta : (a1 * c2 - a2 * c1) / delta;
+    }
+
+    private static double distance(double x0, double y0, double x1, double y1) {
+        double dx = x1 - x0, dy = y1 - y0;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    private static class BallHit {
+        private final Bounds hitBounds;
+        private double hitDistance;
+        private double xHit;
+        private double yHit;
+        private double correctedX;
+        private double correctedY;
+        private boolean inverseVx;
+        private boolean inverseVy;
+
+        public BallHit(Bounds hitBounds) {
+            this.hitBounds = hitBounds;
+        }
+    }
 
     // ******************** Start *********************************************
     public static void main(String[] args) {
