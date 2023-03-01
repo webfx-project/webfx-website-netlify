@@ -1271,7 +1271,8 @@ public class Main extends Application {
                 // (x1, y1) may need a correction if the ball hits a block
                 while (true) { // Several iterations are possible, because even the corrected (x1, y1) might hit another block
                     double fx0 = x0, fy0 = y0, fx1 = x1, fy1 = y1; // Capturing final values for the lambda expression below
-                    BallHit ballHit = Stream.concat(blocks.stream().map(b -> b.bounds), Arrays.stream(BORDER_BOUNDS)) // Iterating over all block bounds together with the border bounds (processed identically)
+                    BallHit ballHit = Stream.concat(blocks.stream().map(b -> b.bounds), // Iterating over all block bounds
+                                    Stream.concat(Arrays.stream(BORDER_BOUNDS), Stream.of(paddle.bounds))) // together with the borders and paddle bounds (processed identically)
                             .map(bounds -> bounds.computeBallHit(fx0, fy0, fx1, fy1, radius)) // computing a possible ball hit with the bounds (returns null if no hits)
                             .filter(Objects::nonNull) // removing non-hits
                             // If that trajectory (x0, y0) -> (x1, y1) hits several blocks, we keep the first hit block
@@ -1293,9 +1294,54 @@ public class Main extends Application {
                     y0 = ballHit.yHit;
                     x1 = ballHit.correctedX;
                     y1 = ballHit.correctedY;
-                    // But before looping, we retrieve the block hit by the ball for the hit sound, block blink & score management:
+                    // But before looping, we manage some special case when hitting the paddle or the blocks
+                    if (ballHit.hitBounds == paddle.bounds) {
+                        Bounds pb = paddle.bounds;
+                        if (stickyPaddle) {
+                            this.x       = pb.centerX;
+                            this.y       = pb.minY - image.getHeight() * 0.5 - BALL_SPEED - 1;
+                            this.active  = false;
+                            break;
+                        } else {
+                            // Influence vX of ball if vX of paddle != 0
+                            if (paddle.vX != 0) {
+                                double speedXY = Math.sqrt(vX * vX + vY * vY);
+                                double posX    = (x1 - pb.centerX) / (pb.width * 0.5);
+                                double speedX  = speedXY * posX * BALL_VX_INFLUENCE;
+                                vX = speedX;
+                                vY = - Math.sqrt(speedXY * speedXY - speedX * speedX);
+                                // Recalculating (x1, y1) from this new speed
+                                x1 = x0 + vX;
+                                y1 = y0 + vY;
+                            } else { // angle correction due to paddle round corners
+                                double pcr = pb.height; // paddle corner radius
+                                boolean hitLeftCorner = x0 < pb.minX + pcr; // Note: x0 is the hit X at this point
+                                boolean hitRightCorner = x0 > pb.maxX - pcr;
+                                if (hitLeftCorner || hitRightCorner) {
+                                    double distanceToCorner = hitLeftCorner ? pb.minX + pcr - x0 : x0 - pb.maxX + pcr;
+                                    double cornerAngleRad = Math.acos(distanceToCorner * 0.85 / pcr); // Note: 0.85 factor is because the corner is not as sharp as a circle at the edge
+                                    double minRad = Math.PI / 180 * 35; // To avoid the speed to be too horizontal
+                                    double maxRad = Math.PI / 180 * 75; // Better to keep the hit speed
+                                    // Low angle correction => minRad
+                                    if (Double.isNaN(cornerAngleRad) || cornerAngleRad < minRad)
+                                        cornerAngleRad = minRad;
+                                    // Keeping the hit speed if to closed to 90°
+                                    if (cornerAngleRad < maxRad) {
+                                        // Applying the new speed angle
+                                        vY = BALL_SPEED * Math.sin(cornerAngleRad) * (y0 > pb.centerY ? 1 : -1); // Not inverting vY if the hit is too low (-> user will lose the ball, sorry)
+                                        vX = BALL_SPEED * Math.cos(cornerAngleRad) * (hitLeftCorner ? -1 : 1);
+                                        // Recalculating (x1, y1) from this new speed
+                                        x1 = x0 + vX;
+                                        y1 = y0 + vY;
+                                    }
+                                }
+                            }
+                        }
+                        playSound(ballPaddleSnd);
+                    }
+                    // We retrieve the block hit by the ball for the hit sound, block blink & score management:
                     Block block = blocks.stream().filter(b -> b.bounds == ballHit.hitBounds).findFirst().orElse(null);
-                    if (block != null) { // Can be null if the ball hit a border, and not a block
+                    if (block != null) { // Can be null if the ball hit something else (paddle or border)
                         switch (block.blockType) {
                             case GOLD: {
                                 playSound(ballHardBlockSnd);
@@ -1370,33 +1416,6 @@ public class Main extends Application {
                     }
                     break;
                 }
-            }
-
-            // Hit test ball with paddle
-            if (bounds.intersects(paddle.bounds)) {
-                if (stickyPaddle) {
-                    this.x       = paddle.bounds.centerX;
-                    this.y       = paddle.bounds.minY - image.getHeight() * 0.5 - BALL_SPEED - 1;
-                    this.active  = false;
-                }
-
-                // Influence vX of ball if vX of paddle != 0
-                if (paddle.vX > 0) {
-                    double speedXY = Math.sqrt(vX * vX + vY * vY);
-                    double posX    = (bounds.centerX - paddle.bounds.centerX) / (paddle.bounds.width * 0.5);
-                    double speedX  = speedXY * posX * BALL_VX_INFLUENCE;
-                    vX = speedX;
-                    vY = Math.sqrt(speedXY * speedXY - speedX * speedX) * (vY > 0 ? -1 : 1);
-                }
-
-                if (vX > 0 && bounds.centerX < paddle.bounds.minX) {
-                    vX = -ballSpeed;
-                } else if (vX < 0 && bounds.centerX > paddle.bounds.maxX) {
-                    vX = -ballSpeed;
-                }
-                vY = -ballSpeed;
-
-                playSound(ballPaddleSnd);
             }
 
             if (Double.compare(vX, 0) == 0) { vX = 0.5; }
@@ -1647,6 +1666,15 @@ public class Main extends Application {
                     xHit = maxXr;
                     inverseVx = true;
                 }
+            }
+            // If not, is the ball inside the bounds? (this may happen with the paddle moving quickly)
+            if (!hit && contains(x1, y1)) {
+                hit = true;
+                xHit = computeLineIntersectionX(-1, minYr, 1, minYr, x0, y0, x1, y1); // Where on X?
+                yHit = minYr;
+                //x0 = x1 = xHit;
+                //y0 = y1 = yHit;
+                inverseVy = true;
             }
             if (!hit)
                 return null;
