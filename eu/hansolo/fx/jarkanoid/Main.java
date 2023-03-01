@@ -1232,11 +1232,11 @@ public class Main extends Application {
         }
     }
 
-    private final static double BORDER_BOUNDS_THICKNESS = 10000; // quite big value to ensure the ball won't cross the border
+    private final static double BIG_VALUE = 100_000; // Big enough to ensure the ball won't cross the borders
     private final static Bounds[] BORDER_BOUNDS = {
-            new Bounds(-BORDER_BOUNDS_THICKNESS + INSET * 0.8, 0, BORDER_BOUNDS_THICKNESS, HEIGHT), // left border bounds
-            new Bounds(WIDTH - INSET * 0.8, 0, BORDER_BOUNDS_THICKNESS, HEIGHT), // right border bounds
-            new Bounds(0, -BORDER_BOUNDS_THICKNESS + UPPER_INSET, WIDTH, BORDER_BOUNDS_THICKNESS) // top border bounds
+            new Bounds(-BIG_VALUE + INSET * 0.8, -BIG_VALUE, BIG_VALUE, 2 * BIG_VALUE), // left border bounds
+            new Bounds(WIDTH - INSET * 0.8, -BIG_VALUE, BIG_VALUE, 2 * BIG_VALUE), // right border bounds
+            new Bounds(-BIG_VALUE, -BIG_VALUE + UPPER_INSET, 2 * BIG_VALUE, BIG_VALUE) // top border bounds
     };
 
     private class Ball extends Sprite {
@@ -1275,7 +1275,7 @@ public class Main extends Application {
                             .map(bounds -> bounds.computeBallHit(fx0, fy0, fx1, fy1, radius)) // computing a possible ball hit with the bounds (returns null if no hits)
                             .filter(Objects::nonNull) // removing non-hits
                             // If that trajectory (x0, y0) -> (x1, y1) hits several blocks, we keep the first hit block
-                            .min(Comparator.comparingDouble(ballHit1 -> ballHit1.hitDistance)) // first hit = min hit distance (x0, y0) -> (xHit, yHit)
+                            .min(Comparator.comparingDouble(ballHit1 -> ballHit1.beforeHitDistance)) // first hit = min hit distance (x0, y0) -> (xHit, yHit)
                             .orElse(null); // returning null if no hit
                     if (ballHit == null) { // If there is no hit, (x1, y1) doesn't need correction
                         this.x = x1;
@@ -1608,54 +1608,57 @@ public class Main extends Application {
         }
 
         private BallHit computeBallHit(double x0, double y0, double x1, double y1, double r) {
-            // Increased +r bounds
+            // Increased +r bounds to simplify computation and focus only on ball center
             double minXr = minX - r, minYr = minY - r, maxXr = maxX + r, maxYr = maxY + r;
-            double travelDistance = distance(x0, y0, x1, y1);
             double yHit = 0, xHit = 0;
-            boolean inverseVy = false, inverseVx = false;
-            // Does it hit the bottom border?
-            if (y0 > maxYr && y1 < maxYr) {
-                xHit = computeLineIntersectionX(-1, maxYr, 1, maxYr, x0, y0, x1, y1);
-                if (xHit >= minXr && xHit <= maxXr) { // Yes
+            boolean hit = false, inverseVy = false, inverseVx = false;
+            // Did the ball hit the bottom border?
+            if (y0 >= maxYr && y1 <= maxYr) { // Means that the ball crossed the bottom line (while moving up)
+                xHit = computeLineIntersectionX(-1, maxYr, 1, maxYr, x0, y0, x1, y1); // Where on X?
+                hit = xHit >= minXr && xHit <= maxXr; // X condition for a hit
+                if (hit) {
                     yHit = maxYr;
                     inverseVy = true;
                 }
             }
-            // If not, does it hit the top border?
-            if (!inverseVy && y0 < minYr && y1 > minYr) {
-                xHit = computeLineIntersectionX(-1, minYr, 1, minYr, x0, y0, x1, y1);
-                if (xHit >= minXr && xHit <= maxXr) { // Yes
+            // If not, did it hit the top border?
+            if (!hit && y0 <= minYr && y1 >= minYr) { // Means that the ball crossed the top line (while moving down)
+                xHit = computeLineIntersectionX(-1, minYr, 1, minYr, x0, y0, x1, y1); // Where on X?
+                hit = xHit >= minXr && xHit <= maxXr; // X condition for a hit
+                if (hit) {
                     yHit = minYr;
                     inverseVy = true;
                 }
             }
-            // If not, does it hit the left border?
-            if (!inverseVy && x0 < minXr && x1 > minXr) {
-                yHit = computeLineIntersectionY(minXr, 1, minXr, -1, x0, y0, x1, y1);
-                if (yHit >= minYr && yHit <= maxYr) { // Yes
+            // If not, did it hit the left border?
+            if (!hit && x0 <= minXr && x1 >= minXr) { // Means that the ball crossed the left line (while moving to right)
+                yHit = computeLineIntersectionY(minXr, 1, minXr, -1, x0, y0, x1, y1); // Where on Y?
+                hit = yHit >= minYr && yHit <= maxYr; // Y condition for a hit
+                if (hit) {
                     xHit = minXr;
                     inverseVx = true;
                 }
             }
-            // If not, does it hit the right border?
-            if (x0 > maxXr && x1 < maxXr) {
-                yHit = computeLineIntersectionY(maxXr, 1, maxXr, -1, x0, y0, x1, y1);
-                if (yHit >= minYr && yHit <= maxYr) { // Yes
+            // If not, did it hit the right border?
+            if (!hit && x0 >= maxXr && x1 <= maxXr) { // Means that the ball crossed the right line (while moving to left)
+                yHit = computeLineIntersectionY(maxXr, 1, maxXr, -1, x0, y0, x1, y1); // Where on Y?
+                hit = yHit >= minYr && yHit <= maxYr; // Y condition for a hit
+                if (hit) {
                     xHit = maxXr;
                     inverseVx = true;
                 }
             }
-            if (!inverseVx && !inverseVy)
+            if (!hit)
                 return null;
             BallHit ballHit = new BallHit(this);
             ballHit.xHit = xHit;
             ballHit.yHit = yHit;
             ballHit.inverseVx = inverseVx;
             ballHit.inverseVy = inverseVy;
-            ballHit.hitDistance = distance(x0, y0, xHit, yHit);
-            double correctionDistance = travelDistance - ballHit.hitDistance;
-            ballHit.correctedX = inverseVx ? xHit - (x1 - xHit) * correctionDistance : x1;
-            ballHit.correctedY = inverseVy ? yHit - (y1 - yHit) * correctionDistance : y1;
+            ballHit.beforeHitDistance = distance(x0, y0, xHit, yHit);
+            double afterHitDistance = distance(xHit, yHit, x1, y1);
+            ballHit.correctedX = inverseVx ? xHit - (x1 - xHit) * afterHitDistance : x1;
+            ballHit.correctedY = inverseVy ? yHit - (y1 - yHit) * afterHitDistance : y1;
             return ballHit;
         }
     }
@@ -1688,7 +1691,7 @@ public class Main extends Application {
 
     private static class BallHit {
         private final Bounds hitBounds;
-        private double hitDistance;
+        private double beforeHitDistance;
         private double xHit;
         private double yHit;
         private double correctedX;
