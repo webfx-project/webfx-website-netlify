@@ -682,10 +682,18 @@ public class Main extends Application {
         }
     }
 
+    private long lastClearLineSndPlayed;
+
     private void clearLine(final int line) {
         for (int x = 0 ; x < MATRIX_WIDTH ; x++) { MATRIX[line][x] = 0; }
-        playSound(clearLineSnd);
+        long now = System.currentTimeMillis();
+        if (now > lastClearLineSndPlayed + 500) { // To play the sound only once when clearing several lines (no cacophony)
+            playSound(clearLineSnd);
+            lastClearLineSndPlayed = now;
+        }
     }
+
+    private long lastBlockFallingSndPlayed;
 
     private void shiftDown(final int line) {
         for (int y = line ; y > 0 ; y--) {
@@ -693,7 +701,11 @@ public class Main extends Application {
                 MATRIX[y][x] = MATRIX[y - 1][x];
             }
         }
-        playSound(blockFallingSnd);
+        long now = System.currentTimeMillis();
+        if (now > lastBlockFallingSndPlayed + 500) { // To play the sound only once when shifting down several lines (no cacophony)
+            playSound(blockFallingSnd);
+            lastBlockFallingSndPlayed = now;
+        }
     }
 
 
