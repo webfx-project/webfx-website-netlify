@@ -289,7 +289,7 @@ public class Main extends Application {
         loadImages();
 
         // Load all sounds
-        loadSounds();
+        //loadSounds(); // Moved to start(), otherwise fails with Gluon (AudioService must be called from the UI thread)
 
         // Initialize block
         activeBlock = null;
@@ -314,7 +314,13 @@ public class Main extends Application {
         linesCleared = 0;
     }
 
+    private long lastMousePressedTime;
+    private long lastBlockDropTime;
+    private long lastBlockMovedDownTime;
+    private Block movedBlock;
+
     @Override public void start(final Stage stage) {
+        loadSounds(); // Better place (called by UI thread) to load sounds with Gluon AudioService
         //mediaPlayer = new MediaPlayer(soundTrack);
         soundTrack.setLooping(true); // mediaPlayer.setCycleCount(-1);
         soundTrack.setVolume(0.5); // mediaPlayer.setVolume(0.5);
@@ -357,7 +363,9 @@ public class Main extends Application {
         final Scene scene = DeviceSceneUtil.newScene(new Pane(), 500, 530, Color.BLACK);
         pane.setMaxSize(500, 530); // Necessary to scale up with ScalePane
 
-        DeviceSceneUtil.onFontsAndImagesLoaded(() -> scene.setRoot(new ScalePane(pane)), startScreenImg);
+        ScalePane scalePane = new ScalePane(pane);
+        scalePane.setBackground(gameBox.getBackground());
+        DeviceSceneUtil.onFontsAndImagesLoaded(() -> scene.setRoot(scalePane), startScreenImg);
 
         stage.setTitle("Tetris");
         stage.setScene(scene);
@@ -395,6 +403,58 @@ public class Main extends Application {
                     }
                 }
             }
+        });
+        scene.setOnMouseClicked(e -> {
+            if (startScreenView.isVisible()) {
+                startScreen(false);
+            } else if (!running) {
+                level = 1;
+                startLevel();
+            }
+        });
+        canvas.setOnSwipeDown(e -> {
+            if (!running || activeBlock == null)
+                return;
+            long now = System.currentTimeMillis();
+            if (movedBlock != null || now <= lastBlockDropTime + 1000) {
+                return;
+            }
+            activeBlock.drop();
+            movedBlock = activeBlock; // to prevent rotate on mouse released
+            lastBlockDropTime = now;
+        });
+        canvas.setOnMousePressed(e -> {
+            lastMousePressedTime = System.currentTimeMillis();
+            movedBlock = null;
+        });
+        canvas.setOnMouseDragged(e -> {
+            if (!running || activeBlock == null || movedBlock != null && movedBlock != activeBlock)
+                return;
+            double deltaX = e.getX() - (activeBlock.x * CELL_WIDTH + getBlockWidth(activeBlock) * CELL_WIDTH / 2);
+            if (deltaX < -CELL_WIDTH) {
+                activeBlock.moveLeft();
+                movedBlock = activeBlock;
+            } else if (deltaX > CELL_WIDTH) {
+                activeBlock.moveRight();
+                movedBlock = activeBlock;
+            } else {
+                double deltaY = e.getY() - (activeBlock.y + getBlockHeight(activeBlock) * CELL_HEIGHT);
+                long now = System.currentTimeMillis();
+                if (deltaY > CELL_HEIGHT && now > lastBlockMovedDownTime + 100 && now > lastMousePressedTime + 100) {
+                    redraw(true);
+                    playSound(moveBlockSnd);
+                    movedBlock = activeBlock;
+                    lastBlockMovedDownTime = now;
+                }
+            }
+        });
+        canvas.setOnMouseReleased(e -> {
+            if (!running || activeBlock == null || movedBlock != null)
+                return;
+            long now = System.currentTimeMillis();
+            if (now >= lastMousePressedTime + 200)
+                return;
+             activeBlock.rotate();
         });
 
         startScreen(true);
