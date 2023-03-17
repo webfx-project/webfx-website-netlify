@@ -8,6 +8,7 @@ import dev.webfx.platform.resource.Resource;
 import dev.webfx.platform.useragent.UserAgent;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -598,31 +599,56 @@ public class Main extends Application {
         }
     }
 
+    private int getBlockWidth(Block block) {
+        return getBlockMatrix(block)[0].length;
+    }
+
+    private int getBlockHeight(Block block) {
+        return getBlockMatrix(block).length;
+    }
+
 
     // Check whether the next move is possible in y direction
     private boolean moveDownAllowed(final Block block) {
-        if (!block.active || null == block) { return false; }
+        if (!block.active) { return false; }
+        block.y += CELL_HEIGHT;
+        boolean ok = checkBlockAllowed(block);
+        block.y -= CELL_HEIGHT;
+        return ok;
+    }
+
+    private boolean moveLeftAllowed(final Block block) {
+        if (!block.active) { return false; }
+        if (block.x < 1) { return false; }
+        block.x -= 1;
+        boolean allowed = checkBlockAllowed(block);
+        block.x += 1;
+        return allowed;
+    }
+
+    private boolean moveRightAllowed(final Block block) {
+        if (!block.active) { return false; }
+        if (block.x + getBlockWidth(block) > MATRIX_WIDTH - 1) { return false; }
+        block.x += 1;
+        boolean allowed = checkBlockAllowed(block);
+        block.x -= 1;
+        return allowed;
+    }
+
+    private boolean rotateAllowed(final Block block) {
+        block.angle = (block.angle + 90) % 360;
+        boolean outsideMatrix = block.x + getBlockWidth(block) > MATRIX_WIDTH || block.y / CELL_HEIGHT + getBlockHeight(block) > MATRIX_HEIGHT;
+        boolean allowed = !outsideMatrix && checkBlockAllowed(block);
+        block.angle = (block.angle - 90) % 360;
+        return allowed;
+    }
+
+    private boolean checkBlockAllowed(final Block block) {
         final Integer[][] blockMatrix = getBlockMatrix(block);
         for (int y = 0 ; y < blockMatrix.length ; y++) {
             for (int x = 0; x < blockMatrix[y].length; x++) {
                 if (blockMatrix[y][x] == 0) { continue; }
                 int matrixX = (int) (block.x + x);
-                int matrixY = (int) ((block.y + CELL_HEIGHT) / CELL_HEIGHT) + y;
-                if (matrixX < 0 || matrixX > MATRIX_WIDTH - 1) { continue; }
-                if (matrixY < 0 || matrixY > MATRIX_HEIGHT - 1) { continue; }
-                if (MATRIX[matrixY][matrixX] > 0) { return false; }
-            }
-        }
-        return true;
-    }
-
-    private boolean moveLeftAllowed(final Block block) {
-        if (!block.active) { return false; }
-        final Integer[][] blockMatrix = getBlockMatrix(block);
-        for (int y = 0 ; y < blockMatrix.length ; y++) {
-            for (int x = 0; x < blockMatrix[y].length; x++) {
-                if (blockMatrix[y][x] == 0) { continue; }
-                int matrixX = (int) (block.x + x) - 1;
                 int matrixY = (int) ((block.y + CELL_HEIGHT) / CELL_HEIGHT) + y - 1;
                 if (matrixX < 0 || matrixX > MATRIX_WIDTH - 1) { continue; }
                 if (matrixY < 0 || matrixY > MATRIX_HEIGHT - 1) { continue; }
@@ -631,23 +657,6 @@ public class Main extends Application {
         }
         return true;
     }
-
-    private boolean moveRightAllowed(final Block block) {
-        if (!block.active) { return false; }
-        final Integer[][] blockMatrix = getBlockMatrix(block);
-        for (int y = 0 ; y < blockMatrix.length ; y++) {
-            for (int x = 0; x < blockMatrix[y].length; x++) {
-                if (blockMatrix[y][x] == 0) { continue; }
-                int matrixX = (int) (block.x + x) + 1;
-                int matrixY = (int) ((block.y + CELL_HEIGHT) / CELL_HEIGHT) + y - 1;
-                if (matrixX < 0 || matrixX > MATRIX_WIDTH - 1) { continue; }
-                if (matrixY < 0 || matrixY > MATRIX_HEIGHT - 1) { continue; }
-                if (MATRIX[matrixY][matrixX] > 0) { return false; }
-            }
-        }
-        return true;
-    }
-
 
     // Check for complete rows
     private void checkForCompleteRows() {
@@ -682,18 +691,23 @@ public class Main extends Application {
         }
     }
 
-    private long lastClearLineSndPlayed;
+    private Runnable playClearLineSoundRunnable;
+    private int clearLineCount;
 
     private void clearLine(final int line) {
         for (int x = 0 ; x < MATRIX_WIDTH ; x++) { MATRIX[line][x] = 0; }
-        long now = System.currentTimeMillis();
-        if (now > lastClearLineSndPlayed + 500) { // To play the sound only once when clearing several lines (no cacophony)
-            playSound(clearLineSnd);
-            lastClearLineSndPlayed = now;
+        if (line != 0) // Ignoring line 0 which is called in addition
+            clearLineCount++;
+        if (playClearLineSoundRunnable == null) {
+            Platform.runLater(playClearLineSoundRunnable = () -> {
+                playSound(clearLineCount>= 4 ? clear4LinesSnd : clearLineSnd);
+                playClearLineSoundRunnable = null;
+                clearLineCount = 0;
+            });
         }
     }
 
-    private long lastBlockFallingSndPlayed;
+    private Runnable playBlockFallingSndRunnable;
 
     private void shiftDown(final int line) {
         for (int y = line ; y > 0 ; y--) {
@@ -701,13 +715,13 @@ public class Main extends Application {
                 MATRIX[y][x] = MATRIX[y - 1][x];
             }
         }
-        long now = System.currentTimeMillis();
-        if (now > lastBlockFallingSndPlayed + 500) { // To play the sound only once when shifting down several lines (no cacophony)
-            playSound(blockFallingSnd);
-            lastBlockFallingSndPlayed = now;
+        if (playBlockFallingSndRunnable == null) {
+            Platform.runLater(playBlockFallingSndRunnable = () -> {
+                playSound(blockFallingSnd);
+                playBlockFallingSndRunnable = null;
+            });
         }
     }
-
 
     // ******************** Redraw ********************************************
     private void drawPreview() {
@@ -916,25 +930,28 @@ public class Main extends Application {
         }
 
         public void moveLeft() {
-            if (this.x - 1 < 0 || !moveLeftAllowed(Block.this)) { return; }
+            if (!moveLeftAllowed(Block.this)) { return; }
             this.x--;
             playSound(moveBlockSnd);
             redraw(false);
         }
 
         public void moveRight() {
-            final Integer[][] blockMatrix = getBlockMatrix(Block.this);
-            if (this.x + blockMatrix[0].length > MATRIX_WIDTH - 1 || !moveRightAllowed(Block.this)) { return; }
+            if (!moveRightAllowed(Block.this)) { return; }
             this.x++;
             playSound(moveBlockSnd);
             redraw(false);
         }
 
         public void rotate() {
-            final Integer[][] blockMatrix = getBlockMatrix(Block.this);
-            if (this.x < 1 || this.x + blockMatrix[0].length - 1 > MATRIX_WIDTH - 2) { return; }
-            this.angle += 90;
-            if (this.angle >= 360) { this.angle = 0; }
+            if (!rotateAllowed(this)) {
+                // While refusing left & right moves will appear obvious to the player, refusing rotations may be less
+                // obvious. So we play a sound to clearly inform the player that we considered his request, but refused
+                // it due to the presence of other blocks of the frame.
+                playSound(blockFallingSnd); // This sound looks a bit like an error beep, so good to use here.
+                return;
+            }
+            this.angle = (this.angle + 90) % 360;
             playSound(rotateBlockSnd);
             redraw(false);
         }
