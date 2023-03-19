@@ -225,6 +225,10 @@ public class Main extends Application {
     private              Canvas                previewCanvas;
     private              GraphicsContext       previewCtx;
     private              ImageView             startScreenView;
+    // Fields used for playing sounds when lines are cleared
+    private              int                   clearLineCount;
+    private              Runnable              playClearLineSoundRunnable;
+    private              Runnable              playBlockFallingSndRunnable;
     // Fields used for the mouse/touch support:
     private              long                  mousePressedTime;
     private              Block                 draggedBlock;
@@ -372,21 +376,24 @@ public class Main extends Application {
         stage.setResizable(false);
 
         scene.setOnKeyPressed(e -> {
-            if (running && null != activeBlock) {
-                switch (e.getCode()) {
-                    case LEFT  : activeBlock.moveLeft(); break;
-                    case RIGHT : activeBlock.moveRight(); break;
-                    case SPACE : activeBlock.rotate(); break;
-                    case DOWN  : activeBlock.drop(); break;
-                    default    : if ("M".equalsIgnoreCase(e.getText())) {
-                        if (GameMode.STANDARD == gameMode) {
-                            setGameMode(GameMode.GITHUB);
-                        } else if (GameMode.GITHUB == gameMode) {
-                            setGameMode(GameMode.GLOSSY);
-                        } else {
-                            setGameMode(GameMode.STANDARD);
-                        }
-                        break;
+            if (running) {
+                if (activeBlock != null) {
+                    switch (e.getCode()) {
+                        case LEFT: activeBlock.moveLeft(); break;
+                        case RIGHT: activeBlock.moveRight(); break;
+                        case SPACE: activeBlock.rotate(); break;
+                        case DOWN: activeBlock.drop(); break;
+                        default:
+                            if ("M".equalsIgnoreCase(e.getText())) {
+                                if (GameMode.STANDARD == gameMode) {
+                                    setGameMode(GameMode.GITHUB);
+                                } else if (GameMode.GITHUB == gameMode) {
+                                    setGameMode(GameMode.GLOSSY);
+                                } else {
+                                    setGameMode(GameMode.STANDARD);
+                                }
+                                break;
+                            }
                     }
                 }
             } else {
@@ -672,35 +679,37 @@ public class Main extends Application {
     // Check whether the next move is possible in y direction
     private boolean moveDownAllowed(final Block block) {
         if (!block.active) { return false; }
-        block.y += CELL_HEIGHT;
-        boolean ok = checkBlockAllowed(block);
-        block.y -= CELL_HEIGHT;
-        return ok;
+        block.y += CELL_HEIGHT; // Moving to the requested position, just for the time of the test
+        boolean allowed = checkBlockAllowed(block); // test
+        block.y -= CELL_HEIGHT; // Rolling back to position before the test
+        return allowed;
     }
 
     private boolean moveLeftAllowed(final Block block) {
         if (!block.active) { return false; }
-        block.x--;
-        boolean allowed = checkBlockAllowed(block);
-        block.x++;
+        block.x--; // Moving to the requested position, just for the time of the test
+        boolean allowed = checkBlockAllowed(block); // test
+        block.x++; // Rolling back to position before the test
         return allowed;
     }
 
     private boolean moveRightAllowed(final Block block) {
         if (!block.active) { return false; }
-        block.x++;
-        boolean allowed = checkBlockAllowed(block);
-        block.x--;
+        block.x++; // Moving to the requested position, just for the time of the test
+        boolean allowed = checkBlockAllowed(block); // test
+        block.x--; // Rolling back to position before the test
         return allowed;
     }
 
     private boolean rotateAllowed(final Block block) {
-        block.angle = (block.angle + 90) % 360;
-        boolean allowed = checkBlockAllowed(block);
-        block.angle = (block.angle - 90) % 360;
+        if (!block.active) { return false; }
+        block.angle = (block.angle + 90) % 360; // Moving to the requested position, just for the time of the test
+        boolean allowed = checkBlockAllowed(block); // test
+        block.angle = (block.angle - 90) % 360; // Rolling back to position before the test
         return allowed;
     }
 
+    // Test if the block stays inside the matrix and doesn't overlap other blocks
     private boolean checkBlockAllowed(final Block block) {
         if (block.x < 0 || block.x + getBlockWidth(block) > MATRIX_WIDTH) { return false; }
         if (block.y / CELL_HEIGHT + getBlockHeight(block) > MATRIX_HEIGHT) { return false; }
@@ -751,13 +760,12 @@ public class Main extends Application {
         }
     }
 
-    private Runnable playClearLineSoundRunnable;
-    private int clearLineCount;
-
     private void clearLine(final int line) {
         for (int x = 0 ; x < MATRIX_WIDTH ; x++) { MATRIX[line][x] = 0; }
-        if (line != 0) // Ignoring line 0 which is called in addition
+        if (line != 0) // Ignoring line 0 which is called each time in addition
             clearLineCount++;
+        // Because clearLine() can be called multiple times consecutively, we postpone playing the sound, so it will
+        // be played only once (and with a special sound if 4 lines have been cleared)
         if (playClearLineSoundRunnable == null) {
             Platform.runLater(playClearLineSoundRunnable = () -> {
                 playSound(clearLineCount>= 4 ? clear4LinesSnd : clearLineSnd);
@@ -767,14 +775,14 @@ public class Main extends Application {
         }
     }
 
-    private Runnable playBlockFallingSndRunnable;
-
     private void shiftDown(final int line) {
         for (int y = line ; y > 0 ; y--) {
             for (int x = 0 ; x < MATRIX_WIDTH ; x++) {
                 MATRIX[y][x] = MATRIX[y - 1][x];
             }
         }
+        // Because shiftDown() can be called multiple times consecutively, we postpone playing the sound, so it will
+        // be played only once.
         if (playBlockFallingSndRunnable == null) {
             Platform.runLater(playBlockFallingSndRunnable = () -> {
                 playSound(blockFallingSnd);
