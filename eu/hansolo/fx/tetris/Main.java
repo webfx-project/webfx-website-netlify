@@ -46,9 +46,6 @@ public class Main extends Application {
             this.patternColor    = patternColor;
         }
     }
-    protected enum Direction {
-        UP, RIGHT, DOWN, LEFT;
-    }
     protected enum BlockType {
         BLUE(1, new Integer[][] { { 0, 1 },
                                         { 0, 1 },
@@ -378,7 +375,7 @@ public class Main extends Application {
         scene.setOnKeyPressed(e -> {
             if (startScreenView.isVisible()) {
                 startScreen(false);
-            } else if (!running) {
+            } else if (!running && System.nanoTime() > lastGameOver + 5_000_000_000L) {
                 switch (e.getCode()) {
                     case SPACE: {
                         level = 1;
@@ -409,7 +406,7 @@ public class Main extends Application {
         scene.setOnMouseClicked(e -> {
             if (startScreenView.isVisible()) {
                 startScreen(false);
-            } else if (!running) {
+            } else if (!running && System.nanoTime() > lastGameOver + 5_000_000_000L) {
                 level = 1;
                 startLevel();
             }
@@ -628,7 +625,6 @@ public class Main extends Application {
 
     // Game Over
     private void gameOver() {
-        //TODO: Show game over
         soundTrack.stop(); //mediaPlayer.stop();
         playSound(gameOverSnd);
         PropertyManager.INSTANCE.set(Constants.HIGHSCORE_KEY, Long.toString(highscore));
