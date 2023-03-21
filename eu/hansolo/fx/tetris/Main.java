@@ -659,12 +659,21 @@ public class Main extends Application {
     }
 
     private int getBlockWidth(Block block) {
-        Integer[] blockMatrix = getBlockMatrix(block)[0];
-        return blockMatrix == null ? 0 : blockMatrix.length;
+        return getBlockSize(block, false);
     }
 
     private int getBlockHeight(Block block) {
-        return getBlockMatrix(block).length;
+        return getBlockSize(block, true);
+    }
+
+    private int getBlockSize(Block block, boolean height) {
+        Integer[][] blockMatrix = getBlockMatrix(block);
+        if (blockMatrix == null || blockMatrix.length == 0)
+            return 0;
+        if (height)
+            return blockMatrix.length;
+        Integer[] blockRow = blockMatrix[0];
+        return blockRow == null ? 0 : blockRow.length;
     }
 
 
