@@ -419,15 +419,6 @@ public class Main extends Application {
             // to drag the new active block.
             if (!running || activeBlock == null || draggedBlock != null && draggedBlock != activeBlock)
                 return;
-            // Horizontal block drag management (both directions)
-            double deltaX = e.getX() - (activeBlock.x * CELL_WIDTH + getBlockWidth(activeBlock) * CELL_WIDTH / 2);
-            if (deltaX < -CELL_WIDTH) {
-                draggedBlock = activeBlock;
-                activeBlock.moveLeft();
-            } else if (deltaX > CELL_WIDTH) {
-                draggedBlock = activeBlock;
-                activeBlock.moveRight();
-            }
             // Vertical block drag management (down direction only) to eventually speed up the block to bottom
             double deltaY = e.getY() - (activeBlock.y + getBlockHeight(activeBlock) * CELL_HEIGHT);
             // We wait 100ms between 2 moves, and also initially because the player may just want to swipe down
@@ -436,6 +427,17 @@ public class Main extends Application {
                 draggedBlock = activeBlock;
                 activeBlock.moveDown();
                 lastDraggedDownTime = now;
+            }
+            if (deltaY <= CELL_HEIGHT || draggedBlock != null) {
+                // Horizontal block drag management (both directions)
+                double deltaX = e.getX() - (activeBlock.x * CELL_WIDTH + getBlockWidth(activeBlock) * CELL_WIDTH / 2);
+                if (deltaX < -CELL_WIDTH) {
+                    draggedBlock = activeBlock;
+                    activeBlock.moveLeft();
+                } else if (deltaX > CELL_WIDTH) {
+                    draggedBlock = activeBlock;
+                    activeBlock.moveRight();
+                }
             }
         });
         // Dropping the active block on swipe down (touch devices only)
