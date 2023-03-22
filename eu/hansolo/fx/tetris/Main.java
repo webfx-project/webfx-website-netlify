@@ -222,6 +222,8 @@ public class Main extends Application {
     private              Canvas                previewCanvas;
     private              GraphicsContext       previewCtx;
     private              ImageView             startScreenView;
+
+    private              HBox                  gameBox; // Moved to a field for WebFX (visibility management in the browser)
     // Fields used for playing sounds when lines are cleared
     private              int                   clearLineCount;
     private              Runnable              playClearLineSoundRunnable;
@@ -347,7 +349,7 @@ public class Main extends Application {
         previewPane.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, new CornerRadii(5), new BorderWidths(5))));
 
         final VBox dataPane = new VBox(50, highScoreBox, scoreBox, levelBox, previewPane);
-        final HBox gameBox  = new HBox(10, gamePane, dataPane);
+        gameBox  = new HBox(10, gamePane, dataPane);
         gameBox.setAlignment(Pos.CENTER);
         gameBox.setFillHeight(false);
 
@@ -360,11 +362,14 @@ public class Main extends Application {
 
         StackPane pane = new StackPane(gameBox, startScreenView);
 
+        // Setting a dummy empty root for the time being (we will wait fonts and images are loaded to show the content)
         final Scene scene = DeviceSceneUtil.newScene(new Pane(), 500, 530, Color.BLACK);
-        pane.setMaxSize(500, 530); // Necessary to scale up with ScalePane
 
         ScalePane scalePane = new ScalePane(pane);
+        pane.setMaxSize(500, 530); // Necessary to scale up with ScalePane
         scalePane.setBackground(gameBox.getBackground());
+        // Making the game box invisible at start in the browser, because the start image sometimes displays a bit later
+        gameBox.setVisible(false); // This prevents a possible initial flash where we see it before the image (will be made visible on game start)
         DeviceSceneUtil.onFontsAndImagesLoaded(() -> scene.setRoot(scalePane), startScreenImg);
 
         stage.setTitle("Tetris");
@@ -608,6 +613,7 @@ public class Main extends Application {
 
     // Start Level
     private void startLevel() {
+        gameBox.setVisible(true);
         soundTrack.play(); //mediaPlayer.play();
         running   = true;
         level     = 1;
