@@ -98,7 +98,7 @@ public final class TracerEngine {
         readyLinesCount = nextLineToPaintIndex = 0;
         cumulatedComputationTime = 0;
         pixelComputer.initFrame(width, height, placeIndex, frameIndex);
-        t0 = UiScheduler.nanoTime();
+        t0 = System.nanoTime();
         computingThreadsCount.set(threadsCount);
         if (threadsCount > 0) { // Using background thread(s) for the computation
             lastComputedLineIndex = -1;
@@ -239,7 +239,7 @@ public final class TracerEngine {
                 Color pixelColor = pixelComputer.getPixelResultColor(cx, cy, lineComputationInfo.linePixelResultStorage);
                 colorizePixel(cx++, cy, pixelColor);
                 // Also checking if the computation time doesn't exceed the frame max time
-                long computationTime = UiScheduler.nanoTime() - now;
+                long computationTime = System.nanoTime() - now;
                 if (computationTime > MAX_PULSE_COMPUTATION_TIME_NS) {
                     cumulatedComputationTime += computationTime;
                     // Memorizing the horizontal position so we can resume just where we stopped on next call
@@ -260,7 +260,7 @@ public final class TracerEngine {
         // End of the loop = end the job for this thread
         if (computingThreadsCount.decrementAndGet() <= 0) { // Was it the last thread to finish?
             // If yes, logging the computation time
-            long totalTime = UiScheduler.nanoTime() - t0;
+            long totalTime = System.nanoTime() - t0;
             lastFrameComputationTime = totalTime / MILLIS_IN_NANO;
             lastThreadsCount = threadsCount;
             Console.log("Completed in " + lastFrameComputationTime + "ms (computation: " + cumulatedComputationTime / MILLIS_IN_NANO + "ms (" + 100 * cumulatedComputationTime / totalTime + "%) - UI: " + (totalTime - cumulatedComputationTime) / MILLIS_IN_NANO + "ms (" + 100 * (totalTime - cumulatedComputationTime) / totalTime + "%)");

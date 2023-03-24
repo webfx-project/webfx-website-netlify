@@ -547,7 +547,7 @@ public final class TracerView {
     private void startOverlayTextAnimationIfNeeded() {
         if (overlayTextAnimationTimer == null) {
             overlayTextAnimationTimer = new AnimationTimer() {
-                private long lastKeyTime = UiScheduler.nanoTime();
+                private long lastKeyTime = System.nanoTime();
 
                 @Override
                 public void handle(long now) {
