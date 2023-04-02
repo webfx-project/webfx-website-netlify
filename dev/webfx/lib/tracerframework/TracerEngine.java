@@ -10,6 +10,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -17,6 +18,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Bruno Salmon
  */
 public final class TracerEngine {
+    private boolean hdpi;
+    private double outputScaleX;
+    private double outputScaleY;
 
     private int width, height;
     private final Canvas canvas;
@@ -28,6 +32,7 @@ public final class TracerEngine {
     private AnimationTimer animationTimer;
     private final AtomicInteger computingThreadsCount = new AtomicInteger();
     private final boolean usingWorkers;
+    private boolean lastFrameHdpi;
     private boolean lastFrameUsedWebAssembly;
     private final WebWorkerPool webWorkerPool;
     private long t0, cumulatedComputationTime, lastFrameComputationTime;
@@ -71,6 +76,10 @@ public final class TracerEngine {
         return lastFrameUsedWebAssembly;
     }
 
+    public boolean wasLastFrameHdpi() {
+        return lastFrameHdpi;
+    }
+
     public void setOnFinished(Runnable onFinished) {
         this.onFinished = onFinished;
     }
@@ -83,11 +92,17 @@ public final class TracerEngine {
         return lastThreadsCount;
     }
 
+    public void setHdpi(boolean hdpi) {
+        this.hdpi = hdpi;
+    }
+
     public void start() {
         stop(); // Stopping any previous running computation eventually
         startNumber++;
-        width  = (int) canvas.getWidth();
-        height = (int) canvas.getHeight();
+        outputScaleX = hdpi ? Screen.getPrimary().getOutputScaleX() : 1;
+        outputScaleY = hdpi ? Screen.getPrimary().getOutputScaleY() : 1;
+        width  = (int) (canvas.getWidth()  * outputScaleX);
+        height = (int) (canvas.getHeight() * outputScaleY);
         ctx = canvas.getGraphicsContext2D();
         if (computingLines == null || computingLines.length != height) {
             // Will contain the computing info of each line (ordered vertically)
@@ -175,6 +190,7 @@ public final class TracerEngine {
         stop();
         pixelComputer.endFrame();
         lastFrameUsedWebAssembly = pixelComputer.isUsingWebAssembly();
+        lastFrameHdpi = hdpi;
         if (onFinished != null)
             onFinished.run();
     }
@@ -201,7 +217,7 @@ public final class TracerEngine {
     private void colorizePixel(int x, int y, Color pixelColor) {
         if (pixelColor != null) { // in multi-pass, null means unchanged color
             ctx.setFill(pixelColor);
-            ctx.fillRect(x, y, 1, 1);
+            ctx.fillRect(x / outputScaleX, y / outputScaleY, 1 / outputScaleX, 1 / outputScaleY);
         }
     }
 
