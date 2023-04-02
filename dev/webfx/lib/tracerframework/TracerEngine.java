@@ -2,14 +2,14 @@ package dev.webfx.lib.tracerframework;
 
 import dev.webfx.platform.arch.Arch;
 import dev.webfx.platform.console.Console;
-import javafx.animation.AnimationTimer;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import dev.webfx.platform.uischeduler.UiScheduler;
 import dev.webfx.platform.webworker.WebWorker;
 import dev.webfx.platform.webworker.pool.WebWorkerPool;
 import dev.webfx.platform.webworker.spi.base.JavaCodedWebWorkerBase;
+import javafx.animation.AnimationTimer;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -126,7 +126,7 @@ public final class TracerEngine {
             };
         }
         animationTimer.start();
-        //webfx.platform.shared.services.log.Logger.log("Started UI thread + " + (threadCounts == 1 ? 0 : threadCounts) + " background thread(s)");
+        //Condole.log("Started UI thread + " + (threadCounts == 1 ? 0 : threadCounts) + " background thread(s)");
     }
 
     private void startComputingUsingThread() {
