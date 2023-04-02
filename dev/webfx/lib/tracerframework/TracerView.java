@@ -27,6 +27,7 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -43,12 +44,12 @@ public final class TracerView {
     private final static String DEFAULT_COMPILER = IS_BROWSER ? "GWT" : UserAgent.isNative() ? "Gluon/GraalVM" : "Javac";
     private final static String DEFAULT_TARGET = IS_BROWSER ? "JavaScript" : UserAgent.isNative() ? OperatingSystem.getOSName() : "JVM";
     private final static String THREADS_TEXT = IS_BROWSER ? "Workers" : "Threads";
-
+    private final static boolean IS_HDPI_SCREEN = Screen.getPrimary().getOutputScaleX() > 1;
     private final static int AVAILABLE_PROCESSORS = Arch.availableProcessors();
 
 
     static {
-        Font.loadFont(Resource.toUrl("Bitwise-m19x.ttf", TracerView.class), 16);
+        Font.loadFont(Resource.toUrl("Bitwise-m19x.ttf", TracerView.class), 48);
     }
 
     private long totalIterations;
@@ -269,12 +270,23 @@ public final class TracerView {
     private Timeline odometerTimeline;
     private final Pane incrementButton = createSvgButton(SvgButtonPaths.getUpPath(),   this::increment);
     private final Pane decrementButton = createSvgButton(SvgButtonPaths.getDownPath(), this::decrement);
-    private final Text threadsText = new Text(THREADS_TEXT), webAssemblyText = new Text("WebAssembly");
+    private final Text threadsText = new Text(THREADS_TEXT), webAssemblyText = new Text("WebAssembly"), hdpiText = new Text("HDPI");
     private int requestedThreadCounts = -1;
+    private boolean requestHdpi = false;
     private boolean requestUsingWebAssembly;
-    private final static double radius = 18, width = 76;
-    private final Circle switchKnob = new Circle(radius - 3, Color.WHITE);
-    private final Pane switchButton = new Pane(switchKnob);
+    private final Switch hdpiSwitch = new Switch(); {
+        hdpiSwitch.selectedProperty().addListener(p -> {
+            requestHdpi = hdpiSwitch.isSelected();
+            requestBenchmarking();
+        });
+    }
+
+    private final Switch webAssemblySwitch = new Switch(); {
+        webAssemblySwitch.selectedProperty().addListener(p -> {
+            requestUsingWebAssembly = webAssemblySwitch.isSelected();
+            requestBenchmarking();
+        });
+    }
 
     private void onGearClicked() {
         boolean wasShowing = isSettingsViewShowing();
@@ -283,8 +295,9 @@ public final class TracerView {
         else {
             if (requestedThreadCounts == -1)
                 requestedThreadCounts = tracer.getThreadsCount();
-            Font settingsFont = Font.font("Arial", FontWeight.BOLD, null, 28);
+            Font settingsFont = Font.font("Bitwise", FontWeight.BOLD, null, 28);
             threadsText.setFont(settingsFont);
+            hdpiText.setFont(settingsFont);
             webAssemblyText.setFont(settingsFont);
             odometer = OdometerBuilder.create()
                     .digits(2)
@@ -297,24 +310,21 @@ public final class TracerView {
             odometer.setMaxSize(74, 55);
             VBox odometerButtons = new VBox(7, incrementButton, decrementButton);
             odometerButtons.setAlignment(Pos.CENTER);
-            switchKnob.setLayoutX(requestUsingWebAssembly ? width - radius : radius);
-            switchKnob.setLayoutY(radius);
-            switchButton.setMinSize(width, 2 * radius);
-            switchButton.setMaxSize(width, 2 * radius);
-            switchButton.setOnMouseClicked(e -> {
-                requestUsingWebAssembly = !requestUsingWebAssembly;
-                animateProperty(200, switchKnob.layoutXProperty(), requestUsingWebAssembly ? width - radius : radius);
-                requestBenchmarking();
-            });
             settingsView = new GridPane();
             settingsView.setHgap(30);
             settingsView.setVgap(20);
-            if (IS_BROWSER) {
-                settingsView.add(webAssemblyText, 0, 0);
-                settingsView.add(switchButton, 1, 0);
+            if (IS_HDPI_SCREEN) {
+                hdpiSwitch.setSelected(requestHdpi);
+                settingsView.add(hdpiText, 0, 0);
+                settingsView.add(hdpiSwitch, 1, 0);
             }
-            settingsView.add(threadsText, 0, 1);
-            settingsView.add(new HBox(10, odometer, odometerButtons), 1, 1);
+            if (IS_BROWSER) {
+                webAssemblySwitch.setSelected(requestUsingWebAssembly);
+                settingsView.add(webAssemblyText, 0, 1);
+                settingsView.add(webAssemblySwitch, 1, 1);
+            }
+            settingsView.add(threadsText, 0, 2);
+            settingsView.add(new HBox(10, odometer, odometerButtons), 1, 2);
             settingsView.setAlignment(Pos.CENTER);
             overlayVBox.getChildren().add(0, settingsView);
             fadeNode(settingsView, true);
@@ -399,9 +409,11 @@ public final class TracerView {
 
     private void updatePlaceButtonBar() {
         placeButtonBar.getChildren().forEach(this::setOverlayFillOnShapes);
-        setOverlayFillOnShapes(exitButton, incrementButton, decrementButton, threadsText, webAssemblyText);
-        switchKnob.setFill(overlayFill == Color.WHITE || overlayFill == Color.YELLOW || overlayFill == Color.CYAN ? Color.BLACK : Color.WHITE);
-        switchButton.setBackground(new Background(new BackgroundFill(overlayFill, new CornerRadii(radius), null)));
+        setOverlayFillOnShapes(exitButton, incrementButton, decrementButton, threadsText, hdpiText, webAssemblyText);
+        hdpiSwitch.setKnobFill(overlayFill == Color.WHITE || overlayFill == Color.YELLOW || overlayFill == Color.CYAN ? Color.BLACK : Color.WHITE);
+        hdpiSwitch.setBackgroundFill(overlayFill);
+        webAssemblySwitch.setKnobFill(overlayFill == Color.WHITE || overlayFill == Color.YELLOW || overlayFill == Color.CYAN ? Color.BLACK : Color.WHITE);
+        webAssemblySwitch.setBackgroundFill(overlayFill);
         showButton(pauseButton, !completed && !zoomingPaused);
         progressArc.setVisible(!completed && !zoomingPaused);
         showButton(resumeButton, !completed && zoomingPaused);
@@ -493,7 +505,8 @@ public final class TracerView {
                         completeSpace("UI target"), DEFAULT_TARGET,
                         completeSpace("Math source"), "Java",
                         completeSpace("Math Compiler"), IS_BROWSER ? "TeaVM" : DEFAULT_COMPILER,
-                        completeSpace("Math target"), IS_BROWSER && tracer.wasLastFrameUsingWebAssembly() ? "WebAssembly" : DEFAULT_TARGET
+                        completeSpace("Math target"), IS_BROWSER && tracer.wasLastFrameUsingWebAssembly() ? "WebAssembly" : DEFAULT_TARGET,
+                        completeSpace("Resolution"), !IS_HDPI_SCREEN ? null : tracer.wasLastFrameHdpi() ? "High" : "Low"
                         );
             }
         }
@@ -602,6 +615,7 @@ public final class TracerView {
                 ctx.clearRect(0, 0, canvasWidth, canvasHeight);
             tracer.setPlaceIndex(placeIndex);
             tracer.setFrameIndex(frameIndex);
+            tracer.setHdpi(requestHdpi);
             tracer.start();
             if (snapshotsPlayer == null)
                 updateOverlayCanvas(); // Will start displaying the text overlay animation
