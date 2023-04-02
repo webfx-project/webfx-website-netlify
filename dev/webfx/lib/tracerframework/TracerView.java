@@ -1,5 +1,6 @@
 package dev.webfx.lib.tracerframework;
 
+import dev.webfx.kit.launcher.WebFxKitLauncher;
 import dev.webfx.platform.arch.Arch;
 import dev.webfx.platform.console.Console;
 import dev.webfx.platform.os.OperatingSystem;
@@ -98,7 +99,8 @@ public final class TracerView {
 
     public Parent buildView() {
         BorderPane root = new BorderPane();
-        canvas        = new Canvas(canvasWidth, canvasHeight);
+        // Following Google Chrome advise, and preventing this warning: Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true
+        canvas        = WebFxKitLauncher.createWillReadFrequentlyCanvas(canvasWidth, canvasHeight);
         overlayCanvas = new Canvas(canvasWidth, canvasHeight);
         tracer = new TracerEngine(canvas, pixelComputer);
 
