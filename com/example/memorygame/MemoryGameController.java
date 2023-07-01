@@ -2,19 +2,15 @@ package com.example.memorygame;
 
 import dev.webfx.platform.resource.Resource;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.ResourceBundle;
 
 public class MemoryGameController /*implements Initializable*/ {
 
@@ -141,9 +137,9 @@ public class MemoryGameController /*implements Initializable*/ {
         //Scene scene = new Scene(fxmlLoader.load());
         //Scene scene = new Scene(new FxmlWarView()._view, null);
         //get the Stage object from the ActionEvent
-        Scene scene = ((Node) event.getSource()).getScene();
-        scene.setRoot(new FxmlWarView()._view);
-        Stage stage = (Stage) scene.getWindow();
+        AnchorPane view = new FxmlWarView()._view;
+        Main.setView(view);
+        Stage stage = (Stage) view.getScene().getWindow();
 
         stage.setTitle("War Game");
         //stage.setScene(scene);

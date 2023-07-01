@@ -19,9 +19,9 @@ public final class FxmlWarView {
 	public FxmlWarView() {
 		_controller = new WarController();
 		AnchorPane ctrl_1 = new AnchorPane();
-		ctrl_1.setPrefHeight(600.0);
+		ctrl_1.setMaxHeight(600.0);
 		//ctrl_1.getStylesheets().add(toUrl("styles.css"));
-		ctrl_1.setPrefWidth(1000.0);
+		ctrl_1.setMaxWidth(1000.0);
 		VBox ctrl_2 = new VBox();
 		ctrl_2.setPrefHeight(600.0);
 		AnchorPane.setTopAnchor(ctrl_2, 0.0);
