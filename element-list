@@ -53,6 +53,10 @@ dev.webfx.kit.registry.javafxcontrols
 dev.webfx.kit.registry.javafxgraphics
 dev.webfx.kit.registry.javafxmedia
 dev.webfx.kit.registry.javafxweb
+dev.webfx.kit.statusbar
+dev.webfx.kit.statusbar.spi
+dev.webfx.kit.statusbar.spi.impl.gluon
+dev.webfx.kit.statusbar.spi.impl.none
 dev.webfx.kit.util.properties
 dev.webfx.kit.util.properties.conversion
 dev.webfx.kit.util.scene
