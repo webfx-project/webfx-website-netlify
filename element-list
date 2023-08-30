@@ -3,6 +3,9 @@ dev.webfx.extras.canvas
 dev.webfx.extras.canvas.impl
 module:webfx.extras.canvas.bar
 dev.webfx.extras.canvas.bar
+module:webfx.extras.canvas.blob
+dev.webfx.extras.canvas.blob
+dev.webfx.extras.canvas.blob.spi
 module:webfx.extras.canvas.layer
 dev.webfx.extras.canvas.layer
 dev.webfx.extras.canvas.layer.interact
