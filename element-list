@@ -1,6 +1,11 @@
 module:webfx.platform.arch
 dev.webfx.platform.arch
 dev.webfx.platform.arch.spi
+module:webfx.platform.ast.yaml
+dev.webfx.platform.ast.yaml.formatter
+dev.webfx.platform.ast.yaml.parser
+dev.webfx.platform.ast.yaml.parser.javacup
+dev.webfx.platform.ast.yaml.parser.jflex
 module:webfx.platform.async
 dev.webfx.platform.async
 dev.webfx.platform.async.impl
@@ -24,6 +29,8 @@ module:webfx.platform.fetch
 dev.webfx.platform.fetch
 dev.webfx.platform.fetch.spi
 dev.webfx.platform.streams
+module:webfx.platform.fetch.json
+dev.webfx.platform.fetch.json
 module:webfx.platform.file
 dev.webfx.platform.file
 dev.webfx.platform.file.spi
@@ -34,6 +41,7 @@ dev.webfx.platform.json.parser.javacup
 dev.webfx.platform.json.parser.jflex
 dev.webfx.platform.json.spi
 dev.webfx.platform.json.spi.impl.listmap
+dev.webfx.platform.json.tree
 module:webfx.platform.os
 dev.webfx.platform.os
 dev.webfx.platform.os.spi
