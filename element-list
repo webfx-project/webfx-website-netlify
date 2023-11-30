@@ -43,6 +43,7 @@ dev.webfx.kit.mapper.peers.javafxmedia
 dev.webfx.kit.mapper.peers.javafxmedia.spi
 dev.webfx.kit.mapper.peers.javafxmedia.spi.gwt
 dev.webfx.kit.mapper.peers.javafxweb.base
+dev.webfx.kit.mapper.peers.javafxweb.engine
 dev.webfx.kit.mapper.peers.javafxweb.spi.gwt
 dev.webfx.kit.mapper.spi
 dev.webfx.kit.mapper.spi.impl.base
@@ -52,7 +53,6 @@ dev.webfx.kit.platform.visibility.spi.impl.openjfx
 dev.webfx.kit.registry.javafxcontrols
 dev.webfx.kit.registry.javafxgraphics
 dev.webfx.kit.registry.javafxmedia
-dev.webfx.kit.registry.javafxweb
 dev.webfx.kit.statusbar
 dev.webfx.kit.statusbar.spi
 dev.webfx.kit.statusbar.spi.impl.gluon
@@ -69,6 +69,7 @@ javafx.beans.property
 javafx.beans.value
 javafx.collections
 javafx.collections.transformation
+javafx.concurrent
 javafx.css
 javafx.event
 javafx.geometry
