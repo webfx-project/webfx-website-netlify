@@ -78,6 +78,9 @@ module:webfx.platform.substitution.var.sysprop
 dev.webfx.platform.substitution.var.spi.impl.sysprop
 module:webfx.platform.substitution.var.windowlocation
 dev.webfx.platform.substitution.var.spi.impl.windowlocation
+module:webfx.platform.typedarray
+dev.webfx.platform.typedarray
+dev.webfx.platform.typedarray.spi
 module:webfx.platform.uischeduler
 dev.webfx.platform.uischeduler
 dev.webfx.platform.uischeduler.spi
