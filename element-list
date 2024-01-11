@@ -60,6 +60,10 @@ dev.webfx.kit.statusbar.spi.impl.none
 dev.webfx.kit.util.properties
 dev.webfx.kit.util.properties.conversion
 dev.webfx.kit.util.scene
+dev.webfx.kit.webgl
+dev.webfx.kit.webgl.spi
+dev.webfx.kit.webgl.spi.impl
+dev.webfx.kit.webgl.spi.impl.gwt
 dev.webfx.platform.uischeduler.spi.impl.openjfx
 javafx.animation
 javafx.application
