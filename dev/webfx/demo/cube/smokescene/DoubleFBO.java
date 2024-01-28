@@ -1,4 +1,4 @@
-package dev.webfx.demo.webgl.smoke;
+package dev.webfx.demo.cube.smokescene;
 
 /**
  * @author Bruno Salmon

@@ -1,6 +1,6 @@
-package dev.webfx.demo.webgl.text;
+package dev.webfx.demo.cube.textscene;
 
-import dev.webfx.demo.webgl.text.interpol.*;
+import dev.webfx.demo.cube.textscene.interpol.*;
 import dev.webfx.platform.console.Console;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;

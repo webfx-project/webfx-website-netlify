@@ -1,4 +1,4 @@
-package dev.webfx.demo.webgl;
+package dev.webfx.demo.cube;
 
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;

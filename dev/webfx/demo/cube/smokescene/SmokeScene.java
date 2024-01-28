@@ -1,4 +1,4 @@
-package dev.webfx.demo.webgl.smoke;
+package dev.webfx.demo.cube.smokescene;
 
 import dev.webfx.kit.util.properties.FXProperties;
 import dev.webfx.kit.webgl.*;

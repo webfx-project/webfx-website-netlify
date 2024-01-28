@@ -1,4 +1,4 @@
-package dev.webfx.demo.webgl.text.interpol;
+package dev.webfx.demo.cube.textscene.interpol;
 
 import javafx.scene.shape.QuadCurveTo;
 

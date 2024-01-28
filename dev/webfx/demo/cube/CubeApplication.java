@@ -1,8 +1,8 @@
-package dev.webfx.demo.webgl;
+package dev.webfx.demo.cube;
 
-import dev.webfx.demo.webgl.cube.CubeScene;
-import dev.webfx.demo.webgl.smoke.SmokeScene;
-import dev.webfx.demo.webgl.text.TextScene;
+import dev.webfx.demo.cube.cubescene.CubeScene;
+import dev.webfx.demo.cube.smokescene.SmokeScene;
+import dev.webfx.demo.cube.textscene.TextScene;
 import dev.webfx.kit.launcher.WebFxKitLauncher;
 import dev.webfx.kit.util.properties.FXProperties;
 import dev.webfx.platform.resource.Resource;
@@ -35,9 +35,9 @@ import java.util.Arrays;
  *
  * @author Bruno Salmon
  */
-public class WebGLDemo extends Application {
+public class CubeApplication extends Application {
 
-    private static final Font FONT = Font.loadFont(Resource.toUrl("Injekuta-Reg.otf", WebGLDemo.class), 14);
+    private static final Font FONT = Font.loadFont(Resource.toUrl("Injekuta-Reg.otf", CubeApplication.class), 14);
     private static final Color KEY_BORDER_COLOR = new Color(1, 1, 1, 0.2);
     private static final CornerRadii KEY_BORDER_RADII = new CornerRadii(5);
 

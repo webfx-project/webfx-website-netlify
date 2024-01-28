@@ -1,4 +1,4 @@
-package dev.webfx.demo.webgl.cube;
+package dev.webfx.demo.cube.cubescene;
 
 import dev.webfx.kit.util.properties.FXProperties;
 import dev.webfx.kit.webgl.WebGLRenderingContext;

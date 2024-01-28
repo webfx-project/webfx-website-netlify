@@ -1,4 +1,4 @@
-package dev.webfx.demo.webgl.text;
+package dev.webfx.demo.cube.textscene;
 
 import java.util.List;
 
