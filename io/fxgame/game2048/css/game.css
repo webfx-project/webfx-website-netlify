@@ -556,7 +556,7 @@ SVG ICONS https://icomoon.io/app/
     width: 40px;
     height: 40px;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="white" d="M16 18l8-8h-6v-8h-4v8h-6zM23.273 14.727l-2.242 2.242 8.128 3.031-13.158 4.907-13.158-4.907 8.127-3.031-2.242-2.242-8.727 3.273v8l16 6 16-6v-8z"></path></svg>');
-    translate: 0px -10px;
+    translate: 0px -3px;
 }
 
 #mSave button {
