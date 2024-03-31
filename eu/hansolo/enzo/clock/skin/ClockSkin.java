@@ -696,6 +696,7 @@ public class ClockSkin extends SkinBase<Clock> implements Skin<Clock> {
                     tickLabel.setX(size * 0.5 + x - tickLabel.getLayoutBounds().getWidth() * 0.5);
                     tickLabel.setY(size * 0.5 + y);
                     tickLabel.setTextOrigin(VPos.CENTER);
+                    tickLabel.setManaged(false); // WebFX addition so textOrigin is considered (see HtmlTextPeer.updateY()) TODO remove this once fixed
                     tickLabel.setTextAlignment(TextAlignment.CENTER);
                     tickLabelCounter++;
                 }
@@ -1054,6 +1055,6 @@ public class ClockSkin extends SkinBase<Clock> implements Skin<Clock> {
     }
 
     /*private static void log(String message) {
-        webfx.platform.shared.services.log.Logger.log(message);
+        dev.webfx.platform.console.Console.log(message);
     }*/
 }
