@@ -76,6 +76,8 @@ dev.webfx.platform.resource.spi
 module:webfx.platform.scheduler
 dev.webfx.platform.scheduler
 dev.webfx.platform.scheduler.spi
+module:webfx.platform.service
+dev.webfx.platform.service
 module:webfx.platform.shutdown
 dev.webfx.platform.shutdown
 dev.webfx.platform.shutdown.spi
