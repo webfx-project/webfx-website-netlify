@@ -116,6 +116,8 @@ module:webfx.platform.useragent
 dev.webfx.platform.useragent
 dev.webfx.platform.useragent.spi
 dev.webfx.platform.useragent.spi.impl
+module:webfx.platform.util.http
+dev.webfx.platform.util.http
 module:webfx.platform.util.time
 dev.webfx.platform.util.time
 module:webfx.platform.visibility
