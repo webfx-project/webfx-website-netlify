@@ -1,6 +1,7 @@
 package dev.webfx.lib.tracerframework;
 
 import dev.webfx.platform.arch.Arch;
+import dev.webfx.platform.ast.ReadOnlyAstObject;
 import dev.webfx.platform.console.Console;
 import dev.webfx.platform.uischeduler.UiScheduler;
 import dev.webfx.platform.webworker.WebWorker;

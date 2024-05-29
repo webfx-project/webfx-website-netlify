@@ -1,7 +1,7 @@
 package dev.webfx.lib.tracerframework;
 
 import javafx.scene.paint.Color;
-import dev.webfx.platform.json.ReadOnlyJsonObject;
+import dev.webfx.platform.ast.ReadOnlyAstObject;
 import dev.webfx.platform.webworker.spi.base.JavaCodedWebWorkerBase;
 
 /**
@@ -38,7 +38,7 @@ public interface PixelComputer {
 
     Class<? extends JavaCodedWebWorkerBase> getWorkerClass();
 
-    ReadOnlyJsonObject getLineWorkerParameters(int y, boolean firstWorkerCall);
+    ReadOnlyAstObject getLineWorkerParameters(int y, boolean firstWorkerCall);
 
     Object getLinePixelResultStorage(Object workerResult);
 }
