@@ -11,6 +11,8 @@ dev.webfx.extras.canvas.layer
 dev.webfx.extras.canvas.layer.interact
 module:webfx.extras.canvas.pane
 dev.webfx.extras.canvas.pane
+module:webfx.extras.carrousel
+dev.webfx.extras.carrousel
 module:webfx.extras.cell
 dev.webfx.extras.cell.collator
 dev.webfx.extras.cell.renderer
@@ -90,6 +92,8 @@ module:webfx.extras.util.control
 dev.webfx.extras.util.control
 module:webfx.extras.util.layout
 dev.webfx.extras.util.layout
+module:webfx.extras.util.masterslave
+dev.webfx.extras.util.masterslave
 module:webfx.extras.util.paint
 dev.webfx.extras.util.paint
 module:webfx.extras.util.scene
