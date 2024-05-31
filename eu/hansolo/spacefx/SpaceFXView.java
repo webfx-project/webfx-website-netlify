@@ -1879,6 +1879,10 @@ public class SpaceFXView extends StackPane {
         }
     }
 
+    public void toggleAutoFire() {
+        setAutoFire(!autoFire);
+    }
+
     public void mouseFire(MouseEvent e) {
         if (isRunning() && score > 0 && !isGamePaused() && gameNanoTime() > spaceShip.born + SpaceShip.INVULNERABLE_TIME / 2) {
             activateSpaceShipShield();

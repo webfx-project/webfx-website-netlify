@@ -53,7 +53,7 @@ public final class SpaceFX extends Application {
         // Now that config is ready, we can instantiate SpaceFXView and make it as root
         scene.setRoot(view = new SpaceFXView(stage));
 
-        //scene.getStylesheets().add(WebFXUtil.toResourceUrl("css/spacefx.css"));
+        //scene.getStylesheets().add(WebFXUtil.toResourceUrl("css/spacefx.css")); // replaced by WebFX CSS
 
         scene.setOnKeyPressed(e -> {
             if (view.isRunning()) {
@@ -84,7 +84,7 @@ public final class SpaceFX extends Application {
                         break;
                     case SPACE:
                         if (torpedoArmed) {
-                            view.setAutoFire(false);
+                            //view.setAutoFire(false);
                             view.fireSpaceShipWeapon();
                             torpedoArmed = false;
                         }
@@ -129,6 +129,9 @@ public final class SpaceFX extends Application {
                 view.startGame();
             }
             switch (e.getText().toUpperCase()) {
+                case "A":
+                    view.toggleAutoFire();
+                    break;
                 case "M":
                     view.toggleMuteSound();
                     break;
