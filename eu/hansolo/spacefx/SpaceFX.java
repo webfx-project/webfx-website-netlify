@@ -19,7 +19,6 @@ package eu.hansolo.spacefx;
 import dev.webfx.kit.util.scene.DeviceSceneUtil;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -28,17 +27,7 @@ public final class SpaceFX extends Application {
 
     public static double WINDOW_WIDTH = 700, WINDOW_HEIGHT = 900; // Default dimensions for desktops
 
-    private boolean torpedoArmed;
-    private boolean rocketArmed;
-    private boolean shieldArmed;
     private SpaceFXView view;
-
-    @Override
-    public void init() {
-        torpedoArmed = true;
-        rocketArmed = true;
-        shieldArmed = true;
-    }
 
     @Override
     public void start(Stage stage) {
@@ -56,118 +45,15 @@ public final class SpaceFX extends Application {
         //scene.getStylesheets().add(WebFXUtil.toResourceUrl("css/spacefx.css")); // replaced by WebFX CSS
 
         scene.setOnKeyPressed(e -> {
-            if (view.isRunning()) {
-                switch (e.getCode()) {
-                    case UP:
-                        view.decreaseSpaceShipVy();
-                        break;
-                    case RIGHT:
-                        view.increaseSpaceShipVx();
-                        break;
-                    case DOWN:
-                        view.increaseSpaceShipVy();
-                        break;
-                    case LEFT:
-                        view.decreaseSpaceShipVx();
-                        break;
-                    case S:
-                        if (shieldArmed) {
-                            view.activateSpaceShipShield();
-                            shieldArmed = false;
-                        }
-                        break;
-                    case R:
-                        if (rocketArmed) {
-                            view.fireSpaceShipRocket();
-                            rocketArmed = false;
-                        }
-                        break;
-                    case SPACE:
-                        if (torpedoArmed) {
-                            //view.setAutoFire(false);
-                            view.fireSpaceShipWeapon();
-                            torpedoArmed = false;
-                        }
-                        break;
-                    case P:
-                        view.toggleGamePause();
-                        break;
-                }
-            } else if (view.isHallOfFameScreen()) {
-                switch (e.getCode()) {
-                    case UP:
-                        if (view.getDigit1().isSelected()) {
-                            view.getDigit1().up();
-                        }
-                        if (view.getDigit2().isSelected()) {
-                            view.getDigit2().up();
-                        }
-                        break;
-                    case RIGHT:
-                        if (view.getDigit1().isSelected()) {
-                            view.getDigit2().setSelected(true);
-                        }
-                        break;
-                    case DOWN:
-                        if (view.getDigit1().isSelected()) {
-                            view.getDigit1().down();
-                        }
-                        if (view.getDigit2().isSelected()) {
-                            view.getDigit2().down();
-                        }
-                        break;
-                    case LEFT:
-                        if (view.getDigit2().isSelected()) {
-                            view.getDigit1().setSelected(true);
-                        }
-                        break;
-                    case SPACE:
-                        view.storePlayer();
-                        break;
-                }
-            } else if (e.getCode() == KeyCode.P && view.isReadyToStart()) {
-                view.startGame();
-            }
-            switch (e.getText().toUpperCase()) {
-                case "A":
-                    view.toggleAutoFire();
-                    break;
-                case "M":
-                    view.toggleMuteSound();
-                    break;
-            }
+            view.onKeyPressed(e.getCode(), e.getText());
             view.userInteracted();
         });
         scene.setOnKeyReleased(e -> {
-            if (view.isRunning()) {
-                switch (e.getCode()) {
-                    case UP:
-                        view.stopSpaceShipVy();
-                        break;
-                    case RIGHT:
-                        view.stopSpaceShipVx();
-                        break;
-                    case DOWN:
-                        view.stopSpaceShipVy();
-                        break;
-                    case LEFT:
-                        view.stopSpaceShipVx();
-                        break;
-                    case S:
-                        shieldArmed = true;
-                        break;
-                    case R:
-                        rocketArmed = true;
-                        break;
-                    case SPACE:
-                        torpedoArmed = true;
-                        break;
-                }
-            }
+            view.onKeyReleased(e.getCode());
         });
 
         scene.setOnMouseClicked(e -> {
-            if (!view.isRunning() && view.isReadyToStart())
+            if (view.isStartScreen())
                 view.startGame();
             view.userInteracted();
         });

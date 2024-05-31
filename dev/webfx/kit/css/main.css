@@ -88,14 +88,14 @@ fx-svgpath svg {
     alignment  : center;
 }
 
-button + span span.text {
+fx-button fx-text {
     alignment          : center;
     font-family        : "Spaceboy";
     font-size          : 1.5em;
     color              : rgb(51, 210, 206);
 }
 
-button {
+fx-button > fx-background {
     background-color   : transparent;
     faint-focus-color  : transparent;
     background-insets  : 0;

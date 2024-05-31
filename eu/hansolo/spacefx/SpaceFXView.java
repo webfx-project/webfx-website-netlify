@@ -38,6 +38,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.*;
@@ -54,10 +55,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -226,6 +224,10 @@ public class SpaceFXView extends StackPane {
     private              Pane                       decrementDifficultyButton;
     private              VBox                       difficultyBox;
     private              Pane                       volumeButton;
+    private final        Map<KeyCode, Long>         pressedKeys = new HashMap<>();
+    private              boolean                    torpedoArmed;
+    private              boolean                    rocketArmed;
+    private              boolean                    shieldArmed;
 
     // ******************** Constructor ***************************************
     public SpaceFXView(Stage stage) {
@@ -294,6 +296,134 @@ public class SpaceFXView extends StackPane {
 
         // Start timer to toggle between start screen and hall of fame
         screenTimer.start();
+    }
+
+    public void onKeyPressed(KeyCode keyCode, String keyText) {
+        pressedKeys.put(keyCode, System.currentTimeMillis());
+        if (isRunning()) {
+            if (keyCode == KeyCode.P)
+                toggleGamePause();
+            else if ("A".equalsIgnoreCase(keyText)) {
+                toggleAutoFire();
+            } else if ("M".equalsIgnoreCase(keyText)) {
+                toggleMuteSound();
+            } else {
+                handleGamePressedKeys();
+            }
+        } else if (isHallOfFameScreen()) {
+            switch (keyCode) {
+                case UP:
+                    if (getDigit1().isSelected()) {
+                        getDigit1().up();
+                    }
+                    if (getDigit2().isSelected()) {
+                        getDigit2().up();
+                    }
+                    break;
+                case DOWN:
+                    if (getDigit1().isSelected()) {
+                        getDigit1().down();
+                    }
+                    if (getDigit2().isSelected()) {
+                        getDigit2().down();
+                    }
+                    break;
+                case LEFT:
+                    if (getDigit2().isSelected()) {
+                        getDigit1().setSelected(true);
+                    }
+                    break;
+                case RIGHT:
+                    if (getDigit1().isSelected()) {
+                        getDigit2().setSelected(true);
+                    }
+                    break;
+                case SPACE:
+                    storePlayer();
+                    break;
+            }
+        } else if (isStartScreen()) {
+            switch (keyCode) {
+                case UP:
+                    increaseDifficulty();
+                    break;
+                case DOWN:
+                    decreaseDifficulty();
+                    break;
+                case P:
+                    if (isReadyToStart())
+                        startGame();
+                    break;
+            }
+        }
+    }
+
+    public void onKeyReleased(KeyCode keyCode) {
+        pressedKeys.remove(keyCode);
+        if (isRunning()) {
+            switch (keyCode) {
+                case UP:
+                    stopSpaceShipVy();
+                    break;
+                case RIGHT:
+                    stopSpaceShipVx();
+                    break;
+                case DOWN:
+                    stopSpaceShipVy();
+                    break;
+                case LEFT:
+                    stopSpaceShipVx();
+                    break;
+                case S:
+                    shieldArmed = true;
+                    break;
+                case R:
+                    rocketArmed = true;
+                    break;
+                case SPACE:
+                    torpedoArmed = true;
+                    break;
+            }
+        }
+    }
+
+    private boolean isKeyPressed(KeyCode key) {
+        return pressedKeys.containsKey(key);
+    }
+
+    private boolean isKeyPressedAfter(KeyCode key, KeyCode otherKey) {
+        Long time = pressedKeys.get(key);
+        if (time == null)
+            return false;
+        Long otherTime = pressedKeys.get(otherKey);
+        return otherTime == null || time > otherTime;
+    }
+
+    private void handleGamePressedKeys() {
+        if (isRunning()) {
+            if (isKeyPressedAfter(KeyCode.UP, KeyCode.DOWN)) {
+                decreaseSpaceShipVy();
+            } else if (isKeyPressedAfter(KeyCode.DOWN, KeyCode.UP)) {
+                increaseSpaceShipVy();
+            }
+            if (isKeyPressedAfter(KeyCode.LEFT, KeyCode.RIGHT)) {
+                decreaseSpaceShipVx();
+            } else if (isKeyPressedAfter(KeyCode.RIGHT, KeyCode.LEFT)) {
+                increaseSpaceShipVx();
+            }
+            if (isKeyPressed(KeyCode.S) && shieldArmed) {
+                activateSpaceShipShield();
+                shieldArmed = false;
+            }
+            if (isKeyPressed(KeyCode.R) && rocketArmed) {
+                fireSpaceShipRocket();
+                rocketArmed = false;
+            }
+            if (isKeyPressed(KeyCode.SPACE) && torpedoArmed) {
+                fireSpaceShipWeapon();
+                torpedoArmed = false;
+            }
+        }
     }
 
     // ******************** Methods *******************************************
@@ -436,6 +566,7 @@ public class SpaceFXView extends StackPane {
             @Override public void handle(long now) {
                 if (gamePaused)
                     return;
+                handleGamePressedKeys();
                 now = gameNanoTime();
                 if (now > lastTimerCall) {
                     lastTimerCall = now + deltaTime;
@@ -1538,11 +1669,15 @@ public class SpaceFXView extends StackPane {
         Helper.enableNode(hallOfFameBox, false);
         Helper.enableNode(volumeButton, true);
         gameOverScreen = false;
+        hallOfFameScreen = false;
         bigTorpedosEnabled = false;
         starburstEnabled = false;
         starburst360Enabled = false;
         speedUpEnabled = false;
         levelBossActive = false;
+        torpedoArmed = true;
+        rocketArmed = true;
+        shieldArmed = true;
         waves.clear();
         wavesToRemove.clear();
         enemyBosses.clear();
@@ -1829,6 +1964,8 @@ public class SpaceFXView extends StackPane {
     public boolean isRunning() { return running; }
 
     public boolean isHallOfFameScreen() { return hallOfFameScreen; }
+
+    public boolean isStartScreen() { return !running && !hallOfFameScreen && !gameOverScreen; }
 
     public void increaseSpaceShipVx() { spaceShip.vX = 5 * VELOCITY_FACTOR_X; }
     public void decreaseSpaceShipVx() { spaceShip.vX = -5 * VELOCITY_FACTOR_X; }
