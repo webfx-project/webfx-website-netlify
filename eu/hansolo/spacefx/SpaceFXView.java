@@ -91,7 +91,7 @@ public class SpaceFXView extends StackPane {
     private              Difficulty                 initialDifficulty = Difficulty.valueOf(PropertyManager.INSTANCE.getDifficultyString("initialDifficulty"));
     private              Difficulty                 minLevelDifficulty;
     private              Difficulty                 levelDifficulty;
-    private final        Image                      startImg                = WebFXUtil.newImage("startscreen. ");
+    private final        Image                      startImg                = WebFXUtil.newImage("startscreen.jpg");
     private final        Image                      gameOverImg             = WebFXUtil.newImage("gameover.jpg");
     private final        Image                      hallOfFameImg           = WebFXUtil.newImage("halloffamescreen.jpg");
     //private final        Image                      startImg                = isDesktop() ? WebFxUtil.newImage("startscreen.jpg")) : isIOS() ? WebFxUtil.newImage("startscreenIOS.jpg")) : WebFxUtil.newImage("startscreenAndroid.png"));
