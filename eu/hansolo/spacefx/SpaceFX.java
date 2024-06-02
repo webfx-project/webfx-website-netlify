@@ -19,6 +19,7 @@ package eu.hansolo.spacefx;
 import dev.webfx.kit.util.scene.DeviceSceneUtil;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -53,9 +54,9 @@ public final class SpaceFX extends Application {
         });
 
         scene.setOnMouseClicked(e -> {
-            if (view.isStartScreen())
-                view.startGame();
             view.userInteracted();
+            view.onKeyPressed(KeyCode.SPACE, " ");
+            view.onKeyReleased(KeyCode.SPACE);
         });
 
         stage.setTitle("SpaceFX");

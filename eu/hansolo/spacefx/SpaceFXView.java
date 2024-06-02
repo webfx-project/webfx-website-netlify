@@ -91,7 +91,7 @@ public class SpaceFXView extends StackPane {
     private              Difficulty                 initialDifficulty = Difficulty.valueOf(PropertyManager.INSTANCE.getDifficultyString("initialDifficulty"));
     private              Difficulty                 minLevelDifficulty;
     private              Difficulty                 levelDifficulty;
-    private final        Image                      startImg                = WebFXUtil.newImage("startscreen.jpg");
+    private final        Image                      startImg                = WebFXUtil.newImage("startscreen. ");
     private final        Image                      gameOverImg             = WebFXUtil.newImage("gameover.jpg");
     private final        Image                      hallOfFameImg           = WebFXUtil.newImage("halloffamescreen.jpg");
     //private final        Image                      startImg                = isDesktop() ? WebFxUtil.newImage("startscreen.jpg")) : isIOS() ? WebFxUtil.newImage("startscreenIOS.jpg")) : WebFxUtil.newImage("startscreenAndroid.png"));
@@ -310,7 +310,7 @@ public class SpaceFXView extends StackPane {
             } else {
                 handleGamePressedKeys();
             }
-        } else if (isHallOfFameScreen()) {
+        } else if (isHallOfFameScreen() && saveInitialsButton.isVisible()) {
             switch (keyCode) {
                 case UP:
                     if (getDigit1().isSelected()) {
@@ -350,11 +350,13 @@ public class SpaceFXView extends StackPane {
                 case DOWN:
                     decreaseDifficulty();
                     break;
-                case P:
+                case SPACE:
                     if (isReadyToStart())
                         startGame();
                     break;
             }
+        } else if (!gameOverScreen && keyCode == KeyCode.SPACE && isReadyToStart()) {
+            startGame();
         }
     }
 
@@ -4026,7 +4028,8 @@ public class SpaceFXView extends StackPane {
         return pane;
     }
 
-    private final static Color SVG_COLOR = Color.gray(0.75);
+    private final static Color SVG_COLOR = Color.rgb(51, 210, 206);
+
     private static SVGPath createSvgPath(String content, boolean fill, boolean stroke) {
         SVGPath path = new SVGPath();
         path.setContent(content);
