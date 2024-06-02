@@ -20,10 +20,10 @@ package eu.hansolo.spacefx;
 import javafx.scene.paint.Color;
 
 public enum Difficulty {
-    EASY(5, 0, Color.web("#3AFE15")), // flashy green
-    FOCUS(10, 1, Color.YELLOWGREEN),
+    EASY(5, 0, Color.rgb(51, 210, 206)), // cyan
+    FOCUS(10, 1, Color.web("#3AFE15")), // flashy green
     WARRIOR(15, 2, Color.YELLOW),
-    HERO(20, 10, Color.CYAN),
+    HERO(20, 10, Color.ORANGE),
     NINJA(50, 17, Color.ORANGERED),
     JEDI(75, 20, Color.RED),
     NEO(100, 30, Color.BLACK);
