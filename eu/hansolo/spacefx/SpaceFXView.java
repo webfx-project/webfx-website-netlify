@@ -301,15 +301,14 @@ public class SpaceFXView extends StackPane {
     public void onKeyPressed(KeyCode keyCode, String keyText) {
         pressedKeys.put(keyCode, System.currentTimeMillis());
         if (isRunning()) {
-            if (keyCode == KeyCode.P)
-                toggleGamePause();
-            else if ("A".equalsIgnoreCase(keyText)) {
-                toggleAutoFire();
-            } else if ("M".equalsIgnoreCase(keyText)) {
-                toggleMuteSound();
-            } else {
-                handleGamePressedKeys();
+            if (keyText != null) {
+                switch (keyText.toUpperCase()) {
+                    case "P" : toggleGamePause(); return;
+                    case "A" : toggleAutoFire(); return;
+                    case "M" : toggleMuteSound(); return;
+                }
             }
+            handleGamePressedKeys();
         } else if (isHallOfFameScreen() && saveInitialsButton.isVisible()) {
             switch (keyCode) {
                 case UP:
@@ -343,17 +342,21 @@ public class SpaceFXView extends StackPane {
                     break;
             }
         } else if (isStartScreen()) {
-            switch (keyCode) {
-                case UP:
-                    increaseDifficulty();
-                    break;
-                case DOWN:
-                    decreaseDifficulty();
-                    break;
-                case SPACE:
-                    if (isReadyToStart())
-                        startGame();
-                    break;
+            if ("M".equalsIgnoreCase(keyText))
+                toggleMuteSound();
+            else {
+                switch (keyCode) {
+                    case UP:
+                        increaseDifficulty();
+                        break;
+                    case DOWN:
+                        decreaseDifficulty();
+                        break;
+                    case SPACE:
+                        if (isReadyToStart())
+                            startGame();
+                        break;
+                }
             }
         } else if (!gameOverScreen && keyCode == KeyCode.SPACE && isReadyToStart()) {
             startGame();
