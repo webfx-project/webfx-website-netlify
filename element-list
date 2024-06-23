@@ -45,10 +45,12 @@ dev.webfx.extras.player.audio.media
 module:webfx.extras.player.video
 dev.webfx.extras.player.video
 dev.webfx.extras.player.video.impl
-module:webfx.extras.player.video.wistia
-dev.webfx.extras.player.video.wistia
-module:webfx.extras.player.video.youtube
-dev.webfx.extras.player.video.youtube
+module:webfx.extras.player.video.web
+dev.webfx.extras.player.video.web
+module:webfx.extras.player.video.web.wistia
+dev.webfx.extras.player.video.web.wistia
+module:webfx.extras.player.video.web.youtube
+dev.webfx.extras.player.video.web.youtube
 module:webfx.extras.switches
 dev.webfx.extras.switches
 module:webfx.extras.theme
@@ -111,3 +113,5 @@ module:webfx.extras.webtext
 dev.webfx.extras.webtext
 module:webfx.extras.webtext.util
 dev.webfx.extras.webtext.util
+module:webfx.extras.webview.pane
+dev.webfx.extras.webview.pane
