@@ -20,10 +20,10 @@ public class IPCodes {
             return false;
         }
 
-        lat = Json.parseObject(codes).getDouble("lat");
-        lon = Json.parseObject(codes).getDouble("lon");
-        country  = Json.parseObject(codes).getString("country");
-        countryCode  = Json.parseObject(codes).getString("countryCode");
+        lat = Json.parseObject(codes).getDouble("latitude");
+        lon = Json.parseObject(codes).getDouble("longitude");
+        country  = Json.parseObject(codes).getString("country_name");
+        countryCode  = Json.parseObject(codes).getString("country_code");
         city = Json.parseObject(codes).getString("city");
         title_icon.set("icon-24px/" + countryCode   + ".png");
         ip_is_set.set(true);

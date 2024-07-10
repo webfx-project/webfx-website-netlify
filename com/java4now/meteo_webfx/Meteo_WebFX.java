@@ -44,7 +44,6 @@ import static com.java4now.meteo_webfx.Custom_ChoiceBox.geocode_lat;
 import static com.java4now.meteo_webfx.Custom_ChoiceBox.geocode_lon;
 import static com.java4now.meteo_webfx.shared.Forecast_current.Background_audio_name;
 
-
 public class Meteo_WebFX extends Application {
 
     Stage dialog;
@@ -521,9 +520,12 @@ will be banned for 1 hour.
 The returned HTTP header X-Rl contains the number of requests remaining in the current rate limit window. X-Ttl contains the seconds until the limit is reset.
 Your implementation should always check the value of the X-Rl header, and if its is 0 you must not send any more requests for the duration of X-Ttl in seconds.
 We do not allow commercial use of this endpoint. Please see our pro service for SSL access, unlimited queries and commercial support.
+http://ip-api.com/json/?fields=61439
+61439 -generated, numeric value (to save bandwidth) - fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query
  */
-        String IP_API_url = "http://ip-api.com/json/?fields=61439";
-// 61439 -generated, numeric value (to save bandwidth) - fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query
+
+        // https://ipapi.co - 30000 monthly free - have ssl
+        String IP_API_url = "https://ipapi.co/json/";
 
         Fetch.fetch(IP_API_url)
                 .onFailure(error -> {
@@ -534,7 +536,7 @@ We do not allow commercial use of this endpoint. Please see our pro service for 
                     response.text()
                             .onFailure(error -> Console.log("Json IP_API failure: " + error))
                             .onSuccess(text -> {
-
+//                                Console.log(text);
                                 boolean ok = ip_codes.parseData(text, title_icon,ip_is_set);
                                 if (ok) {
                                     ip_is_set.setValue(true);
