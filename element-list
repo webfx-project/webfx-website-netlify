@@ -62,6 +62,10 @@ dev.webfx.extras.theme.shape
 dev.webfx.extras.theme.text
 module:webfx.extras.time
 dev.webfx.extras.time
+module:webfx.extras.time.format
+dev.webfx.extras.time.format
+dev.webfx.extras.time.format.spi
+dev.webfx.extras.time.format.spi.impl
 module:webfx.extras.time.layout
 dev.webfx.extras.time.layout
 dev.webfx.extras.time.layout.bar
@@ -74,6 +78,8 @@ module:webfx.extras.time.layout.gantt
 dev.webfx.extras.time.layout.gantt
 dev.webfx.extras.time.layout.gantt.canvas
 dev.webfx.extras.time.layout.gantt.impl
+module:webfx.extras.time.pickers
+dev.webfx.extras.time.pickers
 module:webfx.extras.time.window
 dev.webfx.extras.time.projector
 dev.webfx.extras.time.window
